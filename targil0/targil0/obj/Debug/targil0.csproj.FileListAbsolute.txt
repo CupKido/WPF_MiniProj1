@@ -1,0 +1,7 @@
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil0\targil0\bin\Debug\targil0.exe.config
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil0\targil0\bin\Debug\targil0.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil0\targil0\bin\Debug\targil0.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil0\targil0\obj\Debug\targil0.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil0\targil0\obj\Debug\targil0.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil0\targil0\obj\Debug\targil0.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil0\targil0\obj\Debug\targil0.pdb
