@@ -9,6 +9,7 @@ public class BUS
     
     private string ID;
     private Date startdate = new Date();
+    private Date lastime = new Date(); //last treatment
     private double km;
     private int Gaz;
     public string currentID
@@ -31,6 +32,17 @@ public class BUS
         set
         {
             startdate = value;
+        }
+    }
+    public Date lastDate
+    {
+        get
+        {
+            return lastime;
+        }
+        set
+        {
+            lastime = value;
         }
     }
     public double currentkm
@@ -66,6 +78,16 @@ public class BUS
         ID = "0";
         km = 0;
         Gaz = 0;
+    }
+    public void SetBus(string id, int nday, int nmonth, int nyear)
+    {
+        ID = id;
+        startdate.SetDate(nday, nmonth, nyear);
+    }
+    public void SetBus(string id, Date busdate)
+    {
+        ID = id;
+        startdate = busdate;
     }
 
 }
@@ -123,5 +145,19 @@ public class Date
         month = 0;
         year = 0;
     }
-    
+    public void SetDate(int nDay, int nMonth, int nYear)
+    {
+        day = nDay;
+        month = nMonth;
+        year = nYear;
+    }
+
+    public bool IsOkay(int nday, int nmonth, int nyear)
+    {
+        if(nday<1|| nday > 30) { return false; }
+        if (nmonth < 1 || nmonth > 12) { return false; }
+        if (nyear < 1) { return false; }
+        SetDate(nday, nmonth, nyear);
+        return true;
+    }
 }
