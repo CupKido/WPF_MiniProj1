@@ -24,6 +24,7 @@ namespace targil1
                         addbus(ref buses, ref listsize);
                         break;
                     case 2:
+                        addride(ref buses);
                         break;
                     case 3:
                         break;
@@ -122,6 +123,42 @@ namespace targil1
             {
                 Console.WriteLine("{0} , {1}", buses[i].currentkm, buses[i].currentID);
             }
+        }
+        public static void addride(ref BUS[] buses)
+        {
+            if (buses.Length == 0)
+            {
+                Console.WriteLine("\n******\nERROR\nNO BUSES IN LIST\n******\n");
+                return;
+            }
+            bool isokay = false;
+            string ID = null;
+            int trashint;
+            while (!isokay)
+            {
+                Console.WriteLine("type ID:");
+                ID = Console.ReadLine();
+                if (ID == "x") { return; }
+                isokay = int.TryParse(ID, out trashint);
+                if (!isokay) { Console.WriteLine("\n******\nERROR\nONLY NUMBERS\n******\n"); }
+                else
+                {
+                    if(ID.Length > 8 || ID.Length < 7) { 
+                        Console.WriteLine("\n******\nERROR\n7-8 NUMBERS ONLY\n******\n");
+                        isokay = false;
+                    }
+                }
+                int location = buses[0].find(ID, buses) - 1;
+                if (location == -2) {
+                    Console.WriteLine("\n******\nERROR\nCOULDNT FIND WANTED BUS\n******\n");
+                    isokay = false;
+                }
+
+            }
+            
+            Random r = new Random();
+            double km = r.Next(0, 5000);
+            Console.WriteLine("ride distance: {0} kilometers", km);
         }
     }
 }

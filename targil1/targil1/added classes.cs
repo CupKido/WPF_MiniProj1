@@ -90,6 +90,21 @@ public class BUS
         startdate = busdate;
     }
 
+    public int find(string ID, BUS[] buses)
+    {
+        bool notfound = true;
+        int i = 0;
+        for (; i < buses.Length && notfound; ++i)
+        {
+            if(buses[i].ID == ID)
+            {
+                notfound = false;
+            }
+        }
+        if(notfound == true) { return -1; }
+        return i;
+    }
+        
 }
     
        
