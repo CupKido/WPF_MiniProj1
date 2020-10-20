@@ -10,6 +10,15 @@ namespace targil1
     {
         static void Main(string[] args)
         {
+            BUS buses = new BUS();
+            bool menu = true;
+            while (menu)
+            {
+
+            }
+            Console.WriteLine("enter id:");
+            
+            Console.ReadKey();
         }
     }
 }
