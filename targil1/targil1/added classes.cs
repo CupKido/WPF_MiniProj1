@@ -292,8 +292,6 @@ public class Date
         if (tday < b.day) { return false; }
         if (tday > b.day) { return true; }
         return false;
-
-
     }
     public static bool operator <(Date a, Date b)
     {
