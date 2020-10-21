@@ -15,6 +15,8 @@ namespace targil1
             int listsize = 0;
             bool inmenu = true;
             int numchosen = '\0';
+            Date today = new Date();
+            today.askDate("today's");
             while (inmenu)
             {
                 numchosen = Pleasechoose();
@@ -24,11 +26,13 @@ namespace targil1
                         addbus(ref buses, ref listsize);
                         break;
                     case 2:
-                        addride(ref buses);
+                        addride(ref buses, today);
                         break;
                     case 3:
+                        FillOrRepair(ref buses, today);
                         break;
                     case 4:
+                        printBuses(buses);
                         break;
                     case 5:
                         inmenu = false;
@@ -115,7 +119,7 @@ namespace targil1
                 }
             }
 
-            tempo.SetBus(ID, bustart);
+            tempo.SetBus(ID, bustart, true);
             temp[size] = tempo;
             buses = temp;
             size = size + 1;
@@ -124,7 +128,7 @@ namespace targil1
                 Console.WriteLine("{0} , {1}", buses[i].currentkm, buses[i].currentID);
             }
         }
-        public static void addride(ref BUS[] buses)
+        public static void addride(ref BUS[] buses, Date today)
         {
             if (buses.Length == 0)
             {
@@ -134,6 +138,7 @@ namespace targil1
             bool isokay = false;
             string ID = null;
             int trashint;
+            int location = 0;
             while (!isokay)
             {
                 Console.WriteLine("type ID:");
@@ -148,7 +153,7 @@ namespace targil1
                         isokay = false;
                     }
                 }
-                int location = buses[0].find(ID, buses) - 1;
+                location = buses[0].find(ID, buses) - 1;
                 if (location == -2) {
                     Console.WriteLine("\n******\nERROR\nCOULDNT FIND WANTED BUS\n******\n");
                     isokay = false;
@@ -157,8 +162,102 @@ namespace targil1
             }
             
             Random r = new Random();
-            double km = r.Next(0, 5000);
-            Console.WriteLine("ride distance: {0} kilometers", km);
+            double km = r.Next(0, 1200);
+            if (buses[location].addkm(km, today))
+            {
+                Console.WriteLine("ride distance: {0} kilometers\noverall km: {1}\nkm so far: {2}", km, buses[location].kmfs, buses[location].currentkm);
+            }
+
+            
+        }
+        public static void FillOrRepair(ref BUS[] buses, Date today)
+        {
+            if (buses.Length == 0)
+            {
+                Console.WriteLine("\n******\nERROR\nNO BUSES IN LIST\n******\n");
+                return;
+            }
+
+
+            bool i3m = true; // in 3rd menu
+            int choice = 0;
+            bool good;
+            while (i3m)
+            {
+                i3m = false;
+                Console.WriteLine("please select action:\n1 for gaz refill\n2 for bus repair");
+                good = int.TryParse(Console.ReadLine(), out choice);
+                if(!good ||(choice != 1 && choice != 2))
+                {
+                    string onetwo = null;
+                    if(choice != 1 && choice != 2)
+                    {
+                        onetwo = "BETWEEN 1 OR 2";
+                    }
+                    Console.WriteLine("******\nERROR\nONLY NUMBERS {0}\n******", onetwo);
+                }
+            }
+            int location = findBus(buses);
+            if (choice == 1)
+            {
+                if(buses[location].fillGaz() == -1) { Console.WriteLine("GAZ IS ALLREADY FULL!");
+                    return;
+                }
+                Console.WriteLine("GAZ HAS BEEN FILLED!");
+                if (buses[location].treatmentneeded(today))
+                {
+                    Console.WriteLine("REPAIR NEEDED!");
+                }
+            }
+            if(choice == 2)
+            {
+                buses[location].repair(today);
+                Console.WriteLine("The Bus is ready to go!");
+            }
+        }
+        public static int findBus(BUS[] buses)
+        {
+            bool isokay = false;
+            string ID = null;
+            int trashint;
+            int location = -1;
+            while (!isokay)
+            {
+                Console.WriteLine("type ID:");
+                ID = Console.ReadLine();
+                if (ID == "x") { return -1; }
+                isokay = int.TryParse(ID, out trashint);
+                if (!isokay) { Console.WriteLine("\n******\nERROR\nONLY NUMBERS\n******\n"); }
+                else
+                {
+                    if (ID.Length > 8 || ID.Length < 7)
+                    {
+                        Console.WriteLine("\n******\nERROR\n7-8 NUMBERS ONLY\n******\n");
+                        isokay = false;
+                    }
+                }
+                location = buses[0].find(ID, buses) - 1;
+                if (location == -2)
+                {
+                    Console.WriteLine("\n******\nERROR\nCOULDNT FIND WANTED BUS\n******\n");
+                    isokay = false;
+                }
+
+            }
+            return location;
+        }
+        public static void printBuses(BUS[] buses)
+        {
+            if (buses.Length == 0)
+            {
+                Console.WriteLine("\n******\nERROR\nNO BUSES IN LIST\n******\n");
+                return;
+            }
+            for (int i = 0; i<buses.Length;i++)
+            {
+                buses[i].printBus();
+            }
+            return;
         }
     }
 }
