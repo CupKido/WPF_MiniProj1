@@ -51,7 +51,7 @@ namespace targil1
             string choice = null;
             bool CA = false; //correct answer
             bool ap; // approved
-            string MW = "please choose an action: "; // menu welcome
+            string MW = "please choose an action:\n 1 - add new bus\n 2 - go for a ride\n 3 - refill gas/repair\n 4 - info about all buses\n 5 - exit "; // menu welcome
             while (!CA)
             {
                 Console.WriteLine(MW);

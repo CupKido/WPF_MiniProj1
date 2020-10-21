@@ -5,3 +5,10 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\tar
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil1\targil1\bin\Debug\targil1.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil1\targil1\obj\Debug\targil1.exe
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil1\targil1\obj\Debug\targil1.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil1\targil1\bin\Debug\targil1.exe.config
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil1\targil1\bin\Debug\targil1.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil1\targil1\bin\Debug\targil1.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil1\targil1\obj\Debug\targil1.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil1\targil1\obj\Debug\targil1.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil1\targil1\obj\Debug\targil1.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil1\targil1\obj\Debug\targil1.pdb
