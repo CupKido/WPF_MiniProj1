@@ -106,8 +106,8 @@ namespace targil1
                 if (!isokay) { Console.WriteLine("\n******\nERROR\nONLY NUMBERS\n******\n"); }
                 if (isokay)
                 {
-                    if(year < 2018 && ID.Length != 7) 
-                    { 
+                    if (year < 2018 && ID.Length != 7)
+                    {
                         Console.WriteLine("\n******\nERROR\n7 NUMBERS REQUIRED\n******\n");
                         isokay = false;
                     }
@@ -116,6 +116,12 @@ namespace targil1
                         Console.WriteLine("\n******\nERROR\n8 NUMBERS REQUIRED\n******\n");
                         isokay = false;
                     }
+                    if (buses.Length > 0)
+                        if(buses[0].find(ID,buses) != -1)
+                        {
+                            Console.WriteLine("\n******\nERROR\nBUS IS ALREADY EXIST\n******\n");
+                            isokay = false;
+                        }
                 }
             }
 
@@ -251,10 +257,12 @@ namespace targil1
                 Console.WriteLine("\n******\nERROR\nNO BUSES IN LIST\n******\n");
                 return;
             }
+            Console.WriteLine("\n******************************************");
             for (int i = 0; i<buses.Length;i++)
             {
                 buses[i].printBus();
             }
+            Console.WriteLine("\n******************************************\n\n\n");
             return;
         }
     }
