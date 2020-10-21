@@ -123,10 +123,7 @@ namespace targil1
             temp[size] = tempo;
             buses = temp;
             size = size + 1;
-            for(int i = 0; i < size; i++)
-            {
-                Console.WriteLine("{0} , {1}", buses[i].currentkm, buses[i].currentID);
-            }
+
         }
         public static void addride(ref BUS[] buses, Date today)
         {
