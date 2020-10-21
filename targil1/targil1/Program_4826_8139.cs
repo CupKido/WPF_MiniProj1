@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace targil1
                 }
             }
             Console.WriteLine("thank you\nhave a nice day!");
-            Console.ReadKey();
+            return;
         }
         public static int Pleasechoose()
         {
