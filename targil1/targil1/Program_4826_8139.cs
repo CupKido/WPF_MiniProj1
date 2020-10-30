@@ -16,8 +16,7 @@ namespace targil1
             int listsize = 0;
             bool inmenu = true;
             int numchosen = '\0';
-            Date today = new Date();
-            today.askDate("today's");
+            DateTime today = DateTime.Now;
             while (inmenu)
             {
                 numchosen = Pleasechoose();
@@ -81,7 +80,7 @@ namespace targil1
 
             BUS tempo = new BUS();
 
-            Date bustart = new Date(); //starting date;
+           DateTime bustart = new DateTime(); //starting date;
             int day, month, year = 0;
             bool isokay = false;
             while (!isokay)
@@ -91,7 +90,7 @@ namespace targil1
                 if (!(int.TryParse(Console.ReadLine(), out day))) { isokay = false; }
                 if (!(int.TryParse(Console.ReadLine(), out month))) { isokay = false; }
                 if (!(int.TryParse(Console.ReadLine(), out year))) { isokay = false; }
-                if (isokay) { if (!bustart.IsOkay(day, month, year)) { isokay = false; } }
+                if (isokay) { string str = day.ToString() + "/" + month.ToString() + "/" + year.ToString(); bustart = Convert.ToDateTime(str); }
                 
                 if (!isokay) { Console.WriteLine("\n******\nERROR\n******\n"); }
             }
@@ -132,7 +131,7 @@ namespace targil1
             size = size + 1;
 
         }
-        public static void addride(ref BUS[] buses, Date today)
+        public static void addride(ref BUS[] buses, DateTime today)
         {
             if (buses.Length == 0)
             {
@@ -174,7 +173,7 @@ namespace targil1
 
             
         }
-        public static void FillOrRepair(ref BUS[] buses, Date today)
+        public static void FillOrRepair(ref BUS[] buses, DateTime today)
         {
             if (buses.Length == 0)
             {
