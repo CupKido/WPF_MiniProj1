@@ -76,7 +76,6 @@ namespace targil1
             {
                 temp[i] = buses[i];
             }
-           
 
             BUS tempo = new BUS();
 
@@ -151,7 +150,8 @@ namespace targil1
                 if (!isokay) { Console.WriteLine("\n******\nERROR\nONLY NUMBERS\n******\n"); }
                 else
                 {
-                    if(ID.Length > 8 || ID.Length < 7) { 
+                    if (ID.Length > 8 || ID.Length < 7)
+                    {
                         Console.WriteLine("\n******\nERROR\n7-8 NUMBERS ONLY\n******\n");
                         isokay = false;
                     }
