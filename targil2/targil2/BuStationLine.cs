@@ -22,5 +22,39 @@ namespace targil2
                 current = value;
             }
         }
+        public double GSKFL //GS for GetSet
+        {
+            get
+            {
+                return KFL;
+            }
+            set
+            {
+                KFL = value;
+            }
+        }
+        public double GSTFL //GS for GetSet
+        {
+            get
+            {
+                return TFL;
+            }
+            set
+            {
+                TFL = value;
+            }
+        }
+        public BuStationLine(BuStation newbustation, double newKFL, double newTFL)
+        {
+            current = newbustation;
+            KFL = newKFL;
+            TFL = newTFL;
+        }
+        public BuStationLine()
+        {
+            current = new BuStation();
+            KFL = 0;
+            TFL = 0;
+        }
     }
 }
