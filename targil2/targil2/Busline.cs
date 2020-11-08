@@ -80,9 +80,9 @@ namespace targil2
             }
         }
         
-        public bool search()
+        public bool search(string x)
         {
-            if ()
+            if (false)
             {
                 return true;
             }
