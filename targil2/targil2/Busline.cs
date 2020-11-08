@@ -84,8 +84,9 @@ namespace targil2
         {
             if (false)
             {
-                return true;
+              
             }
+            return true;
         }
 
         public override string ToString()
