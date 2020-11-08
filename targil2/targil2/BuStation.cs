@@ -68,6 +68,14 @@ namespace targil2
             Longitude = newLongitude;
             Address = newAddress;
         }
+        public BuStation(string newID, string newAddress)
+        {
+            ID = newID;
+            Random r = new Random();
+            Latitude = 31 + (r.NextDouble() * (33.3 - 31));
+            Longitude = 34.3 + (r.NextDouble() * (35.5 - 34.3));
+            Address = newAddress;
+        }
         public BuStation()
         {
             Random r = new Random();
