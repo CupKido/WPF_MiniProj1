@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 public class BUS
 {
-    
     private string ID;
-    private Date startdate = new Date();
-    private Date lastime = new Date(); //last treatment
+    private DateTime startdate = new DateTime(1, 1 ,1);
+    private DateTime lastime = new DateTime(); //last treatment
     private double km;
     private double ckm; // km from last treatment
     private int Gaz = 1200;
@@ -27,7 +26,7 @@ public class BUS
             ID = value;
         }
     }
-    public Date Date
+    public DateTime Date
     {
         get
         {
@@ -38,7 +37,7 @@ public class BUS
             startdate = value;
         }
     }
-    public Date lastDate
+    public DateTime lastDate
     {
         get
         {
@@ -99,11 +98,13 @@ public class BUS
     public void SetBus(string id, int nday, int nmonth, int nyear, bool lt)
     {
         ID = id;
-        startdate.SetDate(nday, nmonth, nyear);
+        startdate.AddDays(nday);
+        startdate.AddMonths(nmonth);
+        startdate.AddYears(nyear);
         if (lt) { lastime = startdate; }
        
     }
-    public void SetBus(string id, Date busdate, bool lt)
+    public void SetBus(string id, DateTime busdate, bool lt)
     {
         ID = id;
         startdate = busdate;
@@ -124,7 +125,7 @@ public class BUS
         if(notfound == true) { return -1; }
         return i;
     }
-    public bool addkm(double addedkm, Date today)
+    public bool addkm(double addedkm, DateTime today)
     {
         if(treatmentneeded(today)) {
             Console.WriteLine("\n******\nERROR\nREPAIRING NEEDED\nPLEASE CHECK\n******\n");
@@ -141,29 +142,22 @@ public class BUS
         
         return true;
     }
-    public bool treatmentneeded(Date today)
+    public bool treatmentneeded(DateTime today)
     {
         if(dan == true) { Console.WriteLine("BUS SELECTED IS DANGEROUS\nPLEASE REPAIR!");
             return true;
         }
-        //int day = 0, month = 0, year = 0;
-        //bool isokay = false;
-        //while (!isokay)
-        //{
-        //    isokay = true;
-        //    Console.WriteLine("type today's date:");
-        //    if (!(int.TryParse(Console.ReadLine(), out day))) { isokay = false; }
-        //    if (!(int.TryParse(Console.ReadLine(), out month))) { isokay = false; }
-        //    if (!(int.TryParse(Console.ReadLine(), out year))) { isokay = false; }
-        //    if (isokay) { if (day < 1 || day > 30 || month < 1 || month > 12  || year < 1) { isokay = false; } }
-
-        //    if (!isokay) { Console.WriteLine("\n******\nERROR\n******\n"); }
-        //}
-        //Date today = new Date(day, month, year);
-        //Date today = new Date();
-        //today.askDate();
-        Date fromlast = today - lastime;
-        if ((ckm) > 20000 || fromlast.year >= 1)
+        int fromlast_y = today.Year;
+        int fromlast_m = today.Month;
+        int fromlast_d = today.Day;
+        bool fromlast = false;
+        fromlast_y = fromlast_y - lastime.Year;
+        fromlast_m = fromlast_m - lastime.Month;
+        fromlast_d = fromlast_d - lastime.Day;
+        if (fromlast_y > 1) { fromlast = true; } 
+        else if(fromlast_m > 0 ) { fromlast = true; }
+        else if(fromlast_d > 0) { fromlast = true; }
+        if ((ckm) > 20000 || fromlast)
         {
             dan = true;
             return true;
@@ -180,7 +174,7 @@ public class BUS
         Gaz = 1200;
         return before;
     }
-    public void repair(Date today)
+    public void repair(DateTime today)
     {
         ckm = 0;
         lastime = today;
@@ -190,14 +184,14 @@ public class BUS
     {
         Console.WriteLine("\nBUS ID: ");
         printID();
-        Console.WriteLine("\nstarting date: {0}.{1}.{2}", startdate.day, startdate.month, startdate.year);
-        Console.WriteLine("last reapir date: {0}.{1}.{2}", lastime.day, lastime.month, lastime.year);
+        Console.WriteLine("\nstarting date: " + startdate.ToString("dd.MM.yyyy"));
+        Console.WriteLine("last reapir date: " + lastime.ToString("dd.MM.yyyy"));
         Console.WriteLine("overall km: {0}\nkm since last repair: {1}\nGaz tank: {2}/1200", km,ckm,Gaz);
     }
     public void printID()
     {
         string tempID = ID;
-        if(startdate.year < 2018) 
+        if(startdate.Year < 2018) 
         {
             tempID = tempID.Insert(2, "-");
             tempID = tempID.Insert(6, "-");
@@ -211,9 +205,9 @@ public class BUS
         
     }
 }
-    
-       
-   
+
+
+
 
 public class Date
 {
@@ -257,6 +251,68 @@ public class Date
     //public int Getmonth() { return month; }
     //public void Setyear(int newyear) { year = newyear; }
     //public int Getyear() { return year; }
+    //<<<<<<< HEAD
+    //public Date()
+    //{
+    //    day = 0;
+    //    month = 0;
+    //    year = 0;
+    //}
+    //public Date(int nday, int nmonth, int nyear)
+    //{
+    //    day = nday;
+    //    month = nmonth;
+    //    year = nyear;
+    //}
+    //public static bool operator >(Date a, Date b)
+    //{
+    //    int tyear, tmonth, tday;
+    //    tyear = a.year;
+    //    tmonth = a.month;
+    //    tday = a.day;
+    //    if (tyear < b.year)
+    //    {
+    //        return false;
+    //    }
+    //    if (tyear > b.year)
+    //    {
+    //        return true;
+    //    }
+    //    if (tmonth < b.month)
+    //    {
+    //        return false;
+    //    }
+    //    if (tmonth > b.month)
+    //    { return true; }
+    //    if (tday < b.day) { return false; }
+    //    if (tday > b.day) { return true; }
+    //    return false;
+
+
+    //}
+    //public static bool operator <(Date a, Date b)
+    //{
+    //    int tyear, tmonth, tday;
+    //    tyear = a.year;
+    //    tmonth = a.month;
+    //    tday = a.day;
+    //    if (tyear < b.year) 
+    //    {
+    //        return true;
+    //    }
+    //    if(tyear > b.year)
+    //    {
+    //        return false;
+    //    }
+    //    if(tmonth < b.month)
+    //    {
+    //        return true;
+    //    }
+    //    if(tmonth > b.month)
+    //    { return false; }
+    //    if(tday < b.day) { return true; }
+    //    if(tday > b.day) { return false; }
+    //    return false; 
     public Date()
     {
         day = 0;
@@ -299,93 +355,94 @@ public class Date
         tyear = a.year;
         tmonth = a.month;
         tday = a.day;
-        if (tyear < b.year) 
+        if (tyear < b.year)
         {
             return true;
         }
-        if(tyear > b.year)
+        if (tyear > b.year)
         {
             return false;
         }
-        if(tmonth < b.month)
+        if (tmonth < b.month)
         {
             return true;
         }
-        if(tmonth > b.month)
+        if (tmonth > b.month)
         { return false; }
-        if(tday < b.day) { return true; }
-        if(tday > b.day) { return false; }
-        return false; 
-        
+        if (tday < b.day) { return true; }
+        if (tday > b.day) { return false; }
+        return false;
 
-    }
-    public static bool operator ==(Date a, Date b)
-    {
-        return (a.year == b.year && a.month == b.month && a.day == b.day);
-    }
-    public static bool operator !=(Date a, Date b)
-    {
-        return !(a.year == b.year && a.month == b.month && a.day == b.day);
-    }
-    public static Date operator -(Date a, Date b)
-    {
-        int nyear, nmonth, nday;
-        
-        if (a > b)
-        {
-            nyear = a.year - b.year;
-            nmonth = a.month - b.month;
-            nday = a.day - b.day;
-            if(nday < 1)
-            {
-                nmonth = nmonth - 1;
-                nday = nday + 30;
-            }
-            if(nmonth < 1)
-            {
-                nyear = nyear - 1;
-                nmonth = nmonth + 12;
-            }
-            return new Date(nday, nmonth, nyear);
-        }
-        if (a == b)
-        {
-            return new Date(0, 0, 0);
-        }
-        return null;
-    }
-    public void SetDate(int nDay, int nMonth, int nYear)
-    {
-        day = nDay;
-        month = nMonth;
-        year = nYear;
-    }
 
-    public bool IsOkay(int nday, int nmonth, int nyear)
-    {
-        if(nday<1|| nday > 30) { return false; }
-        if (nmonth < 1 || nmonth > 12) { return false; }
-        if (nyear < 1) { return false; }
-        SetDate(nday, nmonth, nyear);
-        return true;
-    }
-    public void askDate(string ofwhat)
-    {
-        int nday = 0, nmonth = 0, nyear = 0;
-        bool isokay = false;
-        while (!isokay)
-        {
-            isokay = true;
-            Console.WriteLine("type {0} date:", ofwhat);
-            if (!(int.TryParse(Console.ReadLine(), out nday))) { isokay = false; }
-            if (!(int.TryParse(Console.ReadLine(), out nmonth))) { isokay = false; }
-            if (!(int.TryParse(Console.ReadLine(), out nyear))) { isokay = false; }
-            if (isokay) { if (nday < 1 || nday > 30 || nmonth < 1 || nmonth > 12 || nyear < 1) { isokay = false; } }
+        //}
+        //public static bool operator ==(Date a, Date b)
+        //{
+        //    return (a.year == b.year && a.month == b.month && a.day == b.day);
+        //}
+        //public static bool operator !=(Date a, Date b)
+        //{
+        //    return !(a.year == b.year && a.month == b.month && a.day == b.day);
+        //}
+        //public static Date operator -(Date a, Date b)
+        //{
+        //    int nyear, nmonth, nday;
 
-            if (!isokay) { Console.WriteLine("\n******\nERROR\n******\n"); }
-        }
-        day = nday;
-        month = nmonth;
-        year = nyear;
+        //    if (a > b)
+        //    {
+        //        nyear = a.year - b.year;
+        //        nmonth = a.month - b.month;
+        //        nday = a.day - b.day;
+        //        if(nday < 1)
+        //        {
+        //            nmonth = nmonth - 1;
+        //            nday = nday + 30;
+        //        }
+        //        if(nmonth < 1)
+        //        {
+        //            nyear = nyear - 1;
+        //            nmonth = nmonth + 12;
+        //        }
+        //        return new Date(nday, nmonth, nyear);
+        //    }
+        //    if (a == b)
+        //    {
+        //        return new Date(0, 0, 0);
+        //    }
+        //    return null;
+        //}
+        //public void SetDate(int nDay, int nMonth, int nYear)
+        //{
+        //    day = nDay;
+        //    month = nMonth;
+        //    year = nYear;
+        //}
+
+        //public bool IsOkay(int nday, int nmonth, int nyear)
+        //{
+        //    if(nday<1|| nday > 30) { return false; }
+        //    if (nmonth < 1 || nmonth > 12) { return false; }
+        //    if (nyear < 1) { return false; }
+        //    SetDate(nday, nmonth, nyear);
+        //    return true;
+        //}
+        //public void askDate(string ofwhat)
+        //{
+        //    int nday = 0, nmonth = 0, nyear = 0;
+        //    bool isokay = false;
+        //    while (!isokay)
+        //    {
+        //        isokay = true;
+        //        Console.WriteLine("type {0} date:", ofwhat);
+        //        if (!(int.TryParse(Console.ReadLine(), out nday))) { isokay = false; }
+        //        if (!(int.TryParse(Console.ReadLine(), out nmonth))) { isokay = false; }
+        //        if (!(int.TryParse(Console.ReadLine(), out nyear))) { isokay = false; }
+        //        if (isokay) { if (nday < 1 || nday > 30 || nmonth < 1 || nmonth > 12 || nyear < 1) { isokay = false; } }
+
+        //        if (!isokay) { Console.WriteLine("\n******\nERROR\n******\n"); }
+        //    }
+        //    day = nday;
+        //    month = nmonth;
+        //    year = nyear;
+        //}
     }
 }
