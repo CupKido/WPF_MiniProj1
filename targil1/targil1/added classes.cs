@@ -147,22 +147,6 @@ public class BUS
         if(dan == true) { Console.WriteLine("BUS SELECTED IS DANGEROUS\nPLEASE REPAIR!");
             return true;
         }
-        //int day = 0, month = 0, year = 0;
-        //bool isokay = false;
-        //while (!isokay)
-        //{
-        //    isokay = true;
-        //    Console.WriteLine("type today's date:");
-        //    if (!(int.TryParse(Console.ReadLine(), out day))) { isokay = false; }
-        //    if (!(int.TryParse(Console.ReadLine(), out month))) { isokay = false; }
-        //    if (!(int.TryParse(Console.ReadLine(), out year))) { isokay = false; }
-        //    if (isokay) { if (day < 1 || day > 30 || month < 1 || month > 12  || year < 1) { isokay = false; } }
-
-        //    if (!isokay) { Console.WriteLine("\n******\nERROR\n******\n"); }
-        //}
-        //Date today = new Date(day, month, year);
-        //Date today = new Date();
-        //today.askDate();
         int fromlast_y = today.Year;
         int fromlast_m = today.Month;
         int fromlast_d = today.Day;
