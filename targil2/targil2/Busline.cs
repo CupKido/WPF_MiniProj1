@@ -67,26 +67,24 @@ namespace targil2
         }
         public void delete(int x)
         {
+            stations.RemoveAt(x - 1);
+        }
+
+        public bool checkifex(string x)
+        {
+            BuStationLine y = new BuStationLine();
+            y.GSStation.GSID = x;
             int i = 0;
             IEnumerator e = stations.GetEnumerator();
-            ArrayList temp = new ArrayList();
+            bool flag = false;
             while (e.MoveNext())
             {
-                i++;
-                if (i != x)
+                if ((BuStationLine)e==y)
                 {
-                   temp.Add(e.Current);
+                    return true;
                 }
             }
-        }
-        
-        public bool search(string x)
-        {
-            if (false)
-            {
-              
-            }
-            return true;
+            return false;
         }
 
         public override string ToString()
