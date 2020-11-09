@@ -12,12 +12,12 @@ namespace targil2
 {
     class BusLine : IComparable
     {
-        int IDL = new int();
+        string IDL = null;
         BuStation FStation = new BuStation(); //first station
         BuStation LStation = new BuStation(); //last station
         areacode area = new int();
         ArrayList stations = new ArrayList();
-        public int GSid //GS for Get Set  
+        public string GSID //GS for Get Set  
         {
             get
             {
@@ -55,9 +55,10 @@ namespace targil2
         }
         public int CompareTo(object obj)
         {
-
-            return 0;
-
+            BusLine temp = (BusLine)obj;            
+            double timeforthis = TimeB2(FStation, LStation);
+            double other = TimeB2(temp.FStation, LStation);
+            return timeforthis.CompareTo(other);
         }
         public enum areacode
         {
