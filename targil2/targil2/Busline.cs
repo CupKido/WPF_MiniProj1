@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace targil2
 {
-    class BusLine
+    class BusLine : IComparable
     {
         int IDL = new int();
         BuStationLine FirstStation = new BuStationLine();
@@ -112,6 +112,21 @@ namespace targil2
                     break;
             }
             return "line: " + IDL + '\n' + "area: " + temp.ToString() ;
+        }
+
+        public int CompareTo(object obj)
+        {
+           BusLine other = (BusLine)obj;
+            if(IDL > other.IDL)
+            {
+                return 1;
+            }
+            if(IDL < other.IDL)
+            {
+                return -1;
+            }
+            return 0;
+            
         }
     }
    
