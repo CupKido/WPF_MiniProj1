@@ -59,7 +59,7 @@ namespace targil2
         }
         public override string ToString()
         {
-            return "Bus station code: " + ID + ", " + Latitude + "°N " + Longitude + "°E";
+            return "Bus station code: " + ID + ", " + Latitude + "°N " + Longitude + "°E " + Address;
         }
         public BuStation(string newID, double newLatitude, double newLongitude, string newAddress)
         {

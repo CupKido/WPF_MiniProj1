@@ -1,2 +1,7 @@
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil2\targil2\obj\Debug\targil2.csprojAssemblyReference.cache
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil2\targil2\obj\Debug\targil2.csproj.CoreCompileInputs.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil2\targil2\bin\Debug\targil2.exe.config
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil2\targil2\bin\Debug\targil2.exe
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil2\targil2\bin\Debug\targil2.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil2\targil2\obj\Debug\targil2.exe
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil2\targil2\obj\Debug\targil2.pdb
