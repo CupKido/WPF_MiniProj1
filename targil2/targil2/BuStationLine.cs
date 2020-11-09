@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace targil2
 {
-    class BuStationLine
+    class BuStationLine : IComparable
     {
         BuStation current;
         double KFL; // Km From Last
@@ -55,6 +55,23 @@ namespace targil2
             current = new BuStation();
             KFL = 0;
             TFL = 0;
+        }
+
+        public int CompareTo(object obj)
+        {
+            int thiss, otherr;
+            BuStationLine other = (BuStationLine)obj;
+            int.TryParse(other.current.GSID, out otherr);
+            int.TryParse(current.GSID, out thiss);
+            if (thiss > otherr)
+            {
+                return 1;
+            }
+            if(thiss < otherr)
+            {
+                return -1;
+            }
+            return 0;
         }
     }
 }
