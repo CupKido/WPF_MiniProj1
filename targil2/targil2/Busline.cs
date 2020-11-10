@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,12 +12,20 @@ namespace targil2
 {
     class BusLine : IComparable
     {
-        int IDL = new int();
-        BuStationLine FirstStation = new BuStationLine();
-        BuStationLine LastStation = new BuStationLine();
+        string IDL = null;
+        BuStation FStation = new BuStation(); //first station
+        BuStation LStation = new BuStation(); //last station
         areacode area = new int();
-        ArrayList stations;
-        public int GSid //gs for Get Set  
+        ArrayList stations = new ArrayList();
+        public ArrayList GStations //GS for Get Set  
+        {
+            get
+            {
+                return stations;
+            }
+            set { stations = value; }
+        }
+        public string GSID //GS for Get Set  
         {
             get
             {
@@ -25,25 +34,25 @@ namespace targil2
 
             set { IDL = value; }
         }
-        public BuStationLine GSFStation
+        public BuStation GSFStation //GS for Get Set
         {
             get
             {
-                return FirstStation;
+                return FStation;
             }
 
-            set { FirstStation = value; }
+            set { FStation = value; }
         }
-        public BuStationLine GSLStation
+        public BuStation GSLStation //GS for Get Set
         {
             get
             {
-                return LastStation;
+                return LStation;
             }
 
-            set { LastStation = value; }
+            set { LStation = value; }
         }
-        public areacode GSarea //gs for Get Set  
+        public areacode GSarea //GS for Get Set
         {
             get
             {
@@ -52,7 +61,13 @@ namespace targil2
 
             set { area = value; }
         }
-
+        public int CompareTo(object obj)
+        {
+            BusLine temp = (BusLine)obj;            
+            double timeforthis = TimeB2(FStation, LStation);
+            double other = TimeB2(temp.FStation, LStation);
+            return timeforthis.CompareTo(other);
+        }
         public enum areacode
         {
             general,
@@ -61,32 +76,55 @@ namespace targil2
             center,
             jerusalem
         }
-        public void add(int x)
+        public void add(BuStationLine station, int x)
         {
-            stations.Insert(x,this);
+            stations.Insert(x, station);
+        }
+        public void add(BuStationLine station)
+        {
+            stations.Add(station);
         }
         public void delete(int x)
         {
             stations.RemoveAt(x - 1);
         }
 
-        public bool checkifex(string x)
+        public int SIS(string ID) //Search In Stations
         {
-            BuStationLine y = new BuStationLine();
-            y.GSStation.GSID = x;
+            BuStationLine temp = new BuStationLine();
+            temp.GSStation.GSID = ID;
+            BuStationLine temp2 = new BuStationLine();
+            IEnumerator e = stations.GetEnumerator(); // e for Enumerator
             int i = 0;
-            IEnumerator e = stations.GetEnumerator();
-            bool flag = false;
-            while (e.MoveNext())
+            while(e.MoveNext())
             {
-                if ((BuStationLine)e==y)
+                temp2 = (BuStationLine)e.Current;
+                if (temp.GSStation.GSID == temp2.GSStation.GSID)
                 {
-                    return true;
+                    return i;
                 }
+                i += 1;
+            }
+            return -1;
+        }
+        public bool checkifex(string ID)
+        {
+            if(SIS(ID) != -1)
+            {
+                return true;
             }
             return false;
         }
 
+        public bool checkifex(BuStation current)
+        {
+            if (SIS(current.GSID) != -1)
+            {
+                return true;
+            }
+            return false;
+            
+        }
         public override string ToString()
         {
             string temp = null;
@@ -113,20 +151,106 @@ namespace targil2
             }
             return "line: " + IDL + '\n' + "area: " + temp.ToString() ;
         }
-
-        public int CompareTo(object obj)
+        public bool Legit(int max)
         {
-           BusLine other = (BusLine)obj;
-            if(IDL > other.IDL)
+            IEnumerator e = stations.GetEnumerator(); // e for Enumerator
+            for (int i = 0; i < max; i++)
             {
-                return 1;
+                if (!e.MoveNext())
+                {
+                    return false;
+                }
             }
-            if(IDL < other.IDL)
-            {
-                return -1;
-            }
-            return 0;
+            return true;
+        }
+        public double DistanceB2(int a, int b) //distance between 2
+        {
+            IEnumerator e = stations.GetEnumerator(); // e for Enumerator
+            int max = Math.Max(a, b);
+            if (!Legit(max)) { return -1; }
+            int min = Math.Min(a, b);
+            int SB = max - min; //SB for stations between
             
+            for (int i = 0; i < min; i++)
+            {
+                e.MoveNext();
+            }
+            e.MoveNext();
+
+            double sum = 0;
+            BuStationLine temp;
+            for (int i = 0; i < SB; i++, e.MoveNext())
+            {
+                temp = (BuStationLine)e.Current;
+                sum += temp.GSKFL;
+            }
+            return sum;
+        }
+        public double DistanceB2(BuStationLine a, BuStationLine b) //distance between 2
+        {
+            int stat1 = SIS(a.GSStation.GSID) + 1;
+            int stat2 = SIS(b.GSStation.GSID) + 1;
+            return DistanceB2(stat1, stat2);
+        }
+        public double TimeB2(int a, int b) //distance between 2
+        {
+            int max = Math.Max(a, b);
+            if (!Legit(max)) { return -1; }
+
+            IEnumerator e = stations.GetEnumerator();
+            e.Reset();
+            int min = Math.Min(a, b);
+            int SB = max - min; //SB for stations between
+            
+            for (int i = 0; i < min; i++)
+            {
+                e.MoveNext();
+            }
+            e.MoveNext();
+
+            double sum = 0;
+            BuStationLine temp;
+            for (int i = 0; i < SB; i++, e.MoveNext())
+            {
+                temp = (BuStationLine)e.Current;
+                sum += temp.GSTFL;
+            }
+            return sum;
+        }
+        public double TimeB2(BuStation a, BuStation b) //distance between 2
+        {
+            int stat1 = SIS(a.GSID) + 1; //stat for station
+            int stat2 = SIS(b.GSID) + 1; //stat for station
+            return TimeB2(stat1, stat2);
+        }
+        public BusLine SubLine(int stat1, int stat2)
+        {
+            IEnumerator e = stations.GetEnumerator(); // e for Enumerator
+            int max = Math.Max(stat1, stat2);
+            if (!Legit(max)) { return null; }
+            int min = Math.Min(stat1, stat2);
+            int SB = max - min; //SB for stations between
+            
+            for (int i = 0; i < min; i++)
+            {
+                e.MoveNext();
+            }
+            BusLine res = new BusLine();
+            BuStationLine temp = (BuStationLine)e.Current;
+            res.FStation = temp.GSStation;
+            for (int i = 0; i < SB; i++, e.MoveNext())
+            {
+                
+                res.add((BuStationLine)e.Current);
+            }
+            e.Reset();
+            for (int i = 0; i < max; i++)
+            {
+                e.MoveNext();
+            }
+            temp = (BuStationLine)e.Current;
+            res.LStation = temp.GSStation;
+            return res;
         }
     }
    
