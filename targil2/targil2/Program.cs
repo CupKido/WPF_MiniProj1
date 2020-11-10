@@ -10,7 +10,7 @@ namespace targil2
     {
         static void Main(string[] args)
         {
-            BLines Buses;
+            BLines Buses = null;
             string choice = null;
             bool exit = false;
             do {
@@ -21,15 +21,14 @@ namespace targil2
                     case "1":
                         do
                         {
-                            Console.WriteLine("1. Add Bus line\n2. Add Bus station\n3. exit to main menu");
+                            Console.WriteLine("1. Add Bus line\n2. Add Bus station\n3. exit to main menu\n");
                             choice = Console.ReadLine();
                             switch(choice)
                             {
                                 case "1":
                                     BusLine bl = new BusLine();
-                                    string FSID = Console.ReadLine();
-                                    bl.GSFStation.GSID = FSID;
-
+                                    bl.GSFStation.add();// making an valid station
+                                    Buses.AddLine(bl);
                                     break;
                                 case "2":
 
@@ -38,7 +37,7 @@ namespace targil2
                                     exit = true;
                                     break;
                                 default:
-                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
                                     break;
                             }
                         } while (!exit);
@@ -47,7 +46,7 @@ namespace targil2
                     case "2":
                         do
                         {
-                            Console.WriteLine("1. Remove Bus line\n2. Remove Bus station\n3. exit to main menu");
+                            Console.WriteLine("1. Remove Bus line\n2. Remove Bus station\n3. exit to main menu\n");
                             choice = Console.ReadLine();
                             switch (choice)
                             {
@@ -59,7 +58,7 @@ namespace targil2
                                     exit = true;
                                     break;
                                 default:
-                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
                                     break;
                             }
                         } while (!exit);
@@ -68,7 +67,7 @@ namespace targil2
                     case "3":
                         do
                         {
-                            Console.WriteLine("1. search by station number\n2. search for route between two stations \n3. exit to main menu");
+                            Console.WriteLine("1. search by station number\n2. search for route between two stations \n3. exit to main menu\n");
                             choice = Console.ReadLine();
                             switch (choice)
                             {
@@ -82,7 +81,7 @@ namespace targil2
                                     exit = true;
                                     break;
                                 default:
-                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
                                     break;
                             }
                         } while (!exit);
@@ -91,7 +90,7 @@ namespace targil2
                     case "4":
                         do
                         {
-                            Console.WriteLine("1. print all the lines\n2. print all the stations with info \n3. exit to main menu");
+                            Console.WriteLine("1. print all the lines\n2. print all the stations with info \n3. exit to main menu\n");
                             choice = Console.ReadLine();
                             switch (choice)
                             {
@@ -105,7 +104,7 @@ namespace targil2
                                     exit = true;
                                     break;
                                 default:
-                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
                                     break;
                             }
                         } while (!exit);
@@ -115,7 +114,7 @@ namespace targil2
                         exit = true;
                         break;
                     default:
-                        Console.WriteLine("#ERROR!#\nunvalid input!");
+                        Console.WriteLine("#ERROR!#\nunvalid input!\n");
                         break;
                 }    
 
