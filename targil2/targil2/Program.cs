@@ -26,7 +26,10 @@ namespace targil2
                             switch(choice)
                             {
                                 case "1":
-                                    
+                                    BusLine bl = new BusLine();
+                                    string FSID = Console.ReadLine();
+                                    bl.GSFStation.GSID = FSID;
+
                                     break;
                                 case "2":
 
@@ -63,8 +66,50 @@ namespace targil2
                         exit = false;
                         break;
                     case "3":
+                        do
+                        {
+                            Console.WriteLine("1. search by station number\n2. search for route between two stations \n3. exit to main menu");
+                            choice = Console.ReadLine();
+                            switch (choice)
+                            {
+                                case "1":
+
+                                    break;
+                                case "2":
+
+                                    break;
+                                case "3":
+                                    exit = true;
+                                    break;
+                                default:
+                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    break;
+                            }
+                        } while (!exit);
+                        exit = false;
                         break;
                     case "4":
+                        do
+                        {
+                            Console.WriteLine("1. print all the lines\n2. print all the stations with info \n3. exit to main menu");
+                            choice = Console.ReadLine();
+                            switch (choice)
+                            {
+                                case "1":
+
+                                    break;
+                                case "2":
+
+                                    break;
+                                case "3":
+                                    exit = true;
+                                    break;
+                                default:
+                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    break;
+                            }
+                        } while (!exit);
+                        exit = false;
                         break;
                     case "5":
                         exit = true;
