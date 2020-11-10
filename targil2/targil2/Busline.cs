@@ -17,6 +17,14 @@ namespace targil2
         BuStation LStation = new BuStation(); //last station
         areacode area = new int();
         ArrayList stations = new ArrayList();
+        public ArrayList GStations //GS for Get Set  
+        {
+            get
+            {
+                return stations;
+            }
+            set { stations = value; }
+        }
         public string GSID //GS for Get Set  
         {
             get

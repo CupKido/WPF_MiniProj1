@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,6 +108,24 @@ namespace targil2
             }
             buslines = temp;
         }
-
+        public BLines PAS(BuStation stat) // passes in stations
+        {
+            BLines temp = new BLines();
+            foreach(BusLine busline in buslines)
+            {
+                foreach(BuStationLine bustat in busline.GStations)
+                {
+                    if(bustat.GSStation.GSID == stat.GSID)
+                    {
+                        temp.AddLine(busline);
+                    }
+                }
+            }
+            return temp;
+        }
+        public BLines sortbytime()
+        {
+            BLines temp = buslines.sort();
+        }
     }
 }
