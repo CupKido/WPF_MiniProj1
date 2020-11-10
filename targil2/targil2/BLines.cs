@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace targil2 
 {
-    class BLines : IEnumerable, IComparable
+    class BLines : IEnumerable
     {
         ArrayList buslines = new ArrayList();
         public BLines()
@@ -46,6 +46,36 @@ namespace targil2
                 i += 1;
             }
             return -1;
+        }
+        public BusLine searchLine(string ID)
+        {
+            
+            foreach (BusLine busLine in buslines)
+            {
+                if ((busLine.GSID == ID))
+                {
+                    return busLine;
+                }
+                
+            }
+            return null;
+        }
+        public BusLine searchLine(int location)
+        {
+            if(location > buslines.Count)
+            {
+                return null;
+            }
+            int i = 0;
+            foreach (BusLine busLine in buslines)
+            {
+                if(i == location)
+                {
+                    return busLine;
+                }
+                i +=1;
+            }
+            return null;
         }
         public int LegitForAdd(BusLine Line)
         {
