@@ -10,27 +10,75 @@ namespace targil2
     {
         static void Main(string[] args)
         {
-            BLines a = new BLines();
-           BusLine e = new BusLine();
-            BusLine f = new BusLine();
-            f.add(new BuStationLine(new BuStation("1111", 0, 0, null), 5, 34));
-            f.add(new BuStationLine(new BuStation("2222", 0, 0, null), 4, 76));
-            f.add(new BuStationLine(new BuStation("3333", 0, 0, null), 8, 23));
-            f.add(new BuStationLine(new BuStation("4444", 0, 0, null), 3, 54));
-            f.add(new BuStationLine(new BuStation("5555", 0, 0, null), 9, 38));
-            e.add(new BuStationLine(new BuStation("1111", 0, 0, null), 5, 34));
-            e.add(new BuStationLine(new BuStation("2222", 0, 0, null), 4,76));
-            e.add(new BuStationLine(new BuStation("3333", 0, 0, null), 8, 23));
-            e.add(new BuStationLine(new BuStation("4444", 0, 0, null), 3, 54));
-            e.add(new BuStationLine(new BuStation("5555", 0, 0, null), 9, 38));
-            a.AddLine(e);
-            a.AddLine(f);
-            a.RemoveLine(e);
-            a.AddLine(f);
-            BusLine newline = e.SubLine(2, 5);
-            Console.WriteLine(e.DistanceB2(3, 4));
-            Console.WriteLine(newline.DistanceB2(2, 3));
-            Console.ReadKey();
+            BLines Buses;
+            string choice = null;
+            bool exit = false;
+            do {
+                Console.WriteLine("1. Add Bus station/line\n2. Remove Bus station/line\n3. search\n4. print\n5. exit");
+                choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        do
+                        {
+                            Console.WriteLine("1. Add Bus line\n2. Add Bus station\n3. exit to main menu");
+                            choice = Console.ReadLine();
+                            switch(choice)
+                            {
+                                case "1":
+                                    
+                                    break;
+                                case "2":
+
+                                    break;
+                                case "3":
+                                    exit = true;
+                                    break;
+                                default:
+                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    break;
+                            }
+                        } while (!exit);
+                        exit = false;
+                        break;
+                    case "2":
+                        do
+                        {
+                            Console.WriteLine("1. Remove Bus line\n2. Remove Bus station\n3. exit to main menu");
+                            choice = Console.ReadLine();
+                            switch (choice)
+                            {
+                                case "1":
+                                    break;
+                                case "2":
+                                    break;
+                                case "3":
+                                    exit = true;
+                                    break;
+                                default:
+                                    Console.WriteLine("#ERROR!#\nunvalid input!");
+                                    break;
+                            }
+                        } while (!exit);
+                        exit = false;
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                    case "5":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("#ERROR!#\nunvalid input!");
+                        break;
+                }    
+
+              
+
+
+            } while (!exit);
+            
         }
     }
 }
