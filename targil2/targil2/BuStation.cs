@@ -83,12 +83,12 @@ namespace targil2
             Longitude = 34.3 + (r.NextDouble() * (35.5 - 34.3));
         }
 
-        public void add()
+        public void add(string name)
         {
             bool check = false;
             int temp = 0;
            // BuStation bs = new BuStation();
-            Console.WriteLine("please enter station id\n");
+            Console.WriteLine("please enter " + name + " station id\n");
             while (!check)// checking if the ID is valid
             {
                 string FSID = Console.ReadLine();//getting the station ID
@@ -102,7 +102,7 @@ namespace targil2
             double FSL = 0;
             while (!check)//checking if the latitude is valid
             {
-                Console.WriteLine("please enter station latitude\n");
+                Console.WriteLine("please enter " + name + " station latitude\n");
                 check = double.TryParse(Console.ReadLine(), out FSL);
                 if (check)
                     this.GSLatitude = FSL;
@@ -112,7 +112,7 @@ namespace targil2
             check = false;
             while (!check)//checking if the longtude is valid
             {
-                Console.WriteLine("please enter station longitude\n");
+                Console.WriteLine("please enter " + name + " station longitude\n");
                 check = double.TryParse(Console.ReadLine(), out FSL);
                 if (check)
                     this.GSLongitude = FSL;

@@ -32,7 +32,10 @@ namespace targil2
                 return IDL;
             }
 
-            set { IDL = value; }
+            set
+            {
+                IDL = value;
+            }
         }
         public BuStation GSFStation //GS for Get Set
         {
@@ -251,6 +254,19 @@ namespace targil2
             temp = (BuStationLine)e.Current;
             res.LStation = temp.GSStation;
             return res;
+        }
+
+        public bool setIDL(string ID)
+        {
+
+            bool check = false;
+            double temp = 0.0;
+            check = double.TryParse(ID , out temp);
+            if (check)
+                IDL = ID;
+            else
+                Console.WriteLine("#ERROR!#\nunvalid input!\n");
+            return check;
         }
     }
    
