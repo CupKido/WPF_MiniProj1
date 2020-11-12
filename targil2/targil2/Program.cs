@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,10 @@ namespace targil2
             BLines Buses = new BLines();
             string choice = null;
             bool exit = false;
+            bool check = false;
+            int tempi = 0;
+            double tempd = 0.0;
+            bool tempb = false;
             do {
                 Console.WriteLine("1. Add Bus station/line\n2. Remove Bus station/line\n3. search\n4. print\n5. exit");
                 choice = Console.ReadLine();
@@ -22,17 +27,15 @@ namespace targil2
                     case "1":
                         do
                         {
-                            Console.WriteLine("1. Add Bus line\n2. Add Bus station\n3. exit to main menu\n");
+                            Console.WriteLine("1. Add Bus line\n2. Add Bus station \n3. exit to main menu\n");
                             choice = Console.ReadLine();
                             switch(choice)
                             {
                                 case "1":
                                     BusLine bl = new BusLine();
-                                    int temp = 0;
                                     BuStationLine btemp = new BuStationLine();
                                     double KTtemp = 0.0;
                                     Console.WriteLine("please enter line ID:\n");
-                                    bool check = false;
                                     while (!check)
                                     {
                                         check = bl.setIDL(Console.ReadLine()); //insert line ID and check if it's an valid ID
@@ -63,9 +66,19 @@ namespace targil2
                                     btemp.GSTFL = KTtemp;
                                     bl.add(btemp);
                                     Buses.AddLine(bl);// insert the new line into the buses array
+                                    check = false;
                                     break;
                                 case "2":
-
+                                    Console.WriteLine("please enter line ID\n");
+                                    BusLine bus = new BusLine();
+                                    string ID = null;
+                                    while (!check)
+                                    {
+                                        ID = Console.ReadLine();
+                                        bus.GSID = ID;
+                                    }
+                                    bus = Buses.searchLine(ID);
+                                    bus.GSID = "13";
                                     break;
                                 case "3":
                                     exit = true;

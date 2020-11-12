@@ -34,7 +34,13 @@ namespace targil2
 
             set
             {
-                IDL = value;
+                bool check = false;
+                int tempi = 0;
+                check = int.TryParse(value, out tempi);
+                if (!check)
+                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
+                if (check)
+                    IDL = value;
             }
         }
         public BuStation GSFStation //GS for Get Set
