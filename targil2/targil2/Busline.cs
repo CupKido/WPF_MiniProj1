@@ -17,6 +17,13 @@ namespace targil2
         BuStation LStation = new BuStation(); //last station
         areacode area = new int();
         ArrayList stations = new ArrayList();
+        public BusLine()
+        {
+            IDL = null;
+            FStation = new BuStation();
+            LStation = new BuStation();
+            stations = new ArrayList();
+        }
         public ArrayList GStations //GS for Get Set  
         {
             get
