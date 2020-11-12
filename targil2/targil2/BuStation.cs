@@ -93,6 +93,8 @@ namespace targil2
             {
                 string FSID = Console.ReadLine();//getting the station ID
                 check = int.TryParse(FSID, out temp);
+                if (temp >= 1000000 || temp < 0)
+                    check = false;
                 if (check)
                     this.GSID = FSID;
                 else
@@ -104,6 +106,8 @@ namespace targil2
             {
                 Console.WriteLine("please enter " + name + " station latitude\n");
                 check = double.TryParse(Console.ReadLine(), out FSL);
+                if (FSL > 90.0 || FSL < -90.0)
+                    check = false;
                 if (check)
                     this.GSLatitude = FSL;
                 else
@@ -114,6 +118,8 @@ namespace targil2
             {
                 Console.WriteLine("please enter " + name + " station longitude\n");
                 check = double.TryParse(Console.ReadLine(), out FSL);
+                if (FSL > 180 || FSL < -180)
+                    check = false;
                 if (check)
                     this.GSLongitude = FSL;
                 else

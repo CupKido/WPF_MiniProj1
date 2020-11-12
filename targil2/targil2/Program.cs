@@ -19,7 +19,8 @@ namespace targil2
             int tempi = 0;
             double tempd = 0.0;
             bool tempb = false;
-            do {
+            do
+            {
                 Console.WriteLine("1. Add Bus station/line\n2. Remove Bus station/line\n3. search\n4. print\n5. exit");
                 choice = Console.ReadLine();
                 switch (choice)
@@ -29,7 +30,7 @@ namespace targil2
                         {
                             Console.WriteLine("1. Add Bus line\n2. Add Bus station \n3. exit to main menu\n");
                             choice = Console.ReadLine();
-                            switch(choice)
+                            switch (choice)
                             {
                                 case "1":
                                     BusLine bl = new BusLine();
@@ -50,8 +51,8 @@ namespace targil2
                                     Console.WriteLine("please enter distance from prev satition:\n");
                                     while (!check)
                                     {
-                                        check = double.TryParse(Console.ReadLine() ,out KTtemp);
-                                        if(!check)
+                                        check = double.TryParse(Console.ReadLine(), out KTtemp);
+                                        if (!check)
                                             Console.WriteLine("#ERROR!#\nunvalid input!\n");
                                     }
                                     btemp.GSKFL = KTtemp;
@@ -65,6 +66,56 @@ namespace targil2
                                     }
                                     btemp.GSTFL = KTtemp;
                                     bl.add(btemp);
+                                    Console.WriteLine("do you want to set an area ?\n1. yes \n2. no\n------------------------------------------------------\nNOTICE:if you will not set the area,\nit will be automaticly set to general\n------------------------------------------------------\n");
+                                    choice = Console.ReadLine();
+                                    switch (choice)
+                                    {
+                                        case "1":
+                                            do
+                                            {
+                                                Console.WriteLine("which area the line is pass throw?\n1. general \n2. North\n3. South\n4. Center\n5. Jerusalem\n6. exit");
+                                                choice = Console.ReadLine();
+                                                switch (choice)
+                                                {
+                                                    case "1":
+                                                        bl.GSarea = BusLine.areacode.general;
+                                                        exit = true;
+                                                        break;
+                                                    case "2":
+                                                        bl.GSarea = BusLine.areacode.North;
+                                                        exit = true;
+                                                        break;
+                                                    case "3":
+                                                        bl.GSarea = BusLine.areacode.south;
+                                                        exit = true;
+                                                        break;
+                                                    case "4":
+                                                        bl.GSarea = BusLine.areacode.center;
+                                                        exit = true;
+                                                        break;
+                                                    case "5":
+                                                        bl.GSarea = BusLine.areacode.jerusalem;
+                                                        exit = true;
+                                                        break;
+                                                    case "6":
+                                                        exit = true;
+                                                        break;
+                                                    default:
+                                                        Console.WriteLine("#ERROR!#\nunvalid input!\n");
+                                                        break;
+                                                }
+                                            } while (!exit);
+                                            exit = false;
+                                            break;
+                                        case "2":
+                                            break;
+                                        case "3":
+                                            exit = true;
+                                            break;
+                                        default:
+                                            Console.WriteLine("#ERROR!#\nunvalid input!\n");
+                                            break;
+                                    }
                                     Buses.AddLine(bl);// insert the new line into the buses array
                                     check = false;
                                     break;
@@ -163,13 +214,13 @@ namespace targil2
                     default:
                         Console.WriteLine("#ERROR!#\nunvalid input!\n");
                         break;
-                }    
+                }
 
-              
+
 
 
             } while (!exit);
-            
+
         }
     }
 }
