@@ -73,5 +73,34 @@ namespace targil2
             }
             return 0;
         }
+
+        public void add(string name)
+        {
+            this.GSStation.add(name);
+            this.addkt("from prev");
+        }
+
+        public void addkt(string name)
+        {
+            double KTtemp = 0.0;
+            bool check = false;
+            Console.WriteLine("please enter distance " + name + " satition:\n");
+            while (!check)
+            {
+                check = double.TryParse(Console.ReadLine(), out KTtemp);
+                if (!check)
+                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
+            }
+            this.GSKFL = KTtemp;
+            check = false;
+            Console.WriteLine("please enter time "+ name +" station:\n");
+            while (!check)
+            {
+                check = double.TryParse(Console.ReadLine(), out KTtemp);
+                if (!check)
+                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
+            }
+            this.GSTFL = KTtemp;
+        }
     }
 }
