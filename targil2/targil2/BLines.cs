@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -47,12 +48,12 @@ namespace targil2
             }
             return -1;
         }
-        public BusLine searchLine(string ID)
+        public BusLine searchLine(string ID , string area )
         {
             
             foreach (BusLine busLine in buslines)
             {
-                if ((busLine.GSID == ID))
+                if ((busLine.GSID == ID && busLine.AreaToString() == area))
                 {
                     return busLine;
                 }

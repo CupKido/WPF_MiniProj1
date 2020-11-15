@@ -41,7 +41,13 @@ namespace targil2
 
             set
             {
-                IDL = value;
+                bool check = false;
+                int tempi = 0;
+                check = int.TryParse(value, out tempi);
+                if (!check)
+                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
+                if (check)
+                    IDL = value;
             }
         }
         public BuStation GSFStation //GS for Get Set
@@ -69,7 +75,30 @@ namespace targil2
                 return area;
             }
 
-            set { area = value; }
+            set
+            {
+                switch (value)
+                {
+                    case areacode.general:
+                        area = value;
+                        break;
+                    case areacode.North:
+                        area = value;
+                        break;
+                    case areacode.south:
+                        area = value;
+                        break;
+                    case areacode.center:
+                        area = value;
+                        break;
+                    case areacode.jerusalem:
+                        area = value;
+                        break;
+                    default:
+                        Console.WriteLine("#ERROR!#\nunvalid input!\n");
+                        break;
+                }
+            }
         }
         public int CompareTo(object obj)
         {
@@ -274,6 +303,46 @@ namespace targil2
             else
                 Console.WriteLine("#ERROR!#\nunvalid input!\n");
             return check;
+        }
+
+        public static areacode ToAreacode (string area)
+        {
+            switch (area)
+            {
+                case "general":
+                    return areacode.general;
+                case "North":
+                    return areacode.North;
+                case "south":
+                    return areacode.south;
+                case "center":
+                    return areacode.center;
+                case "jerusalem":
+                    return areacode.jerusalem;
+                default:
+                    Console.WriteLine("#ERROR!#\nunvalid input!\n");
+                    return areacode.general;
+            }
+        }
+
+        public string AreaToString()
+        {
+            areacode area = this.area;
+            switch (area)
+            {
+                case areacode.general:
+                    return "general";
+                case areacode.North:
+                    return "North";
+                case areacode.south:
+                    return "south";
+                case areacode.center:
+                    return "center";
+                case areacode.jerusalem:
+                    return "jerusalem";
+                default:
+                    return "general";
+            }
         }
     }
    
