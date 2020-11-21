@@ -131,6 +131,18 @@ namespace targil2
         }
         public void add(BuStationLine station, int x)
         {
+            if (x == 0)
+            {
+                if (stations.Count - 1 > x)
+                {
+                    FStation = station.GSStation;
+                }
+            }
+            if (x == stations.Count - 1)
+            {
+                LStation = SIS(x - 1).GSStation;
+            }
+
             stations.Insert(x, station);
         }
         public int add(BuStationLine station)
@@ -140,6 +152,10 @@ namespace targil2
                 if (station.GSStation.GSID == temp.GSStation.GSID)
                 { return -1; }
             }
+            if (stations.Count==0)
+            {
+                FStation = station.GSStation;
+            }
             stations.Add(station);
             LStation = station.GSStation;
             return 0;
@@ -148,7 +164,44 @@ namespace targil2
         {
             stations.RemoveAt(x - 1);
         }
-
+        public void newdelete(int x)
+        {
+            if(x == 0)
+            {
+                if (stations.Count - 1 > x)
+                {
+                    FStation = SIS(x + 1).GSStation;
+                }
+                else
+                {
+                    FStation = null;
+                }
+            }
+            if(x == stations.Count - 1)
+            {
+                if (stations.Count > 1)
+                {
+                    LStation = SIS(x - 1).GSStation;
+                }
+                else { LStation = null; }
+                
+            }
+            
+            stations.RemoveAt(x);
+        }
+        public BuStationLine SIS(int num)
+        {
+            int i = 0;
+            foreach(BuStationLine stat in stations)
+            {
+                if(num == i)
+                {
+                    return stat;
+                }
+                i++;
+            }
+            return null;
+        }
         public int SIS(string ID) //Search In Stations
         {
             BuStationLine temp = new BuStationLine();

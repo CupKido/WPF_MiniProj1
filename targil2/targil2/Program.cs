@@ -176,9 +176,10 @@ namespace targil2
                             switch (choice)
                             {
                                 case "1":
-                                    
+                                    removebusline(Buses);
                                     break;
                                 case "2":
+                                    removestatfromline(Buses);
                                     break;
                                 case "3":
                                     exit = true;
@@ -257,7 +258,82 @@ namespace targil2
                 Console.WriteLine("ERROR\nNo Buses to remove");
                 return;
             }
+            bool found = false;
+            string ID;
+            do
+            {
+                Console.WriteLine("Please enter Line ID to remove:");
+                ID = Console.ReadLine();
+                foreach(BusLine line in Buses)
+                {
+                    if(line.GSID == ID)
+                    {
+                        Buses.RemoveLine(line);
+                        found = true;
+                        Console.WriteLine("Line removed succesfully!");
+                        break;
+                    }   
+                    
+                }
+                if (!found)
+                {
+                    Console.WriteLine("ERROR\nNOT FOUND");
+                }
+            } while (!found);
+        }
+        public static void removestatfromline(BLines Buses)
+        {
+            if (Buses.amount() == 0)
+            {
+                Console.WriteLine("ERROR\nNo Buses to remove");
+                return;
+            }
+            bool foundLine = false;
+            bool foundstat = false;
+            string lineID;
+            string statID;
+            int i = 0;
 
+            do
+            {
+                Console.WriteLine("Please enter Line ID to remove station from:");
+                lineID = Console.ReadLine();
+
+                foreach (BusLine line in Buses)
+                {
+
+                    if (line.GSID == lineID)
+                    {
+                        foundLine = true;
+
+                        do
+                        {
+                            Console.WriteLine("Please enter station ID to remove from Line {0}:", lineID);
+                            statID = Console.ReadLine();
+
+                            foreach (BuStationLine station in line.GStations)
+                            {
+                                if (station.GSStation.GSID == statID)
+                                {
+                                   
+                                    foundstat = true;
+                                    break;
+                                }
+                                i++;
+                            }
+                        } while (!foundstat);
+
+                        if (foundstat) { line.newdelete(i); }
+                        break;
+                    }
+                }
+
+                if (!foundLine)
+                {
+                    Console.WriteLine("ERROR\nLINE NOT FOUND");
+                }
+
+            } while (!foundLine);
         }
     }
 }

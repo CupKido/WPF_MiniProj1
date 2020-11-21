@@ -121,14 +121,13 @@ namespace targil2
             //buslines = temp;
             return 0;
         }
-        public void RemoveLine(BusLine line)
+        public int RemoveLine(BusLine line)
         {
             int location = searchLine(line);
             if (location == -1)
-            { return; }
-
+            { return -1; }
             buslines.RemoveAt(location);
-
+            return 0;
             //BusLine[] temp = new BusLine[buslines.Length-1];
             //int i = 0;
             //int j = 0;
