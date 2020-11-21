@@ -13,6 +13,7 @@ namespace targil2
         static void Main(string[] args)
         {
             BLines Buses = new BLines();
+            Buses.add10random();
             string choice = null;
             bool exit = false;
             bool check = false;
@@ -175,6 +176,7 @@ namespace targil2
                             switch (choice)
                             {
                                 case "1":
+                                    
                                     break;
                                 case "2":
                                     break;
@@ -246,6 +248,15 @@ namespace targil2
 
 
             } while (!exit);
+
+        }
+        public static void removebusline(BLines Buses)
+        {
+            if(Buses.amount() == 0)
+            {
+                Console.WriteLine("ERROR\nNo Buses to remove");
+                return;
+            }
 
         }
     }

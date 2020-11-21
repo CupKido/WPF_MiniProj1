@@ -35,11 +35,11 @@ namespace targil2
         public int searchLine(BusLine Line)
         {
             int i = 0;
-            foreach(BusLine busLine in buslines)
+            foreach (BusLine busLine in buslines)
             {
-                if((busLine.GSID == Line.GSID)  )
+                if ((busLine.GSID == Line.GSID))
                 {
-                    if((busLine.GSLStation == Line.GSLStation) && (busLine.GSFStation == Line.GSFStation))
+                    if ((busLine.GSLStation == Line.GSLStation) && (busLine.GSFStation == Line.GSFStation))
                     {
                         return i; // line found
                     }
@@ -48,33 +48,33 @@ namespace targil2
             }
             return -1;
         }
-        public BusLine searchLine(string ID , string area )
+        public BusLine searchLine(string ID, string area)
         {
-            
+
             foreach (BusLine busLine in buslines)
             {
                 if ((busLine.GSID == ID && busLine.AreaToString() == area))
                 {
                     return busLine;
                 }
-                
+
             }
             return null;
         }
         public BusLine searchLine(int location)
         {
-            if(location > buslines.Count)
+            if (location > buslines.Count)
             {
                 return null;
             }
             int i = 0;
             foreach (BusLine busLine in buslines)
             {
-                if(i == location)
+                if (i == location)
                 {
                     return busLine;
                 }
-                i +=1;
+                i += 1;
             }
             return null;
         }
@@ -100,14 +100,14 @@ namespace targil2
         }
         public int AddLine(BusLine line)
         {
-            
-            if(buslines.Count != 0)
+
+            if (buslines.Count != 0)
             {
                 int legit = LegitForAdd(line);
                 if (legit != 1)
                 {
                     return legit;
-                }    
+                }
             }
             buslines.Add(line);
             //BusLine[] temp = new BusLine[buslines.Length + 1];
@@ -124,7 +124,7 @@ namespace targil2
         public void RemoveLine(BusLine line)
         {
             int location = searchLine(line);
-            if(location == -1)
+            if (location == -1)
             { return; }
 
             buslines.RemoveAt(location);
@@ -146,11 +146,11 @@ namespace targil2
         public BLines PAS(BuStation stat) // passes in stations
         {
             BLines temp = new BLines();
-            foreach(BusLine busline in buslines)
+            foreach (BusLine busline in buslines)
             {
-                foreach(BuStationLine bustat in busline.GStations)
+                foreach (BuStationLine bustat in busline.GStations)
                 {
-                    if(bustat.GSStation.GSID == stat.GSID)
+                    if (bustat.GSStation.GSID == stat.GSID)
                     {
                         temp.AddLine(busline);
                     }
@@ -164,6 +164,31 @@ namespace targil2
             n.buslines = buslines;
             n.buslines.Sort();
             return n;
+        }
+        public BusLine addrandom()
+        {
+            Random r = new Random();
+            int id;
+            BusLine temp = new BusLine();
+            do
+            {
+                id = r.Next() % 1000000;
+                temp = new BusLine(id.ToString());
+            } while (LegitForAdd(temp) < 0);
+            temp.add40randomstation();
+            AddLine(temp);
+            return temp;
+        }
+        public void add10random()
+        {
+            for(int i = 0; i<10;i++)
+            {
+                addrandom();
+            }
+        }
+        public int amount()
+        {
+            return buslines.Count;
         }
     }
 }

@@ -24,6 +24,20 @@ namespace targil2
             LStation = new BuStation();
             stations = new ArrayList();
         }
+        public BusLine(string ID)
+        {
+            IDL = ID;
+            FStation = new BuStation();
+            LStation = new BuStation();
+            stations = new ArrayList();
+        }
+        public BusLine(string ID, BuStation F, BuStation L)
+        {
+            IDL = ID;
+            FStation = F;
+            LStation = L;
+            stations = new ArrayList();
+        }
         public ArrayList GStations //GS for Get Set  
         {
             get
@@ -102,7 +116,7 @@ namespace targil2
         }
         public int CompareTo(object obj)
         {
-            BusLine temp = (BusLine)obj;            
+            BusLine temp = (BusLine)obj;
             double timeforthis = TimeB2(FStation, LStation);
             double other = TimeB2(temp.FStation, LStation);
             return timeforthis.CompareTo(other);
@@ -119,9 +133,16 @@ namespace targil2
         {
             stations.Insert(x, station);
         }
-        public void add(BuStationLine station)
+        public int add(BuStationLine station)
         {
+            foreach (BuStationLine temp in stations)
+            {
+                if (station.GSStation.GSID == temp.GSStation.GSID)
+                { return -1; }
+            }
             stations.Add(station);
+            LStation = station.GSStation;
+            return 0;
         }
         public void delete(int x)
         {
@@ -135,7 +156,7 @@ namespace targil2
             BuStationLine temp2 = new BuStationLine();
             IEnumerator e = stations.GetEnumerator(); // e for Enumerator
             int i = 0;
-            while(e.MoveNext())
+            while (e.MoveNext())
             {
                 temp2 = (BuStationLine)e.Current;
                 if (temp.GSStation.GSID == temp2.GSStation.GSID)
@@ -148,7 +169,7 @@ namespace targil2
         }
         public bool checkifex(string ID)
         {
-            if(SIS(ID) != -1)
+            if (SIS(ID) != -1)
             {
                 return true;
             }
@@ -162,7 +183,7 @@ namespace targil2
                 return true;
             }
             return false;
-            
+
         }
         public override string ToString()
         {
@@ -188,7 +209,7 @@ namespace targil2
                     temp = "general";
                     break;
             }
-            return "line: " + IDL + '\n' + "area: " + temp.ToString() ;
+            return "line: " + IDL + '\n' + "area: " + temp.ToString();
         }
         public bool Legit(int max)
         {
@@ -209,7 +230,7 @@ namespace targil2
             if (!Legit(max)) { return -1; }
             int min = Math.Min(a, b);
             int SB = max - min; //SB for stations between
-            
+
             for (int i = 0; i < min; i++)
             {
                 e.MoveNext();
@@ -240,7 +261,7 @@ namespace targil2
             e.Reset();
             int min = Math.Min(a, b);
             int SB = max - min; //SB for stations between
-            
+
             for (int i = 0; i < min; i++)
             {
                 e.MoveNext();
@@ -269,7 +290,7 @@ namespace targil2
             if (!Legit(max)) { return null; }
             int min = Math.Min(stat1, stat2);
             int SB = max - min; //SB for stations between
-            
+
             for (int i = 0; i < min; i++)
             {
                 e.MoveNext();
@@ -279,7 +300,7 @@ namespace targil2
             res.FStation = temp.GSStation;
             for (int i = 0; i < SB; i++, e.MoveNext())
             {
-                
+
                 res.add((BuStationLine)e.Current);
             }
             e.Reset();
@@ -297,7 +318,7 @@ namespace targil2
 
             bool check = false;
             double temp = 0.0;
-            check = double.TryParse(ID , out temp);
+            check = double.TryParse(ID, out temp);
             if (check)
                 IDL = ID;
             else
@@ -305,7 +326,7 @@ namespace targil2
             return check;
         }
 
-        public static areacode ToAreacode (string area)
+        public static areacode ToAreacode(string area)
         {
             switch (area)
             {
@@ -344,6 +365,27 @@ namespace targil2
                     return "general";
             }
         }
+        public BuStationLine addrandomstation()
+        {
+            Random r = new Random();
+            int id = (r.Next() % 1000000);
+            double KFL = (r.Next() % 1000);
+            double TFL = (r.Next() % 1000);
+            BuStationLine temp = new BuStationLine(new BuStation(id.ToString(), null), KFL, TFL);
+            while (add(temp) < 0)
+            {
+                id = (r.Next() % 1000000);
+                temp = new BuStationLine(new BuStation(id.ToString(), null), KFL, TFL);
+            }
+
+            return temp;
+        }
+        public void add40randomstation()
+        {
+            for (int i = 0; i < 40; i++)
+            {
+                addrandomstation();
+            }
+        }
     }
-   
 }
