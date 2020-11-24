@@ -13,8 +13,9 @@ namespace targil2
         static void Main(string[] args)
         {
             BLines Buses = new BLines();
-            BusLine allstats = new BusLine("XXXXXX", null, null);            
-            Buses.add10random(allstats);
+            BusLine allstats = new BusLine("XXXXXX", null, null);
+            allstats.add40randomstation();
+            Buses.add10randomFromLine(allstats);
             string choice = null;
             bool exit = false;
             bool check = false;
@@ -195,12 +196,13 @@ namespace targil2
                     case "3":
                         do
                         {
-                            Console.WriteLine("1. search by station number\n2. search for route between two stations \n3. exit to main menu\n");
+                            Console.WriteLine("1. search by station number\n2. search for route between two stations \n3. exit to main menu");
                             choice = Console.ReadLine();
                             switch (choice)
                             {
                                 case "1":
-
+                                    gothroughstat(Buses, allstats);
+                                    
                                     break;
                                 case "2":
 
@@ -348,6 +350,22 @@ namespace targil2
                 }
 
             } while (!foundLine);
+        }
+        public static void gothroughstat(BLines Buses, BusLine allstats)
+        {
+            bool foundstat = false;
+            string ID = null;
+            while (!foundstat)
+            {
+                Console.WriteLine("please enter the wanted station's ID number: ");
+                ID = Console.ReadLine();
+                if (allstats.SIS(ID) < 0)
+                {
+                    Console.WriteLine("ERROR! \n station not found");
+                }
+                else { foundstat = true; }
+            }
+            Console.WriteLine("for {0}: {1}", ID, Buses.gothroughstat(ID).ReturnStringLines());
         }
     }
 }

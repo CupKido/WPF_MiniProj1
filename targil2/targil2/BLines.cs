@@ -164,7 +164,7 @@ namespace targil2
             n.buslines.Sort();
             return n;
         }
-        public BusLine addrandom(BusLine allstats)
+        public BusLine addrandom()
         {
             Random r = new Random();
             int id;
@@ -174,20 +174,136 @@ namespace targil2
                 id = r.Next() % 1000000;
                 temp = new BusLine(id.ToString());
             } while (LegitForAdd(temp) < 0);
-            temp.add40randomstation(allstats);
+            temp.add40randomstation();
             AddLine(temp);
             return temp;
         }
-        public void add10random(BusLine allstats)
+        public void add10random()
         {
             for(int i = 0; i<10;i++)
             {
-                addrandom(allstats);
+                addrandom();
             }
+        }
+        public void add10randomFromLine(BusLine allstats)
+        {
+                                 
+            for (int i = 0; i < 10; i++)
+            {
+                addrandomnostats();
+            }
+            foreach(BuStationLine stat in allstats.GStations)
+            {
+                GetRandomLine().add(stat);
+            }
+            foreach (BuStationLine stat in allstats.GStations)
+            {
+                GetRandomLine(stat).add(stat);
+            }
+        }
+        public BusLine addrandomnostats()
+        {
+            Random r = new Random();
+            int id;
+            BusLine temp = new BusLine();
+            do
+            {
+                id = r.Next() % 1000000;
+                temp = new BusLine(id.ToString());
+            } while (LegitForAdd(temp) < 0);
+            AddLine(temp);
+            return temp;
+        }
+        public BusLine GetRandomLine()
+        {
+            Random r = new Random();
+            int num = r.Next() % buslines.Count;
+            int i = 0;
+            foreach(BusLine line in buslines)
+            {
+                if(i == num)
+                {
+                    return line;
+                }
+                i++;
+            }
+            return null;
+        }
+        public BusLine GetRandomLine(BuStationLine stat)
+        {
+            Random r = new Random();
+            int num= 0;
+            int i = 0;
+            bool allready = true;
+            while(allready)
+            {
+                num = r.Next() % buslines.Count;
+                i = 0;
+                foreach (BusLine line in buslines)
+                {
+                    if (i == num)
+                    {
+                        if(line.SIS(stat.GSStation.GSID) > -1)
+                        {
+                            allready = true;
+                        }
+                        else { 
+                            return line;
+                            allready = false;
+                        }
+                    }
+                    i++;
+                }
+            }
+            
+            return null;
         }
         public int amount()
         {
             return buslines.Count;
+        }
+        public BLines gothroughstat(BuStation stat)
+        {
+            if(buslines.Count == 0)
+            {
+                Console.WriteLine("ERROR!\nNO BUSES FOUND");
+                return null;
+            }
+            BLines buses = new BLines();
+            foreach(BusLine line in buslines)
+            {
+                if(line.SIS(stat.GSID) > -1)
+                {
+                    buses.AddLine(line);
+                }
+            }
+            return buses;
+        }
+        public BLines gothroughstat(string ID)
+        {
+            if (buslines.Count == 0)
+            {
+                Console.WriteLine("ERROR!\nNO BUSES FOUND");
+                return null;
+            }
+            BLines buses = new BLines();
+            foreach (BusLine line in buslines)
+            {
+                if (line.SIS(ID) > -1)
+                {
+                    buses.AddLine(line);
+                }
+            }
+            return buses;
+        }
+        public string ReturnStringLines()
+        {
+            string res = "";
+            foreach(BusLine line in buslines)
+            {
+                res = res + "\n" + line;
+            }
+            return res;
         }
     }
 }

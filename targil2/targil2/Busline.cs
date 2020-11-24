@@ -262,7 +262,7 @@ namespace targil2
                     temp = "general";
                     break;
             }
-            return "line: " + IDL + '\n' + "area: " + temp.ToString();
+            return "line: " + IDL + "   " + "area: " + temp.ToString();
         }
         public bool Legit(int max)
         {
@@ -418,7 +418,7 @@ namespace targil2
                     return "general";
             }
         }
-        public BuStationLine addrandomstation(BusLine allstats)
+        public BuStationLine addrandomstation()
         {
             Random r = new Random();
             int id = (r.Next() % 1000000);
@@ -433,12 +433,13 @@ namespace targil2
 
             return temp;
         }
-        public void add40randomstation(BusLine allstats)
+        public void add40randomstation()
         {
             for (int i = 0; i < 40; i++)
             {
-                addrandomstation(allstats);
+                addrandomstation();
             }
         }
+        
     }
 }
