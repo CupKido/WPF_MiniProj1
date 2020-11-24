@@ -164,7 +164,7 @@ namespace targil2
             n.buslines.Sort();
             return n;
         }
-        public BusLine addrandom()
+        public BusLine addrandom(BusLine allstats)
         {
             Random r = new Random();
             int id;
@@ -174,15 +174,15 @@ namespace targil2
                 id = r.Next() % 1000000;
                 temp = new BusLine(id.ToString());
             } while (LegitForAdd(temp) < 0);
-            temp.add40randomstation();
+            temp.add40randomstation(allstats);
             AddLine(temp);
             return temp;
         }
-        public void add10random()
+        public void add10random(BusLine allstats)
         {
             for(int i = 0; i<10;i++)
             {
-                addrandom();
+                addrandom(allstats);
             }
         }
         public int amount()

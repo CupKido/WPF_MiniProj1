@@ -418,7 +418,7 @@ namespace targil2
                     return "general";
             }
         }
-        public BuStationLine addrandomstation()
+        public BuStationLine addrandomstation(BusLine allstats)
         {
             Random r = new Random();
             int id = (r.Next() % 1000000);
@@ -433,11 +433,11 @@ namespace targil2
 
             return temp;
         }
-        public void add40randomstation()
+        public void add40randomstation(BusLine allstats)
         {
             for (int i = 0; i < 40; i++)
             {
-                addrandomstation();
+                addrandomstation(allstats);
             }
         }
     }

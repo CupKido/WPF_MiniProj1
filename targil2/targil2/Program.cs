@@ -13,7 +13,8 @@ namespace targil2
         static void Main(string[] args)
         {
             BLines Buses = new BLines();
-            Buses.add10random();
+            BusLine allstats = new BusLine("XXXXXX", null, null);            
+            Buses.add10random(allstats);
             string choice = null;
             bool exit = false;
             bool check = false;
@@ -290,12 +291,14 @@ namespace targil2
             }
             bool foundLine = false;
             bool foundstat = false;
+            bool statinline = true;
             string lineID;
             string statID;
             int i = 0;
 
             do
             {
+                statinline = true;
                 Console.WriteLine("Please enter Line ID to remove station from:");
                 lineID = Console.ReadLine();
 
@@ -305,30 +308,41 @@ namespace targil2
                     if (line.GSID == lineID)
                     {
                         foundLine = true;
-
-                        do
+                        if (line.GStations.Count > 0)
                         {
-                            Console.WriteLine("Please enter station ID to remove from Line {0}:", lineID);
-                            statID = Console.ReadLine();
-
-                            foreach (BuStationLine station in line.GStations)
+                            do
                             {
-                                if (station.GSStation.GSID == statID)
-                                {
-                                   
-                                    foundstat = true;
-                                    break;
-                                }
-                                i++;
-                            }
-                        } while (!foundstat);
+                                Console.WriteLine("Please enter station ID to remove from Line {0}:", lineID);
+                                statID = Console.ReadLine();
 
+                                foreach (BuStationLine station in line.GStations)
+                                {
+                                    if (station.GSStation.GSID == statID)
+                                    {
+
+                                        foundstat = true;
+                                        break;
+                                    }
+                                    i++;
+                                }
+                                if (!foundstat)
+                                {
+                                    Console.WriteLine("ERROR\nSTATION NOT FOUND");
+                                }
+                            } while (!foundstat);
+                        }
+                        else
+                        {  
+                            Console.WriteLine("ERROR\nNO STATIONS IN LINE");
+                            statinline = false;
+                            foundLine = false;
+                        }
                         if (foundstat) { line.newdelete(i); }
                         break;
                     }
                 }
 
-                if (!foundLine)
+                if (!foundLine && statinline)
                 {
                     Console.WriteLine("ERROR\nLINE NOT FOUND");
                 }
