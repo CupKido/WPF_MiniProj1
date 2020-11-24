@@ -220,15 +220,15 @@ namespace targil2
                     case "4":
                         do
                         {
-                            Console.WriteLine("1. print all the lines\n2. print all the stations with info \n3. exit to main menu\n");
+                            Console.WriteLine("1. print all the lines\n2. print all the stations with info \n3. exit to main menu");
                             choice = Console.ReadLine();
                             switch (choice)
                             {
                                 case "1":
-
+                                    allbusesprint(Buses);
                                     break;
                                 case "2":
-
+                                    gothroughallstat(Buses, allstats);
                                     break;
                                 case "3":
                                     exit = true;
@@ -365,7 +365,24 @@ namespace targil2
                 }
                 else { foundstat = true; }
             }
-            Console.WriteLine("for {0}: {1}", ID, Buses.gothroughstat(ID).ReturnStringLines());
+            Console.WriteLine("for station number {0}: {1}", ID, Buses.gothroughstat(ID).ReturnStringLines());
+        }
+        public static void gothroughallstat(BLines Buses, BusLine allstats)
+        {
+            bool foundstat = false;
+            foreach(BuStationLine stat in allstats.GStations)
+            {
+                Console.WriteLine("for station number {0}: {1}", stat.GSStation.GSID, Buses.gothroughstat(stat.GSStation.GSID).ReturnStringLines());
+            }
+        }
+        public static void allbusesprint(BLines Buses)
+        {
+            if(Buses.GSbuslines.Count == 0)
+            {
+                Console.WriteLine("ERROR! \nNO LINES FOUND!");
+                return;
+            }
+            Console.WriteLine(Buses.allLines() + "\n");
         }
     }
 }

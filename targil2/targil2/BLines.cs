@@ -305,5 +305,14 @@ namespace targil2
             }
             return res;
         }
+        public string allLines()
+        {
+            string res = "";
+            foreach(BusLine line in buslines)
+            {
+                res = res + "\n" + line;
+            }
+            return res;
+        }
     }
 }
