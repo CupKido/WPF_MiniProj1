@@ -205,7 +205,7 @@ namespace targil2
                                     
                                     break;
                                 case "2":
-
+                                    TimeB2(Buses, allstats);
                                     break;
                                 case "3":
                                     exit = true;
@@ -383,6 +383,42 @@ namespace targil2
                 return;
             }
             Console.WriteLine(Buses.allLines() + "\n");
+        }
+        public static void TimeB2(BLines Buses, BusLine allstats)
+        {
+            bool foundstat1 = false, foundstat2 = false;
+            string ID1 =null, ID2 = null;
+            while(!foundstat1 || !foundstat2)
+            {
+                if(!foundstat1)
+                {
+                    Console.WriteLine("please enter the first station's ID:");
+                    ID1 = Console.ReadLine();
+                    if(allstats.SIS(ID1) > -1)
+                    {
+                        foundstat1 = true;
+                    }
+                }
+                if (!foundstat2)
+                {
+                    Console.WriteLine("please enter the second station's ID:");
+                    ID2 = Console.ReadLine();
+                    if (allstats.SIS(ID2) > -1)
+                    {
+                        foundstat2 = true;
+                    }
+                }
+                if(!foundstat1)
+                {
+                    Console.WriteLine("ERROR\ncouldnt find the first station");
+                }
+                if (!foundstat2)
+                {
+                    Console.WriteLine("ERROR\ncouldnt find the second station");
+                }
+            }
+            Console.WriteLine(Buses.timeB2stats(ID1, ID2));
+
         }
     }
 }

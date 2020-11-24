@@ -314,5 +314,30 @@ namespace targil2
             }
             return res;
         }
+        public string timeB2stats(string ID1, string ID2)
+        {
+            BLines res = new BLines();
+            string res2 = "";
+            bool insomeline = false;
+            foreach(BusLine line in buslines)
+            {
+                if((line.SIS(ID1) > -1) && (line.SIS(ID2) > -1)
+                    {
+                    res.AddLine(line);
+                    insomeline = true;
+                }
+            }
+            if(!insomeline)
+            {
+                return "both stations doesnt pass in  1 lines";
+            }
+            res.buslines.Sort();
+            foreach(BusLine line in res.buslines)
+            {
+                res2 = res2 + "\n" + line + "  Time Between Stations:" + line.TimeB2(new BuStation(ID1, 0, 0, null), new BuStation(ID2, 0, 0, null));
+            }
+            return res2;
+        }
+
     }
 }
