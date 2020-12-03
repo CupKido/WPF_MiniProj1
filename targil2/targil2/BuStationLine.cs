@@ -93,7 +93,7 @@ namespace targil2
             }
             this.GSKFL = KTtemp;
             check = false;
-            Console.WriteLine("please enter time "+ name +" station:\n");
+            Console.WriteLine("please enter time "+ name +" station: (in minutes)\n");
             while (!check)
             {
                 check = double.TryParse(Console.ReadLine(), out KTtemp);

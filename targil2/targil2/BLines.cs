@@ -321,7 +321,7 @@ namespace targil2
             bool insomeline = false;
             foreach(BusLine line in buslines)
             {
-                if((line.SIS(ID1) > -1) && (line.SIS(ID2) > -1)
+                if((line.SIS(ID1) > -1) && (line.SIS(ID2) > -1))
                     {
                     res.AddLine(line);
                     insomeline = true;

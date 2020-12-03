@@ -43,13 +43,17 @@ namespace targil2
                                     {
                                         check = bl.setIDL(Console.ReadLine()); //insert line ID and check if it's an valid ID
                                     }
-                                    bl.GSFStation.add("first");// insert a first station and check if its an valid station
+                                    bl.GSFStation.add("first");
+                                    // insert a first station and check if its an valid station
                                     btemp.GSStation = bl.GSFStation;
                                     bl.add(btemp);// insert the station into line stations array
+                                    allstats.add((BuStationLine)bl.GStations[0]);
                                     btemp = new BuStationLine();// reset the btemp var
                                     btemp.add("last"); //check if the station is an valid station
                                     bl.GSLStation = btemp.GSStation;
+                                    
                                     bl.add(btemp);// insert a last statiton 
+                                    allstats.GStations.Add(bl.GStations[1]);
                                     do
                                     {
                                         Console.WriteLine("do you want to set an area ?\n1. yes \n2. no\n------------------------------------------------------\nNOTICE:if you will not set the area,\nit will be automaticly set to general\n------------------------------------------------------\n");
@@ -141,13 +145,19 @@ namespace targil2
                                                     bsltemp1 = (BuStationLine)bus.GStations[0];
                                                     bsltemp1.addkt("to next");
                                                     bus.GStations.Insert(0, bsltemp);
+                                                    allstats.add(bsltemp);
                                                     Console.WriteLine("--------------------------\nstation added succesfuly!\n--------------------------\n");
                                                     exit = true;
                                                     break;
                                                 case "2":
+                                                    Console.WriteLine("what index is the station in the line?");
+                                                    string str = Console.ReadLine();
+                                                    int index = 0;
+                                                    int.TryParse(str, out index);
+                                                    bus.add(bsltemp, index);
                                                     break;
                                                 case "3":
-                                                    exit = true;
+                                                    bus.add(bsltemp);
                                                     break;
                                                 default:
                                                     Console.WriteLine("#ERROR!#\nunvalid input!\n");
