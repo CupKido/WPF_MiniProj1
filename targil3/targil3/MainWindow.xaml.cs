@@ -45,6 +45,7 @@ namespace targil3
             currentShowed = Buses.index(bus);
             UpGrid.DataContext = currentShowed;
             lbBusLineStations.DataContext = Buses.index(bus).GStations;
+            tbArea.Text = currentShowed.AreaToString();
         }
         private void ShowBusLine(BusLine bus)
         {
@@ -53,6 +54,7 @@ namespace targil3
             UpGrid.DataContext = currentShowed;
             InitializeComponent();
             lbBusLineStations.DataContext = bus.GStations;
+            tbArea.Text = currentShowed.AreaToString();
         }
     }
 }
