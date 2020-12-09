@@ -8,7 +8,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace targil2 
+namespace targil3 
 {
     class BLines : IEnumerable
     {
@@ -321,7 +321,7 @@ namespace targil2
             bool insomeline = false;
             foreach(BusLine line in buslines)
             {
-                if((line.SIS(ID1) > -1) && (line.SIS(ID2) > -1)
+                if((line.SIS(ID1) > -1) && (line.SIS(ID2) > -1))
                     {
                     res.AddLine(line);
                     insomeline = true;
@@ -337,6 +337,42 @@ namespace targil2
                 res2 = res2 + "\n" + line + "  Time Between Stations:" + line.TimeB2(new BuStation(ID1, 0, 0, null), new BuStation(ID2, 0, 0, null));
             }
             return res2;
+        }
+        public BusLine index(int index)
+        {
+            if(buslines.Count > index)
+            {
+                return (BusLine)buslines[index];
+            }
+            return null;
+        }
+        public void RandomStart40ten(BusLine allstat)
+        {
+            int line1 = 0, line2 = 0;
+            Random r = new Random();
+            allstat.add40randomstation();
+            for (int i = 0; i < 10; i++)
+            {
+                addrandomnostats();
+            }
+            foreach(BuStationLine stat in allstat.GStations)
+            {
+                line1 = r.Next() % 10;
+                do
+                {
+                    line2 = r.Next();
+                } while (line1 == line2);
+                
+                int i = 0;
+                foreach(BusLine line in buslines)
+                {
+                    if(i == line1)
+                    { line.add(stat); }
+                    if(i == line2)
+                    { line.add(stat); }
+                    i++;
+                }
+            }
         }
 
     }

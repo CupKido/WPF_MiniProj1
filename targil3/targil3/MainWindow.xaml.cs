@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace targil3
 {
     /// <summary>
@@ -20,9 +21,38 @@ namespace targil3
     /// </summary>
     public partial class MainWindow : Window
     {
+        private  BLines Buses = new BLines();
+        private BusLine allstats = new BusLine("XXXXXX", null, null);
+        private BusLine currentShowed = new BusLine();
         public MainWindow()
         {
+
+            Buses.RandomStart40ten(allstats);
             InitializeComponent();
+            cbBusLines.ItemsSource = Buses;
+            cbBusLines.DisplayMemberPath = " GSID ";
+            cbBusLines.SelectedIndex = 0;
+            ShowBusLine(0);
+        }
+
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowBusLine((cbBusLines.SelectedValue as BusLine));
+
+        }
+        private void ShowBusLine(int bus)
+        {
+            currentShowed = Buses.index(bus);
+            UpGrid.DataContext = currentShowed;
+            lbBusLineStations.DataContext = Buses.index(bus).GStations;
+        }
+        private void ShowBusLine(BusLine bus)
+        {
+
+            currentShowed = bus;
+            UpGrid.DataContext = currentShowed;
+            InitializeComponent();
+            lbBusLineStations.DataContext = bus.GStations;
         }
     }
 }

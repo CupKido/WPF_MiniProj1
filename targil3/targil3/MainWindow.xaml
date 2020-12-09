@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:targil3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="640" Width="800">
+    <Grid Name= "GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <TextBox x:Name="tbArea" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" FontSize="18" FontFamily="Snap ITC" TextDecorations="Underline"/>
+            <Label Name="label1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="Bus Line Number:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Label Name="label2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="Area:" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <ComboBox x:Name="cbBusLines" HorizontalContentAlignment="Center" VerticalContentAlignment ="Center" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged" FontSize="18" FontWeight="Bold"/>
+        </Grid>
+        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding}" />
     </Grid>
 </Window>
