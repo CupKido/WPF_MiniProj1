@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace targil2
+namespace targil3
 {
     class BuStationLine : IComparable
     {
@@ -73,7 +73,10 @@ namespace targil2
             }
             return 0;
         }
-
+        public override string ToString()
+        {
+            return "Bus station code: " + current.GSID + ", " + current.GSLatitude + "°N " + current.GSLongitude + "°E " + current.GSAddress;
+        }
         public void add(string name)
         {
             this.GSStation.add(name);
