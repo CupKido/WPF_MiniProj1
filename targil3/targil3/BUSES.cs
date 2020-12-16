@@ -31,6 +31,14 @@ namespace targil3B
             }
             return -1;
         }
+
+        public BUS index(int line)
+        {
+            if (line > Buses.Count)
+                return null;
+            return (BUS)Buses[line];
+        }
+
         public int indexByID(string ID)
         {
             int i = 0;
@@ -188,6 +196,15 @@ namespace targil3B
             tempo.SetBus(ID, bustart, true);
             Buses.Add(tempo);
             return this;
+        }
+        public List<BUS> ToList()
+        {
+            List<BUS> nLIST = new List<BUS>();
+            foreach (BUS line in Buses)
+            {
+                nLIST.Add(line);
+            }
+            return nLIST;
         }
     }
 }
