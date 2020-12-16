@@ -10,74 +10,27 @@
         Title="MNSN" Height="640" Width="800">
     <Grid Name= "GridMain">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            <TextBox x:Name="tbArea" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" TextWrapping="Wrap"  VerticalAlignment="Stretch" FontSize="18" FontFamily="Miriam">
-                <TextBox.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFFAAAAA" Offset="0"/>
-                        <GradientStop Color="#FFCBE2EA" Offset="1"/>
-                    </LinearGradientBrush>
-                </TextBox.Background>
-            </TextBox>
-            <Label Name="label1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="Bus Line Number:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Segoe UI Black" FontSize="20" >
-                <Label.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF05FCDD"/>
-                        <GradientStop Color="#FFFF870D" Offset="1"/>
-                    </LinearGradientBrush>
-                </Label.Background>
-            </Label>
-            <Label Name="label2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="Area:" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Segoe UI Black" FontSize="20" >
-                <Label.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF05FCDD"/>
-                        <GradientStop Color="#FFFF870D" Offset="1"/>
-                    </LinearGradientBrush>
-                </Label.Background>
-            </Label>
-            <ComboBox x:Name="cbBusLines" HorizontalContentAlignment="Center" VerticalContentAlignment ="Center" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged" FontSize="18" FontWeight="Bold">
-                <ComboBox.Background>
-                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF69037" Offset="0.003"/>
-                        <GradientStop Color="#FFEBB900" Offset="1"/>
-                    </LinearGradientBrush>
-                </ComboBox.Background>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Label Content="{Binding GSID}" Width="100" />
-                            <Button Grid.Column="1">Do Something</Button>
-                        </Grid>
-
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
-        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding}" FontFamily="Meiryo" >
+        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Meiryo" Margin="0,0,-0.4,0.4" Grid.RowSpan="2" >
             <ListBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF9ACFF4" Offset="0.003"/>
                     <GradientStop Color="#FFF4E096" Offset="1"/>
                 </LinearGradientBrush>
             </ListBox.Background>
+            <Label Name="mainlabel" Content="                  m&amp;s buses" Height="82" Width="640" RenderTransformOrigin="0.518,0.59" FontSize="40" FontWeight="ExtraBold" FontStyle="Italic"/>
+            <ListView Name="buslist" Height="524" Width="638" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" SelectionChanged="listView_SelectionChanged" Foreground="Black" BorderBrush="{x:Null}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </ListBox>
-        <Grid Margin="648,0,-0.4,0.4" Grid.Row="1" HorizontalAlignment="Left" Width="146" Background="LightGray" >
-            <Button Name="addbus" Content="add bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="146" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,443" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
+        <Grid Margin="648,3,-0.4,0.4" Grid.Row="1" HorizontalAlignment="Left" Width="146" Background="LightGray" >
+            <Button Name="addbus" Content="add bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="146" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,508" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFB405FC"/>
@@ -85,7 +38,7 @@ VerticalAlignment="Stretch" Width="auto">
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Label Name="menulabel" Content="       Menu" HorizontalAlignment="Left" Height="42" VerticalAlignment="Bottom" Width="146" Margin="0,0,0,500" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+            <Label Name="menulabel" Content="       Menu" HorizontalAlignment="Left" Height="37" VerticalAlignment="Bottom" Width="146" Margin="0,0,0,570" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
         </Grid>
     </Grid>
 </Window>

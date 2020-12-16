@@ -55,5 +55,10 @@ namespace targil3
             lbBusLineStations.DataContext = bus.GStations;
             tbArea.Text = currentShowed.AreaToString();
         }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
