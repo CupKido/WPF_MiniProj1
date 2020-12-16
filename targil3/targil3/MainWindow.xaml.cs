@@ -14,21 +14,22 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace targil3
+namespace targil3B
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private  BLines Buses = new BLines();
-        private BusLine allstats = new BusLine("XXXXXX", null, null);
-        private BusLine currentShowed = new BusLine();
+        DateTime today = DateTime.Now;
+        BUSES Buses = new BUSES();
+        
         public MainWindow()
         {
-
-            Buses.RandomStart40ten(allstats);
+            Buses.Add10Randoms(today);
             InitializeComponent();
+            Buses.RandomStart40ten(allstats);
+            
             cbBusLines.ItemsSource = Buses;
             cbBusLines.DisplayMemberPath = " GSID ";
             cbBusLines.SelectedIndex = 0;
