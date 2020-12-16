@@ -1,0 +1,15 @@
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\bin\Debug\targil3B2.exe.config
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\bin\Debug\targil3B2.exe
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\bin\Debug\targil3B2.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.csprojAssemblyReference.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\MainWindow.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\App.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2_MarkupCompile.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2_MarkupCompile.lref
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\MainWindow.baml
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.g.resources
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.Properties.Resources.resources
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.csproj.GenerateResource.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.csproj.CoreCompileInputs.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.exe
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.pdb
