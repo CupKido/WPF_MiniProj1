@@ -30,7 +30,6 @@ namespace targil3
             Buses.RandomStart40ten(allstats);
             InitializeComponent();
             cbBusLines.ItemsSource = Buses;
-            cbBusLines.DisplayMemberPath = " GSID ";
             cbBusLines.SelectedIndex = 0;
             ShowBusLine(0);
         }

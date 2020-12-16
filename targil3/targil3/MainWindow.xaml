@@ -52,9 +52,23 @@ VerticalAlignment="Stretch" Width="auto">
                         <GradientStop Color="#FFEBB900" Offset="1"/>
                     </LinearGradientBrush>
                 </ComboBox.Background>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="{Binding GSID}" Width="100" />
+                            <Button Grid.Column="1">Do Something</Button>
+                        </Grid>
+
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" FontFamily="Meiryo" >
+        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding}" FontFamily="Meiryo" >
             <ListBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF9ACFF4" Offset="0.003"/>
@@ -63,7 +77,7 @@ VerticalAlignment="Stretch" Width="auto">
             </ListBox.Background>
         </ListBox>
         <Grid Margin="648,0,-0.4,0.4" Grid.Row="1" HorizontalAlignment="Left" Width="146" Background="LightGray" >
-            <Button Name="addbus" Content="addbus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="146" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,443" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
+            <Button Name="addbus" Content="add bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="146" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,443" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFB405FC"/>
