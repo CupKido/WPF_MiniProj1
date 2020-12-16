@@ -13,3 +13,18 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\tar
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.csproj.CoreCompileInputs.cache
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.exe
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B2\targil3B2\obj\Debug\targil3B2.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\bin\Debug\targil3B2.exe.config
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\bin\Debug\targil3B2.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\bin\Debug\targil3B2.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\MainWindow.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\App.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2_MarkupCompile.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2_MarkupCompile.lref
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\MainWindow.baml
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2.g.resources
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2.Properties.Resources.resources
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2.csproj.GenerateResource.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3B2\targil3B2\obj\Debug\targil3B2.pdb
