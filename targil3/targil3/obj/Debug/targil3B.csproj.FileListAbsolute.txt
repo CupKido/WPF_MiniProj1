@@ -1,0 +1,15 @@
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\bin\Debug\targil3.exe.config
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\bin\Debug\targil3.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\bin\Debug\targil3.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3B.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\MainWindow.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\App.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3_MarkupCompile.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3_MarkupCompile.lref
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\MainWindow.baml
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3.g.resources
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3.Properties.Resources.resources
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3B.csproj.GenerateResource.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3B.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\targil3.pdb

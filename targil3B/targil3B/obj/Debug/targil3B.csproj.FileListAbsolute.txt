@@ -1,5 +1,0 @@
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B\targil3B\obj\Debug\targil3B.csprojAssemblyReference.cache
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B\targil3B\obj\Debug\App.g.cs
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B\targil3B\obj\Debug\MainWindow.g.cs
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B\targil3B\obj\Debug\targil3B_MarkupCompile.cache
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3B\targil3B\obj\Debug\targil3B_MarkupCompile.lref
