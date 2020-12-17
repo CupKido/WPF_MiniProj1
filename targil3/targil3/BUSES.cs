@@ -104,27 +104,23 @@ namespace targil3B
             km = r.Next() % 100000 + r.NextDouble();
 
             string ID;
-            int IDsize;
-            if(StartDate.Year < 2018)
-            {
-                IDsize = 7;
-            }else { IDsize = 8; }
-
             int intID;
-            int modu = 1;
-            for(int i = 0; i < IDsize; i++)
-            {
-                modu = modu * 10;
-            }
-
             bool exist = true;
             do {
-                intID = r.Next() % modu;
-                ID = intID.ToString();
-                for (int i = 0; i < IDsize - ID.Length; i++)
+                if (year >= 2018)
                 {
-                    ID.Insert(0, "0");
+                    intID = r.Next(9999999, 100000000);
                 }
+                else
+                {
+                    intID = r.Next(999999, 10000000);
+                }
+                ID = intID.ToString();
+                int IDl = ID.Length;
+                //for (int i = 0; i < IDsize - IDl; i++)
+                //{
+                //   ID = ID.Insert(0, "0");
+                //}
                 if(indexByID(ID) == -1)
                 {
                     exist = false;

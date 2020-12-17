@@ -21,20 +21,21 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Name="mainlabel" Content="                  m&amp;s buses" Height="82" Width="640" RenderTransformOrigin="0.518,0.59" FontSize="40" FontWeight="ExtraBold" FontStyle="Italic" Margin="10,0,143.6,528.4" Grid.RowSpan="2"/>
-        <ListView x:Name="buslist" Height="524" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Foreground="Black" BorderBrush="Black" Margin="0,87,145.6,-0.6" Grid.RowSpan="2" OpacityMask="Black">
+        <ListView x:Name="buslist" Height="524" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Foreground="Black" BorderBrush="Black" Margin="0,87,121.6,-0.6" Grid.RowSpan="2" OpacityMask="Black">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="license bus number" Width="180"  DisplayMemberBinding="{Binding pID}" />
+                    <GridViewColumn Header="license bus number" Width="auto"  DisplayMemberBinding="{Binding pID}" />
                     <GridViewColumn Header="start date" Width="100" DisplayMemberBinding="{Binding pStartDate}" />
                     <GridViewColumn Header="last treatment" Width="100" DisplayMemberBinding="{Binding plastDate}"/>
                     <GridViewColumn Header="km since start" Width="90" DisplayMemberBinding="{Binding pkm}"/>
                     <GridViewColumn Header="km since treatment" Width="105" DisplayMemberBinding="{Binding pckm}"/>
-                    <GridViewColumn Header="gas fuel" Width="67" DisplayMemberBinding="{Binding pGaz}"/>
+                    <GridViewColumn Header="gas" Width="auto" DisplayMemberBinding="{Binding pGaz}"/>
                 </GridView>
             </ListView.View>
+            <DatePicker Height="48" Width="470"/>
         </ListView>
-        <Grid Margin="648,3,-0.4,0.4" Grid.Row="1" HorizontalAlignment="Left" Width="146" Background="LightGray" >
-            <Button Name="addbus" Content="add bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="146" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,508" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
+        <Grid Margin="672,3,-0.4,0.4" Grid.Row="1" HorizontalAlignment="Left" Width="122" Background="LightGray" >
+            <Button Click="addbus_Click" Name="addbus" Content="add bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="122" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,494" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFB405FC"/>
@@ -42,7 +43,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Label Name="menulabel" Content="       Menu" HorizontalAlignment="Left" Height="37" VerticalAlignment="Bottom" Width="146" Margin="0,0,0,570" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+            <Label Name="menulabel" Content="     Menu" HorizontalAlignment="Left" Height="37" VerticalAlignment="Bottom" Width="122" Margin="0,0,0,560" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
         </Grid>
     </Grid>
 </Window>

@@ -1,0 +1,18 @@
+﻿<Window x:Class="targil3B.AddBusWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:targil3B"
+        mc:Ignorable="d"
+        Title="AddBusWin" Height="450" Width="800">
+    <Grid Margin="0,0,-0.4,0">
+        <Label Name="addbus" Content="add new bus to the system" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="96" Margin="0,1,0,0" VerticalAlignment="Top" Width="794" FontSize="40" FontWeight="Bold" FontStyle="Italic"/>
+        <DatePicker Name="DP" HorizontalAlignment="Left" Height="33" Margin="386,122,0,0" VerticalAlignment="Top" Width="159"/>
+        <Label Name="Sdate" Content="start date:" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" HorizontalAlignment="Left" Height="33" Margin="252,117,0,0" VerticalAlignment="Top" Width="113" FontSize="20" BorderBrush="Black"/>
+        <Label Name="lisence_num" Content="lisence number:" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" HorizontalAlignment="Left" Height="33" Margin="217,167,0,0" VerticalAlignment="Top" Width="148" FontSize="20" BorderBrush="Black"/>
+        <TextBox Name="textBox" HorizontalAlignment="Left" Height="33" Margin="386,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159" FontWeight="Bold" FontSize="20"/>
+        <Button Name="addbus1" Click="addbus1_Click" Content="Add the Bus" HorizontalAlignment="Left" Height="38" Margin="336,357,0,0" VerticalAlignment="Top" Width="125"/>
+
+    </Grid>
+</Window>
