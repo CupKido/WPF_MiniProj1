@@ -23,43 +23,40 @@ namespace targil3B
     {
         DateTime today = DateTime.Now;
         BUSES Buses = new BUSES();
+        BUS currentBus = new BUS();
         
         public MainWindow()
         {
             Buses.Add10Randoms(today);
             InitializeComponent();
-            Buses.RandomStart40ten(allstats);
-            
-            cbBusLines.ItemsSource = Buses;
-            cbBusLines.SelectedIndex = 0;
-            ShowBusLine(0);
+            buslist.ItemsSource = Buses.ToList();
+            //ShowBusLine(0);
         }
 
-        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ShowBusLine((cbBusLines.SelectedValue as BusLine));
-
-        }
-        private void ShowBusLine(int bus)
-        {
-            currentShowed = Buses.index(bus);
-            UpGrid.DataContext = currentShowed;
-            lbBusLineStations.DataContext = Buses.index(bus).GStations;
-            tbArea.Text = currentShowed.AreaToString();
-        }
-        private void ShowBusLine(BusLine bus)
-        {
-
-            currentShowed = bus;
-            UpGrid.DataContext = currentShowed;
-            InitializeComponent();
-            lbBusLineStations.DataContext = bus.GStations;
-            tbArea.Text = currentShowed.AreaToString();
-        }
-
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       // {
+       //     ShowBusLine((cbBusLines.SelectedValue as BusLine));
+       //
+       // }
+      //  private void ShowBusLine(int bus)
+      //  {
+      //      currentBus = Buses.index(bus);
+      //      UpGrid.DataContext = currentBus;
+      //      lbBusLineStations.DataContext = Buses.index(bus).GStations;
+      //      tbArea.Text = currentShowed.AreaToString();
+      //  }
+      //  private void ShowBusLine(BusLine bus)
+      //  {
+      //
+      //      currentShowed = bus;
+      //      UpGrid.DataContext = currentShowed;
+      //      InitializeComponent();
+      //      lbBusLineStations.DataContext = bus.GStations;
+      //      tbArea.Text = currentShowed.AreaToString();
+      //  }
+      //  private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+      //  {
+      //      buslist.ItemsSource = Buses;
+      //  }
     }
 }

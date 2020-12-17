@@ -17,7 +17,7 @@ namespace targil3B
         private DateTime lastime = new DateTime(); //last treatment
         private double km;
         private double ckm; // km from last treatment
-        private int Gaz = 1200;
+        private double Gaz = 1200;
         private bool dan = false; // dangerous 
         public string currentID
         {
@@ -74,7 +74,7 @@ namespace targil3B
                 if (value >= km) { km = value; }
             }
         }
-        public int currentGaz
+        public double currentGaz
         {
             get
             {
@@ -180,13 +180,13 @@ namespace targil3B
             }
             return false;
         }
-        public int fillGaz()
+        public double fillGaz()
         {
             if (Gaz == 1200)
             {
                 return 0;
             }
-            int before = 1200 - Gaz;
+            double before = 1200 - Gaz;
             Gaz = 1200;
             return before;
         }
@@ -228,7 +228,7 @@ namespace targil3B
             km += nkm;
             Gaz -= nkm;
         }
-
+        
     }
 }
 
