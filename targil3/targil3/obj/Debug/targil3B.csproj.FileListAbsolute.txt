@@ -30,3 +30,5 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\tar
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.pdb
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\AddBusWin.g.cs
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\AddBusWin.baml
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\AddBusWin.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\AddBusWin.baml
