@@ -41,11 +41,12 @@ namespace targil3B
             window.Show();
         }
 
-        private void GridViewColumn_Click(object sender, RoutedEventArgs e)
+        private void refillGazThreads(object sender, RoutedEventArgs e)
         {
-
+            BUS Bus = (sender as Button).DataContext as BUS;
+            Buses.index(Buses.index(Bus)).refillGazThreads();
+            buslist.Items.Refresh();
         }
-
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {
         //     ShowBusLine((cbBusLines.SelectedValue as BusLine));
