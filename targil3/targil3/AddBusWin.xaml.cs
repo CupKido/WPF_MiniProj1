@@ -24,15 +24,25 @@ namespace targil3B
         {
             InitializeComponent();
             DP.SelectedDate = DateTime.Now;
-            BUS nbus = new BUS();
+            //DP.BlackoutDates.AddDatesInPast();
         }
 
         private void addbus1_Click(object sender, RoutedEventArgs e)
         {
             DateTime SDate = DP.SelectedDate.Value.Date;
-            string lisence = lisence_num.Content.ToString();
+            if (SDate > DateTime.Now)
+            {
+                MessageBox.Show("ERROR: you cant add un bus in the future");
+            }
+            string lisence = lisence_num.Text;
+            int Ilisence = new int();
+            bool flag = int.TryParse(lisence, out Ilisence);
+            if(!flag)
+            {
+                MessageBox.Show("ERROR: the lisence number isn't correct");
+            }
+            BUS nbus = new BUS();
 
-            
         }
     }
 }

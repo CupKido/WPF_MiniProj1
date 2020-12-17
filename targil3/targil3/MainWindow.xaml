@@ -32,7 +32,6 @@
                     <GridViewColumn Header="gas" Width="auto" DisplayMemberBinding="{Binding pGaz}"/>
                 </GridView>
             </ListView.View>
-            <DatePicker Height="48" Width="470"/>
         </ListView>
         <Grid Margin="672,3,-0.4,0.4" Grid.Row="1" HorizontalAlignment="Left" Width="122" Background="LightGray" >
             <Button Click="addbus_Click" Name="addbus" Content="add bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="122" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,494" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
