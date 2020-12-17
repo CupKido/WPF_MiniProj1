@@ -35,30 +35,36 @@ namespace targil3B
             //ShowBusLine(0);
         }
 
+        private void addbus_Click(object sender, RoutedEventArgs e)
+        {
+            AddBusWin window = new AddBusWin();
+            window.Show();
+        }
+
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-       // {
-       //     ShowBusLine((cbBusLines.SelectedValue as BusLine));
-       //
-       // }
-      //  private void ShowBusLine(int bus)
-      //  {
-      //      currentBus = Buses.index(bus);
-      //      UpGrid.DataContext = currentBus;
-      //      lbBusLineStations.DataContext = Buses.index(bus).GStations;
-      //      tbArea.Text = currentShowed.AreaToString();
-      //  }
-      //  private void ShowBusLine(BusLine bus)
-      //  {
-      //
-      //      currentShowed = bus;
-      //      UpGrid.DataContext = currentShowed;
-      //      InitializeComponent();
-      //      lbBusLineStations.DataContext = bus.GStations;
-      //      tbArea.Text = currentShowed.AreaToString();
-      //  }
-      //  private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-      //  {
-      //      buslist.ItemsSource = Buses;
-      //  }
+        // {
+        //     ShowBusLine((cbBusLines.SelectedValue as BusLine));
+        //
+        // }
+        //  private void ShowBusLine(int bus)
+        //  {
+        //      currentBus = Buses.index(bus);
+        //      UpGrid.DataContext = currentBus;
+        //      lbBusLineStations.DataContext = Buses.index(bus).GStations;
+        //      tbArea.Text = currentShowed.AreaToString();
+        //  }
+        //  private void ShowBusLine(BusLine bus)
+        //  {
+        //
+        //      currentShowed = bus;
+        //      UpGrid.DataContext = currentShowed;
+        //      InitializeComponent();
+        //      lbBusLineStations.DataContext = bus.GStations;
+        //      tbArea.Text = currentShowed.AreaToString();
+        //  }
+        //  private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //  {
+        //      buslist.ItemsSource = Buses;
+        //  }
     }
 }
