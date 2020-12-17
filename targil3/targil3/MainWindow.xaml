@@ -21,15 +21,15 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Name="mainlabel" Content="                  m&amp;s buses" Height="82" Width="640" RenderTransformOrigin="0.518,0.59" FontSize="40" FontWeight="ExtraBold" FontStyle="Italic" Margin="10,0,143.6,528.4" Grid.RowSpan="2"/>
-        <ListView x:Name="buslist" Height="524" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Foreground="Black" BorderBrush="{x:Null}" Margin="0,87,145.6,-0.6" Grid.RowSpan="2">
+        <ListView x:Name="buslist" Height="524" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Foreground="Black" BorderBrush="Black" Margin="0,87,145.6,-0.6" Grid.RowSpan="2" OpacityMask="Black">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="lisence bus number" Width="180" DisplayMemberBinding="{Binding ID}" />
-                    <GridViewColumn Header="start date" Width="100" DisplayMemberBinding="{Binding startdate}" />
-                    <GridViewColumn Header="last treatment" Width="100" DisplayMemberBinding="{Binding lastime}"/>
-                    <GridViewColumn Header="km since start" Width="90" DisplayMemberBinding="{Binding km}"/>
-                    <GridViewColumn Header="km since treatment" Width="105" DisplayMemberBinding="{Binding ckm}"/>
-                    <GridViewColumn Header="gas fuel" Width="67" DisplayMemberBinding="{Binding gaz}"/>
+                    <GridViewColumn Header="license bus number" Width="180"  DisplayMemberBinding="{Binding pID}" />
+                    <GridViewColumn Header="start date" Width="100" DisplayMemberBinding="{Binding pStartDate}" />
+                    <GridViewColumn Header="last treatment" Width="100" DisplayMemberBinding="{Binding plastDate}"/>
+                    <GridViewColumn Header="km since start" Width="90" DisplayMemberBinding="{Binding pkm}"/>
+                    <GridViewColumn Header="km since treatment" Width="105" DisplayMemberBinding="{Binding pckm}"/>
+                    <GridViewColumn Header="gas fuel" Width="67" DisplayMemberBinding="{Binding pGaz}"/>
                 </GridView>
             </ListView.View>
         </ListView>

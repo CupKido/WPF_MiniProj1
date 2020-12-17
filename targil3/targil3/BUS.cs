@@ -19,6 +19,14 @@ namespace targil3B
         private double ckm; // km from last treatment
         private double Gaz = 1200;
         private bool dan = false; // dangerous 
+        //public string ID;
+        //public DateTime startdate = new DateTime(1, 1, 1);
+        //public DateTime lastime = new DateTime(); //last treatment
+        //public double km;
+        //public double ckm; // km from last treatment
+        //public double Gaz = 1200;
+        //public bool dan = false; // dangerous 
+
         public string currentID
         {
             get
@@ -83,6 +91,57 @@ namespace targil3B
             set
             {
                 Gaz = value;
+            }
+        }
+        public string pID
+        {
+            get
+            {
+                return ID;
+            }
+            set
+            {
+                ID = value;
+            }
+        }
+        public string pStartDate
+        {
+            get
+            {
+                return startdate.Date.ToShortDateString();
+            }
+            
+        }
+        public string plastDate
+        {
+            get
+            {
+                return lastime.Date.ToShortDateString();
+            }
+            
+        }
+        public string pkm // km from start
+        {
+            get
+            {
+                return string.Format("{0:0.00}", km);
+               
+            }
+            
+        }
+        public string pckm
+        {
+            get
+            {
+                return string.Format("{0:0.00}", ckm);
+            }
+            
+        }
+        public string pGaz
+        {
+            get
+            {
+                return string.Format("{0:0.00}", Gaz);
             }
         }
 
@@ -220,15 +279,20 @@ namespace targil3B
             Console.WriteLine(tempID);
 
         }
+        static Random r = new Random();
         public void addride()
         {
-            Random r = new Random();
+            
             double nkm = (r.Next() % 1200) + r.NextDouble();
             ckm += nkm;
             km += nkm;
             Gaz -= nkm;
         }
-        
+        public override string ToString()
+        {
+            return "Bus ID: " + ID;
+        }
+
     }
 }
 

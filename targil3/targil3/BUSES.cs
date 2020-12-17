@@ -52,41 +52,46 @@ namespace targil3B
             }
             return -1;
         }
+            static Random r = new Random();
         private BUS RRBus(DateTime today) //Return Random Bus
         {
-            Random r = new Random();
 
             int day, month, year;
 
             year = (r.Next() % 11) + today.Year - 10;
-            month = r.Next() % 13;
+            month = r.Next() % 12 +1;
             if(month == 2)
             {
-                day = r.Next() % 29;
+                day = r.Next() % 28 + 1;
             }
             else if(month == 4 || month == 6 || month == 9 || month == 11)
             {
-                day = r.Next() % 31;
+                day = r.Next() % 30 +1;
             }
             else
             {
-                day = r.Next() % 32;
+                day = r.Next() % 31 +1;
             }
             DateTime StartDate = new DateTime(year, month, day);
-
-            year = (r.Next() % today.Year - StartDate.Year) + StartDate.Year;
-            month = r.Next() % 13;
+            int timeActive = (today.Year - StartDate.Year);
+            if(timeActive == 0)
+            {
+                timeActive = 1;
+            }
+            int added = r.Next() % timeActive;
+            year = (added) + StartDate.Year;
+            month = r.Next() % 12 +1;
             if (month == 2)
             {
-                day = r.Next() % 29;
+                day = r.Next() % 28 +1;
             }
             else if (month == 4 || month == 6 || month == 9 || month == 11)
             {
-                day = r.Next() % 31;
+                day = r.Next() % 30 +1;
             }
             else
             {
-                day = r.Next() % 32;
+                day = r.Next() % 31 +1;
             }
             
             DateTime lastCareDate = new DateTime(year, month, day);
@@ -96,7 +101,7 @@ namespace targil3B
             }
 
             double km;
-            km = r.Next() + r.NextDouble();
+            km = r.Next() % 100000 + r.NextDouble();
 
             string ID;
             int IDsize;

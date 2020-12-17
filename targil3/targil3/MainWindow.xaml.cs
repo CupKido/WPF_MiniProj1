@@ -27,9 +27,11 @@ namespace targil3B
         
         public MainWindow()
         {
+            InitializeComponent();
             Buses.Add10Randoms(today);
             InitializeComponent();
             buslist.ItemsSource = Buses.ToList();
+            InitializeComponent();
             //ShowBusLine(0);
         }
 
