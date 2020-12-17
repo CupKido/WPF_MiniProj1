@@ -32,7 +32,7 @@ namespace targil3B
             DateTime SDate = DP.SelectedDate.Value.Date;
             if (SDate > DateTime.Now)
             {
-                MessageBox.Show("ERROR: you cant add un bus in the future");
+                MessageBox.Show("ERROR: you cant add an bus in the future");
             }
             string lisence = lisence_num.Text;
             int Ilisence = new int();
