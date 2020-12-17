@@ -42,6 +42,11 @@ namespace targil3B
             window.Show();
         }
 
+        private void GoForRide(object sender, RoutedEventArgs e)
+        {
+            NewRideWindow window = new NewRideWindow();
+            window.Show();
+        }
         private void refillGazThreads(object sender, RoutedEventArgs e)
         {
             BUS Bus = (sender as Button).DataContext as BUS;
@@ -53,6 +58,11 @@ namespace targil3B
         {
             BUS Bus = (sender as Button).DataContext as BUS;
             (Buses.index(Buses.index(Bus)).updateMW(this)).RepairThreads();
+
+        }
+
+        private void GoForRide_Click(object sender, RoutedEventArgs e)
+        {
 
         }
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)

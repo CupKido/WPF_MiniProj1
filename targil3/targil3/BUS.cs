@@ -248,7 +248,7 @@ namespace targil3B
         }
         public void fillGaz()
         {
-            Thread.Sleep(12);
+            Thread.Sleep(12000);
             Gaz = 1200;
             current.Dispatcher.Invoke(() =>
             {
@@ -266,7 +266,7 @@ namespace targil3B
         }
         public void repair()
         {
-            Thread.Sleep(144);
+            Thread.Sleep(144000);
             ckm = 0;
             lastime = DateTime.Now;
             dan = false;
@@ -314,6 +314,34 @@ namespace targil3B
             ckm += nkm;
             km += nkm;
             Gaz -= nkm;
+        }
+
+        
+
+            public bool addride(double nkm)
+        {
+            if(Gaz == 0)
+            {
+                return false;
+            }
+            if(Gaz < nkm)
+            {
+                return false;
+            }
+            
+            new Thread(() =>
+                    {
+                        int speed = r.Next(20,50);
+                        Thread.Sleep((int)nkm / speed * 6);
+                        ckm += nkm;
+                        km += nkm;
+                        Gaz -= nkm;
+                    }
+                ).Start();
+
+            
+
+            return true;
         }
         public override string ToString()
         {

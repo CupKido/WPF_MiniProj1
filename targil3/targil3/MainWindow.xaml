@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:targil3"
         mc:Ignorable="d"
         Icon="wow.ico"
-        Title="MNSN" Height="640" Width="800">
+        Title="MNSN" Height="640" Width="900">
     <Grid Name= "GridMain">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -33,6 +33,13 @@
                     <GridViewColumn Header="" Width="auto" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <Button x:Name="GoForRid" Click="GoForRide" Content="New Ride"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="" Width="auto" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <Button x:Name="RefillGaz" Click="refillGazThreads" Content="Refill Gaz"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -47,7 +54,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Margin="672,3,-0.4,0.4" Grid.Row="1" HorizontalAlignment="Left" Width="122" Background="LightGray" >
+        <Grid  Grid.Row="1" HorizontalAlignment="Right" Width="122" Background="LightGray" >
             <Button Click="addbus_Click" Name="addbus" Content="add bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="122" Height="57" FontFamily="Segoe UI Black" FontSize="20" Margin="0,0,0,494" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

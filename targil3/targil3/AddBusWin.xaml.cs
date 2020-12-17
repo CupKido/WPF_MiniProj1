@@ -34,12 +34,12 @@ namespace targil3B
             {
                 MessageBox.Show("ERROR: you cant add an bus in the future");
             }
-            string lisence = lisence_num.Text;
-            int Ilisence = new int();
-            bool flag = int.TryParse(lisence, out Ilisence);
+            string lisence = license_num.Text;
+            int Ilicense = new int();
+            bool flag = int.TryParse(lisence, out Ilicense);
             if(!flag)
             {
-                MessageBox.Show("ERROR: the lisence number isn't correct");
+                MessageBox.Show("ERROR: the license number isn't correct");
             }
             BUS nbus = new BUS();
 
