@@ -30,6 +30,7 @@
                     <GridViewColumn Header="km since start" Width="90" DisplayMemberBinding="{Binding pkm}"/>
                     <GridViewColumn Header="km since treatment" Width="105" DisplayMemberBinding="{Binding pckm}"/>
                     <GridViewColumn Header="gas" Width="auto" DisplayMemberBinding="{Binding pGaz}"/>
+                    <GridViewColumn Header="refull" Width="30"/>
                 </GridView>
             </ListView.View>
         </ListView>

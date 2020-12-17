@@ -41,6 +41,11 @@ namespace targil3B
             window.Show();
         }
 
+        private void GridViewColumn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {
         //     ShowBusLine((cbBusLines.SelectedValue as BusLine));
