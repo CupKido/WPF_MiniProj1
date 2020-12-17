@@ -20,6 +20,7 @@ namespace targil3B
         private double ckm; // km from last treatment
         private double Gaz = 1200;
         private bool dan = false; // dangerous 
+        private MainWindow current;
         //public string ID;
         //public DateTime startdate = new DateTime(1, 1, 1);
         //public DateTime lastime = new DateTime(); //last treatment
@@ -240,25 +241,46 @@ namespace targil3B
             }
             return false;
         }
+        public BUS updateMW(MainWindow x)
+        {
+            current = x;
+            return this;
+        }
         public void fillGaz()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(12);
             Gaz = 1200;
-           Thread.
+            current.Dispatcher.Invoke(() =>
+            {
+                current.buslist.Items.Refresh();
+            });
+            
         }
         
         public void refillGazThreads()
         {
             Thread t = new Thread(fillGaz);
-            t.
+            
             t.Start();
 
         }
-        public void repair(DateTime today)
+        public void repair()
         {
+            Thread.Sleep(144);
             ckm = 0;
-            lastime = today;
+            lastime = DateTime.Now;
             dan = false;
+            current.Dispatcher.Invoke(() =>
+            {
+                current.buslist.Items.Refresh();
+            });
+        }
+        public void RepairThreads()
+        {
+            Thread t = new Thread(repair);
+
+            t.Start();
+
         }
         public void printBus()
         {

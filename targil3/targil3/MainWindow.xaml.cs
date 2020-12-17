@@ -25,13 +25,14 @@ namespace targil3B
         BUSES Buses = new BUSES();
         BUS currentBus = new BUS();
         
+        
         public MainWindow()
         {
             InitializeComponent();
             Buses.Add10Randoms(today);
-            InitializeComponent();
+            
             buslist.ItemsSource = Buses.ToList();
-            InitializeComponent();
+            
             //ShowBusLine(0);
         }
 
@@ -44,8 +45,15 @@ namespace targil3B
         private void refillGazThreads(object sender, RoutedEventArgs e)
         {
             BUS Bus = (sender as Button).DataContext as BUS;
-            Buses.index(Buses.index(Bus)).refillGazThreads();
-            buslist.Items.Refresh();
+            Bus.updateMW(this);
+            (Buses.index(Buses.index(Bus)).updateMW(this)).refillGazThreads();
+            
+        }
+        private void RepairThreads(object sender, RoutedEventArgs e)
+        {
+            BUS Bus = (sender as Button).DataContext as BUS;
+            (Buses.index(Buses.index(Bus)).updateMW(this)).RepairThreads();
+
         }
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {

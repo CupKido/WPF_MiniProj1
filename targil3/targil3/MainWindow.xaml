@@ -33,7 +33,14 @@
                     <GridViewColumn Header="" Width="auto" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="RefillGaz" Click="refillGazThreads" Content="RefillGaz"/>
+                                <Button x:Name="RefillGaz" Click="refillGazThreads" Content="Refill Gaz"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="" Width="auto" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Repair" Click="RepairThreads" Content="Repair"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
