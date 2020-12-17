@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace targil3B
 {
@@ -239,15 +240,18 @@ namespace targil3B
             }
             return false;
         }
-        public double fillGaz()
+        public void fillGaz()
         {
-            if (Gaz == 1200)
-            {
-                return 0;
-            }
-            double before = 1200 - Gaz;
+            Thread.Sleep(720000);
             Gaz = 1200;
-            return before;
+           
+        }
+        
+        public void refillGazThreads()
+        {
+
+            new Thread(fillGaz).Start();
+
         }
         public void repair(DateTime today)
         {
