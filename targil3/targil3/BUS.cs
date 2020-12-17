@@ -8,7 +8,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-
+using System.Windows.Threading;
 namespace targil3B
 {
     public class BUS
@@ -242,15 +242,16 @@ namespace targil3B
         }
         public void fillGaz()
         {
-            Thread.Sleep(720000);
+            Thread.Sleep(3000);
             Gaz = 1200;
-           
+           Thread.
         }
         
         public void refillGazThreads()
         {
-
-            new Thread(fillGaz).Start();
+            Thread t = new Thread(fillGaz);
+            t.
+            t.Start();
 
         }
         public void repair(DateTime today)
