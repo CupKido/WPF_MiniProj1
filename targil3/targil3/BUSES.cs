@@ -142,6 +142,10 @@ namespace targil3B
                 Buses.Add(RRBus(today));
             }
         }
+        public void Add(BUS Bus)
+        {
+            Buses.Add(Bus);
+        }
         public BUSES AddBus()
         {
             BUS[] temp = new BUS[Buses.Count + 1];

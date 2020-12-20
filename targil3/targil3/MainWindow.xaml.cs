@@ -36,11 +36,17 @@ namespace targil3B
             
             //ShowBusLine(0);
         }
-
+        public void refresh()
+        {
+            buslist.ItemsSource = Buses.ToList();
+        }
         private void addbus_Click(object sender, RoutedEventArgs e)
         {
             AddBusWin window = new AddBusWin();
+            window.DataContext = Buses;
+            window.addbus1.DataContext = this;
             window.Show();
+            
         }
 
         private void GoForRide(object sender, RoutedEventArgs e)

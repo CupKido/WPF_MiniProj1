@@ -124,6 +124,7 @@ namespace targil3B
                 string temp = lastime.Day + "/" + lastime.Month + "/" + lastime.Year;
                 return temp;
                 //return lastime.Date.ToShortDateString();
+                //window.addbus1.DataContext = this;
             }
             
         }
@@ -249,23 +250,41 @@ namespace targil3B
         public BUS updateMW(MainWindow x)
         {
             current1 = x;
+            current1.refresh();
+            if (current1 != null)
+            {
+                current1.Dispatcher.Invoke(() =>
+                {
+                    current1.buslist.Items.Refresh();
+
+                });
+            }
             return this;
         }
         public BUS updateBD(BusDetails x)
         {
-            current2 = x;
+            current2 = x; 
+            if (current2 != null)
+            {
+                current2.Details.Dispatcher.Invoke(() =>
+                {
+                    current2.ShowBus(this);
+                });
+            }
             return this;
         }
         public void fillGaz()
         {
             Thread.Sleep(12);
             Gaz = 1200;
-            
-            current1.Dispatcher.Invoke(() =>
+            if (current1 != null)
             {
-                current1.buslist.Items.Refresh();
-                
-            });
+                current1.Dispatcher.Invoke(() =>
+                {
+                    current1.buslist.Items.Refresh();
+
+                });
+            }
             if (current2 != null)
             {
                 current2.Details.Dispatcher.Invoke(() =>

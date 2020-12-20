@@ -29,19 +29,57 @@ namespace targil3B
 
         private void addbus1_Click(object sender, RoutedEventArgs e)
         {
-            DateTime SDate = DP.SelectedDate.Value.Date;
+            DateTime SDate;
+            string license;
+            int Ilicense = 0;
+            bool isokay = true;
+            BUSES Buses = DataContext as BUSES;
+
+            SDate = DP.SelectedDate.Value.Date;
             if (SDate > DateTime.Now)
             {
                 MessageBox.Show("ERROR: you cant add an bus in the future");
+                isokay = false;
             }
-            string lisence = license_num.Text;
-            int Ilicense = new int();
-            bool flag = int.TryParse(lisence, out Ilicense);
+
+            license = license_num.Text;
+            bool flag = int.TryParse(license, out Ilicense);
             if(!flag)
             {
-                MessageBox.Show("ERROR: the license number isn't correct");
+                MessageBox.Show("ERROR: Use Numbers ONLY");
+                isokay = false;
             }
-            BUS nbus = new BUS();
+            if(SDate.Year < 2018)
+            {
+                if(license.Length != 7)
+                {
+                    MessageBox.Show("ERROR: 7 numbers needed");
+                    isokay = false;
+                }
+            }
+            if (SDate.Year >= 2018)
+            {
+                if (license.Length != 8)
+                {
+                    MessageBox.Show("ERROR: 8 numbers needed");
+                    isokay = false;
+                }
+            }
+            if(Buses.indexByID(license) != -1)
+            {
+                MessageBox.Show("ERROR: Bus allready in list");
+                isokay = false;
+            }
+            if (isokay)
+            {
+                BUS nbus = new BUS(license, 0, SDate, SDate);
+                
+                
+                Buses.Add(nbus);
+                nbus.updateMW(addbus1.DataContext as MainWindow);
+                this.Close();
+            }
+           
 
         }
     }
