@@ -64,7 +64,15 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Click="RemoveTBus" Name="Removebus" Content="Remove Bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="122" Height="57" FontFamily="Segoe UI Black" FontSize="18" Margin="0,0,0,437.4" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
+            <Button Click="RemoveTBus" Name="Removebus" Content="Remove Bus" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="122" Height="57" FontFamily="Segoe UI Black" FontSize="18" Margin="0,0,0,438.4" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFB405FC"/>
+                        <GradientStop Color="#FFFF870D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Click="Randomize" Name="Random" Content="Random" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="122" Height="57" FontFamily="Segoe UI Black" FontSize="18" Margin="0,0,0,382.4" FontWeight="Bold" FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFB405FC"/>

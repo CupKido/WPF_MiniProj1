@@ -37,7 +37,7 @@ namespace targil3B
 
         public BUS index(int line)
         {
-            if (line > Buses.Count)
+            if (line >= Buses.Count)
                 return null;
             return (BUS)Buses[line];
         }
@@ -144,6 +144,10 @@ namespace targil3B
             {
                 Buses.Add(RRBus(today));
             }
+            
+            Buses.Add(new BUS(r.Next(9999999, 100000000).ToString(), 0, DateTime.Now - TimeSpan.FromDays(400), DateTime.Now - TimeSpan.FromDays(360)));
+            Buses.Add(new BUS(r.Next(9999999, 100000000).ToString(), 19901, 19900, DateTime.Now, DateTime.Now, 1200));
+            Buses.Add(new BUS(r.Next(9999999, 100000000).ToString(), 3600, 1200, DateTime.Now, DateTime.Now, 69.696969696969));
         }
         public void Add(BUS Bus)
         {

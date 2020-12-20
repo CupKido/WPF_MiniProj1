@@ -226,6 +226,16 @@ namespace targil3B
             lastime = last;
             Gaz = 1200;
         }
+        public BUS(string nID, double nkm, double nckm, DateTime start, DateTime last , double ngaz)
+        {
+            ID = nID;
+            km = nkm;
+            ckm = nckm;
+            startdate = start;
+            lastime = last;
+            Gaz = ngaz;
+
+        }
 
         public void SetBus(string id, int nday, int nmonth, int nyear, bool lt)
         {
@@ -318,8 +328,27 @@ namespace targil3B
         }
         public void fillGaz()
         {
-            Thread.Sleep(12);
+            inproc = true;
+            current1.Dispatcher.Invoke(() =>
+            {
+                current1.RefAndSave();
+            });
+            int sleeptime = 12000;
+            totaltillret = TimeSpan.FromMilliseconds(sleeptime);
+            while (totaltillret.TotalMilliseconds > 0)
+            {
+                Thread.Sleep(1000);
+                totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
+                current1.Dispatcher.Invoke(() =>
+                {
+                    current1.buslist.Items.Refresh();
+                });
+            }
+
+
+            
             Gaz = 1200;
+            inproc = false;
             if (current1 != null)
             {
                 current1.Dispatcher.Invoke(() =>
@@ -346,11 +375,29 @@ namespace targil3B
         }
         public void repair()
         {
-            Thread.Sleep(144);
+            inproc = true;
+            current1.Dispatcher.Invoke(() =>
+            {
+                current1.RefAndSave();
+            });
+            int sleeptime = 144000;
+            totaltillret = TimeSpan.FromMilliseconds(sleeptime);
+            while (totaltillret.TotalMilliseconds > 0)
+            {
+                Thread.Sleep(1000);
+                totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
+                current1.Dispatcher.Invoke(() =>
+                {
+                    current1.buslist.Items.Refresh();
+                });
+            }
+
+            
             ckm = 0;
             lastime = DateTime.Now;
             dan = false;
-            
+            inproc = false;
+
             current1.Dispatcher.Invoke(() =>
             {
                 current1.RefAndSave();
@@ -365,6 +412,7 @@ namespace targil3B
         }
         public void RepairThreads()
         {
+            
             Thread t = new Thread(repair);
 
             t.Start();
@@ -433,7 +481,7 @@ namespace targil3B
                             totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
                             current1.Dispatcher.Invoke(() =>
                             {
-                                current1.RefAndSave();
+                                current1.buslist.Items.Refresh();
                             });
                         }
                         ckm += nkm;

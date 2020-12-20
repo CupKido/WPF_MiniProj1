@@ -108,7 +108,7 @@ namespace targil3B
             Bus.updateMW(this);
             if (Bus.inprocc)
             {
-                MessageBox.Show("ERROR: Bus in ride!");
+                MessageBox.Show("ERROR: Bus in middle of procces!");
             }
             else
             {
@@ -121,7 +121,7 @@ namespace targil3B
             BUS Bus = (sender as Button).DataContext as BUS;
             if (Bus.inprocc)
             {
-                MessageBox.Show("ERROR: Bus in ride!");
+                MessageBox.Show("ERROR: Bus in middle of procces!");
             }
             else
             {
@@ -158,6 +158,13 @@ namespace targil3B
             window.DataContext = Buses;
             window.Remove.DataContext = this;
             window.Show();
+        }
+        private void Randomize(object sender, RoutedEventArgs e)
+        {
+            Buses = new BUSES();
+            Buses.Add10Randoms(DateTime.Now);
+            buslist.ItemsSource = Buses.ToList();
+            RefAndSave();
         }
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {
