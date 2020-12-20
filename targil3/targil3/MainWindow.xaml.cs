@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace targil3B
 { 
@@ -30,11 +31,41 @@ namespace targil3B
         {
 
             InitializeComponent();
-            Buses.Add10Randoms(today);
+            pull();
+            if(Buses.IsEmpty())
+            {
+                Buses.Add10Randoms(today);
+                push();
+            }
+            
            
             buslist.ItemsSource = Buses.ToList();
             
             //ShowBusLine(0);
+        }
+        public void push()
+        {
+            Stream stream = File.Open("BusesList.dat", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(stream, Buses);
+            stream.Close();
+        }
+        public void pull()
+        {
+            Stream stream = File.Open("BusesList.dat", FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            if(stream.Length > 0)
+            {
+                Buses = (BUSES)bf.Deserialize(stream);
+            }
+            
+            
+            stream.Close();
+        }
+        public void RefAndSave()
+        {
+            buslist.Items.Refresh();
+            push();
         }
         public void refresh()
         {

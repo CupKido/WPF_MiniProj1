@@ -7,10 +7,13 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace targil3B
 {
-    class BUSES
+    [Serializable()]
+    class BUSES : ISerializable
     {
         ArrayList Buses = new ArrayList();
 
@@ -220,6 +223,22 @@ namespace targil3B
             }
             Buses.RemoveAt(i);
             return true;
+        }
+        public bool IsEmpty()
+        {
+            if(Buses.Count!=0)
+            {
+                return false;
+            }
+            return true;
+        }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("List", Buses);
+        }
+        public BUSES(SerializationInfo info, StreamingContext context)
+        {
+            Buses = (ArrayList)info.GetValue("List", typeof(ArrayList));
         }
     }
 }
