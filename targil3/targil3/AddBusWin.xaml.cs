@@ -82,5 +82,12 @@ namespace targil3B
            
 
         }
+        private void AddBusEnter(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                addbus1_Click(sender, null);
+            }
+        }
     }
 }

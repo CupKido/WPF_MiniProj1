@@ -211,5 +211,15 @@ namespace targil3B
             }
             return nLIST;
         }
+        public bool RemoveBus(string ID)
+        {
+            int i = indexByID(ID);
+            if (i == -1)
+            {
+                return false;
+            }
+            Buses.RemoveAt(i);
+            return true;
+        }
     }
 }

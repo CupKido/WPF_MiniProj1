@@ -117,9 +117,17 @@ namespace targil3B
             Det.Details.Text = textbox;
             
             Det.Repair.DataContext = (Buses.index(Buses.index(Bus)).updateMW(this));
+            Det.Remove.DataContext = Buses;
+            Det.DataContext = this;
             Det.Show();
         }
-        
+        public void RemoveTBus(object sender, RoutedEventArgs e)
+        {
+            RemoveBus window = new RemoveBus();
+            window.DataContext = Buses;
+            window.Remove.DataContext = this;
+            window.Show();
+        }
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {
         //     ShowBusLine((cbBusLines.SelectedValue as BusLine));

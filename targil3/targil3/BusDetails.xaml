@@ -9,6 +9,7 @@
     <Grid>
         <TextBlock x:Name="Details" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="227" Width="400" FontSize="20"/>
         <Button x:Name="Repair" Content="Repair" HorizontalAlignment="Left" Margin="353,276,0,0" VerticalAlignment="Top" Width="75" Click="RepairThreads"/>
-        <Button x:Name="ReFill" Content="ReFill" HorizontalAlignment="Left" Margin="78,276,0,0" VerticalAlignment="Top" Width="75" Click="refillGazThreads"/>
+        <Button x:Name="ReFill" Content="ReFill" HorizontalAlignment="Left" Margin="237,276,0,0" VerticalAlignment="Top" Width="75" Click="refillGazThreads"/>
+        <Button x:Name="Remove" Content="Remove Bus" HorizontalAlignment="Left" Margin="66,276,0,0" VerticalAlignment="Top" Width="100" Click="RemoveTBus"/>
     </Grid>
 </Window>
