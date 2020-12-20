@@ -8,8 +8,10 @@
         Title="AddRideWin" Height="400" Width="640">
     <Grid>
         <Label x:Name="label" Content="Go for a Ride" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" FontSize="34"/>
-        <TextBox Name="kmToGo" HorizontalAlignment="Center" Width="178" Margin="283,125,172.6,204.4" TextWrapping="Wrap" Text="" FontWeight="Bold" FontSize="18"/>
-        <Label x:Name="kmtogoLabel" Content="KM to go:" HorizontalAlignment="Center" Margin="195,125,336.6,204.4" FontSize="18" Width="102" />
-        <Button x:Name="go" Content="GO!" Click="AddRide" HorizontalAlignment="Center"  Margin="353,218,188.6,124.4" Width="92" Height="28"/>
+        <TextBox Name="kmToGo" KeyDown="EnterRide" HorizontalAlignment="Left"  Width="178" Margin="283,166,172.6,163.4" TextWrapping="Wrap" Text="" FontWeight="Bold" FontSize="18"/>
+        <Label x:Name="kmtogoLabel" Content="KM to go:" HorizontalAlignment="Center" Margin="181,166,350.6,163.4" FontSize="18" Width="102" />
+        <Button x:Name="go" Content="GO!"  Click="AddRide" HorizontalAlignment="Left"  Margin="369,257,172.6,85.4" Width="92" Height="28"/>
+        <Label x:Name="GazLabel" Content="Gaz Amount:" HorizontalAlignment="Center" Margin="163,100,355.6,229.4" FontSize="18" Width="115" />
+        <TextBlock x:Name="GazAmount" TextAlignment="Left" HorizontalAlignment="Left"  Width="178" Margin="283,106,0,229.4" TextWrapping="Wrap" FontSize="18"/>
     </Grid>
 </Window>

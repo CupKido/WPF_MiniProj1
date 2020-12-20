@@ -20,8 +20,10 @@ namespace targil3B
         private double ckm; // km from last treatment
         private double Gaz = 1200;
         private bool dan = false; // dangerous 
+        private bool inproc = false;
         private MainWindow current1;
         private BusDetails current2;
+        TimeSpan totaltillret = new TimeSpan();
         //public string ID;
         //public DateTime startdate = new DateTime(1, 1, 1);
         //public DateTime lastime = new DateTime(); //last treatment
@@ -96,6 +98,13 @@ namespace targil3B
                 Gaz = value;
             }
         }
+        public bool inprocc
+        {
+            get
+            {
+                return inproc;
+            }
+        }
         public string pID
         {
             get
@@ -151,6 +160,45 @@ namespace targil3B
             {
                 return string.Format("{0:0.00}", Gaz);
             }
+        }
+        public string pColor
+        {
+            get
+            {
+                if (treatmentneeded(0))
+                {
+
+                    return "#FFB90606";
+                }
+                else if(inproc)
+                {
+                    return "#FF2317";
+                }
+                else
+                {
+                    return "#FF048B05";
+                }
+            }
+            
+        }
+        public string pTime
+        {
+            get
+            {
+                string text = "";
+                if (totaltillret.Minutes < 10)
+                {
+                    text += "0";
+                }
+                 text += totaltillret.Minutes + ":";
+                if (totaltillret.Seconds < 10)
+                {
+                    text += "0";
+                }
+                text += totaltillret.Seconds;
+                return text;
+            }
+
         }
 
         //public void SetID(string newID) { ID = newID; }
@@ -225,21 +273,12 @@ namespace targil3B
         }
         public bool treatmentneeded(double nkm)
         {
-            if (dan == true)
-            {
-                Console.WriteLine("BUS SELECTED IS DANGEROUS\nPLEASE REPAIR!");
-                return true;
-            }
-            int fromlast_y = DateTime.Now.Year;
-            int fromlast_m = DateTime.Now.Month;
-            int fromlast_d = DateTime.Now.Day;
+            TimeSpan dif = DateTime.Now - lastDate;
             bool fromlast = false;
-            fromlast_y = fromlast_y - lastime.Year;
-            fromlast_m = fromlast_m - lastime.Month;
-            fromlast_d = fromlast_d - lastime.Day;
-            if (fromlast_y > 1) { fromlast = true; }
-            else if (fromlast_m > 0) { fromlast = true; }
-            else if (fromlast_d > 0) { fromlast = true; }
+            if (dif.Days > 365)
+            {
+                fromlast = true;
+            }
             if ((ckm + nkm) > 20000 || fromlast)
             {
                 dan = true;
@@ -376,8 +415,23 @@ namespace targil3B
             
             new Thread(() =>
                     {
+                        inproc = true;
+                        current1.Dispatcher.Invoke(() =>
+                        {
+                            current1.buslist.Items.Refresh();
+                        });
                         int speed = r.Next(20,50);
-                        Thread.Sleep((int)nkm / speed * 6000);
+                        int sleeptime = (int)nkm / speed * 6000;
+                        totaltillret = TimeSpan.FromMilliseconds(sleeptime);
+                        while(totaltillret.TotalMilliseconds > 0)
+                        {
+                            Thread.Sleep(1000);
+                            totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
+                            current1.Dispatcher.Invoke(() =>
+                            {
+                                current1.buslist.Items.Refresh();
+                            });
+                        }
                         ckm += nkm;
                         km += nkm;
                         Gaz -= nkm;
@@ -385,6 +439,7 @@ namespace targil3B
                         {
                             current1.buslist.Items.Refresh();
                         });
+                        inproc = false;
                     }
                 ).Start();
 

@@ -53,24 +53,49 @@ namespace targil3B
         {
             NewRideWindow window = new NewRideWindow();
             BUS Bus = (sender as Button).DataContext as BUS;
+            if(Bus.inprocc)
+            {
+                MessageBox.Show("ERROR: Bus allready in ride!");
+            }else
+            if(Bus.treatmentneeded(0))
+            {
+                MessageBox.Show("ERROR: Please Repair Bus");
+            }
+            else
+            {
+                Bus.updateMW(this);
+                window.GazAmount.Text = Bus.pGaz;
+                window.go.DataContext = Bus;
+                window.Show();
+            }
             
-            Bus.updateMW(this);
-            window.go.DataContext = Bus;
-            window.Show();
 
         }
         private void refillGazThreads(object sender, RoutedEventArgs e)
         {
             BUS Bus = (sender as Button).DataContext as BUS;
             Bus.updateMW(this);
-            (Buses.index(Buses.index(Bus)).updateMW(this)).refillGazThreads();
+            if (Bus.inprocc)
+            {
+                MessageBox.Show("ERROR: Bus in ride!");
+            }
+            else
+            {
+                (Buses.index(Buses.index(Bus)).updateMW(this)).refillGazThreads();
+            }
             
         }
         private void RepairThreads(object sender, RoutedEventArgs e)
         {
             BUS Bus = (sender as Button).DataContext as BUS;
-            (Buses.index(Buses.index(Bus)).updateMW(this)).RepairThreads();
-
+            if (Bus.inprocc)
+            {
+                MessageBox.Show("ERROR: Bus in ride!");
+            }
+            else
+            {
+                (Buses.index(Buses.index(Bus)).updateMW(this)).RepairThreads();
+            }
         }
 
         private void GoForRide_Click(object sender, RoutedEventArgs e)

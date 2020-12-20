@@ -25,15 +25,16 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="license bus number" Width="auto"  DisplayMemberBinding="{Binding pID}" />
-                    <GridViewColumn Header="start date" Width="100" DisplayMemberBinding="{Binding pStartDate}" />
+                    <!--<GridViewColumn Header="start date" Width="100" DisplayMemberBinding="{Binding pStartDate}" />-->
                     <GridViewColumn Header="last treatment" Width="100" DisplayMemberBinding="{Binding plastDate}"/>
-                    <GridViewColumn Header="km since start" Width="90" DisplayMemberBinding="{Binding pkm}"/>
+                    <!--<GridViewColumn Header="km since start" Width="90" DisplayMemberBinding="{Binding pkm}"/>-->
                     <GridViewColumn Header="km since treatment" Width="105" DisplayMemberBinding="{Binding pckm}"/>
                     <GridViewColumn Header="gas" Width="auto" DisplayMemberBinding="{Binding pGaz}"/>
+                    <GridViewColumn Header="Time untill return" Width="auto" DisplayMemberBinding="{Binding pTime}"/>
                     <GridViewColumn Header="" Width="auto" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="GoForRid" Click="GoForRide" Content="New Ride"/>
+                                <Button x:Name="GoForRid" Click="GoForRide" Content="New Ride" Background="{Binding pColor}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

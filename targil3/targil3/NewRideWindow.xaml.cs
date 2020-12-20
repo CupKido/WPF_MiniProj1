@@ -37,9 +37,10 @@ namespace targil3B
             else
             {
                 
-               // Bus = go.DataContext as BUS;
-                Bus = (sender as Button).DataContext as BUS;
-                if(Bus.treatmentneeded(nkm))
+                
+                
+                Bus = go.DataContext as BUS;
+                if (Bus.treatmentneeded(nkm))
                 {
                     MessageBox.Show("ERROR: cannot make ride, please repair the bus");
                     this.Close();
@@ -53,11 +54,22 @@ namespace targil3B
                     MessageBox.Show("ERROR: cannot make ride, please refill the Gaz tank");
                     this.Close();
                 }
-                Bus.addride(nkm);
+                else {
+                    Bus.addride(nkm);
+                    this.Close();
+                }
+                
 
-                this.Close();
+                
             }
             
+        }
+        private void EnterRide(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                AddRide(sender, null);
+            }
         }
     }
 }
