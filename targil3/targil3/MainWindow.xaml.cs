@@ -28,9 +28,10 @@ namespace targil3B
         
         public MainWindow()
         {
+
             InitializeComponent();
             Buses.Add10Randoms(today);
-            
+           
             buslist.ItemsSource = Buses.ToList();
             
             //ShowBusLine(0);
@@ -45,7 +46,12 @@ namespace targil3B
         private void GoForRide(object sender, RoutedEventArgs e)
         {
             NewRideWindow window = new NewRideWindow();
+            BUS Bus = (sender as Button).DataContext as BUS;
+            
+            Bus.updateMW(this);
+            window.go.DataContext = Bus;
             window.Show();
+
         }
         private void refillGazThreads(object sender, RoutedEventArgs e)
         {
@@ -65,6 +71,24 @@ namespace targil3B
         {
 
         }
+        private void ShowBus(object sender, MouseEventArgs e)
+        {
+            BUS Bus = buslist.SelectedItem as BUS;
+            string textbox = "Bus ID: " + Bus.pID + "\nBus Starting date: " + Bus.pStartDate + "\nLast Repair Date: " + Bus.plastDate;
+            textbox = textbox + "\nGaz tank: " + Bus.pGaz + "\nOverAll killometers: " + Bus.pkm + "\nKillometers From Last Repair: " + Bus.pckm;
+            textbox = textbox + "\nRepair Needed?: ";
+            if(Bus.treatmentneeded(0))
+            {
+                textbox = textbox + "yes";
+            }else { textbox = textbox + "no"; }
+
+            BusDetails Det = new BusDetails();
+            Det.Details.Text = textbox;
+            
+            Det.Repair.DataContext = (Buses.index(Buses.index(Bus)).updateMW(this));
+            Det.Show();
+        }
+        
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {
         //     ShowBusLine((cbBusLines.SelectedValue as BusLine));

@@ -21,7 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Name="mainlabel" Content="                  m&amp;s buses" Height="82" Width="640" RenderTransformOrigin="0.518,0.59" FontSize="40" FontWeight="ExtraBold" FontStyle="Italic" Margin="10,0,143.6,528.4" Grid.RowSpan="2"/>
-        <ListView x:Name="buslist" Height="524" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Foreground="Black" BorderBrush="Black" Margin="0,87,121.6,-0.6" Grid.RowSpan="2" OpacityMask="Black">
+        <ListView x:Name="buslist" Height="524" MouseDoubleClick="ShowBus" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Foreground="Black" BorderBrush="Black" Margin="0,87,121.6,-0.6" Grid.RowSpan="2" OpacityMask="Black">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="license bus number" Width="auto"  DisplayMemberBinding="{Binding pID}" />

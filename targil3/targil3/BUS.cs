@@ -20,7 +20,8 @@ namespace targil3B
         private double ckm; // km from last treatment
         private double Gaz = 1200;
         private bool dan = false; // dangerous 
-        private MainWindow current;
+        private MainWindow current1;
+        private BusDetails current2;
         //public string ID;
         //public DateTime startdate = new DateTime(1, 1, 1);
         //public DateTime lastime = new DateTime(); //last treatment
@@ -110,7 +111,9 @@ namespace targil3B
         {
             get
             {
-                return startdate.Date.ToShortDateString();
+                string temp = startdate.Day + "/" + startdate.Month + "/" + startdate.Year;
+                return temp;
+                //return startdate.Date.ToShortDateString();
             }
             
         }
@@ -118,7 +121,9 @@ namespace targil3B
         {
             get
             {
-                return lastime.Date.ToShortDateString();
+                string temp = lastime.Day + "/" + lastime.Month + "/" + lastime.Year;
+                return temp;
+                //return lastime.Date.ToShortDateString();
             }
             
         }
@@ -201,7 +206,7 @@ namespace targil3B
         }
         public bool addkm(double addedkm, DateTime today)
         {
-            if (treatmentneeded(today))
+            if (treatmentneeded(0))
             {
                 Console.WriteLine("\n******\nERROR\nREPAIRING NEEDED\nPLEASE CHECK\n******\n");
                 return false;
@@ -217,16 +222,16 @@ namespace targil3B
 
             return true;
         }
-        public bool treatmentneeded(DateTime today)
+        public bool treatmentneeded(double nkm)
         {
             if (dan == true)
             {
                 Console.WriteLine("BUS SELECTED IS DANGEROUS\nPLEASE REPAIR!");
                 return true;
             }
-            int fromlast_y = today.Year;
-            int fromlast_m = today.Month;
-            int fromlast_d = today.Day;
+            int fromlast_y = DateTime.Now.Year;
+            int fromlast_m = DateTime.Now.Month;
+            int fromlast_d = DateTime.Now.Day;
             bool fromlast = false;
             fromlast_y = fromlast_y - lastime.Year;
             fromlast_m = fromlast_m - lastime.Month;
@@ -234,7 +239,7 @@ namespace targil3B
             if (fromlast_y > 1) { fromlast = true; }
             else if (fromlast_m > 0) { fromlast = true; }
             else if (fromlast_d > 0) { fromlast = true; }
-            if ((ckm) > 20000 || fromlast)
+            if ((ckm + nkm) > 20000 || fromlast)
             {
                 dan = true;
                 return true;
@@ -243,18 +248,31 @@ namespace targil3B
         }
         public BUS updateMW(MainWindow x)
         {
-            current = x;
+            current1 = x;
+            return this;
+        }
+        public BUS updateBD(BusDetails x)
+        {
+            current2 = x;
             return this;
         }
         public void fillGaz()
         {
-            Thread.Sleep(12000);
+            Thread.Sleep(12);
             Gaz = 1200;
-            current.Dispatcher.Invoke(() =>
-            {
-                current.buslist.Items.Refresh();
-            });
             
+            current1.Dispatcher.Invoke(() =>
+            {
+                current1.buslist.Items.Refresh();
+                
+            });
+            if (current2 != null)
+            {
+                current2.Details.Dispatcher.Invoke(() =>
+                {
+                    current2.ShowBus(this);
+                });
+            }
         }
         
         public void refillGazThreads()
@@ -266,14 +284,22 @@ namespace targil3B
         }
         public void repair()
         {
-            Thread.Sleep(144000);
+            Thread.Sleep(144);
             ckm = 0;
             lastime = DateTime.Now;
             dan = false;
-            current.Dispatcher.Invoke(() =>
+            
+            current1.Dispatcher.Invoke(() =>
             {
-                current.buslist.Items.Refresh();
+                current1.buslist.Items.Refresh();
             });
+            if(current2 != null) {
+                current2.Details.Dispatcher.Invoke(() =>
+                {
+                    current2.ShowBus(this);
+                });
+            }
+            
         }
         public void RepairThreads()
         {
@@ -332,10 +358,14 @@ namespace targil3B
             new Thread(() =>
                     {
                         int speed = r.Next(20,50);
-                        Thread.Sleep((int)nkm / speed * 6);
+                        Thread.Sleep((int)nkm / speed * 6000);
                         ckm += nkm;
                         km += nkm;
                         Gaz -= nkm;
+                        current1.Dispatcher.Invoke(() =>
+                        {
+                            current1.buslist.Items.Refresh();
+                        });
                     }
                 ).Start();
 
@@ -346,6 +376,22 @@ namespace targil3B
         public override string ToString()
         {
             return "Bus ID: " + ID;
+        }
+        public void BC()
+        {
+            var converter = new System.Windows.Media.BrushConverter();
+            
+            
+            if (treatmentneeded(0))
+            {
+                current1.buslist.SelectedItem = (System.Windows.Media.Brush)converter.ConvertFromString("#FF9F1212");
+            }
+            else
+            {
+                current1.buslist.SelectedItem = (System.Windows.Media.Brush)converter.ConvertFromString("#FF019C24");
+               
+            }
+            
         }
 
     }

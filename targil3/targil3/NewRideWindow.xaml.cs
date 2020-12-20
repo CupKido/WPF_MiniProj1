@@ -19,7 +19,7 @@ namespace targil3B
     /// </summary>
     public partial class NewRideWindow : Window
     {
-        
+        BUS Bus = new BUS();
         public NewRideWindow()
         {
             InitializeComponent();
@@ -37,7 +37,22 @@ namespace targil3B
             else
             {
                 
-                BUS Bus = (sender as Button).DataContext as BUS;
+               // Bus = go.DataContext as BUS;
+                Bus = (sender as Button).DataContext as BUS;
+                if(Bus.treatmentneeded(nkm))
+                {
+                    MessageBox.Show("ERROR: cannot make ride, please repair the bus");
+                    this.Close();
+                }
+                if (1200 < nkm)
+                {
+                    MessageBox.Show("ERROR: cannot make ride, the Gaz tank too small");
+                } else
+                if (Bus.currentGaz < nkm)
+                {
+                    MessageBox.Show("ERROR: cannot make ride, please refill the Gaz tank");
+                    this.Close();
+                }
                 Bus.addride(nkm);
 
                 this.Close();
