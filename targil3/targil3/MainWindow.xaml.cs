@@ -44,8 +44,7 @@ namespace targil3B
         private void refillGazThreads(object sender, RoutedEventArgs e)
         {
             BUS Bus = (sender as Button).DataContext as BUS;
-            Buses.index(Buses.index(Bus)).refillGazThreads();
-            buslist.Items.Refresh();
+            Buses.index(Buses.index(Bus)).refillGazThreads(this);
         }
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {

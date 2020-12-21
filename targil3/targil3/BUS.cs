@@ -240,19 +240,17 @@ namespace targil3B
             }
             return false;
         }
-        public void fillGaz()
+        public void fillGaz(MainWindow x)
         {
             Thread.Sleep(3000);
             Gaz = 1200;
-           Thread.
         }
         
-        public void refillGazThreads()
+        public void refillGazThreads(MainWindow x)
         {
-            Thread t = new Thread(fillGaz);
-            t.
+            Thread t = new Thread(fillGaz(x),8);
             t.Start();
-
+            x.buslist.Items.Refresh();
         }
         public void repair(DateTime today)
         {
