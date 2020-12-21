@@ -7,10 +7,13 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace targil3B
 {
-    class BUSES
+    [Serializable()]
+    class BUSES : ISerializable
     {
         ArrayList Buses = new ArrayList();
 
@@ -34,7 +37,7 @@ namespace targil3B
 
         public BUS index(int line)
         {
-            if (line > Buses.Count)
+            if (line >= Buses.Count)
                 return null;
             return (BUS)Buses[line];
         }
@@ -141,6 +144,14 @@ namespace targil3B
             {
                 Buses.Add(RRBus(today));
             }
+            
+            Buses.Add(new BUS(r.Next(9999999, 100000000).ToString(), 0, DateTime.Now - TimeSpan.FromDays(400), DateTime.Now - TimeSpan.FromDays(360)));
+            Buses.Add(new BUS(r.Next(9999999, 100000000).ToString(), 19901, 19900, DateTime.Now, DateTime.Now, 1200));
+            Buses.Add(new BUS(r.Next(9999999, 100000000).ToString(), 3600, 1200, DateTime.Now, DateTime.Now, 69.696969696969));
+        }
+        public void Add(BUS Bus)
+        {
+            Buses.Add(Bus);
         }
         public BUSES AddBus()
         {
@@ -206,6 +217,32 @@ namespace targil3B
                 nLIST.Add(line);
             }
             return nLIST;
+        }
+        public bool RemoveBus(string ID)
+        {
+            int i = indexByID(ID);
+            if (i == -1)
+            {
+                return false;
+            }
+            Buses.RemoveAt(i);
+            return true;
+        }
+        public bool IsEmpty()
+        {
+            if(Buses.Count!=0)
+            {
+                return false;
+            }
+            return true;
+        }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("List", Buses);
+        }
+        public BUSES(SerializationInfo info, StreamingContext context)
+        {
+            Buses = (ArrayList)info.GetValue("List", typeof(ArrayList));
         }
     }
 }

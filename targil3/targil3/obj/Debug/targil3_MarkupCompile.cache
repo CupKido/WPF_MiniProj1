@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\
 targil3
 none
 false
 DEBUG;TRACE
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\App.xaml
-21413588324
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\App.xaml
+5709391026
 
-14-1470712143
+132052665169
 13152784993
-MainWindow.xaml;AddBusWin.xaml;
+MainWindow.xaml;AddBusWin.xaml;NewRideWindow.xaml;BusDetails.xaml;RemoveBus.xaml;
 
 False
 

@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace targil3B
 { 
@@ -25,26 +26,145 @@ namespace targil3B
         BUSES Buses = new BUSES();
         BUS currentBus = new BUS();
         
+        
         public MainWindow()
         {
+
             InitializeComponent();
-            Buses.Add10Randoms(today);
-            InitializeComponent();
+            pull();
+            if(Buses.IsEmpty())
+            {
+                Buses.Add10Randoms(today);
+                push();
+            }
+            
+           
             buslist.ItemsSource = Buses.ToList();
-            InitializeComponent();
+            
             //ShowBusLine(0);
         }
-
+        public void push()
+        {
+            Stream stream = File.Open("BusesList.dat", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(stream, Buses);
+            stream.Close();
+        }
+        public void pull()
+        {
+            Stream stream = File.Open("BusesList.dat", FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            if(stream.Length > 0)
+            {
+                Buses = (BUSES)bf.Deserialize(stream);
+            }
+            
+            
+            stream.Close();
+        }
+        public void RefAndSave()
+        {
+            buslist.Items.Refresh();
+            push();
+        }
+        public void refresh()
+        {
+            buslist.ItemsSource = Buses.ToList();
+        }
         private void addbus_Click(object sender, RoutedEventArgs e)
         {
             AddBusWin window = new AddBusWin();
+            window.DataContext = Buses;
+            window.addbus1.DataContext = this;
             window.Show();
+            
         }
 
+        private void GoForRide(object sender, RoutedEventArgs e)
+        {
+            NewRideWindow window = new NewRideWindow();
+            BUS Bus = (sender as Button).DataContext as BUS;
+            if(Bus.inprocc)
+            {
+                MessageBox.Show("ERROR: Bus allready in ride!");
+            }else
+            if(Bus.treatmentneeded(0))
+            {
+                MessageBox.Show("ERROR: Please Repair Bus");
+            }
+            else
+            {
+                Bus.updateMW(this);
+                window.GazAmount.Text = Bus.pGaz;
+                window.go.DataContext = Bus;
+                window.Show();
+            }
+            
+
+        }
         private void refillGazThreads(object sender, RoutedEventArgs e)
         {
             BUS Bus = (sender as Button).DataContext as BUS;
-            Buses.index(Buses.index(Bus)).refillGazThreads(this);
+            Bus.updateMW(this);
+            if (Bus.inprocc)
+            {
+                MessageBox.Show("ERROR: Bus in middle of procces!");
+            }
+            else
+            {
+                (Buses.index(Buses.index(Bus)).updateMW(this)).refillGazThreads();
+            }
+            
+        }
+        private void RepairThreads(object sender, RoutedEventArgs e)
+        {
+            BUS Bus = (sender as Button).DataContext as BUS;
+            if (Bus.inprocc)
+            {
+                MessageBox.Show("ERROR: Bus in middle of procces!");
+            }
+            else
+            {
+                (Buses.index(Buses.index(Bus)).updateMW(this)).RepairThreads();
+            }
+        }
+
+        private void GoForRide_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ShowBus(object sender, MouseEventArgs e)
+        {
+            BUS Bus = buslist.SelectedItem as BUS;
+            string textbox = "Bus ID: " + Bus.pID + "\nBus Starting date: " + Bus.pStartDate + "\nLast Repair Date: " + Bus.plastDate;
+            textbox = textbox + "\nGaz tank: " + Bus.pGaz + "\nOverAll killometers: " + Bus.pkm + "\nKillometers From Last Repair: " + Bus.pckm;
+            textbox = textbox + "\nRepair Needed?: ";
+            if(Bus.treatmentneeded(0))
+            {
+                textbox = textbox + "yes";
+            }else { textbox = textbox + "no"; }
+
+            BusDetails Det = new BusDetails();
+            Det.Details.Text = textbox;
+            
+            Det.Repair.DataContext = (Buses.index(Buses.index(Bus)).updateMW(this));
+            Det.Remove.DataContext = Buses;
+            Det.DataContext = this;
+            Det.Show();
+        }
+        public void RemoveTBus(object sender, RoutedEventArgs e)
+        {
+            RemoveBus window = new RemoveBus();
+            window.DataContext = Buses;
+            window.Remove.DataContext = this;
+            window.Show();
+        }
+        private void Randomize(object sender, RoutedEventArgs e)
+        {
+            Buses = new BUSES();
+            Buses.Add10Randoms(DateTime.Now);
+            buslist.ItemsSource = Buses.ToList();
+            RefAndSave();
         }
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {
