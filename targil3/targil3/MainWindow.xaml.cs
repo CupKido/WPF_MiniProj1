@@ -52,7 +52,15 @@ namespace targil3B
         }
         public void pull()
         {
-            Stream stream = File.Open("BusesList.dat", FileMode.Open);
+            Stream stream = null;
+            if (File.Exists("BusesList.dat"))
+            {
+                stream = File.Open("BusesList.dat", FileMode.Open);
+            }
+            else
+            {
+                stream = File.Open("BusesList.dat", FileMode.Create);
+            }
             BinaryFormatter bf = new BinaryFormatter();
             if(stream.Length > 0)
             {
@@ -64,11 +72,12 @@ namespace targil3B
         }
         public void RefAndSave()
         {
+            
             buslist.Items.Refresh();
             push();
         }
         public void refresh()
-        {
+        { 
             buslist.ItemsSource = Buses.ToList();
         }
         private void addbus_Click(object sender, RoutedEventArgs e)
