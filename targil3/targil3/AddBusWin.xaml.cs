@@ -88,6 +88,7 @@ namespace targil3B
                 if (check_km.IsChecked.Value)
                 {
                     nbus = new BUS(license, IKM, SDate, SDate);
+                    nbus.addckm(IKM);
                 }
                 else
                 {
