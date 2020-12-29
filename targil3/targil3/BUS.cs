@@ -9,9 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Threading;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
 namespace targil3B
 {
-    public class BUS
+    [Serializable()]
+    public class BUS : ISerializable
     {
         private string ID;
         private DateTime startdate = new DateTime(1, 1, 1);
@@ -222,6 +226,16 @@ namespace targil3B
             lastime = last;
             Gaz = 1200;
         }
+        public BUS(string nID, double nkm, double nckm, DateTime start, DateTime last , double ngaz)
+        {
+            ID = nID;
+            km = nkm;
+            ckm = nckm;
+            startdate = start;
+            lastime = last;
+            Gaz = ngaz;
+
+        }
 
         public void SetBus(string id, int nday, int nmonth, int nyear, bool lt)
         {
@@ -294,7 +308,7 @@ namespace targil3B
             {
                 current1.Dispatcher.Invoke(() =>
                 {
-                    current1.buslist.Items.Refresh();
+                    current1.RefAndSave();
 
                 });
             }
@@ -314,13 +328,32 @@ namespace targil3B
         }
         public void fillGaz()
         {
-            Thread.Sleep(12);
+            inproc = true;
+            current1.Dispatcher.Invoke(() =>
+            {
+                current1.RefAndSave();
+            });
+            int sleeptime = 12000;
+            totaltillret = TimeSpan.FromMilliseconds(sleeptime);
+            while (totaltillret.TotalMilliseconds > 0)
+            {
+                Thread.Sleep(1000);
+                totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
+                current1.Dispatcher.Invoke(() =>
+                {
+                    current1.buslist.Items.Refresh();
+                });
+            }
+
+
+            
             Gaz = 1200;
+            inproc = false;
             if (current1 != null)
             {
                 current1.Dispatcher.Invoke(() =>
                 {
-                    current1.buslist.Items.Refresh();
+                    current1.RefAndSave();
 
                 });
             }
@@ -342,14 +375,32 @@ namespace targil3B
         }
         public void repair()
         {
-            Thread.Sleep(144);
+            inproc = true;
+            current1.Dispatcher.Invoke(() =>
+            {
+                current1.RefAndSave();
+            });
+            int sleeptime = 144000;
+            totaltillret = TimeSpan.FromMilliseconds(sleeptime);
+            while (totaltillret.TotalMilliseconds > 0)
+            {
+                Thread.Sleep(1000);
+                totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
+                current1.Dispatcher.Invoke(() =>
+                {
+                    current1.buslist.Items.Refresh();
+                });
+            }
+
+            
             ckm = 0;
             lastime = DateTime.Now;
             dan = false;
-            
+            inproc = false;
+
             current1.Dispatcher.Invoke(() =>
             {
-                current1.buslist.Items.Refresh();
+                current1.RefAndSave();
             });
             if(current2 != null) {
                 current2.Details.Dispatcher.Invoke(() =>
@@ -361,6 +412,7 @@ namespace targil3B
         }
         public void RepairThreads()
         {
+            
             Thread t = new Thread(repair);
 
             t.Start();
@@ -418,7 +470,7 @@ namespace targil3B
                         inproc = true;
                         current1.Dispatcher.Invoke(() =>
                         {
-                            current1.buslist.Items.Refresh();
+                            current1.RefAndSave();
                         });
                         int speed = r.Next(20,50);
                         int sleeptime = (int)nkm / speed * 6000;
@@ -437,7 +489,7 @@ namespace targil3B
                         Gaz -= nkm;
                         current1.Dispatcher.Invoke(() =>
                         {
-                            current1.buslist.Items.Refresh();
+                            current1.RefAndSave();
                         });
                         inproc = false;
                     }
@@ -450,6 +502,10 @@ namespace targil3B
         public override string ToString()
         {
             return "Bus ID: " + ID;
+        }
+        public void addckm(double ackm)
+        {
+            ckm = ackm;
         }
         public void BC()
         {
@@ -468,6 +524,25 @@ namespace targil3B
             
         }
 
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("ID", ID);
+            info.AddValue("SD", startdate);
+            info.AddValue("LD", lastime);
+            info.AddValue("ckm", ckm);
+            info.AddValue("km", km);
+            info.AddValue("gaz", currentGaz);
+        }
+        
+        public BUS(SerializationInfo info, StreamingContext context)
+        {
+            ID = (string)info.GetValue("ID", typeof(string));
+            startdate = (DateTime)info.GetValue("SD", typeof(DateTime));
+            lastime = (DateTime)info.GetValue("LD", typeof(DateTime));
+            ckm = (double)info.GetValue("ckm", typeof(double));
+            km = (double)info.GetValue("km", typeof(double));
+            currentGaz = (double)info.GetValue("gaz", typeof(double));
+        }
     }
 }
 

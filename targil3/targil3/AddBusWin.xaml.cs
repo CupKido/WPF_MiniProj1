@@ -24,7 +24,7 @@ namespace targil3B
         {
             InitializeComponent();
             DP.SelectedDate = DateTime.Now;
-            //DP.BlackoutDates.AddDatesInPast();
+            DP.DisplayDateEnd = DateTime.Now;
         }
 
         private void addbus1_Click(object sender, RoutedEventArgs e)
@@ -32,8 +32,11 @@ namespace targil3B
             DateTime SDate;
             string license;
             int Ilicense = 0;
+            double IKM = 0;
             bool isokay = true;
+            bool chekbox = false;
             BUSES Buses = DataContext as BUSES;
+            
 
             SDate = DP.SelectedDate.Value.Date;
             if (SDate > DateTime.Now)
@@ -70,17 +73,49 @@ namespace targil3B
                 MessageBox.Show("ERROR: Bus allready in list");
                 isokay = false;
             }
+            if (check_km.IsChecked.Value)
+            {
+                flag = double.TryParse(kilometraj.Text, out IKM);
+                if (!flag)
+                {
+                    MessageBox.Show("ERROR: Use Numbers ONLY");
+                    isokay = false;
+                }
+            }
             if (isokay)
             {
-                BUS nbus = new BUS(license, 0, SDate, SDate);
-                
-                
+                 BUS nbus = new BUS(license, 0, SDate, SDate);
+                if (check_km.IsChecked.Value)
+                {
+                    nbus = new BUS(license, IKM, SDate, SDate);
+                    nbus.addckm(IKM);
+                }
+                else
+                {
+                    nbus = new BUS(license, 0, SDate, SDate);
+                }
                 Buses.Add(nbus);
                 nbus.updateMW(addbus1.DataContext as MainWindow);
                 this.Close();
             }
-           
 
+        }
+        private void AddBusEnter(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                addbus1_Click(sender, null);
+            }
+        }
+        private void check_km_Checked(object sender, RoutedEventArgs e)
+        {
+            kilometraj.IsEnabled = true;
+        }
+
+        private void check_km_Unchecked(object sender, RoutedEventArgs e)
+        {
+            kilometraj.IsEnabled = false;
+            kilometraj.Text = "";
         }
     }
 }

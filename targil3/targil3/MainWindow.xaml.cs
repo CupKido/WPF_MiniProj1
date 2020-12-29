@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace targil3B
 { 
@@ -30,14 +31,53 @@ namespace targil3B
         {
 
             InitializeComponent();
-            Buses.Add10Randoms(today);
+            pull();
+            if(Buses.IsEmpty())
+            {
+                Buses.Add10Randoms(today);
+                push();
+            }
+            
            
             buslist.ItemsSource = Buses.ToList();
             
             //ShowBusLine(0);
         }
-        public void refresh()
+        public void push()
         {
+            Stream stream = File.Open("BusesList.dat", FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(stream, Buses);
+            stream.Close();
+        }
+        public void pull()
+        {
+            Stream stream = null;
+            if (File.Exists("BusesList.dat"))
+            {
+                stream = File.Open("BusesList.dat", FileMode.Open);
+            }
+            else
+            {
+                stream = File.Open("BusesList.dat", FileMode.Create);
+            }
+            BinaryFormatter bf = new BinaryFormatter();
+            if(stream.Length > 0)
+            {
+                Buses = (BUSES)bf.Deserialize(stream);
+            }
+            
+            
+            stream.Close();
+        }
+        public void RefAndSave()
+        {
+            
+            buslist.Items.Refresh();
+            push();
+        }
+        public void refresh()
+        { 
             buslist.ItemsSource = Buses.ToList();
         }
         private void addbus_Click(object sender, RoutedEventArgs e)
@@ -77,7 +117,7 @@ namespace targil3B
             Bus.updateMW(this);
             if (Bus.inprocc)
             {
-                MessageBox.Show("ERROR: Bus in ride!");
+                MessageBox.Show("ERROR: Bus in middle of procces!");
             }
             else
             {
@@ -90,7 +130,7 @@ namespace targil3B
             BUS Bus = (sender as Button).DataContext as BUS;
             if (Bus.inprocc)
             {
-                MessageBox.Show("ERROR: Bus in ride!");
+                MessageBox.Show("ERROR: Bus in middle of procces!");
             }
             else
             {
@@ -117,9 +157,24 @@ namespace targil3B
             Det.Details.Text = textbox;
             
             Det.Repair.DataContext = (Buses.index(Buses.index(Bus)).updateMW(this));
+            Det.Remove.DataContext = Buses;
+            Det.DataContext = this;
             Det.Show();
         }
-        
+        public void RemoveTBus(object sender, RoutedEventArgs e)
+        {
+            RemoveBus window = new RemoveBus();
+            window.DataContext = Buses;
+            window.Remove.DataContext = this;
+            window.Show();
+        }
+        private void Randomize(object sender, RoutedEventArgs e)
+        {
+            Buses = new BUSES();
+            Buses.Add10Randoms(DateTime.Now);
+            buslist.ItemsSource = Buses.ToList();
+            RefAndSave();
+        }
         //private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         // {
         //     ShowBusLine((cbBusLines.SelectedValue as BusLine));

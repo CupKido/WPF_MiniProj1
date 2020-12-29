@@ -37,6 +37,16 @@ namespace targil3B
             Bus.refillGazThreads();
 
         }
+        public void RemoveTBus(object sender, RoutedEventArgs e)
+        {
+            BUSES Buses = Remove.DataContext as BUSES;
+            BUS Bus = Repair.DataContext as BUS;
+            Buses.RemoveBus(Bus.currentID);
+            Bus.updateMW(DataContext as MainWindow);
+            this.Close();
+
+
+        }
         public void ShowBus(BUS Bus)
         {
             
