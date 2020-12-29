@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using System.Windows.Threading;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using BE;
@@ -281,125 +280,11 @@ namespace BE
             }
             return false;
         }
-        public BUS updateMW(MainWindow x)
-        {
-            current1 = x;
-            current1.refresh();
-            if (current1 != null)
-            {
-                current1.Dispatcher.Invoke(() =>
-                {
-                    current1.RefAndSave();
+        
+        
+        
 
-                });
-            }
-            return this;
-        }
-        public BUS updateBD(BusDetails x)
-        {
-            current2 = x;
-            if (current2 != null)
-            {
-                current2.Details.Dispatcher.Invoke(() =>
-                {
-                    current2.ShowBus(this);
-                });
-            }
-            return this;
-        }
-        public void fillGaz()
-        {
-            inproc = true;
-            current1.Dispatcher.Invoke(() =>
-            {
-                current1.RefAndSave();
-            });
-            int sleeptime = 12000;
-            totaltillret = TimeSpan.FromMilliseconds(sleeptime);
-            while (totaltillret.TotalMilliseconds > 0)
-            {
-                Thread.Sleep(1000);
-                totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
-                current1.Dispatcher.Invoke(() =>
-                {
-                    current1.buslist.Items.Refresh();
-                });
-            }
-
-
-
-            Gaz = 1200;
-            inproc = false;
-            if (current1 != null)
-            {
-                current1.Dispatcher.Invoke(() =>
-                {
-                    current1.RefAndSave();
-
-                });
-            }
-            if (current2 != null)
-            {
-                current2.Details.Dispatcher.Invoke(() =>
-                {
-                    current2.ShowBus(this);
-                });
-            }
-        }
-
-        public void refillGazThreads()
-        {
-            Thread t = new Thread(fillGaz);
-
-            t.Start();
-
-        }
-        public void repair()
-        {
-            inproc = true;
-            current1.Dispatcher.Invoke(() =>
-            {
-                current1.RefAndSave();
-            });
-            int sleeptime = 144000;
-            totaltillret = TimeSpan.FromMilliseconds(sleeptime);
-            while (totaltillret.TotalMilliseconds > 0)
-            {
-                Thread.Sleep(1000);
-                totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
-                current1.Dispatcher.Invoke(() =>
-                {
-                    current1.buslist.Items.Refresh();
-                });
-            }
-
-
-            ckm = 0;
-            lastime = DateTime.Now;
-            dan = false;
-            inproc = false;
-
-            current1.Dispatcher.Invoke(() =>
-            {
-                current1.RefAndSave();
-            });
-            if (current2 != null)
-            {
-                current2.Details.Dispatcher.Invoke(() =>
-                {
-                    current2.ShowBus(this);
-                });
-            }
-
-        }
-        public void RepairThreads()
-        {
-
-            Thread t = new Thread(repair);
-
-            t.Start();
-
-        }
+        
         public void printBus()
         {
             Console.WriteLine("\nBUS ID: ");
@@ -436,51 +321,7 @@ namespace BE
 
 
 
-        public bool addride(double nkm)
-        {
-            if (Gaz == 0)
-            {
-                return false;
-            }
-            if (Gaz < nkm)
-            {
-                return false;
-            }
-
-            new Thread(() =>
-            {
-                inproc = true;
-                current1.Dispatcher.Invoke(() =>
-                {
-                    current1.RefAndSave();
-                });
-                int speed = r.Next(20, 50);
-                int sleeptime = (int)nkm / speed * 6000;
-                totaltillret = TimeSpan.FromMilliseconds(sleeptime);
-                while (totaltillret.TotalMilliseconds > 0)
-                {
-                    Thread.Sleep(1000);
-                    totaltillret = totaltillret - TimeSpan.FromMilliseconds(1000);
-                    current1.Dispatcher.Invoke(() =>
-                    {
-                        current1.buslist.Items.Refresh();
-                    });
-                }
-                ckm += nkm;
-                km += nkm;
-                Gaz -= nkm;
-                current1.Dispatcher.Invoke(() =>
-                {
-                    current1.RefAndSave();
-                });
-                inproc = false;
-            }
-                ).Start();
-
-
-
-            return true;
-        }
+        
         public override string ToString()
         {
             return "Bus ID: " + ID;
@@ -489,22 +330,7 @@ namespace BE
         {
             ckm = ackm;
         }
-        public void BC()
-        {
-            var converter = new System.Windows.Media.BrushConverter();
-
-
-            if (treatmentneeded(0))
-            {
-                current1.buslist.SelectedItem = (System.Windows.Media.Brush)converter.ConvertFromString("#FF9F1212");
-            }
-            else
-            {
-                current1.buslist.SelectedItem = (System.Windows.Media.Brush)converter.ConvertFromString("#FF019C24");
-
-            }
-
-        }
+        
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {

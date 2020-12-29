@@ -12,11 +12,25 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
 using DAL;
-using BE;
 
 namespace BL
 {
-    public class myBL
+    public class MyBL
     {
-    }   
+        IDAL myDal = DALFactory.GetDAL();
+        public void AddBus(BUS bus)
+        {
+            if (!myDal.IsExist(bus.currentID))
+            {
+                myDal.AddBus(bus);
+            }
+        }
+        public void RemoveBus(BUS bus)
+        {
+            if (myDal.IsExist(bus.currentID))
+            {
+                myDal.RemoveBus(bus.currentID);
+            }
+        }
+    }
 }

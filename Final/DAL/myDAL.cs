@@ -4,32 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using System.Windows.Threading;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
-using BE;
+using DS;
 
-namespace DAL
+namespace DAL : 
 {
-    public class myDAL : IDAL
+    class myDAL : IDAL
     {
         ArrayList Buses = new ArrayList();
-
-        public void AddBus(BUS bus)
+        public myDAL()
         {
-            Buses.Add(bus);
+            Buses = DS.myDS.Buses;
         }
-        public BUS RemoveBus(string ID)
+        public void AddBus(BUSDAL bus)
+        {
+            Buses.Add(bus.);
+        }
+        public BUSDAL RemoveBus(string ID)
         {
             int loc = indexByID(ID);
-            BUS temp = null;
+            BUSDAL temp = null;
             if (loc != -1)
             {
-                temp = (BUS)Buses[loc];
+                temp = (BUSDAL)Buses[loc];
                 Buses.RemoveAt(loc);
             }
             return temp;
@@ -45,9 +47,9 @@ namespace DAL
         public int indexByID(string ID)
         {
             int i = 0;
-            foreach (BUS bus in Buses)
+            foreach (BUSDS bus in Buses)
             {
-                if (bus.currentID == ID)
+                if (bus.ID == ID)
                 {
                     return i;
                 }
