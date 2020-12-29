@@ -1,0 +1,30 @@
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.csprojAssemblyReference.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\MainWindow.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\App.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3_MarkupCompile.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3_MarkupCompile.lref
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\bin\Debug\targil3.exe.config
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\bin\Debug\targil3.exe
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\bin\Debug\targil3.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\MainWindow.baml
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.g.resources
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.Properties.Resources.resources
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.csproj.GenerateResource.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.csproj.CoreCompileInputs.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.exe
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\targil3.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\bin\Debug\targil3.exe.config
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\bin\Debug\targil3.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\bin\Debug\targil3.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\MainWindow.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\App.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3_MarkupCompile.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3_MarkupCompile.lref
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\MainWindow.baml
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3.g.resources
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3.Properties.Resources.resources
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3.csproj.GenerateResource.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3.exe
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3A\targil3\obj\Debug\targil3.pdb

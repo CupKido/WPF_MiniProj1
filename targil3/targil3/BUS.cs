@@ -503,6 +503,10 @@ namespace targil3B
         {
             return "Bus ID: " + ID;
         }
+        public void addckm(double ackm)
+        {
+            ckm = ackm;
+        }
         public void BC()
         {
             var converter = new System.Windows.Media.BrushConverter();

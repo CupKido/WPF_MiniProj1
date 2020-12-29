@@ -38,3 +38,9 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\tar
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\BusDetails.baml
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\RemoveBus.g.cs
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\RemoveBus.baml
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\NewRideWindow.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\BusDetails.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\RemoveBus.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\NewRideWindow.baml
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\BusDetails.baml
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\targil3\targil3\obj\Debug\RemoveBus.baml
