@@ -36,3 +36,24 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\tar
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\NewRideWindow.baml
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\BusDetails.g.cs
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\targil3\targil3\obj\Debug\BusDetails.baml
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\bin\Debug\targil3.exe.config
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\bin\Debug\targil3.exe
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\bin\Debug\targil3.pdb
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3B.csprojAssemblyReference.cache
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\MainWindow.g.cs
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\AddBusWin.g.cs
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\NewRideWindow.g.cs
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\BusDetails.g.cs
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\App.g.cs
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3_MarkupCompile.cache
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3_MarkupCompile.lref
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\MainWindow.baml
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\AddBusWin.baml
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\NewRideWindow.baml
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\BusDetails.baml
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3.g.resources
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3.Properties.Resources.resources
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3B.csproj.GenerateResource.cache
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3B.csproj.CoreCompileInputs.cache
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3.exe
+C:\Users\saart\Source\Repos\CupKido\windows-system\targil3\targil3\obj\Debug\targil3.pdb
