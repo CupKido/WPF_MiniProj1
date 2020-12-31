@@ -41,8 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="myDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DALAPI.csproj">
+      <Project>{6d4f11ae-295e-48e9-bd61-7cf14e1c71d0}</Project>
+      <Name>DALAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DS\DS.csproj">
+      <Project>{8fa680b4-a697-47df-a231-af4123ad45ee}</Project>
+      <Name>DS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

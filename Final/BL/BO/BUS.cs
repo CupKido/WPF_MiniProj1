@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DS;
-namespace DAL
+using DAL;
+namespace BO
 {
-    public class BUSDAL
+    public class BUS
     {
+
         public string ID { get; set; }
         public DateTime startdate { get; set; } = new DateTime(1, 1, 1);
         public DateTime lastime { get; set; } //last treatment
@@ -18,7 +19,7 @@ namespace DAL
         public bool dan { get; set; } // dangerous 
         public bool inproc { get; set; } = false;
         public TimeSpan totaltillret { get; set; } = new TimeSpan();
-        public BUSDAL(BUSDS bus)
+        public BUS(BUS bus)
         {
             ID = bus.ID;
             startdate = bus.startdate;
