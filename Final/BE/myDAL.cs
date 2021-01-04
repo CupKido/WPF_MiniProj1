@@ -11,27 +11,28 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
 using DS;
+using DO;
 
-namespace DAL : 
+namespace DAL  
 {
-    class myDAL : IDAL
+    class MyDAL : IDAL
     {
         ArrayList Buses = new ArrayList();
-        public myDAL()
+        public MyDAL()
         {
             Buses = DS.myDS.Buses;
         }
-        public void AddBus(BUSDAL bus)
+        public void AddBus(BUS bus)
         {
-            Buses.Add(bus.);
+            Buses.Add(bus);
         }
-        public BUSDAL RemoveBus(string ID)
+        public BUS RemoveBus(string ID)
         {
             int loc = indexByID(ID);
-            BUSDAL temp = null;
+            BUS temp = null;
             if (loc != -1)
             {
-                temp = (BUSDAL)Buses[loc];
+                temp = (BUS)Buses[loc];
                 Buses.RemoveAt(loc);
             }
             return temp;
@@ -47,7 +48,7 @@ namespace DAL :
         public int indexByID(string ID)
         {
             int i = 0;
-            foreach (BUSDS bus in Buses)
+            foreach (BUS bus in Buses)
             {
                 if (bus.ID == ID)
                 {
@@ -57,6 +58,7 @@ namespace DAL :
             }
             return -1;
         }
-        
+
+       
     }
 }

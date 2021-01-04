@@ -41,17 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUSDAL.cs" />
+    <Compile Include="DO\BUS.cs" />
     <Compile Include="DALFactory.cs" />
+    <Compile Include="DO\user.cs" />
+    <Compile Include="DO\station.cs" />
     <Compile Include="IDAL.cs" />
-    <Compile Include="myDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DS\DS.csproj">
-      <Project>{8fa680b4-a697-47df-a231-af4123ad45ee}</Project>
-      <Name>DS</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

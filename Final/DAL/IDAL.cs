@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DS;
+using DO;
 
 namespace DAL
 {
     public interface IDAL
     {
-        void AddBus(BUSDS bus);
-        BUSDS RemoveBus(String ID);
+        void AddBus(BUS bus);
+        BUS RemoveBus(String ID);
         bool IsExist(String ID);
 
     }
