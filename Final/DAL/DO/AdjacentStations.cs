@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DO
+namespace DO
 {
-    class Class1
+    class AdjacentStations
     {
+        int Station1 { set; get; }
+        int Station2 { set; get; }
+        double Distance { set; get; }
+        TimeSpan Time { set; get; }
     }
 }

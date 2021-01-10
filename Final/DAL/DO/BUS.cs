@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 namespace DO
 {
-    public class BUS : ICloneable
+    public class BUS
     {
-        public string ID { get; set; }
-        public DateTime startdate { get; set; } = new DateTime(1, 1, 1);
+        public string licenseNum { get; set; }
+        public DateTime FromDate { get; set; } = new DateTime(1, 1, 1);
         public DateTime lastime { get; set; } //last treatment
-        public double km { get; set; }
+        public double TotalTrip { get; set; }
         public double ckm { get; set; } // km from last treatment
-        public double Gaz { get; set; } = 1200;
-        public bool dan { get; set; } // dangerous 
-        public bool inproc { get; set; } = false;
-        public TimeSpan totaltillret { get; set; } = new TimeSpan();
+        public double FuelRemain { get; set; } = 1200;
+        public bool Status { get; set; } // dangerous 
+        public bool inproccess { get; set; } = false;
+        
 
         //public object Clone()
         //{

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class station
+    public class Station
     {
-        int ID { get; set; }
+        int Code { get; set; }
 
-        string name { get; set; }
+        string Name { get; set; }
 
         double longitude { get; set; }
         double latitude { get; set; }
