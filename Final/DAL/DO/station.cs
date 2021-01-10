@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class station
+    public class Station
     {
         int Code { get; set; }
 

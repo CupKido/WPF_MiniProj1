@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DO
+namespace DO
 {
-    class BusOnTrip
+    public class BusOnTrip
     {
         int ID { set; get; }
         int LicenseNum { set; get; }

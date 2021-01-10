@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DO
+namespace DO
 {
-    class Line
+    public class Line
     {
         int ID { set; get; }
         int Code { set; get; }
