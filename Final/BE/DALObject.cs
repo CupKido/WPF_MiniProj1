@@ -31,76 +31,74 @@ namespace DALObject
         //{
         //    Buses = DS.myDS.Buses;
         //}
-        public void AddBus(BUS bus)
-        {
-            myDS.Buses.Add(bus);
-        }
-        public BUS RemoveBus(string ID)
-        {
-            int loc = indexByID(ID);
-            BUS temp = null;
-            if (loc != -1)
-            {
-                temp = (BUS)myDS.Buses[loc];
-                myDS.Buses.RemoveAt(loc);
-            }
-            return temp;
-        }
-        public bool IsExist(string ID)
-        {
-            if (indexByID(ID) == -1)
-            {
-                return false;
-            }
-            return true;
-        }
-        public int indexByID(string ID)
-        {
-            int i = 0;
-            foreach (BUS bus in myDS.Buses)
-            {
-                if (bus.licenseNum == ID)
-                {
-                    return i;
-                }
-                i++;
-            }
-            return -1;
-        }
+        
 
+        #region User
         public void AddUser(User user)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListUsers.FirstOrDefault(p => p.UserName == user.UserName) != null)
+            {
+                throw " ";
+            }
+            DataSource.ListUsers.Add(user.Clone());
         }
 
         public User GetUser(string UserName)
         {
-            throw new NotImplementedException();
+            DO.User user = DataSource.ListUsers.Find(p => p.UserName == UserName);
+            if(user != null)
+            {
+                return user.Clone();
+            }
+            throw " ";
         }
 
         public IEnumerable<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return from user in DataSource.ListUsers
+                   select user.Clone();
         }
 
         public IEnumerable<User> GetAllUsersBy(Predicate<User> perdicate)
         {
-            throw new NotImplementedException();
+           if(perdicate != null)
+            {
+                return from user in DataSource.ListUsers
+                       where perdicate(user)
+                       select user.Clone();
+            }
+            return GetAllUsers();
         }
 
         public void UpdateUser(string UserName, User user)
         {
-            throw new NotImplementedException();
+            DO.User us = DataSource.ListUsers.FirstOrDefault(pe => pe.UserName == UserName);
+            if (us != null)
+            {
+                us = user;
+            }
         }
 
         public User DeleteUser(string UserName)
         {
-            throw new NotImplementedException();
+            DO.User temp = DataSource.ListUsers.FirstOrDefault(p => p.UserName == UserName);
+            if (temp != null)
+            {
+                DataSource.ListUsers.Remove(temp);
+                return temp;
+            }
+            throw " ";
         }
+        #endregion
 
+        #region Station
         public void AddStation(Station station)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListStations.FirstOrDefault(p => p.Code == station.Code) != null)
+            {
+                throw " ";
+            }
+            DataSource.ListStations.Add(station.Clone());
         }
 
         public IEnumerable<Station> GetAllStations()
@@ -115,7 +113,12 @@ namespace DALObject
 
         public Station GetStation(int Code)
         {
-            throw new NotImplementedException();
+            DO.Station station = DataSource.ListStations.Find(p => p.Code == Code);
+            if (station != null)
+            {
+                return station.Clone();
+            }
+            throw " ";
         }
 
         public void UpdateStation(Station station)
@@ -130,12 +133,33 @@ namespace DALObject
 
         public Station DeleteStation(int Code)
         {
-            throw new NotImplementedException();
+            DO.Station temp = DataSource.ListStations.FirstOrDefault(p => p.Code == Code);
+            if (temp != null)
+            {
+                DataSource.ListStations.Remove(temp);
+                return temp;
+            }
+            throw " ";
         }
+        #endregion
 
+        #region Bus
+        public void AddBus(BUS bus)
+        {
+            if (DataSource.ListBuses.FirstOrDefault(p => p.LicenseNum == bus.LicenseNum) != null)
+            {
+                throw "";
+            }
+            DataSource.ListBuses.Add(bus.Clone());
+        }
         public BUS GetBUS(int LicenseNum)
         {
-            throw new NotImplementedException();
+            DO.BUS bus = DataSource.ListBuses.Find(p => p.LicenseNum == LicenseNum);
+            if (bus != null)
+            {
+                return bus.Clone();
+            }
+            throw " ";
         }
 
         public IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate)
@@ -145,22 +169,37 @@ namespace DALObject
 
         public void UpdateBus(int LicenseNum, BUS Bus)
         {
-            throw new NotImplementedException();
+            DO.BUS bus = DataSource.ListBuses.FirstOrDefault(pe => pe.LicenseNum == LicenseNum);
+            if (bus != null)
+            {
+                bus = Bus;
+            }
         }
 
         public BUS RemoveBus(int LicenseNum)
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region Line
         public void AddLine(Line line)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListLines.FirstOrDefault(p => p.ID == line.ID) != null)
+            {
+                throw " ";
+            }
+            DataSource.ListLines.Add(line.Clone());
         }
 
         public Line GetLine(int ID)
         {
-            throw new NotImplementedException();
+            DO.Line line = DataSource.ListLines.Find(p => p.ID == ID);
+            if (line != null)
+            {
+                return line;
+            }
+            throw " ";
         }
 
         public IEnumerable<Line> GetAllLines()
@@ -175,22 +214,44 @@ namespace DALObject
 
         public void UpdateLine(int ID, Line line)
         {
-            throw new NotImplementedException();
+            DO.Line Lin = DataSource.ListLines.FirstOrDefault(pe => pe.ID == ID);
+            if (Lin != null)
+            {
+                Lin = line;
+            }
         }
 
         public Line DeleteLine(int ID)
         {
-            throw new NotImplementedException();
+            DO.Line temp = DataSource.ListLines.FirstOrDefault(p => p.ID == ID);
+            if (temp != null)
+            {
+                DataSource.ListLines.Remove(temp);
+                return temp;
+            }
+            throw " ";
         }
 
+        #endregion
+
+        #region Trip
         public void AddTrip(Trip trip)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListTrips.FirstOrDefault(p => p.ID == trip.ID) != null)
+            {
+                throw " ";
+            }
+            DataSource.ListTrips.Add(trip.Clone());
         }
 
         public Trip GetTrip(int ID)
         {
-            throw new NotImplementedException();
+            DO.Trip trip = DataSource.ListTrips.Find(p => p.ID == ID);
+            if (trip != null)
+            {
+                return trip;
+            }
+            throw " ";
         }
 
         public IEnumerable<Trip> GetAllTrips()
@@ -205,32 +266,65 @@ namespace DALObject
 
         public void UpdateTrip(int ID, Trip trip)
         {
-            throw new NotImplementedException();
+            DO.Trip Tri = DataSource.ListTrips.FirstOrDefault(pe => pe.ID == ID);
+            if (Tri != null)
+            {
+                Tri = trip;
+            }
         }
 
         public Trip DeleteTrip(int ID)
         {
-            throw new NotImplementedException();
+            DO.Trip temp = DataSource.ListTrips.FirstOrDefault(p => p.ID == ID);
+            if (temp != null)
+            {
+                DataSource.ListTrips.Remove(temp);
+                return temp;
+            }
+            throw " ";
         }
+        #endregion
+
+        #region BusOnTrip
 
         public void AddBusOnTrip(BusOnTrip busontrip)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListBusesOnTrips.FirstOrDefault(p => p.ID == busontrip.ID) != null)
+            {
+                throw " ";
+            }
+            DataSource.ListBusesOnTrips.Add(busontrip.Clone());
         }
 
         public BusOnTrip GetBusOnTrip(int ID)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip busontrip = DataSource.ListBusesOnTrips.Find(p => p.ID == ID);
+            if (busontrip != null)
+            {
+                return busontrip;
+            }
+            throw " ";
         }
 
         public void UpdateBusOnTrip(int ID, BusOnTrip busontrip)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip bot = DataSource.ListBusesOnTrips.FirstOrDefault(pe => pe.ID == ID);
+            if (bot != null)
+            {
+                bot = busontrip;
+            }
         }
 
         public BusOnTrip DeleteBusOnTrip(int ID)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip temp = DataSource.ListBusesOnTrips.FirstOrDefault(p => p.ID == ID);
+            if(temp != null)
+            {
+                DataSource.ListBusesOnTrips.Remove(temp);
+                return temp;
+            }
+            throw " ";
         }
+        #endregion
     }
 }

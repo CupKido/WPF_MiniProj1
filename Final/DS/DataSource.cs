@@ -11,7 +11,7 @@ namespace DS
     static public class DataSource
     {
         public static List<BUS> ListBuses;
-        public static List<Line> ListLine;
+        public static List<Line> ListLines;
         public static List<Trip> ListTrips;
         public static List<BusOnTrip> ListBusesOnTrips;
         public static List<Station> ListStations;
