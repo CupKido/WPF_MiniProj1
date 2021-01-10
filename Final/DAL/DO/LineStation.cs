@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    class LineStation
+    public class LineStation
     {
-        int LineID { set; get; }
-        int Station { set; get; }
-        int LineStationIndex { set; get; }
-        int PrevStation { set; get; }
-        int NextStation { set; get; }
+        public int LineID { set; get; }
+        public int Station { set; get; }
+        public int LineStationIndex { set; get; }
+        public int PrevStation { set; get; }
+        public int NextStation { set; get; }
     }
 }

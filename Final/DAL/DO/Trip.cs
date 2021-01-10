@@ -8,12 +8,12 @@ namespace DO
 {
     public class Trip
     {
-        int ID { set; get; }
-        string UserName { set; get; }
-        int LineID { set; get; }
-        int InStation { set; get; }
-        TimeSpan InAt { set; get; }
-        int OutStation { set; get; }
-        TimeSpan OutAt { set; get; }
+        public int ID { set; get; }
+        public string UserName { set; get; }
+        public int LineID { set; get; }
+        public int InStation { set; get; }
+        public TimeSpan InAt { set; get; }
+        public int OutStation { set; get; }
+        public TimeSpan OutAt { set; get; }
     }
 }

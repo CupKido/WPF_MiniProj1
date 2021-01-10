@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    class AdjacentStations
+    public class AdjacentStations
     {
         int Station1 { set; get; }
         int Station2 { set; get; }
