@@ -9,7 +9,7 @@ namespace DAL
 {
     static class Cloning
     {
-        //tempo template
+        //tempo template 
         internal static T Clone<T>(this T original) where T : new()
         {
             T copyToObject = new T();
