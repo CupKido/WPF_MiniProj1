@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="myDAL.cs" />
+    <Compile Include="DALObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DALAPI.csproj">

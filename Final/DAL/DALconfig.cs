@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DALAPI
 {
-    class DALconfig
-    {
+
         static class DALConfig
         {
             public class DALPac
@@ -19,13 +18,13 @@ namespace DALAPI
                 public string ClassName;
             }
             internal static string DLName;
-            internal static Dictionary<string, DALPac> DLPackages;
+            internal static Dictionary<string, DALPac> DALPacs;
 
             static DALConfig()
             {
                 XElement dlcon = XElement.Load(@"config.xml");
                 DLName = dlcon.Element("dl").Value;
-                DLPackages = (from pkg in dlcon.Element("dl-packages").Elements()
+                DALPacs = (from pkg in dlcon.Element("dl-packages").Elements()
                               let tmp1 = pkg.Attribute("namespace")
                               let nameSpace = tmp1 == null ? "DL" : tmp1.Value
                               let tmp2 = pkg.Attribute("class")
@@ -47,5 +46,5 @@ namespace DALAPI
             public DALConEx(string message) : base(message) { }
             public DALConEx(string message, Exception inner) : base(message, inner) { }
         }
-    }
+    
 }
