@@ -15,10 +15,14 @@ using DO;
 
 namespace DAL  
 {
-    class MyDAL : IDAL
+    class DALObject : IDAL
     {
+        static readonly DLObject instance = new DLObject();
+        static DLObject() { }// static ctor to ensure instance init is done just before first usage
+        DALObject() { } // default => private
+        public static DLObject Instance { get => instance; }
         ArrayList Buses = new ArrayList();
-        public MyDAL()
+        public DALObject()
         {
             Buses = DS.myDS.Buses;
         }
