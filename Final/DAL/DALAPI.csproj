@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALconfig.cs" />
     <Compile Include="DO\AdjacentStations.cs" />
     <Compile Include="DO\BUS.cs" />
     <Compile Include="DALFactory.cs" />
