@@ -57,7 +57,7 @@ namespace DALObject
         public int indexByID(string ID)
         {
             int i = 0;
-            foreach (BUS bus in myDS.Buses)
+            foreach (BUS bus in DS.Buses)
             {
                 if (bus.licenseNum == ID)
                 {
