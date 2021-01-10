@@ -8,9 +8,9 @@ namespace DO
 {
     public class station
     {
-        int ID { get; set; }
+        int Code { get; set; }
 
-        string name { get; set; }
+        string Name { get; set; }
 
         double longitude { get; set; }
         double latitude { get; set; }

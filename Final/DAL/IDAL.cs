@@ -9,6 +9,8 @@ namespace DAL
 {
     public interface IDAL
     {
+        #region Station
+        void AddStation ()
         void AddBus(BUS bus);
         BUS RemoveBus(String ID);
         bool IsExist(String ID);
