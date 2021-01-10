@@ -8,14 +8,14 @@ namespace DO
 {
     public class BusOnTrip
     {
-        int ID { set; get; }
-        int LicenseNum { set; get; }
-        int LineID { set; get; }
-        TimeSpan PlannedTakeOff { set; get; }
-        TimeSpan ActualTakeOff { set; get; }
-        int PrevStation;
-        TimeSpan PrevStationAt { set; get; }
-        TimeSpan NextStationAt { set; get; }
+        public int ID { set; get; }
+        public int LicenseNum { set; get; }
+        public int LineID { set; get; }
+        public TimeSpan PlannedTakeOff { set; get; }
+        public TimeSpan ActualTakeOff { set; get; }
+        public int PrevStation;
+        public TimeSpan PrevStationAt { set; get; }
+        public TimeSpan NextStationAt { set; get; }
 
     }
 }

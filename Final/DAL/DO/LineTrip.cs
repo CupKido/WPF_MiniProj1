@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    class LineTrip
+    public class LineTrip
     {
-        int ID { set; get; }
-        int LineID { set; get; }
-        TimeSpan StartAt { set; get; }
-        TimeSpan Frequency { set; get; }
-        TimeSpan FinishAt { set; get; }
+        public int ID { set; get; }
+        public int LineID { set; get; }
+        public TimeSpan StartAt { set; get; }
+        public TimeSpan Frequency { set; get; }
+        public TimeSpan FinishAt { set; get; }
     }
 }

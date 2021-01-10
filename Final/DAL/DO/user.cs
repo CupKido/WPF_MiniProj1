@@ -8,8 +8,8 @@ namespace DO
 {
     public class User
     {
-        string UserName { get; set; }
-        string Password { get; set; }
-        bool Admin { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public bool Admin { get; set; }
     }
 }

@@ -8,12 +8,12 @@ namespace DO
 {
     public class Station
     {
-        int Code { get; set; }
+        public int Code { get; set; }
 
-        string Name { get; set; }
+        public string Name { get; set; }
 
-        double longitude { get; set; }
-        double latitude { get; set; }
+        public double longitude { get; set; }
+        public double latitude { get; set; }
 
         //public object Clone()
         //{
