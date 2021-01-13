@@ -1,0 +1,2 @@
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL\obj\Debug\PL.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL\obj\Debug\PL.csproj.CoreCompileInputs.cache

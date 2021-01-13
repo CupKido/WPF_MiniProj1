@@ -21,7 +21,7 @@ namespace DALAPI
         /// which must contain the single instance of the class.
         /// </summary>
         /// <returns>Dal tier implementation object</returns>
-        public static IDAL GetDL()
+        public static IDAL GetDAL()
         {
             // get dal implementation name from config.xml according to <data> element
             string dlType = DALConfig.DLName;

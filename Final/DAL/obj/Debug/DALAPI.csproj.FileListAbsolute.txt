@@ -1,0 +1,6 @@
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\bin\Debug\DAL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\bin\Debug\DAL.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DALAPI.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DALAPI.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.pdb
