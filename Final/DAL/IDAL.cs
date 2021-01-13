@@ -23,7 +23,7 @@ namespace DALAPI
         IEnumerable<Station> GetAllStations();
         IEnumerable<Station> GetAllStationsBy(Predicate<Station> perdicate);
         Station GetStation(int Code);
-        void UpdateStation(Station station);
+        void UpdateStation(int Code, Station station);
         void UpdateStation(int Code, Action<Station> update);
         Station DeleteStation(int Code);
         #endregion

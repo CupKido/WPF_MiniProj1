@@ -24,6 +24,8 @@ namespace DALObject
         BadLineIdException lineEx;
         BadTripIdException TripEx;
         BadBOTIdException BOTEx;
+
+        #region single tone
         static readonly DALObject instance = new DALObject();
         static DALObject() { }// static ctor to ensure instance init is done just before first usage
         DALObject() { } // default => private
@@ -42,10 +44,9 @@ namespace DALObject
         #region User
         public void AddUser(User user)
         {
-            User User1 = DataSource.ListUsers.FirstOrDefault(p => p.UserName == user.UserName);
-            UserEx = new BadUserNameException(User1.UserName, "user name is already exist");
-            if (User1 != null)
+            if (DataSource.ListUsers.FirstOrDefault(p => p.UserName == user.UserName) != null)
             {
+                UserEx = new BadUserNameException(user.UserName, "UserName already exists");
                 throw UserEx;
             }
             DataSource.ListUsers.Add(user.Clone());
@@ -54,20 +55,26 @@ namespace DALObject
         public User GetUser(string UserName)
         {
             User user = DataSource.ListUsers.Find(p => p.UserName == UserName);
-            UserEx = new BadUserNameException(UserName, "user cant found");
+
             if(user != null)
             {
                 return user.Clone();
             }
+            UserEx = new BadUserNameException(UserName, "user cant found");
             throw UserEx;
         }
 
         public IEnumerable<User> GetAllUsers()
         {
+            if(DataSource.ListUsers.Count == 0)
+            {
+                throw new BadUserNameException("No Users in List");
+            }
             return from user in DataSource.ListUsers
                    select user.Clone();
-        }
 
+        }
+        
         public IEnumerable<User> GetAllUsersBy(Predicate<User> perdicate)
         {
            if(perdicate != null)
@@ -84,14 +91,18 @@ namespace DALObject
             DO.User us = DataSource.ListUsers.FirstOrDefault(pe => pe.UserName == UserName);
             if (us != null)
             {
-                us = user;
+                // that way is better asuming we dont want to copy everything:
+                us.Password = user.Password;
+                us.Admin = user.Admin;
             }
+            UserEx = new BadUserNameException(UserName, "User cant be found");
+            throw UserEx;
         }
 
         public User DeleteUser(string UserName)
         {
             User temp = DataSource.ListUsers.FirstOrDefault(p => p.UserName == UserName);
-            UserEx = new BadUserNameException(UserName, "user cant found");
+            UserEx = new BadUserNameException(UserName, "User cant be found");
             if (temp != null)
             {
                 DataSource.ListUsers.Remove(temp);
@@ -104,9 +115,10 @@ namespace DALObject
         #region Station
         public void AddStation(Station station)
         {
-            StationEx = new BadStationIdException(station.Code, "station is already exist");
+            
             if (DataSource.ListStations.FirstOrDefault(p => p.Code == station.Code) != null)
             {
+                StationEx = new BadStationIdException(station.Code, "station is already exist");
                 throw StationEx;
             }
             DataSource.ListStations.Add(station.Clone());
@@ -114,28 +126,52 @@ namespace DALObject
 
         public IEnumerable<Station> GetAllStations()
         {
-            throw new NotImplementedException();
+            if (DataSource.ListStations.Count == 0)
+            {
+                throw new BadStationIdException(0, "No Stations Exists");
+            }
+            return from station in DataSource.ListStations
+                   select station.Clone();
         }
 
         public IEnumerable<Station> GetAllStationsBy(Predicate<Station> perdicate)
         {
-            throw new NotImplementedException();
+            if (perdicate != null)
+            {
+                return from station in DataSource.ListStations
+                       where perdicate(station)
+                       select station.Clone();
+            }
+            return GetAllStations();
         }
 
         public Station GetStation(int Code)
-        {
-            StationEx = new BadStationIdException(Code, "station isn't exist");
+        {            
             Station station = DataSource.ListStations.Find(p => p.Code == Code);
             if (station != null)
             {
                 return station.Clone();
             }
+            StationEx = new BadStationIdException(Code, "station does not exist");
             throw StationEx;
         }
 
-        public void UpdateStation(Station station)
+        public void UpdateStation(int Code, Station station)
         {
-            throw new NotImplementedException();
+            DO.Station stat = DataSource.ListStations.FirstOrDefault(pe => pe.Code == Code);
+            if (stat != null)
+            {
+                // that way is better asuming we dont want to copy everything:
+                stat.Name = station.Name;
+                //optional: (i think we shouldnt allow it...) 
+                stat.latitude = station.latitude;
+                stat.longitude = station.longitude;
+                
+            }
+            else {
+                throw new BadStationIdException(Code, "Station cant be found");
+            }
+            
         }
 
         public void UpdateStation(int Code, Action<Station> update)
