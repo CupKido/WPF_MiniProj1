@@ -18,20 +18,13 @@ namespace DALObject
 {
     class DALObject : IDAL
     {
+
+        #region singletone
         static readonly DALObject instance = new DALObject();
         static DALObject() { }// static ctor to ensure instance init is done just before first usage
         DALObject() { } // default => private
         public static DALObject Instance { get => instance; }
-
-
-
-
-        //ArrayList Buses = new ArrayList();
-        //public DALObject()
-        //{
-        //    Buses = DS.myDS.Buses;
-        //}
-        
+        #endregion
 
         #region User
         public void AddUser(User user)
