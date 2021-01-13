@@ -44,6 +44,7 @@
     <Compile Include="BO\BUS.cs" />
     <Compile Include="BO\station.cs" />
     <Compile Include="BO\user.cs" />
+    <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="myBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
