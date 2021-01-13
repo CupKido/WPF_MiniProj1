@@ -18,32 +18,48 @@ namespace DALObject
 {
     class DALObject : IDAL
     {
-
-        #region singletone
+        BadUserNameException UserEx;
+        BadStationIdException StationEx;
+        BadBusIdException BusEx;
+        BadLineIdException lineEx;
+        BadTripIdException TripEx;
+        BadBOTIdException BOTEx;
         static readonly DALObject instance = new DALObject();
         static DALObject() { }// static ctor to ensure instance init is done just before first usage
         DALObject() { } // default => private
         public static DALObject Instance { get => instance; }
-        #endregion
+
+
+
+
+        //ArrayList Buses = new ArrayList();
+        //public DALObject()
+        //{
+        //    Buses = DS.myDS.Buses;
+        //}
+        
 
         #region User
         public void AddUser(User user)
         {
-            if (DataSource.ListUsers.FirstOrDefault(p => p.UserName == user.UserName) != null)
+            User User1 = DataSource.ListUsers.FirstOrDefault(p => p.UserName == user.UserName);
+            UserEx = new BadUserNameException(User1.UserName, "user name is already exist");
+            if (User1 != null)
             {
-                throw " ";
+                throw UserEx;
             }
             DataSource.ListUsers.Add(user.Clone());
         }
 
         public User GetUser(string UserName)
         {
-            DO.User user = DataSource.ListUsers.Find(p => p.UserName == UserName);
+            User user = DataSource.ListUsers.Find(p => p.UserName == UserName);
+            UserEx = new BadUserNameException(UserName, "user cant found");
             if(user != null)
             {
                 return user.Clone();
             }
-            throw " ";
+            throw UserEx;
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -74,22 +90,24 @@ namespace DALObject
 
         public User DeleteUser(string UserName)
         {
-            DO.User temp = DataSource.ListUsers.FirstOrDefault(p => p.UserName == UserName);
+            User temp = DataSource.ListUsers.FirstOrDefault(p => p.UserName == UserName);
+            UserEx = new BadUserNameException(UserName, "user cant found");
             if (temp != null)
             {
                 DataSource.ListUsers.Remove(temp);
                 return temp;
             }
-            throw " ";
+            throw UserEx;
         }
         #endregion
 
         #region Station
         public void AddStation(Station station)
         {
+            StationEx = new BadStationIdException(station.Code, "station is already exist");
             if (DataSource.ListStations.FirstOrDefault(p => p.Code == station.Code) != null)
             {
-                throw " ";
+                throw StationEx;
             }
             DataSource.ListStations.Add(station.Clone());
         }
@@ -106,12 +124,13 @@ namespace DALObject
 
         public Station GetStation(int Code)
         {
-            DO.Station station = DataSource.ListStations.Find(p => p.Code == Code);
+            StationEx = new BadStationIdException(Code, "station isn't exist");
+            Station station = DataSource.ListStations.Find(p => p.Code == Code);
             if (station != null)
             {
                 return station.Clone();
             }
-            throw " ";
+            throw StationEx;
         }
 
         public void UpdateStation(Station station)
@@ -126,33 +145,36 @@ namespace DALObject
 
         public Station DeleteStation(int Code)
         {
+            StationEx = new BadStationIdException(Code, "station isn't exist");
             DO.Station temp = DataSource.ListStations.FirstOrDefault(p => p.Code == Code);
             if (temp != null)
             {
                 DataSource.ListStations.Remove(temp);
                 return temp;
             }
-            throw " ";
+            throw StationEx;
         }
         #endregion
 
         #region Bus
         public void AddBus(BUS bus)
         {
+            BusEx = new BadBusIdException(bus.LicenseNum, "bus is already exist");
             if (DataSource.ListBuses.FirstOrDefault(p => p.LicenseNum == bus.LicenseNum) != null)
             {
-                throw "";
+                throw BusEx;
             }
             DataSource.ListBuses.Add(bus.Clone());
         }
         public BUS GetBUS(int LicenseNum)
         {
+            BusEx = new BadBusIdException(LicenseNum, "bus isn't exist");
             DO.BUS bus = DataSource.ListBuses.Find(p => p.LicenseNum == LicenseNum);
             if (bus != null)
             {
                 return bus.Clone();
             }
-            throw " ";
+            throw BusEx;
         }
 
         public IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate)
@@ -178,21 +200,23 @@ namespace DALObject
         #region Line
         public void AddLine(Line line)
         {
+            lineEx = new BadLineIdException(line.ID,"line is already exist");
             if (DataSource.ListLines.FirstOrDefault(p => p.ID == line.ID) != null)
             {
-                throw " ";
+                throw lineEx;
             }
             DataSource.ListLines.Add(line.Clone());
         }
 
         public Line GetLine(int ID)
         {
+            lineEx = new BadLineIdException(ID, "line isn't exist");
             DO.Line line = DataSource.ListLines.Find(p => p.ID == ID);
             if (line != null)
             {
                 return line;
             }
-            throw " ";
+            throw lineEx;
         }
 
         public IEnumerable<Line> GetAllLines()
@@ -216,13 +240,14 @@ namespace DALObject
 
         public Line DeleteLine(int ID)
         {
+            lineEx = new BadLineIdException(ID, "line isn't exist");
             DO.Line temp = DataSource.ListLines.FirstOrDefault(p => p.ID == ID);
             if (temp != null)
             {
                 DataSource.ListLines.Remove(temp);
                 return temp;
             }
-            throw " ";
+            throw lineEx;
         }
 
         #endregion
@@ -230,21 +255,23 @@ namespace DALObject
         #region Trip
         public void AddTrip(Trip trip)
         {
+            TripEx = new BadTripIdException(trip.ID, "Trip is already axist");
             if (DataSource.ListTrips.FirstOrDefault(p => p.ID == trip.ID) != null)
             {
-                throw " ";
+                throw TripEx;
             }
             DataSource.ListTrips.Add(trip.Clone());
         }
 
         public Trip GetTrip(int ID)
         {
+            TripEx = new BadTripIdException(ID, "Trip isn't axist");
             DO.Trip trip = DataSource.ListTrips.Find(p => p.ID == ID);
             if (trip != null)
             {
                 return trip;
             }
-            throw " ";
+            throw TripEx;
         }
 
         public IEnumerable<Trip> GetAllTrips()
@@ -268,13 +295,14 @@ namespace DALObject
 
         public Trip DeleteTrip(int ID)
         {
+            TripEx = new BadTripIdException(ID, "Trip isn't axist");
             DO.Trip temp = DataSource.ListTrips.FirstOrDefault(p => p.ID == ID);
             if (temp != null)
             {
                 DataSource.ListTrips.Remove(temp);
                 return temp;
             }
-            throw " ";
+            throw TripEx;
         }
         #endregion
 
@@ -282,21 +310,23 @@ namespace DALObject
 
         public void AddBusOnTrip(BusOnTrip busontrip)
         {
+            BOTEx = new BadBOTIdException(busontrip.ID, "bus on trip is already exist");
             if (DataSource.ListBusesOnTrips.FirstOrDefault(p => p.ID == busontrip.ID) != null)
             {
-                throw " ";
+                throw BOTEx;
             }
             DataSource.ListBusesOnTrips.Add(busontrip.Clone());
         }
 
         public BusOnTrip GetBusOnTrip(int ID)
         {
+            BOTEx = new BadBOTIdException(ID, "bus on trip isn't exist");
             DO.BusOnTrip busontrip = DataSource.ListBusesOnTrips.Find(p => p.ID == ID);
             if (busontrip != null)
             {
                 return busontrip;
             }
-            throw " ";
+            throw BOTEx;
         }
 
         public void UpdateBusOnTrip(int ID, BusOnTrip busontrip)
@@ -310,13 +340,14 @@ namespace DALObject
 
         public BusOnTrip DeleteBusOnTrip(int ID)
         {
+            BOTEx = new BadBOTIdException(ID, "bus on trip isn't exist");
             DO.BusOnTrip temp = DataSource.ListBusesOnTrips.FirstOrDefault(p => p.ID == ID);
             if(temp != null)
             {
                 DataSource.ListBusesOnTrips.Remove(temp);
                 return temp;
             }
-            throw " ";
+            throw BOTEx;
         }
         #endregion
     }
