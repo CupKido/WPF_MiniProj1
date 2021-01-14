@@ -34,6 +34,7 @@ namespace DALAPI
         IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate);
         void UpdateBus(int LicenseNum, BUS Bus);
         BUS RemoveBus(int LicenseNum);
+        object GetBUS(Func<int , object> p);
         #endregion
 
         #region Line

@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO\BUS.cs" />
-    <Compile Include="BO\Convertors.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\station.cs" />
     <Compile Include="BO\User.cs" />
