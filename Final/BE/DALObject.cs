@@ -221,7 +221,7 @@ namespace DALObject
             }
             if(DataSource.ListBuses.Count == 0)
             {
-                throw new BadBusIdException(0, "No Buses in List")
+                throw new BadBusIdException(0, "No Buses in List");
             }
             return from bus in DataSource.ListBuses
                    where perdicate(bus)

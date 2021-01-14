@@ -91,6 +91,99 @@ namespace BL
         }
         #endregion
 
+        #region bus on trip
+
+        public void AddBusOnTrip(BO.BusOnTrip BOT)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                myDal.AddBusOnTrip((DO.BusOnTrip)BOT.CopyPropertiesToNew(typeof(DO.BusOnTrip)));
+            }
+            catch (DO.BadBOTIdException ex)
+            {
+                throw ex;
+            }
+            //}
+            //else throw " ";
+        }
+        public void RemoveUser(BO.BusOnTrip user)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                myDal.DeleteBusOnTrip(user.ID);
+            }
+            catch (DO.BadBOTIdException ex)
+            {
+
+                throw ex;
+            }
+            //}
+            //else throw "";
+        }
+
+        public IEnumerable<BO.BusOnTrip> GetAllBusesOnTrip()
+        {
+            List<DO.BusOnTrip> list = (List<DO.BusOnTrip>)(from bus in myDal.GetAllBusesBy(p => p.LicenseNum != 0)
+                                      let bus1 = myDal.GetBusOnTrip(bus.LicenseNum)
+                                      where (bus1 != null)
+                                      select bus1);
+            return from item in list
+                   let BOT = (BO.BusOnTrip)item.CopyPropertiesToNew(typeof(BO.BusOnTrip))
+                   orderby BOT.ID
+                   select BOT;
+        }
+
+        #endregion
+
+        #region Line
+
+        public void AddLine(BO.Line line)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw ex;
+            }
+            //}
+            //else throw " ";
+        }
+        public void RemoveLine(Line line)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                myDal.DeleteLine(line.ID);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+
+                throw ex;
+            }
+            //}
+            //else throw "";
+        }
+
+        public IEnumerable<BO.Line> GetAllLines()
+        {
+            List<DO.Line> list = (List<DO.Line>)myDal.GetAllLines();
+            return from item in list
+                   let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
+                   orderby line.ID
+                   select line;
+        }
+
+        #endregion
+
         #region User
 
         public void AddUser(BO.User user)
@@ -135,6 +228,8 @@ namespace BL
         }
        
         #endregion
+
+        
     }
 }
 
