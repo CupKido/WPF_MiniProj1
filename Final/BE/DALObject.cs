@@ -180,42 +180,52 @@ namespace DALObject
         }
 
         public Station DeleteStation(int Code)
-        {
-            StationEx = new BadStationIdException(Code, "station isn't exist");
+        {            
             DO.Station temp = DataSource.ListStations.FirstOrDefault(p => p.Code == Code);
             if (temp != null)
             {
                 DataSource.ListStations.Remove(temp);
                 return temp;
             }
+            StationEx = new BadStationIdException(Code, "station isn't exist");
             throw StationEx;
         }
         #endregion
 
         #region Bus
         public void AddBus(BUS bus)
-        {
-            BusEx = new BadBusIdException(bus.LicenseNum, "bus is already exist");
+        {            
             if (DataSource.ListBuses.FirstOrDefault(p => p.LicenseNum == bus.LicenseNum) != null)
             {
+                BusEx = new BadBusIdException(bus.LicenseNum, "bus is already exist");
                 throw BusEx;
             }
             DataSource.ListBuses.Add(bus.Clone());
         }
         public BUS GetBUS(int LicenseNum)
-        {
-            BusEx = new BadBusIdException(LicenseNum, "bus isn't exist");
+        {            
             DO.BUS bus = DataSource.ListBuses.Find(p => p.LicenseNum == LicenseNum);
             if (bus != null)
             {
                 return bus.Clone();
             }
+            BusEx = new BadBusIdException(LicenseNum, "bus isn't exist");
             throw BusEx;
         }
 
         public IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate)
         {
-            throw new NotImplementedException();
+            if(perdicate == null)
+            {
+                throw new BadBusIdException(0, "bad func");
+            }
+            if(DataSource.ListBuses.Count == 0)
+            {
+                throw new BadBusIdException(0, "No Buses in List")
+            }
+            return from bus in DataSource.ListBuses
+                   where perdicate(bus)
+                   select bus;
         }
 
         public void UpdateBus(int LicenseNum, BUS Bus)
@@ -223,46 +233,70 @@ namespace DALObject
             DO.BUS bus = DataSource.ListBuses.FirstOrDefault(pe => pe.LicenseNum == LicenseNum);
             if (bus != null)
             {
-                bus = Bus;
+                bus.ckm = Bus.ckm;
+                bus.FuelRemain = Bus.FuelRemain;
+                bus.lastime = Bus.lastime;
             }
+            else throw new BadBusIdException(LicenseNum, "Bus can not be found");
         }
 
         public BUS RemoveBus(int LicenseNum)
         {
-            throw new NotImplementedException();
+            DO.BUS temp = DataSource.ListBuses.FirstOrDefault(p => p.LicenseNum == LicenseNum);
+            if (temp != null)
+            {
+                DataSource.ListBuses.Remove(temp);
+                return temp;
+            }
+            throw new BadBusIdException(LicenseNum, "Bus isn't exist");
+            
         }
         #endregion
 
         #region Line
         public void AddLine(Line line)
-        {
-            lineEx = new BadLineIdException(line.ID,"line is already exist");
+        {             
             if (DataSource.ListLines.FirstOrDefault(p => p.ID == line.ID) != null)
             {
-                throw lineEx;
+                throw new BadLineIdException(line.ID, "line already exists"); 
             }
             DataSource.ListLines.Add(line.Clone());
         }
 
         public Line GetLine(int ID)
-        {
-            lineEx = new BadLineIdException(ID, "line isn't exist");
+        {            
             DO.Line line = DataSource.ListLines.Find(p => p.ID == ID);
             if (line != null)
             {
                 return line;
             }
+            lineEx = new BadLineIdException(ID, "line doesnt exist");
             throw lineEx;
         }
 
         public IEnumerable<Line> GetAllLines()
         {
-            throw new NotImplementedException();
+            if(DataSource.ListLines.Count == 0)
+            {
+                throw new BadLineIdException(0, "No Lines");
+            }
+            return from line in DataSource.ListLines
+                   select line;
         }
 
         public IEnumerable<Line> GetAllLinesBy(Predicate<Line> perdicate)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListLines.Count == 0)
+            {
+                throw new BadLineIdException(0, "No Lines");
+            }
+            if(perdicate == null)
+            {
+                return GetAllLines();
+            }
+            return from line in DataSource.ListLines
+                   where perdicate(line)
+                   select line;
         }
 
         public void UpdateLine(int ID, Line line)
@@ -270,20 +304,23 @@ namespace DALObject
             DO.Line Lin = DataSource.ListLines.FirstOrDefault(pe => pe.ID == ID);
             if (Lin != null)
             {
-                Lin = line;
+                Lin.Area = line.Area;
+                Lin.LastStation = line.LastStation;
+                Lin.FirstStation = line.LastStation;
+                Lin.ID = line.ID;
             }
+            else throw new BadLineIdException(ID, "Line can not be found");
         }
 
         public Line DeleteLine(int ID)
-        {
-            lineEx = new BadLineIdException(ID, "line isn't exist");
+        {            
             DO.Line temp = DataSource.ListLines.FirstOrDefault(p => p.ID == ID);
             if (temp != null)
             {
                 DataSource.ListLines.Remove(temp);
                 return temp;
             }
-            throw lineEx;
+            throw new BadLineIdException(ID, "line isn't exist");
         }
 
         #endregion
