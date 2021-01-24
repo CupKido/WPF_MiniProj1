@@ -16,7 +16,7 @@ using BO;
 //BO.Convertors.BTDBus
 namespace BL
 {
-    public class MyBL
+    public class MyBL : IBL
     {
         IDAL myDal = DALFactory.GetDAL();
         #region Bus
@@ -83,11 +83,16 @@ namespace BL
 
         public IEnumerable<BO.BUS> GetAllBuses()
         {
-            List<DO.BUS> list = (List<DO.BUS>)myDal.GetAllBusesBy(x => x.LicenseNum != 0);
+            List<DO.BUS> list = (List<DO.BUS>)myDal.GetAllBusesBy(x => x.LicenseNum != 0); 
             return from item in list
                    let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
                    orderby bus.LicenseNum
                    select bus;
+        }
+
+        public IEnumerable<BUS> GetBusesBy(Predicate<BUS> predicate)
+        {
+            
         }
         #endregion
 
@@ -226,10 +231,12 @@ namespace BL
                    orderby Tuser.UserName
                    select Tuser;
         }
-       
-        #endregion
 
         
+
+        #endregion
+
+
     }
 }
 

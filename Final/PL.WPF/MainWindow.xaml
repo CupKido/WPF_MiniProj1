@@ -1,0 +1,15 @@
+﻿<Window x:Class="PL.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="400">
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="122,43,0,0" TextWrapping="Wrap" Text="MENU" VerticalAlignment="Top" Height="53" Width="165" FontSize="45"/>
+        <Button x:Name="Buses" Content="Show Buses" FontSize="30" HorizontalAlignment="Left" Margin="87,139,0,0" Click="Click_OpenBuses" VerticalAlignment="Top" Width="200" Height="51"/>
+        <Button x:Name="Lines" Content="Show Lines" FontSize="30" HorizontalAlignment="Left" Margin="87,225,0,0" Click="Click_OpenLines" VerticalAlignment="Top" Width="200" Height="51"/>
+        <Button x:Name="Stations" Content="Show Stations" FontSize="30" HorizontalAlignment="Left" Margin="87,316,0,0" Click="Click_OpenStations" VerticalAlignment="Top" Width="200" Height="51"/>
+    </Grid>
+</Window>
