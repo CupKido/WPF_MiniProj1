@@ -13,61 +13,223 @@ using System.Runtime.Remoting.Messaging;
 using DALAPI;
 using BO;
 
+//BO.Convertors.BTDBus
 namespace BL
 {
     public class MyBL
     {
         IDAL myDal = DALFactory.GetDAL();
-
         #region Bus
-        public void AddBus(BO.BUS bus)
+
+        public BO.BUS GetBUS(int ID)
         {
-            try 
-            {
-                myDal.AddBus(BO.Convertors.BTDBus(bus));
-            }
-            catch(DO.BadBusIdException ex)
-            {
-                throw ex;
-            }
-        }
-        public void RemoveBus(BO.BUS bus)
-        {
+            DO.BUS bus = new DO.BUS();
             try
             {
-                myDal.RemoveBus(bus.LicenseNum);
+                bus = myDal.GetBUS(ID);
             }
             catch (DO.BadBusIdException ex)
             {
+                throw ex;
+            }
+            BO.BUS bus1 =(BO.BUS)bus.CopyPropertiesToNew(typeof(BO.BUS));
+            if (bus != null)
+            {
+                return bus1;
+            }
+            throw  new DO.BadBusIdException(bus.LicenseNum,"'");
+
+        }
+        public void AddBus(BO.BUS bus)
+        {
+            //if (user.Admin)
+            //{
+            if ((bus.LicenseNum.ToString().Length == 7 && bus.FromDate.Year < 2018) || (bus.LicenseNum.ToString().Length == 8 && bus.FromDate.Year >= 2018))
+            {
+                if (bus.FromDate <= DateTime.Now)
+                {
+                    try
+                    {
+                        myDal.AddBus((DO.BUS)bus.CopyPropertiesToNew(typeof(DO.BUS)));
+                    }
+                    catch (DO.BadBusIdException ex)
+                    {
+
+                        throw ex;
+                    }
+                }
+                else throw new DO.BadBusIdException(bus.LicenseNum, "starting service date cant be in the future");
+            }
+            else throw new DO.BadBusIdException(bus.LicenseNum, "invaild ID");
+        }
+
+        public void RemoveBus(BO.BUS bus )
+        {
+            //if (user.Admin)
+            //{
+
+                try
+                {
+                    myDal.RemoveBus(bus.LicenseNum);
+                }
+                catch (DO.BadBusIdException ex)
+                {
+
+                    throw ex;
+                }
+            //}
+            //else throw "";
+        }
+
+        public IEnumerable<BO.BUS> GetAllBuses()
+        {
+            List<DO.BUS> list = (List<DO.BUS>)myDal.GetAllBusesBy(x => x.LicenseNum != 0);
+            return from item in list
+                   let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
+                   orderby bus.LicenseNum
+                   select bus;
+        }
+        #endregion
+
+        #region bus on trip
+
+        public void AddBusOnTrip(BO.BusOnTrip BOT)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                myDal.AddBusOnTrip((DO.BusOnTrip)BOT.CopyPropertiesToNew(typeof(DO.BusOnTrip)));
+            }
+            catch (DO.BadBOTIdException ex)
+            {
+                throw ex;
+            }
+            //}
+            //else throw " ";
+        }
+        public void RemoveUser(BO.BusOnTrip user)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                myDal.DeleteBusOnTrip(user.ID);
+            }
+            catch (DO.BadBOTIdException ex)
+            {
 
                 throw ex;
             }
+            //}
+            //else throw "";
         }
-        #region User
-        public void AddUser(BO.User user)
+
+        public IEnumerable<BO.BusOnTrip> GetAllBusesOnTrip()
         {
+            List<DO.BusOnTrip> list = (List<DO.BusOnTrip>)(from bus in myDal.GetAllBusesBy(p => p.LicenseNum != 0)
+                                      let bus1 = myDal.GetBusOnTrip(bus.LicenseNum)
+                                      where (bus1 != null)
+                                      select bus1);
+            return from item in list
+                   let BOT = (BO.BusOnTrip)item.CopyPropertiesToNew(typeof(BO.BusOnTrip))
+                   orderby BOT.ID
+                   select BOT;
+        }
+
+        #endregion
+
+        #region Line
+
+        public void AddLine(BO.Line line)
+        {
+            //if (Auser.Admin)
+            //{
             try
             {
-                myDal.AddUser(BO.Convertors.BTDUser(user));
+                myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
             }
-            catch (DO.BadUserNameException ex)
+            catch (DO.BadLineIdException ex)
             {
                 throw ex;
             }
+            //}
+            //else throw " ";
+        }
+        public void RemoveLine(Line line)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                myDal.DeleteLine(line.ID);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+
+                throw ex;
+            }
+            //}
+            //else throw "";
+        }
+
+        public IEnumerable<BO.Line> GetAllLines()
+        {
+            List<DO.Line> list = (List<DO.Line>)myDal.GetAllLines();
+            return from item in list
+                   let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
+                   orderby line.ID
+                   select line;
+        }
+
+        #endregion
+
+        #region User
+
+        public void AddUser(BO.User user)
+        {
+            //if (Auser.Admin)
+            //{
+                try
+                {
+                    myDal.AddUser((DO.User)user.CopyPropertiesToNew(typeof(DO.User)));
+                }
+                catch (DO.BadUserNameException ex)
+                {
+                    throw ex;
+                }
+            //}
+            //else throw " ";
         }
         public void RemoveUser(BO.User user)
         {
-            try
-            {
-                myDal.DeleteUser(user.UserName);
-            }
-            catch (DO.BadUserNameException ex)
-            {
+            //if (Auser.Admin)
+            //{
+                try
+                {
+                    myDal.DeleteUser(user.UserName);
+                }
+                catch (DO.BadUserNameException ex)
+                {
 
-                throw ex;
-            }
+                    throw ex;
+                }
+            //}
+            //else throw "";
         }
+
+        public IEnumerable<BO.User> GetAllUseres()
+        {
+            List<DO.User> list = (List<DO.User>)myDal.GetAllUsers();
+            return from item in list
+                   let Tuser = (BO.User)item.CopyPropertiesToNew(typeof(BO.User))
+                   orderby Tuser.UserName
+                   select Tuser;
+        }
+       
         #endregion
+
+        
     }
 }
-#endregion
+

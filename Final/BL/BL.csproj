@@ -42,9 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO\BUS.cs" />
-    <Compile Include="BO\Convertors.cs" />
+    <Compile Include="BO\BusOnTrip.cs" />
     <Compile Include="BO\Enums.cs" />
+    <Compile Include="BO\Line.cs" />
+    <Compile Include="BO\LineStation.cs" />
+    <Compile Include="BO\LineTrip.cs" />
     <Compile Include="BO\station.cs" />
+    <Compile Include="BO\Trip.cs" />
     <Compile Include="BO\User.cs" />
     <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="myBL.cs" />

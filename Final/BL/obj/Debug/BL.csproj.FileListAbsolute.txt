@@ -1,2 +1,9 @@
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.csprojAssemblyReference.cache
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\bin\Debug\BL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\bin\Debug\BL.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\bin\Debug\DAL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\bin\Debug\DAL.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.csproj.CopyComplete
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.pdb
