@@ -43,7 +43,7 @@ namespace PL.WPF
         }
         public void Click_OpenLines(object sender, RoutedEventArgs e)
         {
-            Lines lines = new Lines();
+            Lines lines = new Lines(bl);
             lines.Show();
         }
         public void Click_OpenStations(object sender, RoutedEventArgs e)

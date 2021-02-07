@@ -11,17 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BL;
 namespace PL.WPF
 {
     /// <summary>
     /// Interaction logic for Window2.xaml
     /// </summary>
-    public partial class Lines : Window
+    public partial class Lines : LinesWindow
     {
-        public Lines()
+        IBL BL;
+        public Lines(IBL newBL)
         {
             InitializeComponent();
+
+            BL = newBL;
+            LinesList.ItemsSource = BL.GetAllLines();
         }
     }
 }

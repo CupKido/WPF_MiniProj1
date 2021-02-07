@@ -92,7 +92,7 @@ namespace BL
 
         public IEnumerable<BUS> GetBusesBy(Predicate<BUS> predicate)
         {
-            
+            throw new NotSupportedException();
         }
         #endregion
 
@@ -187,6 +187,40 @@ namespace BL
                    select line;
         }
 
+        public Line GetLine(int ID)
+        {
+            DO.Line foundLine;
+            try
+            {
+                foundLine = myDal.GetLine(ID);
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return (BO.Line)foundLine.CopyPropertiesToNew(typeof(BO.Line));
+
+            
+        }
+
+        public IEnumerable<Line> GetLinesBy(Predicate<Line> predicate)
+        {
+            List<DO.Line> list;
+            try
+            {
+                list = (List<DO.Line>)myDal.GetAllLines();
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return from item in list
+                   let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
+                   orderby line.ID
+                   where predicate(line)
+                   select line;
+        }
+
         #endregion
 
         #region User
@@ -233,6 +267,8 @@ namespace BL
         }
 
         
+
+
 
         #endregion
 

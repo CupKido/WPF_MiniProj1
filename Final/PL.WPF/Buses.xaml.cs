@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BL;
 namespace PL.WPF
 {
     /// <summary>
@@ -19,9 +19,12 @@ namespace PL.WPF
     /// </summary>
     public partial class Buses : Window
     {
-        public Buses()
+        IBL bl;
+        public Buses(IBL newbl)
         {
             InitializeComponent();
+
+            bl = newbl;
         }
     }
 }
