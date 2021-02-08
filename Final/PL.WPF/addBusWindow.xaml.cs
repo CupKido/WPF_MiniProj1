@@ -15,13 +15,22 @@ using System.Windows.Shapes;
 namespace PL.WPF
 {
     /// <summary>
-    /// Interaction logic for Window3.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Stations : StationWindow
+    public partial class addBusWindow : Window
     {
-        public Stations()
+        int temp = new int();
+        public addBusWindow()
         {
             InitializeComponent();
+        }
+
+        private void licenseTBO_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(licenseTBO.Text, out temp))
+            {
+                MessageBox.Show("numbers only!");
+            }
         }
     }
 }

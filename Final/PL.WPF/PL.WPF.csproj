@@ -58,11 +58,8 @@
     <Compile Include="Buses.xaml.cs">
       <DependentUpon>Buses.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lines.xaml.cs">
-      <DependentUpon>Lines.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Stations.xaml.cs">
-      <DependentUpon>Stations.xaml</DependentUpon>
+    <Compile Include="addBusWindow.xaml.cs">
+      <DependentUpon>addBusWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -80,11 +77,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Lines.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Stations.xaml">
+    <Page Include="addBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
