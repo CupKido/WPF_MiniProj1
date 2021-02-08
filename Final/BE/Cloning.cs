@@ -22,3 +22,8 @@ namespace DALObject
         }
     }
 }
+
+event int mouse_click();//system
+
+mouse_click += Func<int, int>(x, y){return y=x};//high level
+
