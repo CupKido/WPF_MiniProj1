@@ -1,0 +1,11 @@
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\bin\Debug\DS.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\bin\Debug\DS.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\bin\Debug\DAL.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\bin\Debug\DAL.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\obj\Debug\DS.csprojAssemblyReference.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\obj\Debug\DS.csproj.CoreCompileInputs.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\obj\Debug\DS.csproj.CopyComplete
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\obj\Debug\DS.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\obj\Debug\DS.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DS.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DS.pdb

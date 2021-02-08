@@ -10,7 +10,7 @@ using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
-using DALAPI;
+using DLAPI;
 using BO;
 
 //BO.Convertors.BTDBus
@@ -18,7 +18,7 @@ namespace BL
 {
     public class MyBL : IBL
     {
-        IDAL myDal = DALFactory.GetDAL();
+        IDAL myDal = DLFactory.GetDL();
         #region Bus
 
         public BO.BUS GetBUS(int ID)

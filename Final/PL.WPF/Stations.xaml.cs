@@ -17,7 +17,7 @@ namespace PL.WPF
     /// <summary>
     /// Interaction logic for Window3.xaml
     /// </summary>
-    public partial class Stations : Window
+    public partial class Stations : StationWindow
     {
         public Stations()
         {

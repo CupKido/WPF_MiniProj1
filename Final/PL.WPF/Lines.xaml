@@ -11,7 +11,7 @@
         <ListView x:Name="LinesList" HorizontalAlignment="Left" Height="353" Margin="0,65,0,0" VerticalAlignment="Top" Width="657">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Line number" Width="auto"  DisplayMemberBinding="{Binding ID.ToString()}" />
+                    <GridViewColumn Header="Line number" Width="auto"  DisplayMemberBinding="{Binding ID}" />
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>

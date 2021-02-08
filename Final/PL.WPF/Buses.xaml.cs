@@ -17,9 +17,14 @@ namespace PL.WPF
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Buses : Window
+    public partial class Buses : BusesWindow
     {
         IBL bl;
+
+        public Buses()
+        {
+        }
+
         public Buses(IBL newbl)
         {
             InitializeComponent();

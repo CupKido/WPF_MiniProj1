@@ -10,11 +10,11 @@ using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
-using DALAPI;
+using DLAPI;
 using DS;
 using DO;
 
-namespace DALObject  
+namespace DAL  
 {
     class DALObject : IDAL
     {

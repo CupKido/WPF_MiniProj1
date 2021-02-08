@@ -28,12 +28,19 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
-
-            foreach(var item in bl.GetAllBuses())
+            try
             {
-                ObserListOfBuses.Add(item);
+                foreach (var item in bl.GetAllBuses())
+                {
+                    ObserListOfBuses.Add(item);
+                }
             }
+            catch
+            {
 
+            }
+            
+            this.Show();
         }
 
         public void Click_OpenBuses(object sender, RoutedEventArgs e)

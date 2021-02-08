@@ -25,7 +25,14 @@ namespace PL.WPF
             InitializeComponent();
 
             BL = newBL;
-            LinesList.ItemsSource = BL.GetAllLines();
+            try
+            {
+                LinesList.ItemsSource = BL.GetAllLines();
+            }
+            catch
+            {
+                MessageBox.Show("No Lines In DataSource!");
+            }
         }
     }
 }
