@@ -18,3 +18,5 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\obj\Debug\BL.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\BL.dll
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\BL.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\BL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\BL.pdb
