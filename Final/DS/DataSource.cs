@@ -29,6 +29,7 @@ namespace DS
         static void clear()
         {
             ListBuses = new List<BUS>();
+            ListBuses.Add(new BUS());
             ListLines =  new List<Line>();
             ListTrips = new List<Trip>();
             ListBusesOnTrips = new List<BusOnTrip>();

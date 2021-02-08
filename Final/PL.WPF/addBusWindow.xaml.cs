@@ -32,5 +32,9 @@ namespace PL.WPF
                 MessageBox.Show("numbers only!");
             }
         }
+        private void licenseTBO_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
