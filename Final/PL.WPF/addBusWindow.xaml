@@ -8,9 +8,9 @@
         Title="addBus" Height="250" Width="400">
     <Grid>
         <TextBlock Name="licenseTBL" HorizontalAlignment="Left" Height="17" Margin="31,29,0,0" TextWrapping="Wrap" Text="bus lisence number:" VerticalAlignment="Top" Width="131"/>
-        <TextBox Name="licenseTBO" HorizontalAlignment="Left" Height="17" Margin="162,29,0,0" TextWrapping="Wrap" Text="please enter license number" VerticalAlignment="Top" Width="169" TextChanged="licenseTBO_TextChanged"/>
+        <TextBox Name="licenseTBO" HorizontalAlignment="Left" Height="17" Margin="162,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="licenseTBO_TextChanged"/>
         <TextBlock Name="totalTripTBL" HorizontalAlignment="Left" Height="17" Margin="31,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"><Run FlowDirection="RightToLeft" Text="total bus trip"/><Run Text=":"/></TextBlock>
-        <TextBox Name="totalTripTBO" HorizontalAlignment="Left" Height="17" Margin="162,50,0,0" TextWrapping="Wrap" Text="please enter total km" VerticalAlignment="Top" Width="169" TextChanged="licenseTBO_Copy_TextChanged"/>
+        <TextBox Name="totalTripTBO" HorizontalAlignment="Left" Height="17" Margin="162,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="licenseTBO_Copy_TextChanged"/>
         <DatePicker Name ="licensingDP"  HorizontalAlignment="Left" Margin="162,72,0,0" VerticalAlignment="Top" Width="169" Height="24"/>
         <TextBlock Name="dateOfstartTBL" HorizontalAlignment="Left" Height="17" Margin="31,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"><Run FlowDirection="RightToLeft" Text="Licensing date"/><Run Text=":"/></TextBlock>
         <DatePicker Name ="lastTreatmentDP" HorizontalAlignment="Left" Height="22" Margin="162,101,0,0" VerticalAlignment="Top" Width="169"/>
@@ -18,7 +18,7 @@
         <CheckBox Name="lastTreatmentCB" Content="CheckBox" HorizontalAlignment="Left" Height="14" Margin="131,108,0,0" VerticalAlignment="Top" Width="15"/>
         <TextBlock x:Name="kmFromTreatTBL" HorizontalAlignment="Left" Height="33" Margin="31,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"><Run Text="km from last treatment"/><LineBreak/><Run Text="or Licensing date:"/></TextBlock>
         <TextBox x:Name="kmFromTreatTBO" HorizontalAlignment="Left" Height="17" Margin="162,134,0,0" TextWrapping="Wrap" Text="please enter total trip km" VerticalAlignment="Top" Width="169" TextChanged="licenseTBO_Copy_TextChanged"/>
-        <Button x:Name="addButton" Content="Add bus" HorizontalAlignment="Left" Height="36" Margin="162,174,0,0" VerticalAlignment="Top" Width="89"/>
+        <Button x:Name="addButton" Content="Add bus" HorizontalAlignment="Left" Height="36" Margin="162,174,0,0" VerticalAlignment="Top" Width="89" Click="AddBus"/>
 
     </Grid>
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL;
 
 namespace PL.WPF
 {
@@ -20,20 +21,69 @@ namespace PL.WPF
     public partial class addBusWindow : Window
     {
         int temp = new int();
-        public addBusWindow()
+        IBL Bl;
+        public addBusWindow(IBL bl)
         {
             InitializeComponent();
+            Bl = bl;
         }
 
         private void licenseTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (int.TryParse(licenseTBO.Text, out temp))
+            if (! int.TryParse(licenseTBO.Text, out temp))
             {
                 MessageBox.Show("numbers only!");
             }
         }
         private void licenseTBO_Copy_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+        }
+        private void AddBus(object sender, EventArgs e)
+        {
+            int LicenseNum = 0;
+            int TotalKM = 0;
+            bool flag = true;
+            if(licensingDP.SelectedDate > DateTime.Now)
+            {
+                MessageBox.Show("Can't add bus\nplease select past or present time");
+                flag = false;
+            }
+            if (!int.TryParse(licenseTBO.Text, out LicenseNum))
+            {
+                MessageBox.Show("numbers only!");
+                flag = false;
+            }
+            if (!int.TryParse(totalTripTBO.Text, out TotalKM))
+            {
+                MessageBox.Show("numbers only!");
+                flag = false;
+            }
+            if(lastTreatmentDP.SelectedDate > DateTime.Now)
+            {
+                MessageBox.Show("Can't add bus\nplease select past or present time");
+                flag = false;
+            }
+            if (lastTreatmentDP.SelectedDate < licensingDP.SelectedDate)
+            {
+                MessageBox.Show("last treatment cannot be before licensing");
+                flag = false;
+            }
+            if(!flag)
+            {
+                return;
+            }
+            BO.BUS bus = new BO.BUS(LicenseNum, (DateTime)licensingDP.SelectedDate, (DateTime)lastTreatmentDP.SelectedDate, TotalKM);
+            try
+            {
+                Bl.AddBus(bus);
+                this.Close();
+
+            }
+            catch
+            {
+                MessageBox.Show("not added");//ye   
+            }
 
         }
     }
