@@ -7,3 +7,14 @@ C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Fin
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.csproj.CopyComplete
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.dll
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BL\obj\Debug\BL.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\bin\Debug\BL.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\bin\Debug\BL.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\bin\Debug\DAL.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\bin\Debug\DAL.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\obj\Debug\BL.csprojAssemblyReference.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\obj\Debug\BL.csproj.CopyComplete
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\obj\Debug\BL.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BL\obj\Debug\BL.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\BL.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\BL.pdb

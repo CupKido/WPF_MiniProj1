@@ -23,6 +23,20 @@ namespace DS
         static DataSource()
         {
             //insert random generator here
+            clear();
+        }
+
+        static void clear()
+        {
+            ListBuses = new List<BUS>();
+            ListLines =  new List<Line>();
+            ListTrips = new List<Trip>();
+            ListBusesOnTrips = new List<BusOnTrip>();
+            ListStations = new List<Station>();
+            ListUsers = new List<User>();
+            ListLineStations = new List<LineStation>();
+            ListLineTrip = new List<LineTrip>();
+            ListAdjacent = new List<AdjacentStations>();
         }
 
     }

@@ -10,11 +10,11 @@ using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
-using DALAPI;
+using DLAPI;
 using DS;
 using DO;
 
-namespace DALObject  
+namespace DAL  
 {
     class DALObject : IDAL
     {
@@ -439,5 +439,76 @@ namespace DALObject
             throw new BadBOTIdException(ID, "Bus On Trip doesnt exist");
         }
         #endregion
+
+        #region LineTrip
+
+        public void AddLineTrip(LineTrip linetrip)
+        {
+            if (DataSource.ListLineTrip.FirstOrDefault(p => p.ID == linetrip.ID) != null)
+            {
+                throw new BadBOTIdException(linetrip.ID, "Line Trip already exists");
+            }
+            DataSource.ListLineTrip.Add(linetrip.Clone());
+        }
+
+        public LineTrip GetLineTrip(int ID)
+        {
+            DO.LineTrip linetrip = DataSource.ListLineTrip.Find(p => p.ID == ID);
+            if (linetrip != null)
+            {
+                return linetrip.Clone();
+            }
+            throw new BadBOTIdException(ID, "Line Trip doesnt exist");
+        }
+
+        public IEnumerable<LineTrip> GetAllLineTrips()
+        {
+            if(DataSource.ListLines.Count == 0)
+            {
+                throw new BadBOTIdException(0, "No LineTrips");
+            }
+            return from lt in DataSource.ListLineTrip
+                   select lt;
+        }
+
+        public IEnumerable<LineTrip> GetAllLineTripsBy(Predicate<LineTrip> perdicate)
+        {
+            if (DataSource.ListLines.Count == 0)
+            {
+                throw new BadBOTIdException(0, "No LineTrips");
+            }
+            if (perdicate == null)
+            {
+                return from lt in DataSource.ListLineTrip
+                       select lt;
+            }
+            return from lt in DataSource.ListLineTrip
+                   where perdicate(lt)
+                   select lt;
+        }
+
+        public void UpdateLineTrip(int ID, LineTrip linetrip)
+        {
+            DO.LineTrip bot = DataSource.ListLineTrip.FirstOrDefault(pe => pe.ID == ID);
+            if (bot != null)
+            {
+                bot = linetrip.Clone();
+            }
+            else throw new BadBOTIdException(ID, "Bus On Trip can not be found");
+        }
+
+        public LineTrip DeleteLineTrip(int ID)
+        {
+            DO.LineTrip temp = DataSource.ListLineTrip.FirstOrDefault(p => p.ID == ID);
+            if (temp != null)
+            {
+                DataSource.ListLineTrip.Remove(temp);
+                return temp.Clone();
+            }
+            throw new BadBOTIdException(ID, "Line Trip doesnt exist");
+        }
+
+        #endregion
+
     }
 }

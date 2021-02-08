@@ -10,15 +10,15 @@ using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
-using DALAPI;
+using DLAPI;
 using BO;
 
 //BO.Convertors.BTDBus
 namespace BL
 {
-    public class MyBL
+    public class MyBL : IBL
     {
-        IDAL myDal = DALFactory.GetDAL();
+        IDAL myDal = DLFactory.GetDL();
         #region Bus
 
         public BO.BUS GetBUS(int ID)
@@ -83,11 +83,16 @@ namespace BL
 
         public IEnumerable<BO.BUS> GetAllBuses()
         {
-            List<DO.BUS> list = (List<DO.BUS>)myDal.GetAllBusesBy(x => x.LicenseNum != 0);
+            List<DO.BUS> list = (List<DO.BUS>)myDal.GetAllBusesBy(x => x.LicenseNum != 0); 
             return from item in list
                    let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
                    orderby bus.LicenseNum
                    select bus;
+        }
+
+        public IEnumerable<BUS> GetBusesBy(Predicate<BUS> predicate)
+        {
+            throw new NotSupportedException();
         }
         #endregion
 
@@ -182,6 +187,40 @@ namespace BL
                    select line;
         }
 
+        public Line GetLine(int ID)
+        {
+            DO.Line foundLine;
+            try
+            {
+                foundLine = myDal.GetLine(ID);
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return (BO.Line)foundLine.CopyPropertiesToNew(typeof(BO.Line));
+
+            
+        }
+
+        public IEnumerable<Line> GetLinesBy(Predicate<Line> predicate)
+        {
+            List<DO.Line> list;
+            try
+            {
+                list = (List<DO.Line>)myDal.GetAllLines();
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return from item in list
+                   let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
+                   orderby line.ID
+                   where predicate(line)
+                   select line;
+        }
+
         #endregion
 
         #region User
@@ -226,10 +265,14 @@ namespace BL
                    orderby Tuser.UserName
                    select Tuser;
         }
-       
-        #endregion
 
         
+
+
+
+        #endregion
+
+
     }
 }
 
