@@ -15,12 +15,12 @@ namespace DO
         public double FuelRemain { get; set; } = 1200;
         BusStatus status { set; get; }
 
-        public BUS(int LN, DateTime FD, DateTime LT, double Tkm)
-        {
-            LicenseNum = LN;
-            FromDate = FD;
-            lastime = LT;
-            TotalTrip = Tkm;
-        }
+        //public BUS(int LN, DateTime FD, DateTime LT, double Tkm)
+        //{
+        //    LicenseNum = LN;
+        //    FromDate = FD;
+        //    lastime = LT;
+        //    TotalTrip = Tkm;
+        //}
     }
 }

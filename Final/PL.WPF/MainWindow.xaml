@@ -34,5 +34,6 @@
         <Button x:Name="removeBus" Content="remove Bus" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,166,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="20" Click="removeBus_Click"/>
         <Button x:Name="updateBus" Content="Update Bus" Grid.Column="1" HorizontalAlignment="Left" Margin="10.6,222,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="20" Click="updateBus_Click"/>
         <Button x:Name="backToMain" Content="to main menu" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,278,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="18" Click="backToMain_Click"/>
+        <Button x:Name="addLine" Content="addLine" Grid.Column="1" HorizontalAlignment="Left" Height="56" Margin="11.6,105,0,0" VerticalAlignment="Top" Width="118" FontSize ="20" Click="addLine_Click"/>
     </Grid>
 </Window>
