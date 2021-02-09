@@ -19,7 +19,7 @@
         <GridSplitter x:Name="gridSplitter" Grid.Column="1" HorizontalAlignment="Left" Height="1" Margin="10.6,316,0,0" VerticalAlignment="Top" Width="5"/>
         <Grid>
             <TextBlock x:Name="Title" Margin="119,0,102.4,0" TextWrapping="Wrap" Text="bus management software" VerticalAlignment="Top" Height="50" FontSize="36"/>
-            <ListView x:Name="subjectsList" HorizontalAlignment="Left" Height="333" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" SelectionChanged="LinesList_SelectionChanged">
+            <ListView x:Name="subjectsList" HorizontalAlignment="Left" Height="333" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" SelectionChanged="subjectsList_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="" Width="auto"  DisplayMemberBinding="{Binding ID}" />
@@ -34,5 +34,6 @@
         <Button x:Name="removeBus" Content="remove Bus" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,166,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="20" Click="removeBus_Click"/>
         <Button x:Name="updateBus" Content="Update Bus" Grid.Column="1" HorizontalAlignment="Left" Margin="10.6,222,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="20" Click="updateBus_Click"/>
         <Button x:Name="backToMain" Content="to main menu" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,278,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="18" Click="backToMain_Click"/>
+        <Button x:Name="addLine" Content="addLine" Grid.Column="1" HorizontalAlignment="Left" Height="56" Margin="11.6,105,0,0" VerticalAlignment="Top" Width="118" FontSize ="20" Click="addLine_Click"/>
     </Grid>
 </Window>

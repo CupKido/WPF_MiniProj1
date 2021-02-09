@@ -1,0 +1,21 @@
+﻿<Window x:Class="PL.WPF.addLineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.WPF"
+        mc:Ignorable="d"
+        Title="addLine" Height="250" Width="400">
+    <Grid>
+        <TextBlock x:Name="IDTBL" HorizontalAlignment="Left" Height="17" Margin="31,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"><Run FlowDirection="RightToLeft" Text="Line ID"/></TextBlock>
+        <TextBox Name="IDTBO" HorizontalAlignment="Left" Height="17" Margin="162,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="IDTBO_TextChanged" />
+        <TextBox Name="firstStationTBO" HorizontalAlignment="Left" Height="17" Margin="162,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="firstStationTBO_TextChanged" />
+        <TextBlock x:Name="lineAreaTBL" HorizontalAlignment="Left" Height="17" Margin="31,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="Line area:"/>
+        <TextBlock x:Name="firstStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"><Run Text="First"/><Run FlowDirection="RightToLeft" Text=" "/><Run Text=" station code"/><Run Text=":"/></TextBlock>
+        <TextBlock x:Name="lastStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="Last station code:"/>
+        <TextBox x:Name="lastStationTBO" HorizontalAlignment="Left" Height="17" Margin="162,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="lastStationTBO_TextChanged" />
+        <Button x:Name="addButton" Content="Add line" HorizontalAlignment="Left" Height="36" Margin="162,174,0,0" VerticalAlignment="Top" Width="89" Click="addButton_Click"/>
+        <ComboBox x:Name="areaCB" HorizontalAlignment="Left" Height="24" Margin="162,52,0,0" VerticalAlignment="Top" Width="169"/>
+
+    </Grid>
+</Window>

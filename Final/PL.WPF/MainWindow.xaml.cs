@@ -73,6 +73,7 @@ namespace PL.WPF
             disappearButton(addBus);
             disappearButton(removeBus);
             disappearButton(updateBus);
+            disappearButton(addLine);
             disappearButton(backToMain);
         }
 
@@ -85,6 +86,14 @@ namespace PL.WPF
             disappearButton(Lines);
             disappearButton(Stations);
             disappearButton(Buses);
+        }
+        void changeToLineMenu()
+        {
+            disappearButton(Lines);
+            disappearButton(Stations);
+            disappearButton(Buses);
+            showButton(addLine, marginFirstButton);
+            showButton(backToMain, marginForthButton);
         }
 
         public void Click_OpenBuses(object sender, RoutedEventArgs e)
@@ -119,16 +128,16 @@ namespace PL.WPF
             {
                 MessageBox.Show("No Lines In DataSource!");
             }
-
+            changeToLineMenu();
         }
         public void Click_OpenStations(object sender, RoutedEventArgs e)
         {
             currentTitle.Text = "Stations";
-            ((GridView)subjectsList.View).Columns[0].Header = "line Number";
+            ((GridView)subjectsList.View).Columns[0].Header = "station Number";
             ((GridView)subjectsList.View).Columns[0].Width = 90;
             try
             {
-                subjectsList.ItemsSource = bl.GetAllLines();
+                subjectsList.ItemsSource = bl.GetAllBuses();
             }
             catch
             {
@@ -160,6 +169,12 @@ namespace PL.WPF
         private void updateBus_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void addLine_Click(object sender, RoutedEventArgs e)
+        {
+            addLineWindow win = new addLineWindow(bl);
+            win.Show();
         }
     }
 
