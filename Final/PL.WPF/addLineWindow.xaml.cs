@@ -80,7 +80,7 @@ namespace PL.WPF
             if (!((IDTBO.Text == null) || (firstStationTBO.Text == null) || (lastStationTBO.Text == null)))
             {
                 BO.Line line = new BO.Line();
-                line.Code = ID;
+                line.ID = ID;
                 line.FirstStation = firstStation;
                 line.LastStation = lastStation;
                 switch (areaCB.SelectedItem)
@@ -102,6 +102,7 @@ namespace PL.WPF
                 try
                 {
                     bl.AddLine(line);
+                    M
                     Main.subjectsList.Items.Refresh();
                     this.Close();
                 }
