@@ -128,9 +128,9 @@ namespace PL.WPF
             {
                 subjectsList.ItemsSource = bl.GetAllLines();
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("No Lines In DataSource!");
+                MessageBox.Show("No Lines In DataSource!" + ex.ToString());
             }
             changeToLineMenu();
 
@@ -180,7 +180,7 @@ namespace PL.WPF
         }
         private void addLine_Click(object sender, RoutedEventArgs e)
         {
-            addLineWindow win = new addLineWindow(bl);
+            addLineWindow win = new addLineWindow(bl,this);
             win.Show();
         }
     }

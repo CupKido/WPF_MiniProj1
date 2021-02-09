@@ -28,5 +28,6 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
+      
     }
 }

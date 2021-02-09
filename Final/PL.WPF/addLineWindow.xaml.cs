@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +26,12 @@ namespace PL.WPF
         int firstStation;
         int ID;
         IBL bl;
-        public addLineWindow(IBL newbl)
+        MainWindow Main;
+        public addLineWindow(IBL newbl,MainWindow main)
         {
             InitializeComponent();
             bl = newbl;
+            Main = main;
             List<string> CBSource = new List<string>();
             CBSource.Add("north");
             CBSource.Add("center");
@@ -99,6 +102,7 @@ namespace PL.WPF
                 try
                 {
                     bl.AddLine(line);
+                    Main.subjectsList.Items.Refresh();
                     this.Close();
                 }
                 catch(BO.BadLineIdException ex)
@@ -106,6 +110,8 @@ namespace PL.WPF
 
                     MessageBox.Show("Not added\n ERROR: " +ex.Message );
                 }
+                
+               
             }
             else { MessageBox.Show("please fill the empty filds"); }
         }

@@ -18,6 +18,7 @@ namespace BL
 {
     public class MyBL : IBL
     {
+
         IDAL myDal = DLFactory.GetDL();
         #region Bus
 
@@ -180,9 +181,10 @@ namespace BL
 
         public IEnumerable<BO.Line> GetAllLines()
         {
-            List<DO.Line> list = (List<DO.Line>)myDal.GetAllLines();
+            List<DO.Line> list = myDal.GetAllLines() as List<DO.Line>;
+            //List<BO.Line> list1 = list.CopyPropertiesToNew(typeof(List<BO.Line>)) as List<BO.Line>;
             return from item in list
-                   let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
+                   let line = item.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
                    orderby line.ID
                    select line;
         }
@@ -266,7 +268,8 @@ namespace BL
                    select Tuser;
         }
 
-        
+
+
 
 
 

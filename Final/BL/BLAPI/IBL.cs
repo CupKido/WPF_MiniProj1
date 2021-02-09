@@ -12,7 +12,6 @@ namespace BL
         BO.BUS GetBUS(int id);
         IEnumerable<BO.BUS> GetAllBuses();
         IEnumerable<BO.BUS> GetBusesBy(Predicate<BO.BUS> predicate);
-
         void AddLine(BO.Line line);
 
         BO.Line GetLine(int ID);

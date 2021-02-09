@@ -24,7 +24,6 @@ namespace DAL
         BadLineIdException lineEx;
         BadTripIdException TripEx;
         BadBOTIdException BOTEx;
-
         #region single tone
         static readonly DALObject instance = new DALObject();
         static DALObject() { }// static ctor to ensure instance init is done just before first usage
@@ -276,12 +275,19 @@ namespace DAL
 
         public IEnumerable<Line> GetAllLines()
         {
-            if(DataSource.ListLines.Count == 0)
+            //List<Line> list = new List<Line>() { new Line() { ID = 1234 } };
+            //return list;
+            if (DataSource.ListLines.Count == 0)
             {
+
                 throw new BadLineIdException(0, "No Lines");
+
             }
-            return from line in DataSource.ListLines
-                   select line;
+            List<DO.Line> list = (from item in DataSource.ListLines
+                                  select item.Clone()) as List<DO.Line>;
+            return list;
+                   
+
         }
 
         public IEnumerable<Line> GetAllLinesBy(Predicate<Line> perdicate)
