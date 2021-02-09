@@ -29,6 +29,7 @@ namespace DS
         static void clear()
         {
             ListBuses = new List<BUS>();
+            ListBuses.Add(new BUS(12345678, new DateTime(), new DateTime(), 123));
             ListLines =  new List<Line>();
             ListTrips = new List<Trip>();
             ListBusesOnTrips = new List<BusOnTrip>();

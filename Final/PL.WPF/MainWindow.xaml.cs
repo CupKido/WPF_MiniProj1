@@ -32,7 +32,9 @@ namespace PL.WPF
         ObservableCollection<BO.BUS> ObserListOfBuses = new ObservableCollection<BO.BUS>();
         public MainWindow()
         {
+            
             InitializeComponent();
+
             try
             {
                 foreach (var item in bl.GetAllBuses())
@@ -106,11 +108,13 @@ namespace PL.WPF
             try
             {
                 subjectsList.ItemsSource = bl.GetAllBuses();
+
             }
             catch
             {
                 MessageBox.Show("No Buses In DataSource!");
             }
+            
             changeToBusMenu();
         }
         public void Click_OpenLines(object sender, RoutedEventArgs e)
@@ -149,10 +153,13 @@ namespace PL.WPF
         {
 
         }
+        private void LinesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
         private void addBus_Click(object sender, RoutedEventArgs e)
         {
-            addBusWindow win = new addBusWindow();
+            addBusWindow win = new addBusWindow(bl);
             win.Show();
         }
 
