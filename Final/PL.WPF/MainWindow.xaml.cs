@@ -99,12 +99,13 @@ namespace PL.WPF
             try
             {
                 subjectsList.ItemsSource = bl.GetAllBuses();
-                
+
             }
             catch
             {
                 MessageBox.Show("No Buses In DataSource!");
             }
+            
             changeToBusMenu();
         }
         public void Click_OpenLines(object sender, RoutedEventArgs e)
