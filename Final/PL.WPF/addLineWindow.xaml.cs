@@ -96,8 +96,16 @@ namespace PL.WPF
                         break;
                 }
                 ;
-                bl.AddLine(line);
-                this.Close();
+                try
+                {
+                    bl.AddLine(line);
+                    this.Close();
+                }
+                catch(BO.BadLineIdException ex)
+                {
+
+                    MessageBox.Show("Not added\n ERROR: " +ex.Message );
+                }
             }
             else { MessageBox.Show("please fill the empty filds"); }
         }

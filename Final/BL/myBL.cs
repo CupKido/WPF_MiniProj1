@@ -23,7 +23,7 @@ namespace BL
 
         public BO.BUS GetBUS(int ID)
         {
-            DO.BUS bus = new DO.BUS();
+            DO.BUS bus;
             try
             {
                 bus = myDal.GetBUS(ID);
@@ -37,7 +37,7 @@ namespace BL
             {
                 return bus1;
             }
-            throw  new DO.BadBusIdException(bus.LicenseNum,"'");
+            throw  new BO.BadBusIdException(bus.LicenseNum,"'");
 
         }
         public void AddBus(BO.BUS bus)
@@ -55,12 +55,12 @@ namespace BL
                     catch (DO.BadBusIdException ex)
                     {
 
-                        throw ex;
+                        throw new BO.BadBusIdException(ex.ID,ex.Message,ex);
                     }
                 }
-                else throw new DO.BadBusIdException(bus.LicenseNum, "starting service date cant be in the future");
+                else throw new BO.BadBusIdException(bus.LicenseNum, "starting service date cant be in the future");
             }
-            else throw new DO.BadBusIdException(bus.LicenseNum, "invaild ID");
+            else throw new BO.BadBusIdException(bus.LicenseNum, "invaild ID");
         }
 
         public void RemoveBus(BO.BUS bus )
@@ -75,7 +75,7 @@ namespace BL
                 catch (DO.BadBusIdException ex)
                 {
 
-                    throw ex;
+                    throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
                 }
             //}
             //else throw "";
@@ -108,7 +108,7 @@ namespace BL
             }
             catch (DO.BadBOTIdException ex)
             {
-                throw ex;
+                throw new BO.BadBOTIdException(ex.ID, ex.Message, ex);
             }
             //}
             //else throw " ";
@@ -124,7 +124,7 @@ namespace BL
             catch (DO.BadBOTIdException ex)
             {
 
-                throw ex;
+                throw new BO.BadBOTIdException(ex.ID, ex.Message, ex);
             }
             //}
             //else throw "";
@@ -156,7 +156,7 @@ namespace BL
             }
             catch (DO.BadLineIdException ex)
             {
-                throw ex;
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
             //}
             //else throw " ";
@@ -172,7 +172,7 @@ namespace BL
             catch (DO.BadLineIdException ex)
             {
 
-                throw ex;
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
             //}
             //else throw "";
@@ -235,7 +235,7 @@ namespace BL
                 }
                 catch (DO.BadUserNameException ex)
                 {
-                    throw ex;
+                    throw new BO.BadUserNameException(ex.ID, ex.Message, ex);
                 }
             //}
             //else throw " ";
@@ -251,8 +251,8 @@ namespace BL
                 catch (DO.BadUserNameException ex)
                 {
 
-                    throw ex;
-                }
+                    throw new BO.BadUserNameException(ex.ID, ex.Message, ex);
+            }
             //}
             //else throw "";
         }
