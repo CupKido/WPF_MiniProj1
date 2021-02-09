@@ -18,8 +18,8 @@
         <Button x:Name="Stations" Content="Show Stations" FontSize="18" HorizontalAlignment="Left" Margin="11.6,222,0,0" Click="Click_OpenStations" VerticalAlignment="Top" Width="117" Height="51" Grid.Column="1"/>
         <GridSplitter x:Name="gridSplitter" Grid.Column="1" HorizontalAlignment="Left" Height="1" Margin="10.6,316,0,0" VerticalAlignment="Top" Width="5"/>
         <Grid>
-            <TextBlock x:Name="Title" Margin="119,0,102.4,0" TextWrapping="Wrap" Text="moovit V2.0" TextAlignment="Center" VerticalAlignment="Top" Height="50" FontSize="36"/>
-            <ListView x:Name="subjectsList" HorizontalAlignment="Left" Height="333" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" SelectionChanged="LinesList_SelectionChanged">
+            <TextBlock x:Name="Title" Margin="119,0,102.4,0" TextWrapping="Wrap" Text="bus management software" VerticalAlignment="Top" Height="50" FontSize="36"/>
+            <ListView x:Name="subjectsList" HorizontalAlignment="Left" Height="333" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" SelectionChanged="subjectsList_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="" Width="auto"  DisplayMemberBinding="{Binding ID}" />
