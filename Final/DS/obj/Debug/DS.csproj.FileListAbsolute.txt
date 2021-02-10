@@ -9,3 +9,10 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DS\obj\Debug\DS.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DS.dll
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DS.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DS.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DS.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DS\obj\Debug\DS.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DS\obj\Debug\DS.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DS\obj\Debug\DS.csproj.CopyComplete
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DS\obj\Debug\DS.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DS\obj\Debug\DS.pdb

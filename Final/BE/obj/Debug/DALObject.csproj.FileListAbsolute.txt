@@ -11,3 +11,10 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DALObject.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BE\obj\Debug\DALObject.dll
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\BE\obj\Debug\DALObject.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DALObject.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DALObject.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BE\obj\Debug\DALObject.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BE\obj\Debug\DALObject.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BE\obj\Debug\DALObject.csproj.CopyComplete
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BE\obj\Debug\DALObject.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\BE\obj\Debug\DALObject.pdb

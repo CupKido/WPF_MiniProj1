@@ -1,9 +1,5 @@
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\bin\Debug\DAL.dll
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\bin\Debug\DAL.pdb
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DALAPI.csprojAssemblyReference.cache
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DALAPI.csproj.CoreCompileInputs.cache
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.dll
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DAL\bin\Debug\DAL.dll
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DAL\bin\Debug\DAL.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DAL\obj\Debug\DALAPI.csproj.CoreCompileInputs.cache
@@ -12,3 +8,8 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DAL.dll
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DAL.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DAL\obj\Debug\DALAPI.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DAL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DAL.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DALAPI.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.pdb

@@ -75,6 +75,7 @@ namespace PL.WPF
             disappearButton(addBus);
             disappearButton(removeBus);
             disappearButton(updateBus);
+            disappearButton(addLine);
             disappearButton(backToMain);
         }
 
@@ -87,6 +88,14 @@ namespace PL.WPF
             disappearButton(Lines);
             disappearButton(Stations);
             disappearButton(Buses);
+        }
+        void changeToLineMenu()
+        {
+            disappearButton(Lines);
+            disappearButton(Stations);
+            disappearButton(Buses);
+            showButton(addLine, marginFirstButton);
+            showButton(backToMain, marginForthButton);
         }
 
         public void Click_OpenBuses(object sender, RoutedEventArgs e)
@@ -119,10 +128,11 @@ namespace PL.WPF
             {
                 subjectsList.ItemsSource = bl.GetAllLines();
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("No Lines In DataSource!");
+                MessageBox.Show("No Lines In DataSource!" + ex.ToString());
             }
+            changeToLineMenu();
 
         }
         public void Click_OpenStations(object sender, RoutedEventArgs e)
@@ -167,6 +177,11 @@ namespace PL.WPF
         private void updateBus_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void addLine_Click(object sender, RoutedEventArgs e)
+        {
+            addLineWindow win = new addLineWindow(bl,this);
+            win.Show();
         }
     }
 
