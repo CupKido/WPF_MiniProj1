@@ -59,3 +59,5 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\AddStationWIndow.baml
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\ShowBusInfo.g.cs
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\ShowBusInfo.baml
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\ShowBusInfo.g.cs
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\ShowBusInfo.baml

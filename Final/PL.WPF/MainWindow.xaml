@@ -14,11 +14,12 @@
         <TabControl>
             <TabItem Header="Buses" Height="50" Margin="32,50,-32,-50.4" FontSize="24">
                 <Grid>
-                    <ListView x:Name="BusesList" FontSize="20" MouseDoubleClick="ShowBusInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="469" Margin="0,85,0,-0.4" VerticalAlignment="Top" Width="739" >
+                    <ListView x:Name="BusesList" FontSize="16" MouseDoubleClick="ShowBusInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Margin="0,48,0,-0.4" VerticalAlignment="Top" Width="739" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="License number" Width="auto" DisplayMemberBinding="{Binding LicenseNum}" />
-                                <GridViewColumn/>
+                                <GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>
+                                <GridViewColumn Header="fuel" Width="auto" DisplayMemberBinding="{Binding FuelRemain}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

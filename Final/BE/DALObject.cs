@@ -245,6 +245,8 @@ namespace DAL
                 bus.ckm = Bus.ckm;
                 bus.FuelRemain = Bus.FuelRemain;
                 bus.lastime = Bus.lastime;
+                bus.TotalTrip = Bus.TotalTrip;
+                bus.FromDate = Bus.FromDate;
             }
             else throw new BadBusIdException(LicenseNum, "Bus can not be found");
         }
