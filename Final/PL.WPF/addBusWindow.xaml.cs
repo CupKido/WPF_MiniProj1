@@ -73,7 +73,7 @@ namespace PL.WPF
             {
                 return;
             }
-            BO.BUS bus = new BO.BUS(LicenseNum, (DateTime)licensingDP.SelectedDate, (DateTime)lastTreatmentDP.SelectedDate, TotalKM);
+            BO.BUS bus = new BO.BUS{ LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, ckm = TotalKM };
             try
             {
                 Bl.AddBus(bus);

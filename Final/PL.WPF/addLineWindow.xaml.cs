@@ -102,7 +102,7 @@ namespace PL.WPF
                 try
                 {
                     bl.AddLine(line);
-                    M
+                    
                     Main.subjectsList.Items.Refresh();
                     this.Close();
                 }

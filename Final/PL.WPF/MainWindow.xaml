@@ -7,33 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="654*"/>
-            <ColumnDefinition Width="139*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="15.6,33,0,0" TextWrapping="Wrap" Text="MENU" VerticalAlignment="Top" Height="53" Width="113" FontSize="35
-                   " Grid.Column="1"/>
-        <Button x:Name="Buses" Content="Show Buses" FontSize="20" HorizontalAlignment="Left" Margin="11.6,110,0,0" Click="Click_OpenBuses" VerticalAlignment="Top" Width="117" Height="51" Grid.Column="1"/>
-        <Button x:Name="Lines" Content="Show Lines" FontSize="20" HorizontalAlignment="Left" Margin="11.6,166,0,0" Click="Click_OpenLines" VerticalAlignment="Top" Width="117" Height="51" Grid.Column="1"/>
-        <Button x:Name="Stations" Content="Show Stations" FontSize="18" HorizontalAlignment="Left" Margin="11.6,222,0,0" Click="Click_OpenStations" VerticalAlignment="Top" Width="117" Height="51" Grid.Column="1"/>
-        <GridSplitter x:Name="gridSplitter" Grid.Column="1" HorizontalAlignment="Left" Height="1" Margin="10.6,316,0,0" VerticalAlignment="Top" Width="5"/>
-        <Grid>
-            <TextBlock x:Name="Title" Margin="119,0,102.4,0" TextWrapping="Wrap" Text="bus management software" VerticalAlignment="Top" Height="50" FontSize="36"/>
-            <ListView x:Name="subjectsList" HorizontalAlignment="Left" Height="333" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" SelectionChanged="subjectsList_SelectionChanged">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="" Width="auto"  DisplayMemberBinding="{Binding ID}" />
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <TextBlock x:Name="currentTitle" TextAlignment="center" HorizontalAlignment="Center" Height="25" Margin="208,55,227.4,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="219"/>
+        <TabControl>
+            <TabItem Header="Buses" Height="50" Margin="32,50,-32,-50.4" FontSize="24">
+                <Grid>
+                    <ListView x:Name="subjectsList" HorizontalAlignment="Left" Height="278" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="" Width="auto" DisplayMemberBinding="{Binding ID}" />
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Name="AddBus" Content="Add Bus" Width="100" Margin="663,78,25,241.2" Click="AddBus_Click" />
+                    <Button Name="redBus" Content="remove Bus" Margin="663,127,25,192.2" Click="AddBus_Click" />
+                </Grid>
 
-        </Grid>
-        <Button x:Name="addBus" Content="add Bus" Grid.Column="1" HorizontalAlignment="Left" Margin="10.6,110,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="20" Click="addBus_Click"/>
-        <Button x:Name="removeBus" Content="remove Bus" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,166,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="20" Click="removeBus_Click"/>
-        <Button x:Name="updateBus" Content="Update Bus" Grid.Column="1" HorizontalAlignment="Left" Margin="10.6,222,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="20" Click="updateBus_Click"/>
-        <Button x:Name="backToMain" Content="to main menu" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,278,0,0" VerticalAlignment="Top" Width="118" Height="51" FontSize="18" Click="backToMain_Click"/>
-        <Button x:Name="addLine" Content="addLine" Grid.Column="1" HorizontalAlignment="Left" Height="56" Margin="11.6,105,0,0" VerticalAlignment="Top" Width="118" FontSize ="20" Click="addLine_Click"/>
+
+            </TabItem>
+            <TabItem Header="Lines" Height="50" Margin="32,50,-32.4,-50.4" FontSize="24"/>
+            <TabItem Header="Stations" Height="50" Margin="33.4,50,-32.6,-50.4" FontSize="24"/>
+        </TabControl>
     </Grid>
 </Window>
