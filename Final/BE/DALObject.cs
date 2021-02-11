@@ -234,7 +234,7 @@ namespace DAL
                 throw new BadBusIdException(0, "No Buses in List");
             }
             return from item in DataSource.ListBuses
-                    select item.Clone();
+                   select item.Clone();
         }
 
         public void UpdateBus(int LicenseNum, BUS Bus)
