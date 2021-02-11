@@ -214,7 +214,7 @@ namespace DAL
 
         public IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate)
         {
-            if(perdicate == null)
+            if (perdicate == null)
             {
                 throw new BadBusIdException(0, "bad func");
             }
@@ -222,9 +222,19 @@ namespace DAL
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
+
             return from bus in DataSource.ListBuses
-                   where perdicate(bus)
-                   select bus;
+                                where perdicate(bus)
+                                select bus.Clone();
+        }
+        public IEnumerable<BUS> GetAllBuses()
+        {
+            if (DataSource.ListBuses.Count == 0)
+            {
+                throw new BadBusIdException(0, "No Buses in List");
+            }
+            return from item in DataSource.ListBuses
+                    select item.Clone();
         }
 
         public void UpdateBus(int LicenseNum, BUS Bus)

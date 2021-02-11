@@ -71,6 +71,9 @@
     <Compile Include="RemoveBusesWindow.xaml.cs">
       <DependentUpon>RemoveBusesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddStationWIndow.xaml.cs">
+      <DependentUpon>AddStationWIndow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Buses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RemoveBusesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStationWIndow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,12 +8,12 @@ namespace BO
 {
     public class station
     {
-        int ID { get; set; }
+        public int ID { get; set; }
 
-        string name { get; set; }
+        public string name { get; set; }
 
-        double longitude { get; set; }
-        double latitude { get; set; }
+        public double longitude { get; set; }
+        public double latitude { get; set; }
 
         //public object Clone()
         //{

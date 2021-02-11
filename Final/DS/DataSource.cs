@@ -207,11 +207,37 @@ namespace DS
         }
         static void clear()
         {
-            //Line line = new Line();
-            //line.ID = 1234;
-            ListBuses = new List<BUS>();
-            ListBuses.Add(new BUS(12345678, new DateTime(), new DateTime(), 123));
-            //ListLines = new List<Line>();
+            ListBuses = new List<BUS>() {
+                new BUS()
+                {
+                    FromDate = new DateTime(2003,6,12),
+                    LicenseNum = 3642531,
+                    TotalTrip = 2222,
+                    FuelRemain = 120,
+                    lastime = new DateTime(2018,7,05),
+                    ckm = 20
+                },
+
+                    new BUS()
+                    {
+                        FromDate = new DateTime(2007,1,20),
+                    LicenseNum = 3642532,
+                    TotalTrip = 2221,
+                    FuelRemain = 80,
+                    lastime = new DateTime(2017,8,24),
+                    ckm = 50
+                    },
+
+                    new BUS()
+                    {
+                        FromDate = new DateTime(2019,10,29),
+                    LicenseNum = 36123419,
+                    TotalTrip = 10293,
+                    FuelRemain = 91,
+                    lastime = new DateTime(2019,10,29),
+                    ckm = 10293
+                    }
+                };
             ListLines = new List<Line>()
             {
                 new Line()
@@ -238,7 +264,6 @@ namespace DS
                         Area = Areas.center
                     }
                 };
-            //ListLines.Add(line);
             ListTrips = new List<Trip>();
             ListBusesOnTrips = new List<BusOnTrip>();
             ListStations = new List<Station>();
