@@ -234,7 +234,7 @@ namespace DAL
                 throw new BadBusIdException(0, "No Buses in List");
             }
             return from item in DataSource.ListBuses
-                    select item.Clone();
+                   select item.Clone();
         }
 
         public void UpdateBus(int LicenseNum, BUS Bus)
@@ -269,6 +269,7 @@ namespace DAL
             {
                 throw new BadLineIdException(line.ID, "line already exists"); 
             }
+            line.Code = ++DataSource.CurrentLineCode;
             DataSource.ListLines.Add(line.Clone());
         }
 
@@ -293,10 +294,10 @@ namespace DAL
                 throw new BadLineIdException(0, "No Lines");
 
             }
-            List<DO.Line> list = (from item in DataSource.ListLines
-                                  select item.Clone()) as List<DO.Line>;
-            return list;
-                   
+            return from item in DataSource.ListLines
+                   select item.Clone();
+
+
 
         }
 

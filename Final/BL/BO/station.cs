@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class station
+    public class Station
     {
         public int ID { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public double longitude { get; set; }
-        public double latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
 
         //public object Clone()
         //{

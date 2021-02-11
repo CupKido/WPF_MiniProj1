@@ -212,9 +212,9 @@ namespace BL
             {
                 list = (List<DO.Line>)myDal.GetAllLines();
             }
-            catch
+            catch(DO.BadLineIdException ex)
             {
-                throw new NotImplementedException();
+                throw new BadLineIdException(0,"no lines exist!",ex);
             }
             return from item in list
                    let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
@@ -269,12 +269,64 @@ namespace BL
         }
 
 
-
-
-
-
         #endregion
 
+        #region station
+
+        public void AddStation(Station station)
+        {
+            try
+            {
+                myDal.AddStation(station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+            }
+        }
+
+        public Station GetStaion(int ID)
+        {
+            DO.Station foundStation;
+            try
+            {
+                foundStation = myDal.GetStation(ID);
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return foundStation.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station;
+        }
+
+        public IEnumerable<Station> GetAllStations()
+        {
+            List<DO.Station> list = myDal.GetAllStations().ToList();
+            return from item in list
+                   let station = item.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
+                   orderby station.ID
+                   select station;
+        }
+
+        public IEnumerable<Station> GetStationsBy(Predicate<Station> predicate)
+        {
+            List<DO.Station> list;
+            try
+            {
+                list = (List<DO.Station>)myDal.GetAllStations();
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return from item in list
+                   let station = item.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
+                   orderby station.ID
+                   where predicate(station)
+                   select station;
+        }
+
+        #endregion
 
     }
 }
