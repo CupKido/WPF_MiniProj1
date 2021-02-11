@@ -67,5 +67,15 @@ namespace PL.WPF
 
         }
         #endregion
+
+        private void UpdateBus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateLine_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

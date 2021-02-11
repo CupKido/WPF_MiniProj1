@@ -293,10 +293,10 @@ namespace DAL
                 throw new BadLineIdException(0, "No Lines");
 
             }
-            List<DO.Line> list = (from item in DataSource.ListLines
-                                  select item.Clone()) as List<DO.Line>;
-            return list;
-                   
+            return from item in DataSource.ListLines
+                   select item.Clone();
+
+
 
         }
 
