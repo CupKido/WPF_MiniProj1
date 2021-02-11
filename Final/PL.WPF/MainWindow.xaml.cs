@@ -33,7 +33,14 @@ namespace PL.WPF
         #region List Managment
         public void RefreshList(ListView list)
         {
-            list.Items.Refresh();
+            this.Dispatcher.Invoke(() =>
+            {
+                BusesList.ItemsSource = bl.GetAllBuses();
+                LinesList.ItemsSource = bl.GetAllLines();
+                
+                list.Items.Refresh();
+            });
+            
         }
 
         #endregion
@@ -54,13 +61,13 @@ namespace PL.WPF
 
         private void ShowBusInfo(object sender, MouseEventArgs e)
         {
-            
+
             BO.BUS Bus = BusesList.SelectedItem as BO.BUS;
-            ShowBusInfo win = new ShowBusInfo(Bus, this);
-           
-                win.Show();
-               
-            
+            ShowInfo win = new ShowInfo(Bus, this);
+
+            win.Show();
+
+
 
         }
         #endregion
@@ -68,26 +75,27 @@ namespace PL.WPF
         #region Lines
         private void AddLine_Click(object sender, RoutedEventArgs e)
         {
-            addLineWindow win = new addLineWindow(bl, this);
+            addLineWindow win = new addLineWindow(this);
             win.Show();
 
         }
         private void RemoveLine_Click(object sender, RoutedEventArgs e)
         {
-            addLineWindow win = new addLineWindow(bl, this);
+            addLineWindow win = new addLineWindow(this);
             win.Show();
+
+        }
+        private void ShowLineInfo(object sender, MouseEventArgs e)
+        {
+
+            BO.Line line = LinesList.SelectedItem as BO.Line;
+            ShowInfo win = new ShowInfo(line, this);
+            win.Show();
+
+
 
         }
         #endregion
 
-        private void UpdateBus_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void UpdateLine_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

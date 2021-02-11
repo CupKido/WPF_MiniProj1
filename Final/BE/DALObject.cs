@@ -325,7 +325,7 @@ namespace DAL
             {
                 Lin.Area = line.Area;
                 Lin.LastStation = line.LastStation;
-                Lin.FirstStation = line.LastStation;
+                Lin.FirstStation = line.FirstStation;
                 Lin.ID = line.ID;
             }
             else throw new BadLineIdException(ID, "Line can not be found");

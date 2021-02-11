@@ -18,8 +18,11 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="License number" Width="auto" DisplayMemberBinding="{Binding LicenseNum}" />
-                                <GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>
-                                <GridViewColumn Header="fuel" Width="auto" DisplayMemberBinding="{Binding FuelRemain}"/>
+                                <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
+                                <GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding pSD}"/>
+                                <GridViewColumn Header="Last Repair" Width="100" DisplayMemberBinding="{Binding pLR}"/>
+                                <GridViewColumn Header="KM since Repair" Width="120" DisplayMemberBinding="{Binding ckm}" />
+                                <GridViewColumn Header="fuel" Width="50" DisplayMemberBinding="{Binding FuelRemain}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -30,11 +33,15 @@
 
             <TabItem Header="Lines" Height="50" Margin="32,50,-32.4,-50.4" FontSize="24">
                 <Grid>
-                    <ListView x:Name="LinesList" FontSize="16" HorizontalAlignment="Left" Height="459" Margin="0,85,0,0" VerticalAlignment="Top" Width="748" >
+                    <ListView x:Name="LinesList" FontSize="16" MouseDoubleClick="ShowLineInfo" HorizontalAlignment="Left" Height="459" Margin="0,85,0,0" VerticalAlignment="Top" Width="748" >
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Line Number"  Width="auto" DisplayMemberBinding="{Binding ID}" />
-                                <GridViewColumn/>
+                                <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
+                                <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
+                                <GridViewColumn Header="Code" Width="auto" DisplayMemberBinding="{Binding Code}"/>
+                                <GridViewColumn Header="Area" Width="100" DisplayMemberBinding="{Binding Area}"/>
+                                <GridViewColumn Header="First Station ID" Width="120" DisplayMemberBinding="{Binding FirstStation}" />
+                                <GridViewColumn Header="Last Station ID" Width="50" DisplayMemberBinding="{Binding LastStation}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

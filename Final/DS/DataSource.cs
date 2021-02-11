@@ -215,7 +215,7 @@ namespace DS
                     FromDate = new DateTime(2003,6,12),
                     LicenseNum = 3642531,
                     TotalTrip = 2222,
-                    FuelRemain = 120,
+                    FuelRemain = 1200,
                     lastime = new DateTime(2018,7,05),
                     ckm = 20
                 },
@@ -225,7 +225,7 @@ namespace DS
                         FromDate = new DateTime(2007,1,20),
                     LicenseNum = 3642532,
                     TotalTrip = 2221,
-                    FuelRemain = 80,
+                    FuelRemain = 800,
                     lastime = new DateTime(2017,8,24),
                     ckm = 50
                     },
@@ -235,7 +235,7 @@ namespace DS
                         FromDate = new DateTime(2019,10,29),
                     LicenseNum = 36123419,
                     TotalTrip = 10293,
-                    FuelRemain = 91,
+                    FuelRemain = 910,
                     lastime = new DateTime(2019,10,29),
                     ckm = 10293
                     }

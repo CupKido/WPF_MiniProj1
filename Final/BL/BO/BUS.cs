@@ -16,6 +16,21 @@ namespace BO
         public double ckm { get; set; } // km from last treatment
         public double FuelRemain { get; set; } = 1200;
         BusStatus status { set; get; }
+
+        public string pSD //print start Date
+        {
+            get
+            {
+                return FromDate.Day + "/" + FromDate.Month + "/" + FromDate.Year;
+            }
+        }
+        public string pLR //print Last Repair
+        {
+            get
+            {
+                return lastime.Day + "/" + lastime.Month + "/" + lastime.Year;
+            }
+        }
     }
 
 }

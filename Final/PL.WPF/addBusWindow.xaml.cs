@@ -45,7 +45,7 @@ namespace PL.WPF
             addButton.Opacity = 0;
             UpdateButton.IsEnabled = true;
             UpdateButton.Opacity = 1;
-
+            
             //for refresh after finish
             Main = main;
 
@@ -62,6 +62,7 @@ namespace PL.WPF
                 lastTreatmentDP.DisplayDate = ThisBus.lastime;
                 lastTreatmentDP.SelectedDate = ThisBus.lastime;
                 kmFromTreatTBO.Text = ThisBus.ckm.ToString();
+                kmFromTreatTBO.IsEnabled = false;
             }
             catch
             {
@@ -135,6 +136,7 @@ namespace PL.WPF
         {
             int LicenseNum = ThisBus.LicenseNum;
             double TotalKM = ThisBus.TotalTrip;
+            double KMSoFar = ThisBus.ckm;
             bool flag = true;
             if (licensingDP.SelectedDate > DateTime.Now)
             {
@@ -165,7 +167,7 @@ namespace PL.WPF
             {
                 return;
             }
-            BO.BUS bus = new BO.BUS { LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, TotalTrip = TotalKM };
+            BO.BUS bus = new BO.BUS { LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, TotalTrip = TotalKM, ckm = KMSoFar};
             try
             {
                 bl.UpdateBus(bus);

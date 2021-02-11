@@ -25,12 +25,12 @@ namespace PL.WPF
         int lastStation;
         int firstStation;
         int ID;
-        IBL bl;
+        IBL bl = BLFactory.GetBL(1);
         MainWindow Main;
-        public addLineWindow(IBL newbl,MainWindow main)
+        BO.Line ThisLine;
+        public addLineWindow(MainWindow main)
         {
-            InitializeComponent();
-            bl = newbl;
+            InitializeComponent();            
             Main = main;
             List<string> CBSource = new List<string>();
             CBSource.Add("north");
@@ -38,8 +38,30 @@ namespace PL.WPF
             CBSource.Add("south");
             areaCB.ItemsSource = CBSource;
         }
+        public addLineWindow(int ID, MainWindow main)
+        {
+            InitializeComponent();
+            Main = main;
 
-        private void lastStationTBO_TextChanged(object sender, TextChangedEventArgs e)
+            addButton.IsEnabled = false;
+            addButton.Opacity = 0;
+            UpdateButton.IsEnabled = true;
+            UpdateButton.Opacity = 1;
+
+            List<string> CBSource = new List<string>();
+            CBSource.Add("north");
+            CBSource.Add("center");
+            CBSource.Add("south");
+            areaCB.ItemsSource = CBSource;
+
+            ThisLine = bl.GetLine(ID);
+            IDTBO.IsEnabled = false;
+            firstStationTBO.Text = ThisLine.FirstStation.ToString();
+            lastStationTBO.Text = ThisLine.LastStation.ToString();
+            areaCB.SelectedItem = ThisLine.Area.ToString();
+
+        }
+            private void lastStationTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!int.TryParse(lastStationTBO.Text, out lastStation))
             {
@@ -115,6 +137,22 @@ namespace PL.WPF
                
             }
             else { MessageBox.Show("please fill the empty filds"); }
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            int temp;
+            if(int.TryParse(firstStationTBO.Text, out temp))
+            { 
+            ThisLine.FirstStation = temp;            
+            }
+            if (int.TryParse(lastStationTBO.Text, out temp))
+            {
+                ThisLine.LastStation = temp;
+            }
+            bl.UpdateLine(ThisLine);
+            Main.RefreshList(Main.LinesList);
+            this.Close();
         }
     }
 }
