@@ -42,7 +42,7 @@ namespace PL.WPF
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
-            addBusWindow win = new addBusWindow();
+            addBusWindow win = new addBusWindow(this);
             win.Show();
         }
 
@@ -50,6 +50,12 @@ namespace PL.WPF
         {
             RemoveBusesWindow win = new RemoveBusesWindow();
             win.Show();
+        }
+
+        private void ShowBusInfo(object sender, MouseEventArgs e)
+        {
+            BO.BUS Bus = BusesList.SelectedItem as BO.BUS;
+
         }
         #endregion
 

@@ -1,0 +1,13 @@
+﻿<Window x:Class="PL.WPF.ShowBusInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.WPF"
+        mc:Ignorable="d"
+        Title="ShowBusInfo" Height="250" Width="500">
+    <Grid>
+        <Button x:Name="UpdateBus" Content="Update" Click="Update" HorizontalAlignment="Left" Margin="393,165,0,0" VerticalAlignment="Top" Width="91" Height="45"/>
+
+    </Grid>
+</Window>
