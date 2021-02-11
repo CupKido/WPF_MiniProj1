@@ -198,6 +198,7 @@ namespace DS
         public static List<LineStation> ListLineStations;
         public static List<LineTrip> ListLineTrip;
         public static List<AdjacentStations> ListAdjacent;
+        public static int CurrentLineCode;
 
         static DataSource()
         {
@@ -207,6 +208,7 @@ namespace DS
         }
         static void clear()
         {
+            CurrentLineCode = 0;
             ListBuses = new List<BUS>() {
                 new BUS()
                 {
@@ -245,7 +247,8 @@ namespace DS
                     FirstStation = 1111,
                     ID = 36,
                     LastStation = 2222,
-                    Area = Areas.center
+                    Area = Areas.center,
+                    Code = ++CurrentLineCode
                 },
 
                     new Line()
@@ -253,7 +256,8 @@ namespace DS
                         FirstStation = 1112,
                         ID = 37,
                         LastStation = 2223,
-                        Area = Areas.center
+                        Area = Areas.center,
+                        Code = ++CurrentLineCode
                     },
 
                     new Line()
@@ -261,7 +265,8 @@ namespace DS
                         FirstStation = 1113,
                         ID = 38,
                         LastStation = 2224,
-                        Area = Areas.center
+                        Area = Areas.center,
+                        Code = ++CurrentLineCode
                     }
                 };
             ListTrips = new List<Trip>();

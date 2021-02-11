@@ -269,6 +269,7 @@ namespace DAL
             {
                 throw new BadLineIdException(line.ID, "line already exists"); 
             }
+            line.Code = ++DataSource.CurrentLineCode;
             DataSource.ListLines.Add(line.Clone());
         }
 
