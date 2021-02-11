@@ -23,7 +23,7 @@ namespace PL.WPF
         int temp = new int();
         IBL bl = BLFactory.GetBL(1);
         MainWindow Main;
-
+        BO.BUS ThisBus;
         //for add
         public addBusWindow(MainWindow main)
         {
@@ -50,16 +50,18 @@ namespace PL.WPF
             Main = main;
 
             //for showing current info
-            BO.BUS bus;
+            
             try
             {
-                bus = bl.GetBUS(LN);
-                licenseTBO.Text = bus.LicenseNum.ToString();
+                ThisBus = bl.GetBUS(LN);
+                licenseTBO.Text = ThisBus.LicenseNum.ToString();
                 licenseTBO.IsEnabled = false;
-                totalTripTBO.Text = bus.TotalTrip.ToString();
-                licensingDP.DisplayDate = bus.FromDate;
-                lastTreatmentDP.DisplayDate = bus.lastime;
-                kmFromTreatTBO.Text = bus.ckm.ToString();
+                totalTripTBO.Text = ThisBus.TotalTrip.ToString();
+                licensingDP.DisplayDate = ThisBus.FromDate;
+                licensingDP.SelectedDate = ThisBus.FromDate;
+                lastTreatmentDP.DisplayDate = ThisBus.lastime;
+                lastTreatmentDP.SelectedDate = ThisBus.lastime;
+                kmFromTreatTBO.Text = ThisBus.ckm.ToString();
             }
             catch
             {
@@ -131,8 +133,8 @@ namespace PL.WPF
 
         private void UpdateBus(object sender, RoutedEventArgs e)
         {
-            int LicenseNum = 0;
-            int TotalKM = 0;
+            int LicenseNum = ThisBus.LicenseNum;
+            double TotalKM = ThisBus.TotalTrip;
             bool flag = true;
             if (licensingDP.SelectedDate > DateTime.Now)
             {
@@ -144,7 +146,7 @@ namespace PL.WPF
                 MessageBox.Show("numbers only!");
                 flag = false;
             }
-            if (!int.TryParse(totalTripTBO.Text, out TotalKM))
+            if (!Double.TryParse(totalTripTBO.Text, out TotalKM))
             {
                 MessageBox.Show("numbers only!");
                 flag = false;
@@ -163,15 +165,17 @@ namespace PL.WPF
             {
                 return;
             }
-            BO.BUS bus = new BO.BUS { LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, ckm = TotalKM };
+            BO.BUS bus = new BO.BUS { LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, TotalTrip = TotalKM };
             try
             {
-                
+                bl.UpdateBus(bus);
             }
             catch
             {
-
+                MessageBox.Show("not found or somthing, idk");
             }
+            Main.RefreshList(Main.BusesList);
+            this.Close();
         }
     }
 }

@@ -17,12 +17,12 @@ namespace BL
         BO.Line GetLine(int ID);
         IEnumerable<BO.Line> GetAllLines();
         IEnumerable<BO.Line> GetLinesBy(Predicate<BO.Line> predicate);
-        void UpdateLine(BO.BUS bus);
+        void UpdateLine(BO.Line line);
         void AddStation(BO.Station station);
         BO.Station GetStaion(int ID);
         IEnumerable<BO.Station> GetAllStations();
         IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
-        void UpdateStation(BO.BUS bus);
+        void UpdateStation(BO.Station station);
 
     }
 }
