@@ -76,7 +76,7 @@ namespace PL.WPF
                 station.name = NameBO.Text.ToString();
                 try
                 {
-                    bl.AddStation(station);
+                    //bl.AddStation(station);
 
                     this.Close();
                 }

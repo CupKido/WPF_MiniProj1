@@ -14,7 +14,7 @@
         <TextBlock x:Name="LongitudeTBL" HorizontalAlignment="Left" Height="17" Margin="31,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="station longitude:"/>
         <TextBlock x:Name="LattitudeTBL" HorizontalAlignment="Left" Height="17" Margin="31,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="station lattitude:"/>
         <TextBox x:Name="LattitudeTBO" HorizontalAlignment="Left" Height="17" Margin="162,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="LattitudeTBO_TextChanged" />
-        <Button x:Name="AddButton" Content="Add station" HorizontalAlignment="Left" Height="36" Margin="162,174,0,0" VerticalAlignment="Top" Width="89" Click="AddButton_Click"/>
-        <TextBox x:Name="NameBO" HorizontalAlignment="Left" Height="17" Margin="162,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="NameTBO_TextChanged" />
+        <Button x:Name="AddButton" Content="Add station" HorizontalAlignment="Left" Height="36" Margin="162,174,0,0" VerticalAlignment="Top" Width="89" Click="addButton_Click"/>
+        <TextBox x:Name="NameBO" HorizontalAlignment="Left" Height="17" Margin="162,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169"/>
     </Grid>
 </Window>

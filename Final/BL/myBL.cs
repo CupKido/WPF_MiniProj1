@@ -84,7 +84,7 @@ namespace BL
 
         public IEnumerable<BO.BUS> GetAllBuses()
         {
-            List<DO.BUS> list = (List<DO.BUS>)myDal.GetAllBusesBy(x => x.LicenseNum != 0); 
+            List<DO.BUS> list = myDal.GetAllBuses().ToList(); 
             return from item in list
                    let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
                    orderby bus.LicenseNum
@@ -181,7 +181,7 @@ namespace BL
 
         public IEnumerable<BO.Line> GetAllLines()
         {
-            List<DO.Line> list = myDal.GetAllLines() as List<DO.Line>;
+            List<DO.Line> list = myDal.GetAllLines().ToList();
             //List<BO.Line> list1 = list.CopyPropertiesToNew(typeof(List<BO.Line>)) as List<BO.Line>;
             return from item in list
                    let line = item.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
