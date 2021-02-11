@@ -21,11 +21,11 @@ namespace PL.WPF
     public partial class addBusWindow : Window
     {
         int temp = new int();
-        IBL Bl;
-        public addBusWindow(IBL bl)
+        IBL bl = BLFactory.GetBL(1);
+        public addBusWindow()
         {
             InitializeComponent();
-            Bl = bl;
+            
         }
 
         private void licenseTBO_TextChanged(object sender, TextChangedEventArgs e)
@@ -76,7 +76,7 @@ namespace PL.WPF
             BO.BUS bus = new BO.BUS{ LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, ckm = TotalKM };
             try
             {
-                Bl.AddBus(bus);
+                bl.AddBus(bus);
                 this.Close();
 
             }

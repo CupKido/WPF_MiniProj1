@@ -102,8 +102,8 @@ namespace PL.WPF
                 try
                 {
                     bl.AddLine(line);
-                    
-                    Main.subjectsList.Items.Refresh();
+
+                    Main.RefreshList(Main.LinesList);
                     this.Close();
                 }
                 catch(BO.BadLineIdException ex)

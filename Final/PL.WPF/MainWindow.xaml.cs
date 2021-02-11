@@ -24,23 +24,46 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
+            BusesList.ItemsSource = bl.GetAllBuses();
+            RefreshList(BusesList);
+            this.Show();
         }
+        #region List Managment
         public void RefreshList(ListView list)
         {
             list.Items.Refresh();
         }
 
+        #endregion
+
+        #region Buses
+
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
-            addBusWindow win = new addBusWindow(bl);
+            addBusWindow win = new addBusWindow();
             win.Show();
         }
 
-        private void addLine_Click(object sender, RoutedEventArgs e)
+        private void RemoveBus_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveBusesWindow win = new RemoveBusesWindow();
+            win.Show();
+        }
+        #endregion
+
+        #region Lines
+        private void AddLine_Click(object sender, RoutedEventArgs e)
         {
             addLineWindow win = new addLineWindow(bl, this);
             win.Show();
 
         }
+        private void RemoveLine_Click(object sender, RoutedEventArgs e)
+        {
+            addLineWindow win = new addLineWindow(bl, this);
+            win.Show();
+
+        }
+        #endregion
     }
 }
