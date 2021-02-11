@@ -69,11 +69,11 @@ namespace PL.WPF
         {
             if (!((IDTBO.Text == null) || (LongitudeTBO.Text == null) || (LattitudeTBO.Text == null)))
             {
-                BO.station station = new BO.station();
+                BO.Station station = new BO.Station();
                 station.ID = ID;
-                station.longitude = Longitude;
-                station.latitude = Lattitude;
-                station.name = NameBO.Text.ToString();
+                station.Longitude = Longitude;
+                station.Latitude = Lattitude;
+                station.Name = NameBO.Text.ToString();
                 try
                 {
                     //bl.AddStation(station);
