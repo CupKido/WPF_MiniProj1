@@ -93,8 +93,35 @@ namespace BL
 
         public IEnumerable<BUS> GetBusesBy(Predicate<BUS> predicate)
         {
-            throw new NotSupportedException();
+            List<DO.BUS> list;
+            try
+            {
+                list = (List<DO.BUS>)myDal.GetAllLines();
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BadLineIdException(0, "no lines exist!", ex);
+            }
+            return from item in list
+                   let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
+                   orderby bus.LicenseNum
+                   where predicate(bus)
+                   select bus;
         }
+
+        public void UpdateBus(BUS bus)
+        {
+            try
+            {
+                myDal.UpdateBus(bus.LicenseNum, bus.CopyPropertiesToNew(typeof(DO.BUS)) as DO.BUS);
+            }
+            catch (DO.BadBusIdException ex)
+            {
+
+                throw new BadBusIdException(bus.LicenseNum, ex.Message, ex);
+            }
+        }
+
         #endregion
 
         #region bus on trip
@@ -141,6 +168,18 @@ namespace BL
                    let BOT = (BO.BusOnTrip)item.CopyPropertiesToNew(typeof(BO.BusOnTrip))
                    orderby BOT.ID
                    select BOT;
+        }
+
+        public void UpdateBusOnTrip(BusOnTrip bot)
+        {
+            try
+            {
+                myDal.UpdateBusOnTrip(bot.LicenseNum, bot.CopyPropertiesToNew(typeof(DO.BusOnTrip)) as DO.BusOnTrip);
+            }
+            catch (DO.BadBusIdException ex)
+            {
+                throw new BadBusIdException(bot.LicenseNum, ex.Message, ex);
+            }
         }
 
         #endregion
@@ -200,9 +239,20 @@ namespace BL
             {
                 throw new NotImplementedException();
             }
-            return (BO.Line)foundLine.CopyPropertiesToNew(typeof(BO.Line));
+            return (BO.Line)foundLine.CopyPropertiesToNew(typeof(BO.Line));   
+        }
 
-            
+        public void UpdateLine(Line line)
+        {
+            try
+            {
+                myDal.UpdateLine(line.ID, line.CopyPropertiesToNew(typeof(DO.Line)) as DO.Line);
+            }
+            catch (DO.BadBusIdException ex)
+            {
+
+                throw new BadLineIdException(line.ID, ex.Message, ex);
+            }
         }
 
         public IEnumerable<Line> GetLinesBy(Predicate<Line> predicate)
@@ -268,6 +318,18 @@ namespace BL
                    select Tuser;
         }
 
+        public void UpdateUser(User user)
+        {
+            try
+            {
+                myDal.UpdateUser(user.UserName, user.CopyPropertiesToNew(typeof(DO.User)) as DO.User);
+            }
+            catch (DO.BadBusIdException ex)
+            {
+
+                throw new BadUserNameException(user.UserName, ex.Message, ex);
+            }
+        }
 
         #endregion
 
@@ -326,6 +388,18 @@ namespace BL
                    select station;
         }
 
+        public void UpdateStation(Station station)
+        {
+            try
+            {
+                myDal.UpdateStation(station.ID, station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station);
+            }
+            catch (DO.BadBusIdException ex)
+            {
+
+                throw new BadBusIdException(station.ID, ex.Message, ex);
+            }
+        }
         #endregion
 
     }
