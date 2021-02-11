@@ -27,6 +27,11 @@ namespace PL.WPF
             InitializeComponent();
             
         }
+        public addBusWindow(BO.BUS bus)
+        {
+            InitializeComponent();
+
+        }
 
         private void licenseTBO_TextChanged(object sender, TextChangedEventArgs e)
         {

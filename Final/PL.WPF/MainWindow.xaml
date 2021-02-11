@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
+
+        <TextBlock Text="Moovit V2" FontSize="24" HorizontalAlignment="Center" Width="118" Height="40"  Margin="354,10,321.6,370"/>
+
         <TabControl>
             <TabItem Header="Buses" Height="50" Margin="32,50,-32,-50.4" FontSize="24">
                 <Grid>
@@ -20,24 +24,40 @@
                     </ListView>
                     <Button Name="AddBus" Content="Add Bus" FontSize="20" Width="100" Margin="663,78,25,241.2" Click="AddBus_Click" />
                     <Button Name="RemoveBus" Content="Remove Bus" FontSize="18" Margin="663,127,25,192.2" Click="RemoveBus_Click" />
+                    <Button Name="UpdateBus" Content="Update Bus" FontSize="18" Margin="663,176,25,143.2" Click="UpdateBus_Click" />
                 </Grid>
-
-
             </TabItem>
-            <TabItem Header="Lines" Height="50" Margin="32,50,-32.4,-50.4" FontSize="24"/>
-            <Grid>
-                <ListView x:Name="LinesList" HorizontalAlignment="Left" Height="278" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" >
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Line Number" Width="auto" DisplayMemberBinding="{Binding ID}" />
-                            <GridViewColumn/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-                <Button Name="AddLine" Content="Add Line" FontSize="20" Width="100" Margin="663,78,25,241.2" Click="AddLine_Click" />
-                <Button Name="RemoveLine" Content="remove Line" FontSize="18" Margin="663,127,25,192.2" Click="RemoveLine_Click" />
-            </Grid>
-            <TabItem Header="Stations" Height="50" Margin="33.4,50,-32.6,-50.4" FontSize="24"/>
+
+            <TabItem Header="Lines" Height="50" Margin="32,50,-32.4,-50.4" FontSize="24">
+                <Grid>
+                    <ListView x:Name="LinesList" HorizontalAlignment="Left" Height="278" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Line Number" Width="auto" DisplayMemberBinding="{Binding ID}" />
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Name="AddLine" Content="Add Line" FontSize="20" Width="100" Margin="663,78,25,241.2" Click="AddLine_Click" />
+                    <Button Name="RemoveLine" Content="remove Line" FontSize="18" Width="100" Margin="663,127,25,192.2" Click="RemoveLine_Click" />
+                    <Button Name="UpdateUpdate" Content="Update Line" FontSize="18" Margin="663,176,25,143.2" Click="UpdateLine_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stations" Height="50" Margin="33.4,50,-32.6,-50.4" FontSize="24">
+                <Grid>
+                    <ListView x:Name="StationsList" HorizontalAlignment="Left" Height="278" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Station Number" Width="auto" DisplayMemberBinding="{Binding ID}" />
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Name="AddStation" Content="Add Station" FontSize="20" Width="100" Margin="663,78,25,241.2" Click="AddLine_Click" />
+                    <Button Name="RemoveStation" Content="Remove Station" FontSize="18" Width="100" Margin="663,127,25,192.2" Click="RemoveLine_Click" />
+                </Grid>
+            </TabItem>
+
         </TabControl>
     </Grid>
 </Window>

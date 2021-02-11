@@ -26,6 +26,8 @@ namespace PL.WPF
             InitializeComponent();
             BusesList.ItemsSource = bl.GetAllBuses();
             RefreshList(BusesList);
+            LinesList.ItemsSource = bl.GetAllLines();
+            RefreshList(LinesList);
             this.Show();
         }
         #region List Managment
