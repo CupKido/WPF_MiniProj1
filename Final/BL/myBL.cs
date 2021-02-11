@@ -181,7 +181,7 @@ namespace BL
 
         public IEnumerable<BO.Line> GetAllLines()
         {
-            List<DO.Line> list = myDal.GetAllLines() as List<DO.Line>;
+            List<DO.Line> list = myDal.GetAllLines().ToList();
             //List<BO.Line> list1 = list.CopyPropertiesToNew(typeof(List<BO.Line>)) as List<BO.Line>;
             return from item in list
                    let line = item.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line

@@ -54,7 +54,13 @@ namespace PL.WPF
 
         private void ShowBusInfo(object sender, MouseEventArgs e)
         {
+            
             BO.BUS Bus = BusesList.SelectedItem as BO.BUS;
+            ShowBusInfo win = new ShowBusInfo(Bus, this);
+           
+                win.Show();
+               
+            
 
         }
         #endregion
