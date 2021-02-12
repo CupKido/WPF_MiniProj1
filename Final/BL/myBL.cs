@@ -293,30 +293,46 @@ namespace BL
             //}
             //else throw " ";
         }
-        public void RemoveUser(BO.User user)
-        {
-            //if (Auser.Admin)
-            //{
-                try
-                {
-                    myDal.DeleteUser(user.UserName);
-                }
-                catch (DO.BadUserNameException ex)
-                {
+        
 
-                    throw new BO.BadUserNameException(ex.ID, ex.Message, ex);
-            }
-            //}
-            //else throw "";
-        }
-
-        public IEnumerable<BO.User> GetAllUseres()
+        public IEnumerable<BO.User> GetAllUsers()
         {
             List<DO.User> list = (List<DO.User>)myDal.GetAllUsers();
             return from item in list
                    let Tuser = (BO.User)item.CopyPropertiesToNew(typeof(BO.User))
                    orderby Tuser.UserName
                    select Tuser;
+        }
+        public User GetUser(User ThatUser)
+        {
+            DO.User FoundUser;
+            try
+            {
+                FoundUser = myDal.GetUser(ThatUser.UserName);
+            }
+            catch( Exception ex)
+            {
+                throw new Exception(ex.Message + "\n" + ThatUser.UserName);
+            }
+            if(ThatUser.Password != FoundUser.Password)
+            {
+                throw new Exception("Incorrect UserName or Password");
+            }
+            return (BO.User)FoundUser.CopyPropertiesToNew(typeof(BO.User));
+        }
+
+        public User GetUser(string UserName)
+        {
+            DO.User FoundUser;
+            try
+            {
+                FoundUser = myDal.GetUser(UserName);
+            }
+            catch
+            {
+                throw new Exception("User not found in System");
+            }
+            return (BO.User)FoundUser.CopyPropertiesToNew(typeof(BO.User));
         }
 
         public void UpdateUser(User user)
@@ -332,6 +348,28 @@ namespace BL
             }
         }
 
+        public BO.User RemoveUser(BO.User user)
+        {
+            //if (Auser.Admin)
+            //{
+            try
+            {
+                return myDal.DeleteUser(user.UserName).CopyPropertiesToNew(typeof(BO.User)) as BO.User;
+            }
+            catch (DO.BadUserNameException ex)
+            {
+
+                throw new BO.BadUserNameException(ex.ID, ex.Message, ex);
+            }
+            //}
+            //else throw "";
+        }
+
+
+
+        
+
+        
         #endregion
 
         #region station
@@ -498,6 +536,11 @@ namespace BL
         }
 
         #endregion
+
+       
+        
+
+        
 
     }
 }

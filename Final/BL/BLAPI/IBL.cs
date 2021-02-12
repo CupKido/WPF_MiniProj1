@@ -36,7 +36,23 @@ namespace BL
         void UpdateStation(BO.Station station);
         BO.Station RemoveStation(int ID);
         #endregion
-        
+
+        #region Users
+
+        void AddUser(BO.User user);
+
+        IEnumerable<BO.User> GetAllUsers();
+
+        BO.User GetUser(BO.User ThatUser);
+
+        BO.User GetUser(string UserName);
+
+        void UpdateUser(BO.User user);
+
+        BO.User RemoveUser(BO.User user);
+
+        #endregion
+
         #region LineStation
         void AddLineStation(LineStation station);
 
