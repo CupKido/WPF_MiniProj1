@@ -24,16 +24,75 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
-            BusesList.ItemsSource = bl.GetAllBuses();
-            RefreshList(BusesList);
-            LinesList.ItemsSource = bl.GetAllLines();
-            RefreshList(LinesList);
+
+            StartDataUpdate(BusesList);
+            StartDataUpdate(LinesList);
+            StartDataUpdate(StationsList);
+
             this.Show();
         }
         #region List Managment
+
+        public void StartDataUpdate(ListView list)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    if (list == BusesList)
+                    {
+                        list.ItemsSource = bl.GetAllBuses();
+                    }
+                    if (list == LinesList)
+                    {
+                        list.ItemsSource = bl.GetAllLines();
+                    }
+                    if (list == StationsList)
+                    {
+                        list.ItemsSource = bl.GetAllStations();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    
+                    list.ItemsSource = null;
+
+                }
+
+
+                list.Items.Refresh();
+            });
+
+        }
         public void RefreshList(ListView list)
         {
-            list.Items.Refresh();
+            this.Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    if (list == BusesList)
+                    {
+                        list.ItemsSource = bl.GetAllBuses();
+                    }
+                    if (list == LinesList)
+                    {
+                        list.ItemsSource = bl.GetAllLines();
+                    }
+                    if (list == StationsList)
+                    {
+                        list.ItemsSource = bl.GetAllStations();
+                    }
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.ItemsSource = null;
+
+                }
+                
+                                
+                list.Items.Refresh();
+            });
+            
         }
 
         #endregion
@@ -48,19 +107,19 @@ namespace PL.WPF
 
         private void RemoveBus_Click(object sender, RoutedEventArgs e)
         {
-            RemoveBusesWindow win = new RemoveBusesWindow();
+            RemoveObject win = new RemoveObject("Bus", this);
             win.Show();
         }
 
         private void ShowBusInfo(object sender, MouseEventArgs e)
         {
-            
+
             BO.BUS Bus = BusesList.SelectedItem as BO.BUS;
-            ShowBusInfo win = new ShowBusInfo(Bus, this);
-           
-                win.Show();
-               
-            
+            ShowInfo win = new ShowInfo(Bus, this);
+
+            win.Show();
+
+
 
         }
         #endregion
@@ -68,26 +127,45 @@ namespace PL.WPF
         #region Lines
         private void AddLine_Click(object sender, RoutedEventArgs e)
         {
-            addLineWindow win = new addLineWindow(bl, this);
+            addLineWindow win = new addLineWindow(this);
             win.Show();
 
         }
         private void RemoveLine_Click(object sender, RoutedEventArgs e)
         {
-            addLineWindow win = new addLineWindow(bl, this);
+            RemoveObject win = new RemoveObject("Line",this);
             win.Show();
 
         }
+        private void ShowLineInfo(object sender, MouseEventArgs e)
+        {
+
+            BO.Line line = LinesList.SelectedItem as BO.Line;
+            ShowInfo win = new ShowInfo(line, this);
+            win.Show();
+        }
         #endregion
 
-        private void UpdateBus_Click(object sender, RoutedEventArgs e)
+        #region Stations
+        private void AddStation_Click(object sender, RoutedEventArgs e)
         {
-
+            AddStationWindow win = new AddStationWindow(this);
+            win.Show();
         }
 
-        private void UpdateLine_Click(object sender, RoutedEventArgs e)
+        private void RemoveStation_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveObject win = new RemoveObject("Station", this);
+            win.Show();
+        }
+
+        private void ShowStationInfo(object sender, MouseEventArgs e)
         {
 
+            BO.Station stat = StationsList.SelectedItem as BO.Station;
+            ShowInfo win = new ShowInfo(stat, this);
+            win.Show();
         }
+        #endregion
     }
 }

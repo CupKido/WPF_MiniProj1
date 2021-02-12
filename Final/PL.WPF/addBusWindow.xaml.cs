@@ -29,11 +29,17 @@ namespace PL.WPF
         {
             InitializeComponent();
 
+            //for Refresh
+            Main = main;
+
             //transition to add
             UpdateButton.IsEnabled = false;
             UpdateButton.Opacity = 0;
             addButton.IsEnabled = true;
             addButton.Opacity = 1;
+            lastTreatmentCB.IsEnabled = true;
+            lastTreatmentCB.Opacity = 1;
+            lastTreatmentCB.IsChecked = true;
         }
         //for update
         public addBusWindow(int LN, MainWindow main)
@@ -45,6 +51,9 @@ namespace PL.WPF
             addButton.Opacity = 0;
             UpdateButton.IsEnabled = true;
             UpdateButton.Opacity = 1;
+            lastTreatmentCB.IsEnabled = false;
+            lastTreatmentCB.Opacity = 0;
+            lastTreatmentCB.IsChecked = true;
 
             //for refresh after finish
             Main = main;
@@ -62,6 +71,7 @@ namespace PL.WPF
                 lastTreatmentDP.DisplayDate = ThisBus.lastime;
                 lastTreatmentDP.SelectedDate = ThisBus.lastime;
                 kmFromTreatTBO.Text = ThisBus.ckm.ToString();
+                kmFromTreatTBO.IsEnabled = false;
             }
             catch
             {
@@ -70,6 +80,15 @@ namespace PL.WPF
 
             
             this.Show();
+        }
+
+        private void LastTreat_Checked(object sender, RoutedEventArgs e)
+        {
+            lastTreatmentDP.IsEnabled = true;
+        }
+        private void LastTreat_unChecked(object sender, RoutedEventArgs e)
+        {
+            lastTreatmentDP.IsEnabled = false;
         }
 
         private void licenseTBO_TextChanged(object sender, TextChangedEventArgs e)
@@ -86,8 +105,17 @@ namespace PL.WPF
         private void AddBus(object sender, EventArgs e)
         {
             int LicenseNum = 0;
-            int TotalKM = 0;
+            double TotalKM = 0;
+            double KMSinceRepair = 0;
             bool flag = true;
+            DateTime FirstTime = (DateTime)licensingDP.SelectedDate;
+            DateTime LastTime = FirstTime;
+            if ((bool)lastTreatmentCB.IsChecked)
+            {
+                LastTime = (DateTime)lastTreatmentDP.SelectedDate;
+            }
+            
+            
             if(licensingDP.SelectedDate > DateTime.Now)
             {
                 MessageBox.Show("Can't add bus\nplease select past or present time");
@@ -98,17 +126,27 @@ namespace PL.WPF
                 MessageBox.Show("numbers only!");
                 flag = false;
             }
-            if (!int.TryParse(totalTripTBO.Text, out TotalKM))
+            if (!Double.TryParse(totalTripTBO.Text, out TotalKM))
             {
                 MessageBox.Show("numbers only!");
                 flag = false;
             }
-            if(lastTreatmentDP.SelectedDate > DateTime.Now)
+            if (!Double.TryParse(kmFromTreatTBO.Text, out KMSinceRepair))
+            {
+                MessageBox.Show("numbers only!");
+                flag = false;
+            }
+            if(flag && (KMSinceRepair > TotalKM))
+            {
+                MessageBox.Show("KM since last repair cannot be more than total!");
+                flag = false;
+            }
+            if (LastTime > DateTime.Now)
             {
                 MessageBox.Show("Can't add bus\nplease select past or present time");
                 flag = false;
             }
-            if (lastTreatmentDP.SelectedDate < licensingDP.SelectedDate)
+            if (LastTime < FirstTime)
             {
                 MessageBox.Show("last treatment cannot be before licensing");
                 flag = false;
@@ -117,24 +155,27 @@ namespace PL.WPF
             {
                 return;
             }
-            BO.BUS bus = new BO.BUS{ LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, ckm = TotalKM };
+            
+            BO.BUS bus = new BO.BUS{ LicenseNum = LicenseNum, FromDate = FirstTime, lastime = LastTime, TotalTrip = TotalKM, ckm = KMSinceRepair};
             try
             {
                 bl.AddBus(bus);
                 this.Close();
-
+                Main.RefreshList(Main.BusesList);
             }
-            catch
+            catch (BO.BadBusIdException ex)
             {
-                MessageBox.Show("not added");//ye   
+                
+                MessageBox.Show(ex.Message + " " + ex.ID);//ye   
             }
-
+            
         }
 
         private void UpdateBus(object sender, RoutedEventArgs e)
         {
             int LicenseNum = ThisBus.LicenseNum;
             double TotalKM = ThisBus.TotalTrip;
+            double KMSoFar = ThisBus.ckm;
             bool flag = true;
             if (licensingDP.SelectedDate > DateTime.Now)
             {
@@ -165,7 +206,7 @@ namespace PL.WPF
             {
                 return;
             }
-            BO.BUS bus = new BO.BUS { LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, TotalTrip = TotalKM };
+            BO.BUS bus = new BO.BUS { LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, TotalTrip = TotalKM, ckm = KMSoFar};
             try
             {
                 bl.UpdateBus(bus);

@@ -163,8 +163,8 @@ namespace DAL
                 // that way is better asuming we dont want to copy everything:
                 stat.Name = station.Name;
                 //optional: (i think we shouldnt allow it...) 
-                stat.latitude = station.latitude;
-                stat.longitude = station.longitude;
+                stat.Latitude = station.Latitude;
+                stat.Longitude = station.Longitude;
                 
             }
             else {
@@ -259,7 +259,7 @@ namespace DAL
                 DataSource.ListBuses.Remove(temp);
                 return temp.Clone();
             }
-            throw new BadBusIdException(LicenseNum, "Bus isn't exist");
+            throw new BadBusIdException(LicenseNum, "Bus Doesn't exist");
             
         }
         #endregion
@@ -325,7 +325,7 @@ namespace DAL
             {
                 Lin.Area = line.Area;
                 Lin.LastStation = line.LastStation;
-                Lin.FirstStation = line.LastStation;
+                Lin.FirstStation = line.FirstStation;
                 Lin.ID = line.ID;
             }
             else throw new BadLineIdException(ID, "Line can not be found");

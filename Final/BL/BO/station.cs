@@ -8,7 +8,7 @@ namespace BO
 {
     public class Station
     {
-        public int ID { get; set; }
+        public int Code { get; set; } //Key
 
         public string Name { get; set; }
 
