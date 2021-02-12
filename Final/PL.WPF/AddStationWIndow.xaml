@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="add station" Height="250" Width="400">
+        Title="add station" Height="250" Width="450">
     <Grid>
         <TextBlock x:Name="IDTBL" HorizontalAlignment="Left" Height="17" Margin="31,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="station code:"/>
         <TextBox Name="CodeTBO" HorizontalAlignment="Left" Height="17" Margin="162,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="IDTBO_TextChanged" />

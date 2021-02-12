@@ -5,25 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="ShowBusInfo" Height="250" Width="500">
+        Title="ShowBusInfo" Height="640" Width="500">
     <Grid>
-        <Button x:Name="RemoveObj" Content="Remove" Click="Remove_Click" HorizontalAlignment="Left" Margin="297,165,0,0" VerticalAlignment="Top" Width="91" Height="45"/>
-        <Button x:Name="UpdateObj" Content="Update" Click="Update_Click" HorizontalAlignment="Left" Margin="393,165,0,0" VerticalAlignment="Top" Width="91" Height="45"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="59.2"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="RemoveObj" FontSize="9" FontWeight="Bold" Content="Remove" Click="Remove_Click" HorizontalAlignment="Left" Margin="298,4.8,0,0" VerticalAlignment="Top" Width="90" Height="45" Grid.Row="1"/>
+        <Button x:Name="UpdateObj" FontSize="9" FontWeight="Bold" Content="Update" Click="Update_Click" HorizontalAlignment="Left" Margin="393,4.8,0,0" VerticalAlignment="Top" Width="91" Height="45" Grid.Row="1"/>
         <TextBlock x:Name="number1pre" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
         <TextBlock x:Name="number1data" HorizontalAlignment="Left" Margin="108,10,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="76"/>
         <TextBlock x:Name="number2pre" HorizontalAlignment="Left" Margin="10,42,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <TextBlock x:Name="number2data" HorizontalAlignment="Left" Margin="108,42,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="auto"/>
+        <TextBlock x:Name="number2data" HorizontalAlignment="Left" Margin="108,42,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="76"/>
         <TextBlock x:Name="number3pre" HorizontalAlignment="Left" Margin="10,74,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <TextBlock x:Name="number3data" HorizontalAlignment="Left" Margin="108,74,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="auto"/>
+        <TextBlock x:Name="number3data" HorizontalAlignment="Left" Margin="108,74,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="76"/>
         <TextBlock x:Name="number4pre" HorizontalAlignment="Left" Margin="10,106,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <TextBlock x:Name="number4data" HorizontalAlignment="Left" Margin="108,106,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="auto"/>
-        <TextBlock x:Name="number5pre" HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <TextBlock x:Name="number5data" HorizontalAlignment="Left" Margin="108,138,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="auto"/>
+        <TextBlock x:Name="number4data" HorizontalAlignment="Left" Margin="108,106,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="76"/>
+        <TextBlock x:Name="number5pre" HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93" Grid.RowSpan="2"/>
+        <TextBlock x:Name="number5data" HorizontalAlignment="Left" Margin="108,138,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="76"/>
         <TextBlock x:Name="number6pre" HorizontalAlignment="Left" Margin="241,10,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <TextBlock x:Name="number6data" HorizontalAlignment="Left" Margin="339,10,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="auto"/>
+        <TextBlock x:Name="number6data" HorizontalAlignment="Left" Margin="339,10,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
         <TextBlock x:Name="number7pre" HorizontalAlignment="Left" Margin="241,42,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <TextBlock x:Name="number7data" HorizontalAlignment="Left" Margin="339,42,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="auto"/>
+        <TextBlock x:Name="number7data" HorizontalAlignment="Left" Margin="339,42,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
         <TextBlock x:Name="number8pre" HorizontalAlignment="Left" Margin="241,74,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <TextBlock x:Name="number8data" HorizontalAlignment="Left" Margin="339,69,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="auto"/>
+        <TextBlock x:Name="number8data" HorizontalAlignment="Left" Margin="339,69,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
+        <ListView x:Name="LineStationView" HorizontalAlignment="Left" Height="371" Margin="10,170,0,0" VerticalAlignment="Top" Width="474">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Code" Width="50" DisplayMemberBinding="{Binding Code}" />
+                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Longitude" Width="100" DisplayMemberBinding="{Binding Longitude}"/>
+                    <GridViewColumn Header="Latitude" Width="100" DisplayMemberBinding="{Binding Latitude}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="RemoveStationB" FontSize="9" FontWeight="Bold" Content="Remove line station" HorizontalAlignment="Left" Margin="202,4.8,0,0" VerticalAlignment="Top" Width="91" Height="45" Grid.Row="1" Click="RemoveStationB_Click"/>
+        <Button x:Name="UpdateStationB" FontSize="9" FontWeight="Bold" Content="Update line station" HorizontalAlignment="Left" Margin="106,4.8,0,0" VerticalAlignment="Top" Width="91" Height="45" Grid.Row="1" Click="UpdateStationB_Click"/>
+        <Button x:Name="AddStationB" FontSize="9" FontWeight="Bold" Content="Add line station" HorizontalAlignment="Left" Margin="10,4.8,0,0" VerticalAlignment="Top" Width="91" Height="45" Grid.Row="1" Click="AddStationB_Click"/>
     </Grid>
 </Window>

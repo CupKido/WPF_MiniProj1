@@ -75,7 +75,7 @@ namespace DLAPI
         void UpdateLineStation(LineStation station);
 
 
-        LineStation DeleteStationLine(int Code, int line);
+        LineStation DeleteLineStation(int Code, int line);
         
         #endregion
     }

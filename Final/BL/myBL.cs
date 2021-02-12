@@ -414,9 +414,88 @@ namespace BL
             }
         }
 
-        
+        #endregion
 
-        
+        #region LineStation
+
+        public void AddLineStation(LineStation station)
+        {
+            try
+            {
+                myDal.AddLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+            }
+        }
+
+        public IEnumerable<LineStation> GetAllLineStations()
+        {
+            List<DO.LineStation> list = myDal.GetAllLineStations().ToList();
+            return from item in list
+                   let station = item.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
+                   orderby station.Station
+                   select station;
+        }
+
+        public IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> perdicate)
+        {
+            List<DO.LineStation> list;
+            try
+            {
+                list = (List<DO.LineStation>)myDal.GetAllLineStations();
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return from item in list
+                   let station = item.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
+                   orderby station.Station
+                   where perdicate(station)
+                   select station;
+        }
+
+        public LineStation GetLineStation(int Code, int line)
+        {
+            DO.LineStation foundStation;
+            try
+            {
+                foundStation = myDal.GetLineStation(Code, line);
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            return foundStation.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
+        }
+
+        public void UpdateLineStation(LineStation station)
+        {
+            try
+            {
+                myDal.UpdateLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
+            }
+            catch (DO.BadBusIdException ex)
+            {
+
+                throw new BadBusIdException(station.Station, ex.Message, ex);
+            }
+        }
+
+        public LineStation DeleteLineStation(int Code, int line)
+        {
+            try
+            {
+                return myDal.DeleteLineStation(Code ,line).CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
+            }
+            catch (DO.BadStationIdException ex)
+            {
+
+                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+            }
+        }
 
         #endregion
 
