@@ -198,6 +198,7 @@ namespace PL.WPF
         private void RemoveStationB_Click(object sender, RoutedEventArgs e)
         {
             bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code,(ThisObj as BO.Line).ID);
+            
         }
 
         private void UpdateStationB_Click(object sender, RoutedEventArgs e)
