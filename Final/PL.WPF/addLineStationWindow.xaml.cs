@@ -39,8 +39,9 @@ namespace PL.WPF
             LineIDTBO.Text = station.LineID.ToString();
             LineIDTBO.IsEnabled = false;
         }
-        public addLineStationWindow()
+        public addLineStationWindow(ShowInfo Si)
         {
+            SI = Si;
             InitializeComponent();
             UpdateButton.Opacity = 0;
             UpdateButton.IsEnabled = false;
@@ -88,44 +89,43 @@ namespace PL.WPF
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            if (bl.GetStaion(StationId)!= null)
+            try
             {
-                try
-                {
-                    bl.AddLineStation(new BO.LineStation()
-                    {
-                        LineID = LineId,
-                        LineStationIndex = StationIndex,
-                        NextStation = NextStation,
-                        PrevStation = PrevStation,
-                        Station = StationId
-                    });
-                }
-                catch (BO.BadStationIdException ex)
-                {
-                    MessageBox.Show("ERROR: " + ex.Message);
-                }
+
+                bl.GetStation(StationId);
+                bl.AddLineStation(NewLineStation());
+                SI.AddStation(bl.GetStation(StationId), NewLineStation());
             }
+            catch (BO.BadStationIdException ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
+
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                bl.AddLineStation(new BO.LineStation()
-                {
-                    LineID = LineId,
-                    LineStationIndex = StationIndex,
-                    NextStation = NextStation,
-                    PrevStation = PrevStation,
-                    Station = StationId
-                });
+              bl.UpdateLineStation(NewLineStation());
+                SI.UpdateStation(NewLineStation());
 
             }
             catch (BO.BadStationIdException ex)
             {
                 MessageBox.Show("ERROR: " + ex.Message);
             }
+        }
+
+        private BO.LineStation NewLineStation()
+        {
+            BO.LineStation NewLineStation = new BO.LineStation();
+            NewLineStation.LineID = LineId;
+            NewLineStation.LineStationIndex = StationIndex;
+            NewLineStation.NextStation = NextStation;
+            NewLineStation.PrevStation = PrevStation;
+            NewLineStation.Station = StationId;
+            return NewLineStation;
         }
 
     }

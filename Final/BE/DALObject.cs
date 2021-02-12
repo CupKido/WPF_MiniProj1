@@ -577,11 +577,11 @@ namespace DAL
             DO.LineStation stat = DataSource.ListLineStations.FirstOrDefault(pe => pe.Station == station.Station && pe.LineID == station.LineID);
             if (stat != null)
             {
-                
+                DataSource.ListLineStations.Remove(stat);
                 stat.NextStation = station.NextStation;
                 stat.PrevStation = station.PrevStation;
                 stat.LineStationIndex = station.LineStationIndex;
-
+                DataSource.ListLineStations.Add(stat);
             }
             else
             {

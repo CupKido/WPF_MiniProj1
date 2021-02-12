@@ -51,7 +51,7 @@ namespace PL.WPF
             UpdateButton.Opacity = 1;
             try
             {
-                ThisStation = bl.GetStaion(Code);
+                ThisStation = bl.GetStation(Code);
             }
             catch (Exception ex)
             {
