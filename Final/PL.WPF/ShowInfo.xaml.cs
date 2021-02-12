@@ -22,6 +22,7 @@ namespace PL.WPF
     {
         readonly int defulth = 270;
         MainWindow Main;
+        List<BO.LineStation> lineStations;
         object ThisObj;
         Type ThisType;
         IBL bl = BLFactory.GetBL(1);
@@ -62,7 +63,7 @@ namespace PL.WPF
 
             ClearNums();
             this.Height = 640;
-            List<BO.LineStation> lineStations = (from station in bl.GetAllLineStations()
+            lineStations = (from station in bl.GetAllLineStations()
                                                 where station.LineID == line.ID 
                                                 select station).ToList();
             stations = (from station in lineStations
@@ -213,12 +214,27 @@ namespace PL.WPF
 
         private void UpdateStationB_Click(object sender, RoutedEventArgs e)
         {
-
+            BO.LineStation station = null;
+            try
+            {
+                station = lineStations.Find(p => p.Station == (LineStationView.SelectedItem as BO.Station).Code);
+                new addLineStationWindow(station).Show();
+            }
+            catch
+            {
+                MessageBox.Show("ERROR");
+            }
+            
         }
 
         private void AddStationB_Click(object sender, RoutedEventArgs e)
         {
+            new addLineStationWindow().Show();
+        }
 
+        public void AddStation(BO.Station st)
+        {
+            stations.Add(st);
         }
     }
 }
