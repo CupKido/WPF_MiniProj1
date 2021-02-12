@@ -529,5 +529,78 @@ namespace DAL
 
         #endregion
 
+        #region LineStation
+        public void AddLineStation(LineStation station)
+        {
+
+            if (DataSource.ListLineStations.FirstOrDefault(p => p.LineID == station.LineID && p.Station == station.Station) != null)
+            {
+                StationEx = new BadStationIdException(station.Station, "station is already exist on this line");
+                throw StationEx;
+            }
+            DataSource.ListLineStations.Add(station.Clone());
+        }
+
+        public IEnumerable<LineStation> GetAllLineStations()
+        {
+            if (DataSource.ListLineStations.Count == 0)
+            {
+                throw new BadStationIdException(0, "No line Stations Exists");
+            }
+            return from station in DataSource.ListLineStations
+                   select station.Clone();
+        }
+
+        public IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> perdicate)
+        {
+            if (perdicate != null)
+            {
+                return from station in DataSource.ListLineStations
+                       where perdicate(station)
+                       select station.Clone();
+            }
+            return GetAllLineStations();
+        }
+
+        public LineStation GetLineStation(int Code, int line)
+        {
+            LineStation station = DataSource.ListLineStations.Find(p => p.Station == Code && p.LineID == line);
+            if (station != null)
+            {
+                return station.Clone();
+            }
+            throw new BadStationIdException(Code, "station does not exist on this line"); ;
+        }
+
+        public void UpdateLineStation(LineStation station)
+        {
+            DO.LineStation stat = DataSource.ListLineStations.FirstOrDefault(pe => pe.Station == station.Station && pe.LineID == station.LineID);
+            if (stat != null)
+            {
+                
+                stat.NextStation = station.NextStation;
+                stat.PrevStation = station.PrevStation;
+                stat.LineStationIndex = station.LineStationIndex;
+
+            }
+            else
+            {
+                throw new BadStationIdException(station.Station, "Station cant be found");
+            }
+
+        }
+
+        public LineStation DeleteStationLine(int Code , int line)
+        {
+            DO.LineStation temp = DataSource.ListLineStations.FirstOrDefault(p => p.Station == Code && p.LineID == line);
+            if (temp != null)
+            {
+                DataSource.ListLineStations.Remove(temp);
+                return temp.Clone();
+            }
+            throw new BadStationIdException(Code, "station isn't exist");
+        }
+        #endregion
+
     }
 }

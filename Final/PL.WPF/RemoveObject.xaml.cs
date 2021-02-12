@@ -73,7 +73,7 @@ namespace PL.WPF
                             this.Close();
                             Main.RefreshList(Main.LinesList);
                         }
-                        catch (BO.BadBusIdException ex)
+                        catch (BO.BadLineIdException ex)
                         {
                             MessageBox.Show(ex.Message + "\nID: " + ex.ID);
                             return;
@@ -90,7 +90,7 @@ namespace PL.WPF
                             this.Close();
                             Main.RefreshList(Main.StationsList);
                         }
-                        catch (BO.BadBusIdException ex)
+                        catch (BO.BadStationIdException ex)
                         {
                             MessageBox.Show(ex.Message + "\nID: " + ex.ID);
                             return;

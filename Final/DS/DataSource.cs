@@ -251,29 +251,469 @@ namespace DS
                     Code = ++CurrentLineCode
                 },
 
-                    new Line()
-                    {
-                        FirstStation = 1112,
-                        ID = 37,
-                        LastStation = 2223,
-                        Area = Areas.center,
-                        Code = ++CurrentLineCode
-                    },
-
-                    new Line()
-                    {
-                        FirstStation = 1113,
-                        ID = 38,
-                        LastStation = 2224,
-                        Area = Areas.center,
-                        Code = ++CurrentLineCode
-                    }
+                new Line()
+                {
+                    FirstStation = 1112,
+                    ID = 37,
+                    LastStation = 2223,
+                    Area = Areas.center,
+                    Code = ++CurrentLineCode
+                },
+                
+                new Line()
+                {
+                    FirstStation = 6203,
+                    ID = 14,
+                    LastStation = 1305,
+                    Area = Areas.center,
+                    Code = ++CurrentLineCode
+                }
                 };
             ListTrips = new List<Trip>();
-            ListBusesOnTrips = new List<BusOnTrip>();
-            ListStations = new List<Station>();
+            ListBusesOnTrips = new List<BusOnTrip>() { 
+            };
+            ListStations = new List<Station>() {
+            new Station()
+            {
+                Code = 6203,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "תחנת רכבת בית שמש"
+            },
+             new Station()
+            {
+                Code = 5393,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "העלייה/יגאל אלון"
+            },
+              new Station()
+            {
+                Code = 5388,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5395,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5370,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5378,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5377,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5368,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5367,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5339,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5335,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5331,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5328,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5291,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 1133,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 563,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5286,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5309,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5306,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5305,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5279,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5276,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5282,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5310,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5316,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5318,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 572,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5341,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+               new Station()
+            {
+                Code = 573,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 574,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 575,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 576,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 577,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 578,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 579,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 580,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 581,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 582,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 583,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 584,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 585,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5221,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5205,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 598,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 5223,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 599,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 600,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5220,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 4229,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 5199,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 635,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 1322,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 1305,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+               new Station()
+            {
+                Code = 1111,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 1112,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+             new Station()
+            {
+                Code = 2222,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            },
+              new Station()
+            {
+                Code = 3333,
+                Latitude = 0,
+                Longitude = 2,
+                Name = "a"
+            }
+            };
             ListUsers = new List<User>();
-            ListLineStations = new List<LineStation>();
+            ListLineStations = new List<LineStation>() {
+            new LineStation()
+            {
+                LineID = 14,
+                LineStationIndex = 1,
+                Station = 6023,
+                NextStation = 5393
+            },
+            new LineStation()
+            {
+                LineID = 14,
+                LineStationIndex = 2,
+                PrevStation = 6023,
+                Station = 5393,
+                NextStation = 5388
+            },
+            new LineStation()
+            {
+                LineID = 14,
+                LineStationIndex = 3,
+                NextStation = 5395,
+                PrevStation = 5393,
+                Station = 5388
+            },
+            new LineStation()
+            {
+                LineID = 14,
+                LineStationIndex = 4,
+                NextStation = 5395,
+                PrevStation = 5393,
+                Station = 5388
+            },
+            new LineStation()
+            {
+                LineID = 14,
+                LineStationIndex = 0,
+                Station = 1305,
+                PrevStation = 5388
+            }
+            };
             ListLineTrip = new List<LineTrip>();
             ListAdjacent = new List<AdjacentStations>();
         }
