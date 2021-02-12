@@ -38,19 +38,15 @@ namespace PL.WPF
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            ThisUser.UserName = UserNameTBO.Text;
+            ThisUser.Password = PasswordTBO.Text;
             try
             {
-                //ThisUser = bl.GetUser(UserNameTBO.Text)
-                
+                ThisUser = bl.GetUser(ThisUser);
             }
             catch(Exception ex) 
             {
                 MessageBox.Show(ex.Message);
-                return;
-            }
-            if(ThisUser.Password != PasswordTBO.Text)
-            {
-                MessageBox.Show("Incorrect Password Or UserName");
                 return;
             }
             if(ThisUser.Admin)
