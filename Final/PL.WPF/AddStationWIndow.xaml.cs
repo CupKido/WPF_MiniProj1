@@ -25,14 +25,49 @@ namespace PL.WPF
         int ID;
         int Lattitude;
         int Longitude;
-        public AddStationWindow()
+        BO.Station ThisStation;
+        //for add
+        public AddStationWindow(MainWindow main)
         {
             InitializeComponent();
+            //For Refresh
+            Main = main;
+
+            UpdateButton.IsEnabled = false;
+            UpdateButton.Opacity = 0;
+            AddButton.IsEnabled = true;
+            AddButton.Opacity = 1;
         }
+        //for update
         public AddStationWindow(int Code, MainWindow main)
         {
             InitializeComponent();
+            //For refresh
             Main = main;
+
+            AddButton.IsEnabled = false;
+            AddButton.Opacity = 0;
+            UpdateButton.IsEnabled = true;
+            UpdateButton.Opacity = 1;
+            try
+            {
+                ThisStation = bl.GetStaion(Code);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+
+            CodeTBO.Text = ThisStation.Code.ToString();
+            CodeTBO.IsEnabled = false;
+            LongitudeTBO.Text = ThisStation.Longitude.ToString();
+            LongitudeTBO.IsEnabled = false;
+            LattitudeTBO.Text = ThisStation.Latitude.ToString();
+            LattitudeTBO.IsEnabled = false;
+
+            NameBO.Text = ThisStation.Name;
         }
         private void LattitudeTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -60,7 +95,7 @@ namespace PL.WPF
 
         private void IDTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(IDTBO.Text, out ID))
+            if (!int.TryParse(CodeTBO.Text, out ID))
             {
                 MessageBox.Show("numbers only!");
             }
@@ -72,18 +107,41 @@ namespace PL.WPF
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!((IDTBO.Text == null) || (LongitudeTBO.Text == null) || (LattitudeTBO.Text == null)))
+            if (!((CodeTBO.Text == null) || (LongitudeTBO.Text == null) || (LattitudeTBO.Text == null)))
             {
-                BO.Station station = new BO.Station();
-                station.Code = ID;
-                station.Longitude = Longitude;
-                station.Latitude = Lattitude;
-                station.Name = NameBO.Text.ToString();
+                bool flag = true; //if all Checks are ok
+                int Code = 0;
+                Double longi, lati = 0;
+                ThisStation = new BO.Station();
+                if(!int.TryParse(CodeTBO.Text, out Code))
+                {
+                    MessageBox.Show("Numbers only!");
+                        flag = false;
+                }
+                if (!Double.TryParse(LongitudeTBO.Text, out longi))
+                {
+                    MessageBox.Show("Numbers only!");
+                    flag = false;
+                }
+                if (!Double.TryParse(LattitudeTBO.Text, out lati))
+                {
+                    MessageBox.Show("Numbers only!");
+                    flag = false;
+                }
+                if(!flag)
+                {
+                    return;
+                }
+                ThisStation.Code = Code;
+                ThisStation.Name = NameBO.Text;
+                ThisStation.Latitude = lati;
+                ThisStation.Longitude = longi;
                 try
                 {
-                    //bl.AddStation(station);
+                    bl.AddStation(ThisStation);
 
                     this.Close();
+                    Main.RefreshList(Main.StationsList);
                 }
                 catch (BO.BadLineIdException ex)
                 {
@@ -94,6 +152,22 @@ namespace PL.WPF
 
             }
             else { MessageBox.Show("please fill the empty filds"); }
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            ThisStation.Name = NameBO.Text;
+            try
+            {
+                bl.UpdateStation(ThisStation);
+                this.Close();
+                Main.RefreshList(Main.StationsList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
         }
     }
 }

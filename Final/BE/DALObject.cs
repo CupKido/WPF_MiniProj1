@@ -163,8 +163,8 @@ namespace DAL
                 // that way is better asuming we dont want to copy everything:
                 stat.Name = station.Name;
                 //optional: (i think we shouldnt allow it...) 
-                stat.latitude = station.latitude;
-                stat.longitude = station.longitude;
+                stat.Latitude = station.Latitude;
+                stat.Longitude = station.Longitude;
                 
             }
             else {

@@ -66,7 +66,27 @@ namespace PL.WPF
             number7data.Text = line.LastStation.ToString();
         }
 
-        private void ClearNums()
+        public ShowInfo(BO.Station Station, MainWindow main)
+        {
+            InitializeComponent();
+            Main = main;
+            ThisType = typeof(BO.Station);
+            ThisObj = Station;
+
+            ClearNums();
+            number1pre.Text = "Code:";
+            number1data.Text = Station.Code.ToString();
+            number2pre.Text = "Name:";
+            number2data.Text = Station.Name;
+            number3pre.Text = "Longitude:";
+            number3data.Text = Station.Longitude.ToString();
+            number4pre.Text = "Lattitude:";
+            number4data.Text = Station.Latitude.ToString();
+           
+        }
+
+
+            private void ClearNums()
         {
             number1pre.Text = "";
             number1data.Text = "";

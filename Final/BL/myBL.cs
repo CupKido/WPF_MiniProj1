@@ -399,9 +399,17 @@ namespace BL
                 throw new BadBusIdException(station.Code, ex.Message, ex);
             }
         }
-        public Station RemoveStation(int ID)
+        public Station RemoveStation(int Code)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return myDal.DeleteStation(Code).CopyPropertiesToNew(typeof(BO.Station)) as BO.Station;
+            }
+            catch (DO.BadStationIdException ex)
+            {
+
+                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+            }
         }
 
         

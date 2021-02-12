@@ -24,13 +24,46 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
-            BusesList.ItemsSource = bl.GetAllBuses();
-            RefreshList(BusesList);
-            LinesList.ItemsSource = bl.GetAllLines();
-            RefreshList(LinesList);
+
+            StartDataUpdate(BusesList);
+            StartDataUpdate(LinesList);
+            StartDataUpdate(StationsList);
+
             this.Show();
         }
         #region List Managment
+
+        public void StartDataUpdate(ListView list)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    if (list == BusesList)
+                    {
+                        list.ItemsSource = bl.GetAllBuses();
+                    }
+                    if (list == LinesList)
+                    {
+                        list.ItemsSource = bl.GetAllLines();
+                    }
+                    if (list == StationsList)
+                    {
+                        list.ItemsSource = bl.GetAllStations();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    
+                    list.ItemsSource = null;
+
+                }
+
+
+                list.Items.Refresh();
+            });
+
+        }
         public void RefreshList(ListView list)
         {
             this.Dispatcher.Invoke(() =>
@@ -110,11 +143,29 @@ namespace PL.WPF
             BO.Line line = LinesList.SelectedItem as BO.Line;
             ShowInfo win = new ShowInfo(line, this);
             win.Show();
-
-
-
         }
         #endregion
 
+        #region Stations
+        private void AddStation_Click(object sender, RoutedEventArgs e)
+        {
+            AddStationWindow win = new AddStationWindow(this);
+            win.Show();
+        }
+
+        private void RemoveStation_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveObject win = new RemoveObject("Station", this);
+            win.Show();
+        }
+
+        private void ShowStationInfo(object sender, MouseEventArgs e)
+        {
+
+            BO.Station stat = StationsList.SelectedItem as BO.Station;
+            ShowInfo win = new ShowInfo(stat, this);
+            win.Show();
+        }
+        #endregion
     }
 }
