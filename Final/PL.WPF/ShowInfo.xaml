@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="ShowBusInfo" Height="640" Width="500">
+        Title="ShowBusInfo" Height="500" Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -29,7 +29,7 @@
         <TextBlock x:Name="number7data" HorizontalAlignment="Left" Margin="339,42,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
         <TextBlock x:Name="number8pre" HorizontalAlignment="Left" Margin="241,74,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
         <TextBlock x:Name="number8data" HorizontalAlignment="Left" Margin="339,69,0,0" TextWrapping="Wrap" Text=":::" VerticalAlignment="Top" Height="27" Width="93"/>
-        <ListView x:Name="LineStationView" HorizontalAlignment="Left" Height="371" Margin="10,170,0,0" VerticalAlignment="Top" Width="474">
+        <ListView x:Name="LineStationView" HorizontalAlignment="Left" Height="207" Margin="10,170,0,0" VerticalAlignment="Top" Width="474">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Code" Width="50" DisplayMemberBinding="{Binding Code}" />

@@ -25,6 +25,7 @@ namespace PL.WPF
         object ThisObj;
         Type ThisType;
         IBL bl = BLFactory.GetBL(1);
+        List<BO.Station> stations;
         public ShowInfo(BO.BUS bus, MainWindow main)
         {
             InitializeComponent();
@@ -64,7 +65,7 @@ namespace PL.WPF
             List<BO.LineStation> lineStations = (from station in bl.GetAllLineStations()
                                                 where station.LineID == line.ID 
                                                 select station).ToList();
-            List<BO.Station> stations = (from station in lineStations
+            stations = (from station in lineStations
                                          select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
             LineStationView.ItemsSource = stations;
             RemoveObj.Content = "Remove Line";
@@ -197,7 +198,17 @@ namespace PL.WPF
 
         private void RemoveStationB_Click(object sender, RoutedEventArgs e)
         {
-            bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code,(ThisObj as BO.Line).ID);
+            try
+            {
+                bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code, (ThisObj as BO.Line).ID);
+                BO.Station temp = stations.Find(p => p.Code == (LineStationView.SelectedItem as BO.Station).Code);
+                stations.Remove(temp);
+                LineStationView.Items.Refresh();
+            }
+            catch (BO.BadStationIdException ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
         }
 
         private void UpdateStationB_Click(object sender, RoutedEventArgs e)

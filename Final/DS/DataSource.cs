@@ -685,7 +685,7 @@ namespace DS
             new LineStation()
             {
                 LineID = 14,
-                LineStationIndex = 2,
+                LineStationIndex = 1,
                 PrevStation = 6023,
                 Station = 5393,
                 NextStation = 5388
@@ -693,7 +693,7 @@ namespace DS
             new LineStation()
             {
                 LineID = 14,
-                LineStationIndex = 3,
+                LineStationIndex = 2,
                 NextStation = 5395,
                 PrevStation = 5393,
                 Station = 5388
@@ -701,17 +701,17 @@ namespace DS
             new LineStation()
             {
                 LineID = 14,
-                LineStationIndex = 4,
-                NextStation = 5395,
+                LineStationIndex = 3,
+                Station = 5395,
                 PrevStation = 5393,
-                Station = 5388
+                NextStation = 1305
             },
             new LineStation()
             {
                 LineID = 14,
                 LineStationIndex = 0,
                 Station = 1305,
-                PrevStation = 5388
+                PrevStation = 5395
             }
             };
             ListLineTrip = new List<LineTrip>();
