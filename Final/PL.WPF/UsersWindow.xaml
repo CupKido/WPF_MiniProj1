@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="UsersWindow" Height="450" Width="800">
+        Title="UsersWindow" Height="200" Width="450">
     <Grid>
-        
+        <TextBlock x:Name="UserNameTBL" HorizontalAlignment="Left" Margin="34,28,0,0" TextWrapping="Wrap" Text="UserName:" VerticalAlignment="Top" Height="17" Width="60"/>
+        <TextBox x:Name="UserNameTBO" HorizontalAlignment="Left" Height="18" Margin="99,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="PasswordTBL" HorizontalAlignment="Left" Margin="34,50,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Height="18" Width="60"/>
+        <TextBox x:Name="PasswordTBO" HorizontalAlignment="Left" Height="18" Margin="99,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="LoginButton" Content="Login" Click ="LoginButton_Click" HorizontalAlignment="Left" Margin="332,137,0,0" VerticalAlignment="Top" Width="91" Height="23"/>
+        <TextBlock x:Name="SignUpTBL" MouseLeftButtonDown="SignUp_Click" FontSize="8" HorizontalAlignment="Left" Margin="34,73,0,0" TextWrapping="Wrap" Text="Sign Up" VerticalAlignment="Top" Height="15" Width="33"/>
+        <TextBlock x:Name="ForgotPasswordTBL" MouseLeftButtonDown="ForgotPassword_Click" FontSize="8" HorizontalAlignment="Left" Margin="87,73,0,0" TextWrapping="Wrap" Text="Forgot Password?" VerticalAlignment="Top" Height="15" Width="64"/>
     </Grid>
 </Window>

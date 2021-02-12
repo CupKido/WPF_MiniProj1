@@ -88,14 +88,6 @@ namespace PL.WPF {
         #line default
         #line hidden
         
-        
-        #line 16 "..\..\UsersWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBlock ForgotPasswordTBL;
-        
-        #line default
-        #line hidden
-        
         private bool _contentLoaded;
         
         /// <summary>
@@ -152,15 +144,6 @@ namespace PL.WPF {
             
             #line 15 "..\..\UsersWindow.xaml"
             this.SignUpTBL.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(this.SignUp_Click);
-            
-            #line default
-            #line hidden
-            return;
-            case 7:
-            this.ForgotPasswordTBL = ((System.Windows.Controls.TextBlock)(target));
-            
-            #line 16 "..\..\UsersWindow.xaml"
-            this.ForgotPasswordTBL.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler(this.SignUp_Click);
             
             #line default
             #line hidden

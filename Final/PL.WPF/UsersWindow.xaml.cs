@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BL;
 
 namespace PL.WPF
 {
@@ -19,9 +20,49 @@ namespace PL.WPF
     /// </summary>
     public partial class UsersWindow : Window
     {
+        IBL bl = BLFactory.GetBL(1);
+        BO.User ThisUser;
         public UsersWindow()
         {
             InitializeComponent();
+        }
+
+        private void SignUp_Click(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("No Such Function");
+        }
+        private void ForgotPassword_Click(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("No Such Function");
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //ThisUser = bl.GetUser(UserNameTBO.Text)
+                
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            if(ThisUser.Password != PasswordTBO.Text)
+            {
+                MessageBox.Show("Incorrect Password Or UserName");
+                return;
+            }
+            if(ThisUser.Admin)
+            {
+                //ManagerWindow win = new ManagerWindow(ThisUser);
+                //win.Show();
+                this.Close();
+                return;
+            }
+            //UserWindow win = new UserWindow(ThisUser);
+            //win.Show();
+            this.Close();
         }
     }
 }
