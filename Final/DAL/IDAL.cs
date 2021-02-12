@@ -61,5 +61,22 @@ namespace DLAPI
         void UpdateBusOnTrip(int ID, BusOnTrip busontrip);
         BusOnTrip DeleteBusOnTrip(int ID);
         #endregion
+
+        #region LineStation
+        void AddLineStation(LineStation station);
+
+        IEnumerable<LineStation> GetAllLineStations();
+
+        IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> perdicate);
+
+        LineStation GetLineStation(int Code, int line);
+
+
+        void UpdateLineStation(LineStation station);
+
+
+        LineStation DeleteStationLine(int Code, int line);
+        
+        #endregion
     }
 }

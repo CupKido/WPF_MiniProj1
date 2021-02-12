@@ -80,10 +80,6 @@ namespace PL.WPF
             {
                 MessageBox.Show("numbers only!");
             }
-            else
-            {
-
-            }
         }
 
         private void firstStationTBO_TextChanged(object sender, TextChangedEventArgs e)

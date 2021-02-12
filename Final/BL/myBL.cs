@@ -195,6 +195,8 @@ namespace BL
             try
             {
                 myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
+                myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1 ,NextStation =line.LastStation });
+                myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 0, PrevStation = line.FirstStation });
             }
             catch (DO.BadLineIdException ex)
             {
