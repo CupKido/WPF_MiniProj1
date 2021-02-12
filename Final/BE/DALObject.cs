@@ -590,7 +590,7 @@ namespace DAL
 
         }
 
-        public LineStation DeleteStationLine(int Code , int line)
+        public LineStation DeleteLineStation(int Code , int line)
         {
             DO.LineStation temp = DataSource.ListLineStations.FirstOrDefault(p => p.Station == Code && p.LineID == line);
             if (temp != null)

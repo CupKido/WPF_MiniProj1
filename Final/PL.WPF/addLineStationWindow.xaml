@@ -1,0 +1,23 @@
+﻿<Window x:Class="PL.WPF.addLineStationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.WPF"
+        mc:Ignorable="d"
+        Title="addLineStationWindow" Height="250" Width="450">
+    <Grid>
+        <TextBlock x:Name="LineIDTBL" HorizontalAlignment="Left" Height="17" Margin="31,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="line ID:"/>
+        <TextBox Name="LineIDTBO" HorizontalAlignment="Left" Height="17" Margin="162,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="LineIDTBO_TextChanged" />
+        <TextBox Name="StationIndexTBO" HorizontalAlignment="Left" Height="17" Margin="162,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="StationIndexTBO_TextChanged" />
+        <TextBlock x:Name="StationIDBL" HorizontalAlignment="Left" Height="17" Margin="31,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="station ID:"/>
+        <TextBlock x:Name="StationIndexTBL" HorizontalAlignment="Left" Height="29" Margin="31,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="The station number on the line:"/>
+        <TextBlock x:Name="PrevStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="previous station:"/>
+        <TextBox x:Name="PrevStationTBO" HorizontalAlignment="Left" Height="17" Margin="162,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="PrevStationTBO_TextChanged" />
+        <Button x:Name="AddButton" Content="Add station" HorizontalAlignment="Left" Height="36" Margin="220,174,0,0" VerticalAlignment="Top" Width="89" Click="addButton_Click"/>
+        <Button x:Name="UpdateButton" Content="Update station" HorizontalAlignment="Left" Height="36" Margin="126,174,0,0" VerticalAlignment="Top" Width="89" Click="UpdateButton_Click"/>
+        <TextBox x:Name="NameBO" HorizontalAlignment="Left" Height="17" Margin="162,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="NameBO_TextChanged"/>
+        <TextBox x:Name="NextStationTBO" HorizontalAlignment="Left" Height="17" Margin="162,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="NextStationTBO_TextChanged"  />
+        <TextBlock x:Name="NextStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="Next Station:"/>
+    </Grid>
+</Window>

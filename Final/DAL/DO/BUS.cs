@@ -13,7 +13,7 @@ namespace DO
         public double TotalTrip { get; set; }
         public double ckm { get; set; } // km from last treatment
         public double FuelRemain { get; set; } = 1200;
-        BusStatus status { set; get; }
+        public BusStatus status { set; get; }
         public BUS()
         {
 

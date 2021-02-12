@@ -1,0 +1,9 @@
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\bin\Debug\DSXml.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\bin\Debug\DSXml.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\bin\Debug\DAL.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\bin\Debug\DAL.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.csproj.CoreCompileInputs.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.csproj.CopyComplete
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.pdb

@@ -20,6 +20,7 @@ namespace PL.WPF
     /// </summary>
     public partial class ShowInfo : Window
     {
+        readonly int defulth = 270;
         MainWindow Main;
         object ThisObj;
         Type ThisType;
@@ -44,6 +45,12 @@ namespace PL.WPF
             number5data.Text = bus.ckm.ToString();
             number6pre.Text = "Gaz Amount:";
             number6data.Text = bus.FuelRemain.ToString();
+            AddStationB.Opacity = 0;
+            AddStationB.IsEnabled = false;
+            RemoveStationB.Opacity = 0;
+            RemoveStationB.IsEnabled = false;
+            UpdateStationB.Opacity = 0;
+            UpdateStationB.IsEnabled = false;
         }
         public ShowInfo(BO.Line line, MainWindow main)
         {
@@ -53,6 +60,15 @@ namespace PL.WPF
             ThisObj = line;
 
             ClearNums();
+            this.Height = 640;
+            List<BO.LineStation> lineStations = (from station in bl.GetAllLineStations()
+                                                where station.LineID == line.ID 
+                                                select station).ToList();
+            List<BO.Station> stations = (from station in lineStations
+                                         select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
+            LineStationView.ItemsSource = stations;
+            RemoveObj.Content = "Remove Line";
+            UpdateObj.Content = "Update Line";
             number1pre.Text = "ID:";
             number1data.Text = line.ID.ToString();
             number2pre.Text = "Code:";
@@ -104,6 +120,7 @@ namespace PL.WPF
             number7data.Text = "";
             number8pre.Text = "";
             number8data.Text = "";
+            Height = defulth;
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -176,6 +193,21 @@ namespace PL.WPF
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        private void RemoveStationB_Click(object sender, RoutedEventArgs e)
+        {
+            bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code,(ThisObj as BO.Line).ID);
+        }
+
+        private void UpdateStationB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddStationB_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

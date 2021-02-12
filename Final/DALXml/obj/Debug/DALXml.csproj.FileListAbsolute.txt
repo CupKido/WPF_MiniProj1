@@ -1,0 +1,2 @@
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DALXml\obj\Debug\DALXml.csprojAssemblyReference.cache
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DALXml\obj\Debug\DALXml.csproj.CoreCompileInputs.cache

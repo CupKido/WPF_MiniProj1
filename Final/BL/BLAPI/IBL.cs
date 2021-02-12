@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BO;
 
 namespace BL
 {
@@ -34,6 +35,23 @@ namespace BL
         IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
         void UpdateStation(BO.Station station);
         BO.Station RemoveStation(int ID);
+        #endregion
+        
+        #region LineStation
+        void AddLineStation(LineStation station);
+
+        IEnumerable<LineStation> GetAllLineStations();
+
+        IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> perdicate);
+
+        LineStation GetLineStation(int Code, int line);
+
+
+        void UpdateLineStation(LineStation station);
+
+
+        LineStation DeleteLineStation(int Code, int line);
+
         #endregion
     }
 }
