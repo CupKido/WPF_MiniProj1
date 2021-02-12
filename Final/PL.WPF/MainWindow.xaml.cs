@@ -28,6 +28,17 @@ namespace PL.WPF
             StartDataUpdate(BusesList);
             StartDataUpdate(LinesList);
             StartDataUpdate(StationsList);
+            UsersWindow win = new UsersWindow();
+            win.Show();
+            this.Show();
+        }
+        public MainWindow(BO.User ThisUser)
+        {
+            InitializeComponent();
+
+            StartDataUpdate(BusesList);
+            StartDataUpdate(LinesList);
+            StartDataUpdate(StationsList);
 
             this.Show();
         }

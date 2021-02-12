@@ -21,7 +21,7 @@ namespace PL.WPF
     public partial class UsersWindow : Window
     {
         IBL bl = BLFactory.GetBL(1);
-        BO.User ThisUser;
+        BO.User ThisUser = new BO.User { UserName = "", Password = "", Admin = false };
         public UsersWindow()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace PL.WPF
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             ThisUser.UserName = UserNameTBO.Text;
-            ThisUser.Password = PasswordTBO.Text;
+            ThisUser.Password = PasswordTBO.Password;
             try
             {
                 ThisUser = bl.GetUser(ThisUser);

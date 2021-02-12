@@ -259,7 +259,7 @@ namespace DS
                     Area = Areas.center,
                     Code = ++CurrentLineCode
                 },
-                
+
                 new Line()
                 {
                     FirstStation = 6203,
@@ -270,7 +270,8 @@ namespace DS
                 }
                 };
             ListTrips = new List<Trip>();
-            ListBusesOnTrips = new List<BusOnTrip>() { 
+            ListBusesOnTrips = new List<BusOnTrip>()
+            {
             };
             ListStations = new List<Station>() {
             new Station()
@@ -673,7 +674,20 @@ namespace DS
                 Name = "a"
             }
             };
-            ListUsers = new List<User>();
+            ListUsers = new List<User>() {
+            new User
+            {
+                UserName = "Admin",
+                Password = "Admin",
+                Admin = true
+            },
+            new User
+            {
+                UserName = "NotAdmin",
+                Password = "NotAdmin",
+                Admin = false
+            }
+            };
             ListLineStations = new List<LineStation>() {
             new LineStation()
             {

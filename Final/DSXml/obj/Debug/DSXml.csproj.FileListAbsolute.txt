@@ -7,3 +7,12 @@ C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Fin
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.csproj.CopyComplete
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.dll
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DSXml\obj\Debug\DSXml.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\bin\Debug\DSXml.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\bin\Debug\DSXml.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\bin\Debug\DAL.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\bin\Debug\DAL.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\obj\Debug\DSXml.csprojAssemblyReference.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\obj\Debug\DSXml.csproj.CoreCompileInputs.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\obj\Debug\DSXml.csproj.CopyComplete
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\obj\Debug\DSXml.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DSXml\obj\Debug\DSXml.pdb
