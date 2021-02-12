@@ -64,14 +64,14 @@ namespace BL
             else throw new BO.BadBusIdException(bus.LicenseNum, "invaild ID");
         }
 
-        public void RemoveBus(BO.BUS bus )
+        public BO.BUS RemoveBus(int LN)
         {
             //if (user.Admin)
             //{
 
                 try
                 {
-                    myDal.RemoveBus(bus.LicenseNum);
+                    return myDal.RemoveBus(LN).CopyPropertiesToNew(typeof(BO.BUS)) as BO.BUS;
                 }
                 catch (DO.BadBusIdException ex)
                 {
@@ -121,6 +121,8 @@ namespace BL
                 throw new BadBusIdException(bus.LicenseNum, ex.Message, ex);
             }
         }
+
+        
 
         #endregion
 
@@ -201,22 +203,7 @@ namespace BL
             //}
             //else throw " ";
         }
-        public void RemoveLine(Line line)
-        {
-            //if (Auser.Admin)
-            //{
-            try
-            {
-                myDal.DeleteLine(line.ID);
-            }
-            catch (DO.BadLineIdException ex)
-            {
-
-                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
-            }
-            //}
-            //else throw "";
-        }
+       
 
         public IEnumerable<BO.Line> GetAllLines()
         {
@@ -273,6 +260,18 @@ namespace BL
                    select line;
         }
 
+        public Line RemoveLine(int ID)
+        {
+            try
+            {
+                return myDal.DeleteLine(ID).CopyPropertiesToNew(typeof(BO.Line)) as BO.Line;
+            }
+            catch (DO.BadLineIdException ex)
+            {
+
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+        }
         #endregion
 
         #region User
@@ -366,7 +365,7 @@ namespace BL
             List<DO.Station> list = myDal.GetAllStations().ToList();
             return from item in list
                    let station = item.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
-                   orderby station.ID
+                   orderby station.Code
                    select station;
         }
 
@@ -383,7 +382,7 @@ namespace BL
             }
             return from item in list
                    let station = item.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
-                   orderby station.ID
+                   orderby station.Code
                    where predicate(station)
                    select station;
         }
@@ -392,14 +391,23 @@ namespace BL
         {
             try
             {
-                myDal.UpdateStation(station.ID, station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station);
+                myDal.UpdateStation(station.Code, station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station);
             }
             catch (DO.BadBusIdException ex)
             {
 
-                throw new BadBusIdException(station.ID, ex.Message, ex);
+                throw new BadBusIdException(station.Code, ex.Message, ex);
             }
         }
+        public Station RemoveStation(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        
+
         #endregion
 
     }

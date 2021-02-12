@@ -68,11 +68,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="RemoveBusesWindow.xaml.cs">
-      <DependentUpon>RemoveBusesWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddStationWIndow.xaml.cs">
       <DependentUpon>AddStationWIndow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveObject.xaml.cs">
+      <DependentUpon>RemoveObject.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShowInfo.xaml.cs">
       <DependentUpon>ShowInfo.xaml</DependentUpon>
@@ -93,11 +93,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RemoveBusesWindow.xaml">
+    <Page Include="AddStationWIndow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddStationWIndow.xaml">
+    <Page Include="RemoveObject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

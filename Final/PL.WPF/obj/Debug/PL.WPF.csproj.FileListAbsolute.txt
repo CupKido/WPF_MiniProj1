@@ -49,8 +49,6 @@ C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Fin
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\addLineWindow.baml
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\addLineWindow.g.cs
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\addLineWindow.baml
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\RemoveBusesWindow.g.cs
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\RemoveBusesWindow.baml
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\RemoveBusesWindow.g.cs
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\AddStationWIndow.g.cs
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\RemoveBusesWindow.baml
@@ -61,3 +59,5 @@ C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Fin
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\ShowBusInfo.baml
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\ShowInfo.g.cs
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\ShowInfo.baml
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\RemoveObject.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\RemoveObject.baml

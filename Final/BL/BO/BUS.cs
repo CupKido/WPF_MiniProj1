@@ -9,7 +9,7 @@ namespace BO
     public class BUS
     {
 
-        public int LicenseNum { get; set; }
+        public int LicenseNum { get; set; } //Key
         public DateTime FromDate { get; set; } = new DateTime(1, 1, 1);
         public DateTime lastime { get; set; } //last treatment
         public double TotalTrip { get; set; }

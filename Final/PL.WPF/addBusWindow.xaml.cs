@@ -29,6 +29,9 @@ namespace PL.WPF
         {
             InitializeComponent();
 
+            //for Refresh
+            Main = main;
+
             //transition to add
             UpdateButton.IsEnabled = false;
             UpdateButton.Opacity = 0;
@@ -87,7 +90,8 @@ namespace PL.WPF
         private void AddBus(object sender, EventArgs e)
         {
             int LicenseNum = 0;
-            int TotalKM = 0;
+            double TotalKM = 0;
+            double KMSinceRepair = 0;
             bool flag = true;
             if(licensingDP.SelectedDate > DateTime.Now)
             {
@@ -99,12 +103,22 @@ namespace PL.WPF
                 MessageBox.Show("numbers only!");
                 flag = false;
             }
-            if (!int.TryParse(totalTripTBO.Text, out TotalKM))
+            if (!Double.TryParse(totalTripTBO.Text, out TotalKM))
             {
                 MessageBox.Show("numbers only!");
                 flag = false;
             }
-            if(lastTreatmentDP.SelectedDate > DateTime.Now)
+            if (!Double.TryParse(kmFromTreatTBO.Text, out KMSinceRepair))
+            {
+                MessageBox.Show("numbers only!");
+                flag = false;
+            }
+            if(flag && (KMSinceRepair > TotalKM))
+            {
+                MessageBox.Show("KM since last repair cannot be more than total!");
+                flag = false;
+            }
+            if (lastTreatmentDP.SelectedDate > DateTime.Now)
             {
                 MessageBox.Show("Can't add bus\nplease select past or present time");
                 flag = false;
@@ -118,18 +132,19 @@ namespace PL.WPF
             {
                 return;
             }
-            BO.BUS bus = new BO.BUS{ LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, ckm = TotalKM };
+            BO.BUS bus = new BO.BUS{ LicenseNum = LicenseNum, FromDate = (DateTime)licensingDP.SelectedDate, lastime = (DateTime)lastTreatmentDP.SelectedDate, TotalTrip = TotalKM, ckm = KMSinceRepair};
             try
             {
                 bl.AddBus(bus);
                 this.Close();
-
+                Main.RefreshList(Main.BusesList);
             }
-            catch
+            catch (BO.BadBusIdException ex)
             {
-                MessageBox.Show("not added");//ye   
+                
+                MessageBox.Show(ex.Message + " " + ex.ID);//ye   
             }
-
+            
         }
 
         private void UpdateBus(object sender, RoutedEventArgs e)

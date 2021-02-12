@@ -20,7 +20,8 @@ namespace PL.WPF
     /// </summary>
     public partial class AddStationWindow : Window
     {
-        IBL bl;
+        IBL bl = BLFactory.GetBL(1);
+        MainWindow Main;
         int ID;
         int Lattitude;
         int Longitude;
@@ -28,7 +29,11 @@ namespace PL.WPF
         {
             InitializeComponent();
         }
-
+        public AddStationWindow(int Code, MainWindow main)
+        {
+            InitializeComponent();
+            Main = main;
+        }
         private void LattitudeTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!int.TryParse(LattitudeTBO.Text, out Lattitude))
@@ -70,7 +75,7 @@ namespace PL.WPF
             if (!((IDTBO.Text == null) || (LongitudeTBO.Text == null) || (LattitudeTBO.Text == null)))
             {
                 BO.Station station = new BO.Station();
-                station.ID = ID;
+                station.Code = ID;
                 station.Longitude = Longitude;
                 station.Latitude = Lattitude;
                 station.Name = NameBO.Text.ToString();

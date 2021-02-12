@@ -8,7 +8,7 @@ namespace DO
 {
     public class Station
     {
-        public int Code { get; set; }
+        public int Code { get; set; } //key
 
         public string Name { get; set; }
 

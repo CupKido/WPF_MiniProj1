@@ -8,7 +8,7 @@ namespace BO
 {
     public class Line
     {
-        public int ID { set; get; }
+        public int ID { set; get; } //Key
         public int Code { set; get; }
         public Areas Area { set; get; }
         public int FirstStation { set; get; }

@@ -259,7 +259,7 @@ namespace DAL
                 DataSource.ListBuses.Remove(temp);
                 return temp.Clone();
             }
-            throw new BadBusIdException(LicenseNum, "Bus isn't exist");
+            throw new BadBusIdException(LicenseNum, "Bus Doesn't exist");
             
         }
         #endregion

@@ -32,6 +32,16 @@ namespace PL.WPF
         {
             InitializeComponent();            
             Main = main;
+
+
+            //for add
+            UpdateButton.IsEnabled = false;
+            UpdateButton.Opacity = 0;
+            addButton.IsEnabled = true;
+            addButton.Opacity = 1;
+
+
+            //combo box preps
             List<string> CBSource = new List<string>();
             CBSource.Add("north");
             CBSource.Add("center");
@@ -43,18 +53,21 @@ namespace PL.WPF
             InitializeComponent();
             Main = main;
 
-            addButton.IsEnabled = false;
-            addButton.Opacity = 0;
-            UpdateButton.IsEnabled = true;
-            UpdateButton.Opacity = 1;
-
+            //combo box preps
             List<string> CBSource = new List<string>();
             CBSource.Add("north");
             CBSource.Add("center");
             CBSource.Add("south");
             areaCB.ItemsSource = CBSource;
 
+            //for update
+            addButton.IsEnabled = false;
+            addButton.Opacity = 0;
+            UpdateButton.IsEnabled = true;
+            UpdateButton.Opacity = 1;
+
             ThisLine = bl.GetLine(ID);
+            IDTBO.Text = ThisLine.ID.ToString();
             IDTBO.IsEnabled = false;
             firstStationTBO.Text = ThisLine.FirstStation.ToString();
             lastStationTBO.Text = ThisLine.LastStation.ToString();
@@ -150,6 +163,22 @@ namespace PL.WPF
             {
                 ThisLine.LastStation = temp;
             }
+            switch (areaCB.SelectedItem)
+            {
+                case "north":
+                    ThisLine.Area = BO.Areas.north;
+                    break;
+                case "center":
+                    ThisLine.Area = BO.Areas.center;
+                    break;
+                case "south":
+                    ThisLine.Area = BO.Areas.south;
+                    break;
+                default:
+                    ThisLine.Area = BO.Areas.center;
+                    break;
+            }
+                ;
             bl.UpdateLine(ThisLine);
             Main.RefreshList(Main.LinesList);
             this.Close();

@@ -9,12 +9,12 @@
 
     <Grid>
 
-        <TextBlock Text="Moovit V2" FontSize="24" HorizontalAlignment="Center" Width="118" Height="40"  Margin="354,10,321.6,370"/>
+        <TextBlock Text="Moovit V2" FontSize="24" HorizontalAlignment="Center" Width="118" Height="40"  Margin="367,0,408.6,570.4"/>
 
         <TabControl>
             <TabItem Header="Buses" Height="50" Margin="32,50,-32,-50.4" FontSize="24">
                 <Grid>
-                    <ListView x:Name="BusesList" FontSize="16" MouseDoubleClick="ShowBusInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Margin="0,48,0,-0.4" VerticalAlignment="Top" Width="739" >
+                    <ListView x:Name="BusesList" FontSize="16" MouseDoubleClick="ShowBusInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Width="739" Margin="0,48,0,-0.4" VerticalAlignment="Top" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="License number" Width="auto" DisplayMemberBinding="{Binding LicenseNum}" />
@@ -26,41 +26,44 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="AddBus" Content="Add Bus" FontSize="20" Margin="0,85,24,413.6" Click="AddBus_Click"  Height="55" HorizontalAlignment="Right" Width="100" />
-                    <Button Name="RemoveBus" Content="Remove Bus" FontSize="18" Margin="0,145,24,353.6" Click="RemoveBus_Click" Height="55" HorizontalAlignment="Right" Width="100" />
+                    <Button Name="AddBus" Content="Add Bus" FontSize="20"  Click="AddBus_Click"  Height="55" HorizontalAlignment="Right" Width="100" Margin="0,85,24,413.6"/>
+                    <Button Name="RemoveBus" Content="Remove Bus" FontSize="18" Click="RemoveBus_Click" Margin="0,145,24,353.6"  Height="55" HorizontalAlignment="Right" Width="100" />
                 </Grid>
             </TabItem>
 
             <TabItem Header="Lines" Height="50" Margin="32,50,-32.4,-50.4" FontSize="24">
                 <Grid>
-                    <ListView x:Name="LinesList" FontSize="16" MouseDoubleClick="ShowLineInfo" HorizontalAlignment="Left" Height="459" Margin="0,85,0,0" VerticalAlignment="Top" Width="748" >
+                    <ListView x:Name="LinesList" FontSize="16" MouseDoubleClick="ShowLineInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Width="739" Margin="0,48,0,-0.4" VerticalAlignment="Top">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
                                 <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
                                 <GridViewColumn Header="Code" Width="auto" DisplayMemberBinding="{Binding Code}"/>
-                                <GridViewColumn Header="Area" Width="100" DisplayMemberBinding="{Binding Area}"/>
+                                <GridViewColumn Header="Area" Width="65" DisplayMemberBinding="{Binding Area}"/>
                                 <GridViewColumn Header="First Station ID" Width="120" DisplayMemberBinding="{Binding FirstStation}" />
-                                <GridViewColumn Header="Last Station ID" Width="50" DisplayMemberBinding="{Binding LastStation}"/>
+                                <GridViewColumn Header="Last Station ID" Width="120" DisplayMemberBinding="{Binding LastStation}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="AddLine" Content="Add Line" FontSize="20" Width="100" Margin="753,85,35,413.6" Click="AddLine_Click" />
-                    <Button Name="RemoveLine" Content="remove Line" FontSize="18" Width="100" Margin="753,145,35,350.6" Click="RemoveLine_Click" />
+                    <Button Name="AddLine" Content="Add Line" FontSize="20" Click="AddLine_Click" Height="55" HorizontalAlignment="Right" Width="100" Margin="0,85,24,413.6" />
+                    <Button Name="RemoveLine" Content="Remove Line" FontSize="17" Click="RemoveLine_Click" Margin="0,145,24,353.6"  Height="55" HorizontalAlignment="Right" Width="100"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Stations" Height="50" Margin="33.4,50,-32.6,-50.4" FontSize="24">
                 <Grid>
-                    <ListView x:Name="StationsList" HorizontalAlignment="Left" Height="278" Margin="0,85,0,0" VerticalAlignment="Top" Width="654" >
+                    <ListView x:Name="StationsList" FontSize="16" MouseDoubleClick="ShowLineInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Width="739" Margin="0,48,0,-0.4" VerticalAlignment="Top">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Station Number" Width="auto" DisplayMemberBinding="{Binding ID}" />
-                                <GridViewColumn/>
+                                <GridViewColumn Header="Code" Width="auto" DisplayMemberBinding="{Binding Code}" />
+                                <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
+                                <GridViewColumn Header="Name" Width="auto" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Longitude" Width="65" DisplayMemberBinding="{Binding Longitude}"/>
+                                <GridViewColumn Header="Latitude" Width="120" DisplayMemberBinding="{Binding Latitude}" />                                
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Name="AddStation" Content="Add Station" FontSize="20" Width="100" Margin="663,78,25,241.2" Click="AddLine_Click" />
-                    <Button Name="RemoveStation" Content="Remove Station" FontSize="18" Width="100" Margin="663,127,25,192.2" Click="RemoveLine_Click" />
+                    <Button Name="AddStation" Content="Add Station" FontSize="20" Click="AddStation_Click" Height="55" HorizontalAlignment="Right" Width="100" Margin="0,85,24,413.6" />
+                    <Button Name="RemoveStation" Content="Remove Station" FontSize="14" Click="RemoveStation_Click" Margin="0,145,24,353.6"  Height="55" HorizontalAlignment="Right" Width="100"/>
                 </Grid>
             </TabItem>
 

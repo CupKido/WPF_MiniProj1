@@ -35,9 +35,28 @@ namespace PL.WPF
         {
             this.Dispatcher.Invoke(() =>
             {
-                BusesList.ItemsSource = bl.GetAllBuses();
-                LinesList.ItemsSource = bl.GetAllLines();
+                try
+                {
+                    if (list == BusesList)
+                    {
+                        list.ItemsSource = bl.GetAllBuses();
+                    }
+                    if (list == LinesList)
+                    {
+                        list.ItemsSource = bl.GetAllLines();
+                    }
+                    if (list == StationsList)
+                    {
+                        list.ItemsSource = bl.GetAllStations();
+                    }
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.ItemsSource = null;
+
+                }
                 
+                                
                 list.Items.Refresh();
             });
             
@@ -55,7 +74,7 @@ namespace PL.WPF
 
         private void RemoveBus_Click(object sender, RoutedEventArgs e)
         {
-            RemoveBusesWindow win = new RemoveBusesWindow();
+            RemoveObject win = new RemoveObject("Bus", this);
             win.Show();
         }
 
@@ -81,7 +100,7 @@ namespace PL.WPF
         }
         private void RemoveLine_Click(object sender, RoutedEventArgs e)
         {
-            addLineWindow win = new addLineWindow(this);
+            RemoveObject win = new RemoveObject("Line",this);
             win.Show();
 
         }
