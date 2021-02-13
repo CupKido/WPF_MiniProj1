@@ -38,7 +38,7 @@ namespace PL.WPF {
     /// <summary>
     /// UsersWindow
     /// </summary>
-    public partial class UsersWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
+    public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
         #line 10 "..\..\UsersWindow.xaml"

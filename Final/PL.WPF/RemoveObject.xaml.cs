@@ -20,9 +20,9 @@ namespace PL.WPF
     public partial class RemoveObject : Window
     {
         IBL bl = BLFactory.GetBL(1);
-        MainWindow Main;
+        ManagerWindow Main;
         string Type;
-        public RemoveObject(String type, MainWindow main)
+        public RemoveObject(String type, ManagerWindow main)
         {
             InitializeComponent();
 

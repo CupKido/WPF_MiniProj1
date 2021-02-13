@@ -16,167 +16,55 @@ using BL;
 namespace PL.WPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UsersWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         IBL bl = BLFactory.GetBL(1);
+        BO.User ThisUser = new BO.User { UserName = "", Password = "", Admin = false };
         public MainWindow()
         {
             InitializeComponent();
 
-            StartDataUpdate(BusesList);
-            StartDataUpdate(LinesList);
-            StartDataUpdate(StationsList);
-            UsersWindow win = new UsersWindow();
-            win.Show();
-            this.Show();
+            //------To Remove-------
+            UserNameTBO.Text = "Admin";
+            PasswordTBO.Password = "Admin";
+            //----------------------
         }
-        public MainWindow(BO.User ThisUser)
+
+        private void SignUp_Click(object sender, MouseButtonEventArgs e)
         {
-            InitializeComponent();
-
-            StartDataUpdate(BusesList);
-            StartDataUpdate(LinesList);
-            StartDataUpdate(StationsList);
-
-            this.Show();
+            MessageBox.Show("No Such Function");
         }
-        #region List Managment
-
-        public void StartDataUpdate(ListView list)
+        private void ForgotPassword_Click(object sender, MouseButtonEventArgs e)
         {
-            this.Dispatcher.Invoke(() =>
+            MessageBox.Show("No Such Function");
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            ThisUser.UserName = UserNameTBO.Text;
+            ThisUser.Password = PasswordTBO.Password;
+            try
             {
-                try
-                {
-                    if (list == BusesList)
-                    {
-                        list.ItemsSource = bl.GetAllBuses();
-                    }
-                    if (list == LinesList)
-                    {
-                        list.ItemsSource = bl.GetAllLines();
-                    }
-                    if (list == StationsList)
-                    {
-                        list.ItemsSource = bl.GetAllStations();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    
-                    list.ItemsSource = null;
-
-                }
-
-
-                list.Items.Refresh();
-            });
-
-        }
-        public void RefreshList(ListView list)
-        {
-            this.Dispatcher.Invoke(() =>
+                ThisUser = bl.GetUser(ThisUser);
+            }
+            catch(Exception ex) 
             {
-                try
-                {
-                    if (list == BusesList)
-                    {
-                        list.ItemsSource = bl.GetAllBuses();
-                    }
-                    if (list == LinesList)
-                    {
-                        list.ItemsSource = bl.GetAllLines();
-                    }
-                    if (list == StationsList)
-                    {
-                        list.ItemsSource = bl.GetAllStations();
-                    }
-                }catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    list.ItemsSource = null;
-
-                }
-                
-                                
-                list.Items.Refresh();
-            });
-            
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            if(ThisUser.Admin)
+            {
+                ManagerWindow win = new ManagerWindow(ThisUser);
+                win.Show();
+                this.Close();
+                return;
+            }
+            //UserWindow win = new UserWindow(ThisUser);
+            //win.Show();
+            this.Close();
         }
 
-        #endregion
-
-        #region Buses
-
-        private void AddBus_Click(object sender, RoutedEventArgs e)
-        {
-            addBusWindow win = new addBusWindow(this);
-            win.Show();
-        }
-
-        private void RemoveBus_Click(object sender, RoutedEventArgs e)
-        {
-            RemoveObject win = new RemoveObject("Bus", this);
-            win.Show();
-        }
-
-        private void ShowBusInfo(object sender, MouseEventArgs e)
-        {
-
-            BO.BUS Bus = BusesList.SelectedItem as BO.BUS;
-            ShowInfo win = new ShowInfo(Bus, this);
-
-            win.Show();
-
-
-
-        }
-        #endregion
-
-        #region Lines
-        private void AddLine_Click(object sender, RoutedEventArgs e)
-        {
-            addLineWindow win = new addLineWindow(this);
-            win.Show();
-
-        }
-        private void RemoveLine_Click(object sender, RoutedEventArgs e)
-        {
-            RemoveObject win = new RemoveObject("Line",this);
-            win.Show();
-
-        }
-        private void ShowLineInfo(object sender, MouseEventArgs e)
-        {
-
-            BO.Line line = LinesList.SelectedItem as BO.Line;
-            ShowInfo win = new ShowInfo(line, this);
-            win.Show();
-        }
-        #endregion
-
-        #region Stations
-        private void AddStation_Click(object sender, RoutedEventArgs e)
-        {
-            AddStationWindow win = new AddStationWindow(this);
-            win.Show();
-        }
-
-        private void RemoveStation_Click(object sender, RoutedEventArgs e)
-        {
-            RemoveObject win = new RemoveObject("Station", this);
-            win.Show();
-        }
-
-        private void ShowStationInfo(object sender, MouseEventArgs e)
-        {
-
-            BO.Station stat = StationsList.SelectedItem as BO.Station;
-            ShowInfo win = new ShowInfo(stat, this);
-            win.Show();
-        }
-        #endregion
     }
 }
