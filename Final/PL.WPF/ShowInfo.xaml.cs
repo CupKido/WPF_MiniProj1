@@ -197,9 +197,7 @@ namespace PL.WPF
             try
             {
                 bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code, (ThisObj as BO.Line).ID);
-                BO.Station temp = stations.Find(p => p.Code == (LineStationView.SelectedItem as BO.Station).Code);
-                stations.Remove(temp);
-                LineStationView.Items.Refresh();
+                Refresh();
             }
             catch (BO.BadStationIdException ex)
             {
