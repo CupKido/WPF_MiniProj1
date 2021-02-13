@@ -36,7 +36,7 @@ namespace DLAPI
 
         IEnumerable<AdjacentStations> GetAllAdjacentStations();
 
-        void UpdateAdjacentStations();
+        void UpdateAdjacentStations(AdjacentStations adjacentstations);
 
         AdjacentStations RemoveAdjacentStations(int station1, int station2);        
 

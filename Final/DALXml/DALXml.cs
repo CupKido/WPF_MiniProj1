@@ -234,20 +234,15 @@ namespace DALXml
         {
             throw new NotImplementedException();
         }
-
-        public void UpdateAdjacentStations()
-        {
-            throw new NotImplementedException();
-        }
-
+               
         public AdjacentStations RemoveAdjacentStations(int station1, int station2)
         {
             throw new NotImplementedException();
         }
 
-        
-
-
-
+        public void UpdateAdjacentStations(AdjacentStations adjacentstations)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
