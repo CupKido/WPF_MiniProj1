@@ -5,68 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="900">
-
+        Title="UsersWindow" Height="200" Width="450">
     <Grid>
-
-        <TextBlock Text="Moovit V2" FontSize="24" HorizontalAlignment="Center" Width="118" Height="40"  Margin="367,0,408.6,570.4"/>
-
-        <TabControl>
-            <TabItem Header="Buses" Height="50" Margin="32,50,-32,-50.4" FontSize="24">
-                <Grid>
-                    <ListView x:Name="BusesList" FontSize="16" MouseDoubleClick="ShowBusInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Width="739" Margin="0,48,0,-0.4" VerticalAlignment="Top" >
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="License number" Width="auto" DisplayMemberBinding="{Binding LicenseNum}" />
-                                <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
-                                <GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding pSD}"/>
-                                <GridViewColumn Header="Last Repair" Width="100" DisplayMemberBinding="{Binding pLR}"/>
-                                <GridViewColumn Header="KM since Repair" Width="120" DisplayMemberBinding="{Binding ckm}" />
-                                <GridViewColumn Header="fuel" Width="50" DisplayMemberBinding="{Binding FuelRemain}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Button Name="AddBus" Content="Add Bus" FontSize="20"  Click="AddBus_Click"  Height="55" HorizontalAlignment="Right" Width="100" Margin="0,85,24,413.6"/>
-                    <Button Name="RemoveBus" Content="Remove Bus" FontSize="18" Click="RemoveBus_Click" Margin="0,145,24,353.6"  Height="55" HorizontalAlignment="Right" Width="100" />
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="Lines" Height="50" Margin="32,50,-32.4,-50.4" FontSize="24">
-                <Grid>
-                    <ListView x:Name="LinesList" FontSize="16" MouseDoubleClick="ShowLineInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Width="739" Margin="0,48,0,-0.4" VerticalAlignment="Top">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="ID" Width="auto" DisplayMemberBinding="{Binding ID}" />
-                                <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
-                                <GridViewColumn Header="Code" Width="auto" DisplayMemberBinding="{Binding Code}"/>
-                                <GridViewColumn Header="Area" Width="65" DisplayMemberBinding="{Binding Area}"/>
-                                <GridViewColumn Header="First Station ID" Width="120" DisplayMemberBinding="{Binding FirstStation}" />
-                                <GridViewColumn Header="Last Station ID" Width="120" DisplayMemberBinding="{Binding LastStation}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Button Name="AddLine" Content="Add Line" FontSize="20" Click="AddLine_Click" Height="55" HorizontalAlignment="Right" Width="100" Margin="0,85,24,413.6" />
-                    <Button Name="RemoveLine" Content="Remove Line" FontSize="17" Click="RemoveLine_Click" Margin="0,145,24,353.6"  Height="55" HorizontalAlignment="Right" Width="100"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Stations" Height="50" Margin="33.4,50,-32.6,-50.4" FontSize="24">
-                <Grid>
-                    <ListView x:Name="StationsList" FontSize="16" MouseDoubleClick="ShowStationInfo" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="506" Width="739" Margin="0,48,0,-0.4" VerticalAlignment="Top">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Code" Width="50" DisplayMemberBinding="{Binding Code}" />
-                                <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
-                                <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Longitude" Width="100" DisplayMemberBinding="{Binding Longitude}"/>
-                                <GridViewColumn Header="Latitude" Width="100" DisplayMemberBinding="{Binding Latitude}" />                                
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Button Name="AddStation" Content="Add Station" FontSize="20" Click="AddStation_Click" Height="55" HorizontalAlignment="Right" Width="100" Margin="0,85,24,413.6" />
-                    <Button Name="RemoveStation" Content="Remove Station" FontSize="14" Click="RemoveStation_Click" Margin="0,145,24,353.6"  Height="55" HorizontalAlignment="Right" Width="100"/>
-                </Grid>
-            </TabItem>
-
-        </TabControl>
+        <TextBlock x:Name="UserNameTBL" HorizontalAlignment="Left" Margin="34,28,0,0" TextWrapping="Wrap" Text="UserName:" VerticalAlignment="Top" Height="17" Width="60"/>
+        <TextBox x:Name="UserNameTBO" HorizontalAlignment="Left" Height="18" Margin="99,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="PasswordTBL" HorizontalAlignment="Left" Margin="34,50,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Height="18" Width="60"/>
+        <PasswordBox x:Name="PasswordTBO" HorizontalAlignment="Left" PasswordChar="*" Height="18" Margin="99,50,0,0" Password="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="LoginButton" Content="Login" Click ="LoginButton_Click" HorizontalAlignment="Left" Margin="332,137,0,0" VerticalAlignment="Top" Width="91" Height="23"/>
+        <TextBlock x:Name="SignUpTBL" MouseLeftButtonDown="SignUp_Click" FontSize="8" HorizontalAlignment="Left" Margin="34,73,0,0" TextWrapping="Wrap" Text="Sign Up" VerticalAlignment="Top" Height="15" Width="33"/>
+        <TextBlock x:Name="ForgotPasswordTBL" MouseLeftButtonDown="ForgotPassword_Click" FontSize="8" HorizontalAlignment="Left" Margin="87,73,0,0" TextWrapping="Wrap" Text="Forgot Password?" VerticalAlignment="Top" Height="15" Width="64"/>
     </Grid>
 </Window>

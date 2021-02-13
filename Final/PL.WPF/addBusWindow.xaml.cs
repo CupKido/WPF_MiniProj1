@@ -22,10 +22,10 @@ namespace PL.WPF
     {
         int temp = new int();
         IBL bl = BLFactory.GetBL(1);
-        MainWindow Main;
+        ManagerWindow Main;
         BO.BUS ThisBus;
         //for add
-        public addBusWindow(MainWindow main)
+        public addBusWindow(ManagerWindow main)
         {
             InitializeComponent();
 
@@ -42,7 +42,7 @@ namespace PL.WPF
             lastTreatmentCB.IsChecked = true;
         }
         //for update
-        public addBusWindow(int LN, MainWindow main)
+        public addBusWindow(int LN, ManagerWindow main)
         {
             InitializeComponent();
 

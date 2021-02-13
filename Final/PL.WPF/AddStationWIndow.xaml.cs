@@ -21,13 +21,13 @@ namespace PL.WPF
     public partial class AddStationWindow : Window
     {
         IBL bl = BLFactory.GetBL(1);
-        MainWindow Main;
+        ManagerWindow Main;
         int ID;
         int Lattitude;
         int Longitude;
         BO.Station ThisStation;
         //for add
-        public AddStationWindow(MainWindow main)
+        public AddStationWindow(ManagerWindow main)
         {
             InitializeComponent();
             //For Refresh
@@ -39,7 +39,7 @@ namespace PL.WPF
             AddButton.Opacity = 1;
         }
         //for update
-        public AddStationWindow(int Code, MainWindow main)
+        public AddStationWindow(int Code, ManagerWindow main)
         {
             InitializeComponent();
             //For refresh

@@ -26,9 +26,9 @@ namespace PL.WPF
         int firstStation;
         int ID;
         IBL bl = BLFactory.GetBL(1);
-        MainWindow Main;
+        ManagerWindow Main;
         BO.Line ThisLine;
-        public addLineWindow(MainWindow main)
+        public addLineWindow(ManagerWindow main)
         {
             InitializeComponent();            
             Main = main;
@@ -48,7 +48,7 @@ namespace PL.WPF
             CBSource.Add("south");
             areaCB.ItemsSource = CBSource;
         }
-        public addLineWindow(int ID, MainWindow main)
+        public addLineWindow(int ID, ManagerWindow main)
         {
             InitializeComponent();
             Main = main;
