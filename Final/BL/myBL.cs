@@ -386,7 +386,7 @@ namespace BL
             }
         }
 
-        public Station GetStaion(int ID)
+        public Station GetStation(int ID)
         {
             DO.Station foundStation;
             try
@@ -462,7 +462,7 @@ namespace BL
             {
                 myDal.AddLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
             }
-            catch (DO.BadLineIdException ex)
+            catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
             }

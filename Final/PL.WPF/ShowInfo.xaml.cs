@@ -22,6 +22,7 @@ namespace PL.WPF
     {
         readonly int defulth = 270;
         MainWindow Main;
+        List<BO.LineStation> lineStations;
         object ThisObj;
         Type ThisType;
         IBL bl = BLFactory.GetBL(1);
@@ -62,11 +63,11 @@ namespace PL.WPF
 
             ClearNums();
             this.Height = 640;
-            List<BO.LineStation> lineStations = (from station in bl.GetAllLineStations()
-                                                where station.LineID == line.ID 
-                                                select station).ToList();
+            lineStations = (from station in bl.GetAllLineStations()
+                            where station.LineID == line.ID
+                            select station).ToList();
             stations = (from station in lineStations
-                                         select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
+                        select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
             LineStationView.ItemsSource = stations;
             RemoveObj.Content = "Remove Line";
             UpdateObj.Content = "Update Line";
@@ -76,7 +77,7 @@ namespace PL.WPF
             number2data.Text = line.Code.ToString();
             number3pre.Text = "Area:";
             number3data.Text = line.Area.ToString();
-            
+
             number6pre.Text = "First Station:";
             number6data.Text = line.FirstStation.ToString();
             number7pre.Text = "Last Station:";
@@ -99,11 +100,11 @@ namespace PL.WPF
             number3data.Text = Station.Longitude.ToString();
             number4pre.Text = "Lattitude:";
             number4data.Text = Station.Latitude.ToString();
-           
+
         }
 
 
-            private void ClearNums()
+        private void ClearNums()
         {
             number1pre.Text = "";
             number1data.Text = "";
@@ -126,7 +127,7 @@ namespace PL.WPF
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            if(ThisType == typeof(BO.BUS))
+            if (ThisType == typeof(BO.BUS))
             {
                 SendToBusWin();
                 return;
@@ -175,13 +176,15 @@ namespace PL.WPF
                     bl.RemoveBus((ThisObj as BO.BUS).LicenseNum);
                     this.Close();
                     Main.RefreshList(Main.BusesList);
-                } else
+                }
+                else
                 if (ThisType == typeof(BO.Line))
                 {
                     bl.RemoveLine((ThisObj as BO.Line).ID);
                     this.Close();
                     Main.RefreshList(Main.LinesList);
-                } else
+                }
+                else
                 if (ThisType == typeof(BO.Station))
                 {
                     bl.RemoveStation((ThisObj as BO.Station).Code);
@@ -189,11 +192,12 @@ namespace PL.WPF
                     Main.RefreshList(Main.StationsList);
                 }
                 else throw new Exception("No Matching Function");
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void RemoveStationB_Click(object sender, RoutedEventArgs e)
@@ -213,11 +217,47 @@ namespace PL.WPF
 
         private void UpdateStationB_Click(object sender, RoutedEventArgs e)
         {
+            BO.LineStation station = null;
+            try
+            {
+                station = lineStations.Find(p => p.Station == (LineStationView.SelectedItem as BO.Station).Code);
+                new addLineStationWindow(station, this).Show();
+            }
+            catch
+            {
+                MessageBox.Show("ERROR");
+            }
 
         }
 
         private void AddStationB_Click(object sender, RoutedEventArgs e)
         {
+            new addLineStationWindow(this).Show();
+        }
+
+        public void AddStation(BO.Station st, BO.LineStation lst)
+        {
+            stations.Add(st);
+            lineStations.Add(lst);
+            LineStationView.Items.Refresh();
+        }
+
+        public void UpdateStation(BO.LineStation station)
+        {
+            BO.LineStation stat = lineStations.FirstOrDefault(pe => pe.Station == station.Station && pe.LineID == station.LineID);
+            if (stat != null)
+            {
+
+                stat.NextStation = station.NextStation;
+                stat.PrevStation = station.PrevStation;
+                stat.LineStationIndex = station.LineStationIndex;
+
+            }
+            else
+            {
+                MessageBox.Show("ERROR: station is not exist");
+
+            }
 
         }
     }

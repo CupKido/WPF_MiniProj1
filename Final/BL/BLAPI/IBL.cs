@@ -30,7 +30,7 @@ namespace BL
 
         #region Stations
         void AddStation(BO.Station station);
-        BO.Station GetStaion(int ID);
+        BO.Station GetStation(int ID);
         IEnumerable<BO.Station> GetAllStations();
         IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
         void UpdateStation(BO.Station station);
