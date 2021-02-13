@@ -173,7 +173,7 @@ namespace PL.WPF
         }
         #endregion
 
-        private void LogOff_Click(object sender, MouseButtonEventArgs e)
+        private void LogOff_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = new MainWindow();
             ThisUser = null;
