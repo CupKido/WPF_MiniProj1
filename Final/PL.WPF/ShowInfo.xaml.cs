@@ -26,6 +26,7 @@ namespace PL.WPF
         Type ThisType;
         IBL bl = BLFactory.GetBL(1);
         List<BO.Station> stations;
+        List<BO.LineStation> lineStations;
         public ShowInfo(BO.BUS bus, ManagerWindow main)
         {
             InitializeComponent();
@@ -62,12 +63,7 @@ namespace PL.WPF
 
             ClearNums();
             this.Height = 640;
-            List<BO.LineStation> lineStations = (from station in bl.GetAllLineStations()
-                                                where station.LineID == line.ID 
-                                                select station).ToList();
-            stations = (from station in lineStations
-                                         select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
-            LineStationView.ItemsSource = stations;
+            Refresh();
             RemoveObj.Content = "Remove Line";
             UpdateObj.Content = "Update Line";
             number1pre.Text = "ID:";
@@ -201,9 +197,7 @@ namespace PL.WPF
             try
             {
                 bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code, (ThisObj as BO.Line).ID);
-                BO.Station temp = stations.Find(p => p.Code == (LineStationView.SelectedItem as BO.Station).Code);
-                stations.Remove(temp);
-                LineStationView.Items.Refresh();
+                Refresh();
             }
             catch (BO.BadStationIdException ex)
             {
@@ -213,11 +207,31 @@ namespace PL.WPF
 
         private void UpdateStationB_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                new addLineStationWindow(lineStations.Find(p => p.Station == (LineStationView.SelectedItem as BO.Station).Code), this).Show();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("ERROR: please select station to update!");
+            }
         }
 
-        private void AddStationB_Click(object sender, RoutedEventArgs e)
+            private void AddStationB_Click(object sender, RoutedEventArgs e)
         {
+            new addLineStationWindow(this).Show();
+        }
+
+        public void Refresh()
+        {
+            lineStations = (from station in bl.GetAllLineStations()
+                            where station.LineID == (ThisObj as BO.Line).ID
+                            orderby station.LineStationIndex
+                            select station).ToList();
+            stations = (from station in lineStations
+                        select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
+            LineStationView.ItemsSource = stations;
+            LineStationView.Items.Refresh();
 
         }
     }

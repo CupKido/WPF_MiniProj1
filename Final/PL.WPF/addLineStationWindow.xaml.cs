@@ -94,7 +94,8 @@ namespace PL.WPF
 
                 bl.GetStation(StationId);
                 bl.AddLineStation(NewLineStation());
-                //SI.AddStation(bl.GetStation(StationId), NewLineStation());
+                SI.Refresh();
+                this.Close();
             }
             catch (BO.BadStationIdException ex)
             {
@@ -107,9 +108,9 @@ namespace PL.WPF
         {
             try
             {
-              bl.UpdateLineStation(NewLineStation());
-                //SI.UpdateStation(NewLineStation());
-
+                bl.UpdateLineStation(NewLineStation());
+                SI.Refresh();
+                this.Close();
             }
             catch (BO.BadStationIdException ex)
             {
