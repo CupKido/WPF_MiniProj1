@@ -28,6 +28,20 @@ namespace DLAPI
         Station DeleteStation(int Code);
         #endregion
 
+        #region AdjacentStation
+
+        void AddAdjacentStations(AdjacentStations adjacentstation);
+
+        AdjacentStations GetAdjacentStations(int station1, int station2);        
+
+        IEnumerable<AdjacentStations> GetAllAdjacentStations();
+
+        void UpdateAdjacentStations();
+
+        AdjacentStations RemoveAdjacentStations(int station1, int station2);        
+
+        #endregion
+
         #region BUS
         void AddBus(BUS bus);
         BUS GetBUS(int LicenseNum);        

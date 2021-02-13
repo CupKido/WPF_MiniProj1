@@ -220,6 +220,33 @@ namespace DALXml
 
         #endregion
 
+        public void AddAdjacentStations(AdjacentStations adjacentstation)
+        {
+            throw new NotImplementedException();
+        }
+                
+        public AdjacentStations GetAdjacentStations(int station1, int station2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<AdjacentStations> GetAllAdjacentStations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateAdjacentStations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public AdjacentStations RemoveAdjacentStations(int station1, int station2)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
 
 
     }
