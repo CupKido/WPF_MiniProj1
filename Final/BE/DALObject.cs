@@ -191,6 +191,64 @@ namespace DAL
         }
         #endregion
 
+        #region AdjacentStation
+
+        public void AddAdjacentStations(AdjacentStations adjacentstations)
+        {
+            if (DataSource.ListAdjacent.FirstOrDefault(p => (p.Station1 == adjacentstations.Station1 && p.Station2 == adjacentstations.Station2)) != null)
+            {
+                throw new Exception("Adjacent Stations Allready exist\n" + adjacentstations.Station1 + " " + adjacentstations.Station2);
+            }
+            DataSource.ListAdjacent.Add(adjacentstations.Clone());
+        }
+
+        
+        public AdjacentStations GetAdjacentStations(int station1, int station2)
+        {
+            AdjacentStations AdjStat = DataSource.ListAdjacent.Find(p => (p.Station1 == station1 && p.Station2 == station2));
+
+            if (AdjStat != null)
+            {
+                return AdjStat.Clone();
+            }
+            throw new Exception("Adjacent Station Cant Be Found");
+        }
+
+        public IEnumerable<AdjacentStations> GetAllAdjacentStations()
+        {
+            if (DataSource.ListAdjacent.Count == 0)
+            {
+                throw new BadUserNameException("No Adjacent Stations in Data Source");
+            }
+            return from AdjStat in DataSource.ListAdjacent
+                   select AdjStat.Clone();
+        }
+
+        public void UpdateAdjacentStations(AdjacentStations adjacentstations)
+        {
+            DO.AdjacentStations AdjStat = DataSource.ListAdjacent.FirstOrDefault(p => (p.Station1 == adjacentstations.Station1 && p.Station2 == adjacentstations.Station2));
+            if (AdjStat != null)
+            {
+                // that way is better asuming we dont want to copy everything:
+                AdjStat.Distance = adjacentstations.Distance;
+                AdjStat.Time = adjacentstations.Time;
+            }
+            throw new Exception("Adjacent Stations Cannot Be Found");
+        }
+
+        public AdjacentStations RemoveAdjacentStations(int station1, int station2)
+        {
+            AdjacentStations temp = DataSource.ListAdjacent.FirstOrDefault(p => (p.Station1 == station1 && p.Station2 == station2));
+            if (temp != null)
+            {
+                DataSource.ListAdjacent.Remove(temp);
+                return temp.Clone();
+            }
+            throw new Exception("Adjacent Stations Cannot Be Found");
+        }
+
+        #endregion
+
         #region Bus
         public void AddBus(BUS bus)
         {            
@@ -600,6 +658,8 @@ namespace DAL
             }
             throw new BadStationIdException(Code, "station isn't exist");
         }
+
+        
         #endregion
 
     }

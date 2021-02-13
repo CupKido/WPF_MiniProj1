@@ -108,19 +108,22 @@ namespace PL.WPF
             double TotalKM = 0;
             double KMSinceRepair = 0;
             bool flag = true;
-            DateTime FirstTime = (DateTime)licensingDP.SelectedDate;
+            DateTime FirstTime = new DateTime();
+
+            if (licensingDP.SelectedDate != null)
+            {
+            FirstTime = (DateTime)licensingDP.SelectedDate;
+            }
+
             DateTime LastTime = FirstTime;
-            if ((bool)lastTreatmentCB.IsChecked)
+
+            if ((bool)lastTreatmentCB.IsChecked && lastTreatmentDP.SelectedDate != null)
             {
                 LastTime = (DateTime)lastTreatmentDP.SelectedDate;
             }
             
             
-            if(licensingDP.SelectedDate > DateTime.Now)
-            {
-                MessageBox.Show("Can't add bus\nplease select past or present time");
-                flag = false;
-            }
+
             if (!int.TryParse(licenseTBO.Text, out LicenseNum))
             {
                 MessageBox.Show("numbers only!");
@@ -136,21 +139,9 @@ namespace PL.WPF
                 MessageBox.Show("numbers only!");
                 flag = false;
             }
-            if(flag && (KMSinceRepair > TotalKM))
-            {
-                MessageBox.Show("KM since last repair cannot be more than total!");
-                flag = false;
-            }
-            if (LastTime > DateTime.Now)
-            {
-                MessageBox.Show("Can't add bus\nplease select past or present time");
-                flag = false;
-            }
-            if (LastTime < FirstTime)
-            {
-                MessageBox.Show("last treatment cannot be before licensing");
-                flag = false;
-            }
+
+
+            
             if(!flag)
             {
                 return;

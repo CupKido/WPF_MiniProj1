@@ -22,6 +22,46 @@ namespace BL
         IDAL myDal = DLFactory.GetDL();
         #region Bus
 
+        public void AddBus(BO.BUS bus)
+        {
+            //if (user.Admin)
+            //{
+            
+            if ((bus.LicenseNum.ToString().Length == 7 && bus.FromDate.Year < 2018) || (bus.LicenseNum.ToString().Length == 8 && bus.FromDate.Year >= 2018) != true)
+            {
+                throw new BO.BadBusIdException(bus.LicenseNum, "invaild ID");
+            }
+            
+            if (bus.FromDate > DateTime.Now)
+            {
+            throw new BO.BadBusIdException(bus.LicenseNum, "starting service date cant be in the future");
+            }
+
+            
+            if (bus.lastime > DateTime.Now)
+            {
+                throw new BO.BadBusIdException(bus.LicenseNum, "Last Repair date cant be in the future");
+            }
+            if (bus.ckm > bus.TotalTrip)
+            {
+                throw new BO.BadBusIdException(bus.LicenseNum, "KM since last repair cannot be more than total!");
+            }
+            if (bus.lastime < bus.FromDate)
+            {
+                throw new BO.BadBusIdException(bus.LicenseNum, "last treatment cannot be before licensing");
+            }
+
+            try
+            {
+                myDal.AddBus((DO.BUS)bus.CopyPropertiesToNew(typeof(DO.BUS)));
+            }
+            catch (DO.BadBusIdException ex)
+            {
+
+                throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
+            }
+        }
+
         public BO.BUS GetBUS(int ID)
         {
             DO.BUS bus;
@@ -40,28 +80,6 @@ namespace BL
             }
             throw  new BO.BadBusIdException(bus.LicenseNum,"'");
 
-        }
-        public void AddBus(BO.BUS bus)
-        {
-            //if (user.Admin)
-            //{
-            if ((bus.LicenseNum.ToString().Length == 7 && bus.FromDate.Year < 2018) || (bus.LicenseNum.ToString().Length == 8 && bus.FromDate.Year >= 2018))
-            {
-                if (bus.FromDate <= DateTime.Now)
-                {
-                    try
-                    {
-                        myDal.AddBus((DO.BUS)bus.CopyPropertiesToNew(typeof(DO.BUS)));
-                    }
-                    catch (DO.BadBusIdException ex)
-                    {
-
-                        throw new BO.BadBusIdException(ex.ID,ex.Message,ex);
-                    }
-                }
-                else throw new BO.BadBusIdException(bus.LicenseNum, "starting service date cant be in the future");
-            }
-            else throw new BO.BadBusIdException(bus.LicenseNum, "invaild ID");
         }
 
         public BO.BUS RemoveBus(int LN)
