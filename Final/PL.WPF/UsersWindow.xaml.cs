@@ -25,6 +25,11 @@ namespace PL.WPF
         public UsersWindow()
         {
             InitializeComponent();
+
+            //------To Remove-------
+            UserNameTBO.Text = "Admin";
+            PasswordTBO.Password = "Admin";
+            //----------------------
         }
 
         private void SignUp_Click(object sender, MouseButtonEventArgs e)
