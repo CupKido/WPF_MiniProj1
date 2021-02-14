@@ -412,7 +412,7 @@ namespace BL
             DO.Station foundStation;
             try
             {
-                foundStation = myDal.GetStation(ID);
+                foundStation = myDal.GetStation(ID); 
             }
             catch
             {
