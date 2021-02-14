@@ -18,8 +18,8 @@
         <TextBlock x:Name="StationIndexTBL" HorizontalAlignment="Left" Height="29" Margin="31,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="The station number on the line:" Grid.ColumnSpan="2"/>
         <TextBlock x:Name="PrevStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="previous station:" Grid.ColumnSpan="2"/>
         <TextBox x:Name="PrevStationTBO" HorizontalAlignment="Left" Height="17" Margin="162,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="PrevStationTBO_TextChanged" Grid.ColumnSpan="2" />
-        <Button x:Name="AddButton" Content="Add station" HorizontalAlignment="Left" Height="36" Margin="220,174,0,0" VerticalAlignment="Top" Width="89" Click="addButton_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="UpdateButton" Content="Update station" HorizontalAlignment="Left" Height="36" Margin="126,174,0,0" VerticalAlignment="Top" Width="89" Click="UpdateButton_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="AddButton" Content="Add station" HorizontalAlignment="Left" Height="36" Margin="145,174,0,0" VerticalAlignment="Top" Width="89" Click="addButton_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="UpdateButton" Content="Update station" HorizontalAlignment="Left" Height="36" Margin="145,174,0,0" VerticalAlignment="Top" Width="89" Click="UpdateButton_Click" Grid.ColumnSpan="2"/>
         <TextBox x:Name="StationIDBO" HorizontalAlignment="Left" Height="17" Margin="162,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" Grid.ColumnSpan="2" TextChanged="StationIDBO_TextChanged"/>
         <TextBox x:Name="NextStationTBO" HorizontalAlignment="Left" Height="17" Margin="162,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="NextStationTBO_TextChanged" Grid.ColumnSpan="2"  />
         <TextBlock x:Name="NextStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="Next Station:" Grid.ColumnSpan="2"/>
