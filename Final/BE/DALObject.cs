@@ -24,6 +24,7 @@ namespace DAL
         BadLineIdException lineEx;
         BadTripIdException TripEx;
         BadBOTIdException BOTEx;
+
         #region single tone
         static readonly DALObject instance = new DALObject();
         static DALObject() { }// static ctor to ensure instance init is done just before first usage
@@ -117,7 +118,7 @@ namespace DAL
             
             if (DataSource.ListStations.FirstOrDefault(p => p.Code == station.Code) != null)
             {
-                StationEx = new BadStationIdException(station.Code, "station is already exist");
+                StationEx = new BadStationIdException(station.Code, "Station already exists in Data");
                 throw StationEx;
             }
             DataSource.ListStations.Add(station.Clone());

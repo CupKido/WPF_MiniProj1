@@ -199,7 +199,7 @@ namespace DALXml
                                  select LineEl).FirstOrDefault();
 
             if (LineElem != null)
-                throw new DO.BadLineIdException(line.ID, "Line already exists");
+                throw new DO.BadLineIdException(line.ID, "Line already exists in Data");
 
             XElement newLine =
                 new XElement("Line",
@@ -531,7 +531,7 @@ namespace DALXml
                                }).FirstOrDefault();
             if(newUser == null)
             {
-                throw new BadUserNameException(UserName,"User Doesn't exist in Data")
+                throw new BadUserNameException(UserName, "User Doesn't exist in Data");
             }
             return newUser;
         }
