@@ -218,6 +218,8 @@ namespace BL
                     myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation });
                     myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 0, PrevStation = line.FirstStation });
                 }
+                else
+                    throw new BO.BadLineIdException(line.ID,"line first station or last station is not exist");
             }
             catch (DO.BadLineIdException ex)
             {

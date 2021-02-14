@@ -51,10 +51,6 @@
       <Project>{6d4f11ae-295e-48e9-bd61-7cf14e1c71d0}</Project>
       <Name>DALAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DSXml\DSXml.csproj">
-      <Project>{e775609f-a171-41f9-90a5-70d63bbdf764}</Project>
-      <Name>DSXml</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
