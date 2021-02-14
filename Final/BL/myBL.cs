@@ -531,6 +531,10 @@ namespace BL
             {
                 throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
+            if(list == null || list.Count == 0)
+            {
+                throw new BO.BadLSIdException(0, "No Stations For This predicate");
+            }
             return from item in list
                    let station = item.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
                    orderby station.Station

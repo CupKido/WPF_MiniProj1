@@ -88,6 +88,7 @@ namespace PL.WPF
                 if (!int.TryParse(StationIndexTBO.Text, out StationIndex))
                 {
                     MessageBox.Show("numbers only!");
+                    return;
                 }
                 try
                 {
@@ -106,6 +107,14 @@ namespace PL.WPF
                         if (!NextStationTBO.IsEnabled)
                         { MessageBox.Show("ERROR: please enter station index that not going over the last index of the stations"); }
                     }
+                }
+                catch (BO.BadLSIdException ex)
+                {
+                    if(ex.ID == 0)
+                    {
+                        return;
+                    }
+                    
                 }
                 catch
                 {
