@@ -2,3 +2,8 @@ C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Fin
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DALXml\obj\Debug\DALXml.csproj.CoreCompileInputs.cache
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXml.csprojAssemblyReference.cache
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXml.csproj.CoreCompileInputs.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DALXML.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\bin\DALXML.pdb
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXML.csproj.CopyComplete
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXML.dll
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXML.pdb
