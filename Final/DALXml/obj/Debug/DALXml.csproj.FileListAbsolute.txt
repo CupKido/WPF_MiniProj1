@@ -7,3 +7,8 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXML.csproj.CopyComplete
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXML.dll
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DALXml\obj\Debug\DALXML.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DALXML.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\DALXML.pdb
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DALXml\obj\Debug\DALXML.csproj.CopyComplete
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DALXml\obj\Debug\DALXML.dll
+C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DALXml\obj\Debug\DALXML.pdb

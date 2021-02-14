@@ -700,7 +700,7 @@ namespace DS
             {
                 LineID = 14,
                 LineStationIndex = 2,
-                PrevStation = 6023,
+                PrevStation = 6203,
                 Station = 5393,
                 NextStation = 5388
             },

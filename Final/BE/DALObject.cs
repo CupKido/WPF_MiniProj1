@@ -641,7 +641,6 @@ namespace DAL
                 stat.PrevStation = station.PrevStation;
                 stat.LineStationIndex = station.LineStationIndex;
                 DataSource.ListLineStations.Add(stat);
-                DataSource.ListLineStations.Sort(
             }
             else
             {
