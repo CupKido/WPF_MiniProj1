@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LineStationsXml.xml>
   <LineStation>
     <LineID>6</LineID>
@@ -10,7 +10,7 @@
   <LineStation>
     <LineID>6</LineID>
     <Station>21</Station>
-    <LineStationIndex>3</LineStationIndex>
+    <LineStationIndex>5</LineStationIndex>
     <PrevStation>12</PrevStation>
     <NextStation>0</NextStation>
   </LineStation>

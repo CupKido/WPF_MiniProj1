@@ -160,7 +160,7 @@ namespace PL.WPF
                 SI.Refresh();
                 this.Close();
             }
-            catch (BO.BadStationIdException ex)
+            catch (BO.BadLSIdException ex)
             {
                 MessageBox.Show("ERROR: " + ex.Message);
             }
@@ -175,7 +175,7 @@ namespace PL.WPF
                 SI.Refresh();
                 this.Close();
             }
-            catch (BO.BadStationIdException ex)
+            catch (BO.BadLSIdException ex)
             {
                 MessageBox.Show("ERROR: " + ex.Message);
             }

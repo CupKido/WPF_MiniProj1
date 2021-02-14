@@ -213,8 +213,11 @@ namespace BL
             try
             {
                 myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
-                myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation });
-                myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 0, PrevStation = line.FirstStation });
+                if (myDal.GetAllStations().FirstOrDefault(p => p.Code == line.FirstStation) != null && myDal.GetAllStations().FirstOrDefault(p => p.Code == line.LastStation) != null)
+                {
+                    myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation });
+                    myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 0, PrevStation = line.FirstStation });
+                }
             }
             catch (DO.BadLineIdException ex)
             {
@@ -401,7 +404,8 @@ namespace BL
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
             }
@@ -420,7 +424,7 @@ namespace BL
             }
             catch
             {
-                throw new BadStationIdException(ID,"station is not exist");
+                throw new BadStationIdException(ID, "station is not exist");
             }
             return foundStation.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station;
         }
@@ -502,11 +506,10 @@ namespace BL
                     myDal.UpdateLineStation(item);
                 }
                 myDal.AddLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
-
             }
-            catch (DO.BadStationIdException ex)
+            catch (DO.BadLSIdException ex)
             {
-                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+                throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
         }
 
@@ -526,17 +529,17 @@ namespace BL
             {
                 list = myDal.GetAllLineStations().ToList();
                 list = (from LS in list
-                       let temp = LS.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
-                       where perdicate(temp)
-                       select LS).ToList();
+                        let temp = LS.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
+                        where perdicate(temp)
+                        select LS).ToList();
 
-                   
+
             }
             catch (DO.BadLSIdException ex)
             {
                 throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
-            if(list == null || list.Count == 0)
+            if (list == null || list.Count == 0)
             {
                 throw new BO.BadLSIdException(0, "No Stations For This predicate");
             }
@@ -554,9 +557,9 @@ namespace BL
             {
                 foundStation = myDal.GetLineStation(Code, line);
             }
-            catch (DO.BadStationIdException ex)
+            catch (DO.BadLSIdException ex)
             {
-                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+                throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
             return foundStation.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
         }
@@ -566,7 +569,7 @@ namespace BL
             try
             {
                 myDal.UpdateLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
-                List<DO.LineStation> stations = myDal.GetAllLineStationsBy(p=>p.LineStationIndex >= station.LineStationIndex && p.Station != station.Station && p.LineID == station.LineID).ToList();
+                List<DO.LineStation> stations = myDal.GetAllLineStationsBy(p => p.LineStationIndex >= station.LineStationIndex && p.Station != station.Station && p.LineID == station.LineID).ToList();
                 foreach (var item in stations)
                 {
                     item.LineStationIndex++;
@@ -592,12 +595,12 @@ namespace BL
                     item.LineStationIndex--;
                     myDal.UpdateLineStation(item);
                 }
-                return myDal.DeleteLineStation(Code ,line).CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
+                return myDal.DeleteLineStation(Code, line).CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
             }
-            catch (DO.BadStationIdException ex)
+            catch (DO.BadLSIdException ex)
             {
 
-                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+                throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
         }
 
