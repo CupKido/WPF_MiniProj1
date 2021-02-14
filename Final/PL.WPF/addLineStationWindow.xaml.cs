@@ -156,7 +156,7 @@ namespace PL.WPF
             try
             {
 
-                bl.GetStation(StationId);
+                bl.GetStation(StationId); 
                 bl.AddLineStation(NewLineStation());
                 SI.Refresh();
                 this.Close();
