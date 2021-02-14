@@ -36,8 +36,10 @@ namespace PL.WPF
             AddButton.Opacity = 0;
             AddButton.IsEnabled = false;
             StationIDBO.Text = station.Station.ToString();
+            StationId = station.Station;
             StationIDBO.IsEnabled = false;
             LineIDTBO.Text = station.LineID.ToString();
+            LineId = station.LineID;
             LineIDTBO.IsEnabled = false;
             NextStationTBO.IsEnabled = false;
             PrevStationTBO.IsEnabled = false;
@@ -50,9 +52,8 @@ namespace PL.WPF
             UpdateButton.Opacity = 0;
             UpdateButton.IsEnabled = false;
             LineIDTBO.Text = ID.ToString();
+            LineId = ID;
             LineIDTBO.IsEnabled = false;
-            NextStationTBO.IsEnabled = false;
-            PrevStationTBO.IsEnabled = false;
 
         }
 
@@ -97,7 +98,10 @@ namespace PL.WPF
                         NextStationTBO.Text = (bl.GetAllLineStationsBy(p => p.LineStationIndex == StationIndex).ToList().Find(p => p.LineID == LineId).Station.ToString());
                     }
                     catch
-                    { }
+                    {
+                        if (!NextStationTBO.IsEnabled)
+                        { MessageBox.Show("ERROR: please enter station index that not going over the last index of the stations"); }
+                    }
                 }
                 catch
                 {
