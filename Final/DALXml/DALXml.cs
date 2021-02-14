@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using DSXml;
+
 
 namespace DALXml
 {
@@ -41,11 +41,28 @@ namespace DALXml
         #region bus
         public void AddBus(BUS bus)
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            XElement BusesRootElem;
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
-            XElement Bus = (from BS in BusesRootElem.Elements()
-                            where int.Parse(BS.Element("LicenseNum").Value) == bus.LicenseNum
-                            select BS).FirstOrDefault();
+
+            XElement Bus;
+            try
+            {
+                Bus = (from BS in BusesRootElem.Elements()
+                       where int.Parse(BS.Element("LicenseNum").Value) == bus.LicenseNum
+                       select BS).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             if (Bus != null)
                 throw new DO.BadBusIdException(bus.LicenseNum, "Bus already exists");
@@ -63,31 +80,60 @@ namespace DALXml
 
                );
             BusesRootElem.Add(newBus);
-            XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            try
+            {
+                XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
         }
 
         public BUS GetBUS(int LicenseNum)
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+
+            XElement BusesRootElem;
+
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
 
             if (BusesRootElem.Elements().Count() == 0)
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
 
-            DO.BUS Bus = (from bus in BusesRootElem.Elements()
-                          where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
-                          select new BUS()
-                          {
-                              LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
-                              FromDate = DateTime.Parse(bus.Element("FromDate").Value),
-                              lastime = DateTime.Parse(bus.Element("lastime").Value),
-                              TotalTrip = Double.Parse(bus.Element("TotalTrip").Value),
-                              ckm = Double.Parse(bus.Element("ckm").Value),
-                              FuelRemain = Double.Parse(bus.Element("FuelRemain").Value),
-                              status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
-                          }
-                         ).FirstOrDefault();
+            DO.BUS Bus;
+            try
+            {
+                Bus = (from bus in BusesRootElem.Elements()
+                       where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
+                       select new BUS()
+                       {
+                           LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
+                           FromDate = DateTime.Parse(bus.Element("FromDate").Value),
+                           lastime = DateTime.Parse(bus.Element("lastime").Value),
+                           TotalTrip = Double.Parse(bus.Element("TotalTrip").Value),
+                           ckm = Double.Parse(bus.Element("ckm").Value),
+                           FuelRemain = Double.Parse(bus.Element("FuelRemain").Value),
+                           status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
+                       }).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
             if (Bus == null)
             {
                 throw new BadBusIdException(LicenseNum, "Bus Doesn't exist");
@@ -98,25 +144,42 @@ namespace DALXml
 
         public IEnumerable<BUS> GetAllBuses()
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            XElement BusesRootElem;
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
 
             if (BusesRootElem.Elements().Count() == 0)
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
 
-            return (from bus in BusesRootElem.Elements()
-                    select new BUS()
-                    {
-                        LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
-                        FromDate = (DateTime)bus.Element("FromDate"),
-                        lastime = (DateTime)bus.Element("lastime"),
-                        TotalTrip = Double.Parse(bus.Element("TotalTrip").Value),
-                        ckm = Double.Parse(bus.Element("ckm").Value),
-                        FuelRemain = Double.Parse(bus.Element("FuelRemain").Value),
-                        status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
-                    }
-                   );
+            try
+            {
+                return (from bus in BusesRootElem.Elements()
+                        select new BUS()
+                        {
+                            LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
+                            FromDate = (DateTime)bus.Element("FromDate"),
+                            lastime = (DateTime)bus.Element("lastime"),
+                            TotalTrip = Double.Parse(bus.Element("TotalTrip").Value),
+                            ckm = Double.Parse(bus.Element("ckm").Value),
+                            FuelRemain = Double.Parse(bus.Element("FuelRemain").Value),
+                            status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
+                        }
+                       );
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate)
@@ -126,16 +189,33 @@ namespace DALXml
 
         public void UpdateBus(int LicenseNum, BUS Bus)
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            XElement BusesRootElem;
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
             if (BusesRootElem.Elements().Count() == 0)
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
 
-            XElement BusElem = (from bus in BusesRootElem.Elements()
-                                where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
-                                select bus).FirstOrDefault();
+            XElement BusElem;
+
+            try
+            {
+                BusElem = (from bus in BusesRootElem.Elements()
+                           where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
+                           select bus).FirstOrDefault();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            
             if (Bus == null)
             {
                 throw new BadBusIdException(LicenseNum, "Bus Doesn't exist in Data");
@@ -147,7 +227,14 @@ namespace DALXml
             BusElem.Element("FromDate").Value = Bus.FromDate.ToString();
             BusElem.Element("lastime").Value = Bus.lastime.ToString();
 
-            XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            try
+            {
+                XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            }catch(XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public BUS RemoveBus(int LicenseNum)
@@ -385,14 +472,14 @@ namespace DALXml
         {
             XElement StationsRootElem = XMLTools.LoadListFromXMLElement(StationsPath);
             List<Station> list = (from stat in StationsRootElem.Elements()
-                                     //where int.Parse(stat.Element("Code").Value) == Code
-                                 select new Station()
-                                 {
-                                     Code = int.Parse(stat.Element("Code").Value),
-                                     Name = stat.Element("Name").Value,
-                                     Longitude = Double.Parse(stat.Element("Longitude").Value),
-                                     Latitude = int.Parse(stat.Element("Latitude").Value)
-                                 }).ToList();
+                                      //where int.Parse(stat.Element("Code").Value) == Code
+                                  select new Station()
+                                  {
+                                      Code = int.Parse(stat.Element("Code").Value),
+                                      Name = stat.Element("Name").Value,
+                                      Longitude = Double.Parse(stat.Element("Longitude").Value),
+                                      Latitude = int.Parse(stat.Element("Latitude").Value)
+                                  }).ToList();
 
             if (StationsRootElem.Elements().Count() == 0)
             {
