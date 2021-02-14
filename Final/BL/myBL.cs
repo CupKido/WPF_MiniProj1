@@ -416,7 +416,7 @@ namespace BL
             }
             catch
             {
-                throw new NotImplementedException();
+                throw new BadStationIdException(ID,"station is not exist");
             }
             return foundStation.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station;
         }
