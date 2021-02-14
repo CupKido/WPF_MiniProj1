@@ -3,26 +3,11 @@
   <User>
     <UserName>Admin</UserName>
     <Password>Admin</Password>
-    <Admin>False</Admin>
+    <Admin>True</Admin>
   </User>
   <User>
-    <UserName>Admid</UserName>
-    <Password>Admin</Password>
-    <Admin>False</Admin>
-  </User>
-  <User>
-    <UserName>Admir</UserName>
-    <Password>Admin</Password>
-    <Admin>False</Admin>
-  </User>
-  <User>
-    <UserName>AdmiL</UserName>
-    <Password>Admin</Password>
-    <Admin>False</Admin>
-  </User>
-  <User>
-    <UserName>Admif</UserName>
-    <Password>Admin</Password>
+    <UserName>Admil</UserName>
+    <Password>Admil</Password>
     <Admin>False</Admin>
   </User>
 </UsersXml.xml>

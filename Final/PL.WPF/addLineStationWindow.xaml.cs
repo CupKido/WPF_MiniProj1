@@ -92,12 +92,16 @@ namespace PL.WPF
                 try
                 {
                     if (StationIndex - 1 >= 1)
-                        PrevStationTBO.Text = (bl.GetAllLineStationsBy(p => p.LineStationIndex == StationIndex - 1).ToList().Find(p => p.LineID == LineId).Station.ToString());
+                    {
+                        List<BO.LineStation> tempList = (List<BO.LineStation>)(bl.GetAllLineStationsBy(p => p.LineStationIndex == (StationIndex - 1)).ToList());
+                        PrevStationTBO.Text = tempList.Find(p => p.LineID == LineId).Station.ToString();
+                    }
+                        
                     try
                     {
                         NextStationTBO.Text = (bl.GetAllLineStationsBy(p => p.LineStationIndex == StationIndex).ToList().Find(p => p.LineID == LineId).Station.ToString());
                     }
-                    catch
+                    catch(Exception ex)
                     {
                         if (!NextStationTBO.IsEnabled)
                         { MessageBox.Show("ERROR: please enter station index that not going over the last index of the stations"); }

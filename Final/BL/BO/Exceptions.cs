@@ -71,4 +71,26 @@ namespace BO
             base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $", bad Trip id: {ID}";
     }
+
+    public class BadLSIdException : Exception
+    {
+        public int ID;
+
+
+        public BadLSIdException(int lineID) : base() => ID = lineID;
+        public BadLSIdException(int lineID, string message) :
+            base(message) => ID = lineID;
+
+        public BadLSIdException(int lineID, string message, Exception innerException) :
+            base(message, innerException) => ID = lineID;
+        public override string ToString() => base.ToString() + $", bad Line ID: {ID}";
+    }
+
+    public class XMLFileLoadCreateException : Exception
+    {
+        string Path;
+        public XMLFileLoadCreateException(string path, string message, Exception innerException) :
+            base(message, innerException) => Path = path;
+        public override string ToString() => base.ToString() + $", Path: {Path}";
+    }
 }

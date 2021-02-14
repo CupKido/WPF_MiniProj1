@@ -426,7 +426,7 @@ namespace BL
             List<DO.Station> list;
             try
             {
-                list = (List<DO.Station>)myDal.GetAllStations();
+                list = (List<DO.Station>)myDal.GetAllStations().ToList();
             }
             catch (DO.BadStationIdException ex)
             {
@@ -519,11 +519,17 @@ namespace BL
             List<DO.LineStation> list;
             try
             {
-                list = myDal.GetAllLineStationsBy(perdicate as Predicate<DO.LineStation>).ToList();
+                list = myDal.GetAllLineStations().ToList();
+                list = (from LS in list
+                       let temp = LS.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
+                       where perdicate(temp)
+                       select LS).ToList();
+
+                   
             }
-            catch (DO.BadStationIdException ex)
+            catch (DO.BadLSIdException ex)
             {
-                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+                throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
             return from item in list
                    let station = item.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
@@ -559,10 +565,10 @@ namespace BL
                 }
 
             }
-            catch (DO.BadBusIdException ex)
+            catch (DO.BadLSIdException ex)
             {
 
-                throw new BadBusIdException(station.Station, ex.Message, ex);
+                throw new BadLSIdException(station.Station, ex.Message, ex);
             }
         }
 

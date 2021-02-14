@@ -183,5 +183,12 @@ namespace PL.WPF
             this.Close();
             win.Show();
         }
+
+        private void UserDetails_Click(object sender, RoutedEventArgs e)
+        {
+            ShowInfo win = new ShowInfo(ThisUser, this);
+            win.Show();
+        }
+
     }
 }
