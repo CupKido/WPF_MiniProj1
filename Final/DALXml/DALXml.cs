@@ -384,21 +384,21 @@ namespace DALXml
         public Station GetStation(int Code)
         {
             XElement StationsRootElem = XMLTools.LoadListFromXMLElement(StationsPath);
+            List<Station> list = (from stat in StationsRootElem.Elements()
+                                     //where int.Parse(stat.Element("Code").Value) == Code
+                                 select new Station()
+                                 {
+                                     Code = int.Parse(stat.Element("Code").Value),
+                                     Name = stat.Element("Name").Value,
+                                     Longitude = Double.Parse(stat.Element("Longitude").Value),
+                                     Latitude = int.Parse(stat.Element("Latitude").Value)
+                                 }).ToList();
 
             if (StationsRootElem.Elements().Count() == 0)
             {
                 throw new BadStationIdException(0, "No Stations in Data");
             }
-
-            return (from stat in StationsRootElem.Elements()
-                    where int.Parse(stat.Element("Code").Value) == Code
-                    select new Station()
-                    {
-                        Code = int.Parse(stat.Element("Code").Value),
-                        Name = stat.Element("Name").Value,
-                        Longitude = Double.Parse(stat.Element("Longitude").Value),
-                        Latitude = int.Parse(stat.Element("Latitude").Value)
-                    }).FirstOrDefault();
+            return list.Find(stat => stat.Code == Code);
         }
 
         public IEnumerable<Station> GetAllStations()
@@ -421,7 +421,23 @@ namespace DALXml
         }
         public IEnumerable<Station> GetAllStationsBy(Predicate<Station> perdicate)
         {
-            throw new NotImplementedException();
+            XElement StationsRootElem = XMLTools.LoadListFromXMLElement(StationsPath);
+
+            if (StationsRootElem.Elements().Count() == 0)
+            {
+                throw new BadStationIdException(0, "No Stations in Data");
+            }
+
+            return from stat in StationsRootElem.Elements()
+                   let statemp = new DO.Station()
+                   {
+                       Code = int.Parse(stat.Element("Code").Value),
+                       Name = stat.Element("Name").Value,
+                       Longitude = Double.Parse(stat.Element("Longitude").Value),
+                       Latitude = int.Parse(stat.Element("Latitude").Value)
+                   }
+                   where perdicate(statemp)
+                   select statemp;
         }
         public void UpdateStation(int Code, Station station)
         {
@@ -733,7 +749,33 @@ namespace DALXml
         }
         public IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> perdicate)
         {
-            throw new NotImplementedException();
+
+            XElement LineStationsRootElem;
+            try
+            {
+                LineStationsRootElem = XMLTools.LoadListFromXMLElement(LineStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            if (LineStationsRootElem.Elements().Count() == 0)
+            {
+                throw new BadLSIdException(0, "No Stations-for-Lines in Data");
+            }
+
+            return from lsElem in LineStationsRootElem.Elements()
+                   let IsElemTemp = new LineStation()
+                   {
+                       LineID = int.Parse(lsElem.Element("LineID").Value),
+                       Station = int.Parse(lsElem.Element("Station").Value),
+                       LineStationIndex = int.Parse(lsElem.Element("LineStationIndex").Value),
+                       PrevStation = int.Parse(lsElem.Element("PrevStation").Value),
+                       NextStation = int.Parse(lsElem.Element("NextStation").Value)
+                   }
+                   where perdicate(IsElemTemp)
+                   select IsElemTemp;
         }
 
         public void UpdateLineStation(LineStation station)
