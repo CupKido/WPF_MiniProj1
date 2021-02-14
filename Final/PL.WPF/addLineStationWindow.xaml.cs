@@ -27,6 +27,7 @@ namespace PL.WPF
         int StationId;
         IBL bl = BLFactory.GetBL(1);
         ShowInfo SI;
+        
         public addLineStationWindow(BO.LineStation station, ShowInfo Si)
         {
             InitializeComponent();
@@ -38,52 +39,98 @@ namespace PL.WPF
             StationIDBO.IsEnabled = false;
             LineIDTBO.Text = station.LineID.ToString();
             LineIDTBO.IsEnabled = false;
+            NextStationTBO.IsEnabled = false;
+            PrevStationTBO.IsEnabled = false;
+            
         }
-        public addLineStationWindow(ShowInfo Si)
+        public addLineStationWindow(ShowInfo Si, int ID)
         {
             SI = Si;
             InitializeComponent();
             UpdateButton.Opacity = 0;
             UpdateButton.IsEnabled = false;
+            LineIDTBO.Text = ID.ToString();
+            LineIDTBO.IsEnabled = false;
+            NextStationTBO.IsEnabled = false;
+            PrevStationTBO.IsEnabled = false;
+
         }
 
 
         private void StationIDBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(StationIDBO.Text, out StationId))
+
+            if (StationIndexTBO.Text != "")
             {
-                MessageBox.Show("numbers only!");
+                if (!int.TryParse(StationIDBO.Text, out StationId))
+                {
+                    MessageBox.Show("numbers only!");
+                }
             }
         }
         private void LineIDTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(LineIDTBO.Text, out LineId))
+
+            if (StationIndexTBO.Text != "")
             {
-                MessageBox.Show("numbers only!");
+                if (!int.TryParse(LineIDTBO.Text, out LineId))
+                {
+                    MessageBox.Show("numbers only!");
+                }
             }
         }
 
         private void StationIndexTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(StationIndexTBO.Text, out StationIndex))
+            if (StationIndexTBO.Text != "")
             {
-                MessageBox.Show("numbers only!");
+                if (!int.TryParse(StationIndexTBO.Text, out StationIndex))
+                {
+                    MessageBox.Show("numbers only!");
+                }
+                try
+                {
+                    if (StationIndex - 1 >= 1)
+                        PrevStationTBO.Text = (bl.GetAllLineStationsBy(p => p.LineStationIndex == StationIndex - 1).ToList().Find(p => p.LineID == LineId).Station.ToString());
+                    try
+                    {
+                        NextStationTBO.Text = (bl.GetAllLineStationsBy(p => p.LineStationIndex == StationIndex).ToList().Find(p => p.LineID == LineId).Station.ToString());
+                    }
+                    catch
+                    { }
+                }
+                catch
+                {
+                    MessageBox.Show("ERROR: please enter station index first!");
+                }
+            }
+            else
+            {
+                PrevStationTBO.Text = "";
+                NextStationTBO.Text = "";
             }
         }
 
         private void PrevStationTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(PrevStationTBO.Text, out PrevStation))
+            if (StationIndexTBO.Text != "")
             {
-                MessageBox.Show("numbers only!");
+                if (!int.TryParse(PrevStationTBO.Text, out PrevStation))
+                {
+                    MessageBox.Show("numbers only!");
+                }
             }
+
         }
 
         private void NextStationTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(NextStationTBO.Text, out NextStation))
+            if (StationIndexTBO.Text != "")
             {
-                MessageBox.Show("numbers only!");
+                if (!int.TryParse(NextStationTBO.Text, out NextStation))
+                {
+                    MessageBox.Show("numbers only!");
+                }
             }
         }
 

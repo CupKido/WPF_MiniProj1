@@ -693,21 +693,21 @@ namespace DS
             {
                 LineID = 14,
                 LineStationIndex = 1,
-                Station = 6023,
+                Station = 6203,
                 NextStation = 5393
             },
             new LineStation()
             {
                 LineID = 14,
-                LineStationIndex = 1,
-                PrevStation = 6023,
+                LineStationIndex = 2,
+                PrevStation = 6203,
                 Station = 5393,
                 NextStation = 5388
             },
             new LineStation()
             {
                 LineID = 14,
-                LineStationIndex = 2,
+                LineStationIndex = 3,
                 NextStation = 5395,
                 PrevStation = 5393,
                 Station = 5388
@@ -715,7 +715,7 @@ namespace DS
             new LineStation()
             {
                 LineID = 14,
-                LineStationIndex = 3,
+                LineStationIndex = 4,
                 Station = 5395,
                 PrevStation = 5393,
                 NextStation = 1305
@@ -723,7 +723,7 @@ namespace DS
             new LineStation()
             {
                 LineID = 14,
-                LineStationIndex = 0,
+                LineStationIndex = 5,
                 Station = 1305,
                 PrevStation = 5395
             }
