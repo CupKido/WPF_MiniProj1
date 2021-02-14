@@ -26,15 +26,25 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
+            //to Show
+            UserNameTBO.Visibility = Visibility.Visible;
+            UserNameTBL.Visibility = Visibility.Visible;
+            PasswordTBO.Visibility = Visibility.Visible;
+            PasswordTBL.Visibility = Visibility.Visible;
+            SignUpTBL.Visibility = Visibility.Visible;
+            ForgotPasswordTBL.Visibility = Visibility.Visible;
+            LoginButton.Visibility = Visibility.Visible;
+
+            //to Hide
+            SignUpButton.Visibility = Visibility.Collapsed;
+            ConfirmPasswordTBL.Visibility = Visibility.Collapsed;
+            ConfirmPasswordTBO.Visibility = Visibility.Collapsed;
+
 
             //------To Remove-------
             UserNameTBO.Text = "Admin";
             PasswordTBO.Password = "Admin";
             //----------------------
-
-            SignUpButton.IsEnabled = false;
-            SignUpButton.Opacity = 0;
-
 
             this.Show();
         }
@@ -43,20 +53,26 @@ namespace PL.WPF
         {
             InitializeComponent();
 
-
             this.Height = 250;
-            SignUpTBL.IsEnabled = false;
-            SignUpTBL.Opacity = 0;
-            ForgotPasswordTBL.IsEnabled = false;
-            ForgotPasswordTBL.Opacity = 0;
 
+            //to Show
+            UserNameTBO.Visibility = Visibility.Visible;
+            UserNameTBL.Visibility = Visibility.Visible;
+            PasswordTBO.Visibility = Visibility.Visible;
+            PasswordTBL.Visibility = Visibility.Visible;
+            ConfirmPasswordTBL.Visibility = Visibility.Visible;
             ConfirmPasswordTBL.IsEnabled = true;
             ConfirmPasswordTBL.Opacity = 1;
+            ConfirmPasswordTBO.Visibility = Visibility.Visible;
+            ConfirmPasswordTBO.Background = Brushes.Red;
             ConfirmPasswordTBO.IsEnabled = true;
             ConfirmPasswordTBO.Opacity = 1;
+            SignUpButton.Visibility = Visibility.Visible;
 
-            LoginButton.IsEnabled = false;
-            LoginButton.Opacity = 0;
+            //to Hide
+            SignUpTBL.Visibility = Visibility.Collapsed;
+            ForgotPasswordTBL.Visibility = Visibility.Collapsed;
+            LoginButton.Visibility = Visibility.Collapsed;
 
             //------To Remove-------
             UserNameTBO.Text = UserName;
@@ -73,21 +89,29 @@ namespace PL.WPF
             UpdateMode = true;
             ThisUser = user;
             this.Height = 250;
-            SignUpTBL.IsEnabled = false;
-            SignUpTBL.Opacity = 0;
-            ForgotPasswordTBL.IsEnabled = false;
-            ForgotPasswordTBL.Opacity = 0;
 
+            //to Show
+            UserNameTBO.Visibility = Visibility.Visible;
+            UserNameTBO.IsEnabled = false;
+            UserNameTBL.Visibility = Visibility.Visible;
+            PasswordTBO.Visibility = Visibility.Visible;
+            PasswordTBL.Visibility = Visibility.Visible;
+            ConfirmPasswordTBL.Visibility = Visibility.Visible;
             ConfirmPasswordTBL.IsEnabled = true;
             ConfirmPasswordTBL.Opacity = 1;
+            ConfirmPasswordTBO.Visibility = Visibility.Visible;
+            ConfirmPasswordTBO.Background = Brushes.Red;
             ConfirmPasswordTBO.IsEnabled = true;
             ConfirmPasswordTBO.Opacity = 1;
-            UserNameTBO.IsEnabled = false;
-
-            LoginButton.IsEnabled = false;
-            LoginButton.Opacity = 0;
-
+            SignUpButton.Visibility = Visibility.Visible;
             SignUpButton.Content = "Update";
+
+            //to Hide
+            LoginButton.Visibility = Visibility.Collapsed;
+            ForgotPasswordTBL.Visibility = Visibility.Collapsed;
+            SignUpTBL.Visibility = Visibility.Collapsed;
+            
+            
 
             //------To Remove-------
             UserNameTBO.Text = user.UserName;
@@ -107,6 +131,16 @@ namespace PL.WPF
         private void ForgotPassword_Click(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show("No Such Function");
+        }
+
+        private void ConfirmPassword_Changed(object sender, RoutedEventArgs e)
+        {
+            if (PasswordTBO.Password != ConfirmPasswordTBO.Password)
+            {
+                ConfirmPasswordTBO.Background = Brushes.Red;
+                return;
+            }
+            ConfirmPasswordTBO.Background = Brushes.Green;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
