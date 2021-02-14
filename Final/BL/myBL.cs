@@ -26,18 +26,18 @@ namespace BL
         {
             //if (user.Admin)
             //{
-            
+
             if ((bus.LicenseNum.ToString().Length == 7 && bus.FromDate.Year < 2018) || (bus.LicenseNum.ToString().Length == 8 && bus.FromDate.Year >= 2018) != true)
             {
                 throw new BO.BadBusIdException(bus.LicenseNum, "invaild ID");
             }
-            
+
             if (bus.FromDate > DateTime.Now)
             {
-            throw new BO.BadBusIdException(bus.LicenseNum, "starting service date cant be in the future");
+                throw new BO.BadBusIdException(bus.LicenseNum, "starting service date cant be in the future");
             }
 
-            
+
             if (bus.lastime > DateTime.Now)
             {
                 throw new BO.BadBusIdException(bus.LicenseNum, "Last Repair date cant be in the future");
@@ -73,12 +73,12 @@ namespace BL
             {
                 throw ex;
             }
-            BO.BUS bus1 =(BO.BUS)bus.CopyPropertiesToNew(typeof(BO.BUS));
+            BO.BUS bus1 = (BO.BUS)bus.CopyPropertiesToNew(typeof(BO.BUS));
             if (bus != null)
             {
                 return bus1;
             }
-            throw  new BO.BadBusIdException(bus.LicenseNum,"'");
+            throw new BO.BadBusIdException(bus.LicenseNum, "'");
 
         }
 
@@ -87,22 +87,22 @@ namespace BL
             //if (user.Admin)
             //{
 
-                try
-                {
-                    return myDal.RemoveBus(LN).CopyPropertiesToNew(typeof(BO.BUS)) as BO.BUS;
-                }
-                catch (DO.BadBusIdException ex)
-                {
+            try
+            {
+                return myDal.RemoveBus(LN).CopyPropertiesToNew(typeof(BO.BUS)) as BO.BUS;
+            }
+            catch (DO.BadBusIdException ex)
+            {
 
-                    throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
-                }
+                throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
+            }
             //}
             //else throw "";
         }
 
         public IEnumerable<BO.BUS> GetAllBuses()
         {
-            List<DO.BUS> list = myDal.GetAllBuses().ToList(); 
+            List<DO.BUS> list = myDal.GetAllBuses().ToList();
             return from item in list
                    let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
                    orderby bus.LicenseNum
@@ -140,7 +140,7 @@ namespace BL
             }
         }
 
-        
+
 
         #endregion
 
@@ -181,9 +181,9 @@ namespace BL
         public IEnumerable<BO.BusOnTrip> GetAllBusesOnTrip()
         {
             List<DO.BusOnTrip> list = (List<DO.BusOnTrip>)(from bus in myDal.GetAllBusesBy(p => p.LicenseNum != 0)
-                                      let bus1 = myDal.GetBusOnTrip(bus.LicenseNum)
-                                      where (bus1 != null)
-                                      select bus1);
+                                                           let bus1 = myDal.GetBusOnTrip(bus.LicenseNum)
+                                                           where (bus1 != null)
+                                                           select bus1);
             return from item in list
                    let BOT = (BO.BusOnTrip)item.CopyPropertiesToNew(typeof(BO.BusOnTrip))
                    orderby BOT.ID
@@ -213,7 +213,7 @@ namespace BL
             try
             {
                 myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
-                myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1 ,NextStation =line.LastStation });
+                myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation });
                 myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 0, PrevStation = line.FirstStation });
             }
             catch (DO.BadLineIdException ex)
@@ -223,7 +223,7 @@ namespace BL
             //}
             //else throw " ";
         }
-       
+
 
         public IEnumerable<BO.Line> GetAllLines()
         {
@@ -246,7 +246,7 @@ namespace BL
             {
                 throw new NotImplementedException();
             }
-            return (BO.Line)foundLine.CopyPropertiesToNew(typeof(BO.Line));   
+            return (BO.Line)foundLine.CopyPropertiesToNew(typeof(BO.Line));
         }
 
         public void UpdateLine(Line line)
@@ -269,9 +269,9 @@ namespace BL
             {
                 list = (List<DO.Line>)myDal.GetAllLines();
             }
-            catch(DO.BadLineIdException ex)
+            catch (DO.BadLineIdException ex)
             {
-                throw new BadLineIdException(0,"no lines exist!",ex);
+                throw new BadLineIdException(0, "no lines exist!", ex);
             }
             return from item in list
                    let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
@@ -300,18 +300,18 @@ namespace BL
         {
             //if (Auser.Admin)
             //{
-                try
-                {
-                    myDal.AddUser((DO.User)user.CopyPropertiesToNew(typeof(DO.User)));
-                }
-                catch (DO.BadUserNameException ex)
-                {
-                    throw new BO.BadUserNameException(ex.ID, ex.Message, ex);
-                }
+            try
+            {
+                myDal.AddUser((DO.User)user.CopyPropertiesToNew(typeof(DO.User)));
+            }
+            catch (DO.BadUserNameException ex)
+            {
+                throw new BO.BadUserNameException(ex.ID, ex.Message, ex);
+            }
             //}
             //else throw " ";
         }
-        
+
 
         public IEnumerable<BO.User> GetAllUsers()
         {
@@ -328,11 +328,11 @@ namespace BL
             {
                 FoundUser = myDal.GetUser(ThatUser.UserName);
             }
-            catch( Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message + "\n" + ThatUser.UserName);
             }
-            if(ThatUser.Password != FoundUser.Password)
+            if (ThatUser.Password != FoundUser.Password)
             {
                 throw new Exception("Incorrect UserName or Password");
             }
@@ -385,9 +385,9 @@ namespace BL
 
 
 
-        
 
-        
+
+
         #endregion
 
         #region station
@@ -398,9 +398,12 @@ namespace BL
             {
                 myDal.AddStation(station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station);
             }
-            catch (DO.BadLineIdException ex)
+            catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
             }
         }
 
@@ -420,7 +423,16 @@ namespace BL
 
         public IEnumerable<Station> GetAllStations()
         {
-            List<DO.Station> list = myDal.GetAllStations().ToList();
+            List<DO.Station> list;
+            try
+            {
+                list = (List<DO.Station>)myDal.GetAllStations();
+            }
+            catch (DO.BadStationIdException ex)
+            {
+                throw new BO.BadStationIdException(ex.ID, ex.Message, ex);
+            }
+
             return from item in list
                    let station = item.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
                    orderby station.Code
@@ -576,10 +588,10 @@ namespace BL
 
         #endregion
 
-       
-        
 
-        
+
+
+
 
     }
 }

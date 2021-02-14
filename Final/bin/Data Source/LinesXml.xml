@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinesXml.xml>
+  <Line>
+    <ID>1234</ID>
+    <Code>0</Code>
+    <Area>north</Area>
+    <FirstStation>12</FirstStation>
+    <LastStation>123</LastStation>
+  </Line>
+</LinesXml.xml>

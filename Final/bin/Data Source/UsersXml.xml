@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UsersXml.xml>
+  <User>
+    <UserName>Admin</UserName>
+    <Password>Admin</Password>
+    <Admin>False</Admin>
+  </User>
+  <User>
+    <UserName>Admid</UserName>
+    <Password>Admin</Password>
+    <Admin>False</Admin>
+  </User>
+  <User>
+    <UserName>Admir</UserName>
+    <Password>Admin</Password>
+    <Admin>False</Admin>
+  </User>
+  <User>
+    <UserName>AdmiL</UserName>
+    <Password>Admin</Password>
+    <Admin>False</Admin>
+  </User>
+  <User>
+    <UserName>Admif</UserName>
+    <Password>Admin</Password>
+    <Admin>False</Admin>
+  </User>
+</UsersXml.xml>
