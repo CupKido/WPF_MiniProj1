@@ -479,6 +479,7 @@ namespace BL
             try
             {
                 myDal.AddLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
+
             }
             catch (DO.BadStationIdException ex)
             {
