@@ -47,12 +47,7 @@ namespace PL.WPF
             number5data.Text = bus.ckm.ToString();
             number6pre.Text = "Gaz Amount:";
             number6data.Text = bus.FuelRemain.ToString();
-            AddStationB.Opacity = 0;
-            AddStationB.IsEnabled = false;
-            RemoveStationB.Opacity = 0;
-            RemoveStationB.IsEnabled = false;
-            UpdateStationB.Opacity = 0;
-            UpdateStationB.IsEnabled = false;
+            
         }
         public ShowInfo(BO.Line line, ManagerWindow main)
         {
@@ -77,6 +72,12 @@ namespace PL.WPF
             number6data.Text = line.FirstStation.ToString();
             number7pre.Text = "Last Station:";
             number7data.Text = line.LastStation.ToString();
+            AddStationB.Opacity = 100;
+            AddStationB.IsEnabled = true;
+            RemoveStationB.Opacity = 100;
+            RemoveStationB.IsEnabled = true;
+            UpdateStationB.Opacity = 100;
+            UpdateStationB.IsEnabled = true;
         }
 
         public ShowInfo(BO.Station Station, ManagerWindow main)
@@ -118,6 +119,12 @@ namespace PL.WPF
             number8pre.Text = "";
             number8data.Text = "";
             Height = defulth;
+            AddStationB.Opacity = 0;
+            AddStationB.IsEnabled = false;
+            RemoveStationB.Opacity = 0;
+            RemoveStationB.IsEnabled = false;
+            UpdateStationB.Opacity = 0;
+            UpdateStationB.IsEnabled = false;
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
