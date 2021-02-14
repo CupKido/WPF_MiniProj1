@@ -33,13 +33,18 @@ namespace PL.WPF
             Main = main;
 
             //transition to add
-            UpdateButton.IsEnabled = false;
-            UpdateButton.Opacity = 0;
-            addButton.IsEnabled = true;
-            addButton.Opacity = 1;
+
+            //to Show
+            addButton.Visibility = Visibility.Visible;
+
+            //to Hide
+            UpdateButton.Visibility = Visibility.Collapsed;
+
+            //Prepare Checkbox
             lastTreatmentCB.IsEnabled = true;
             lastTreatmentCB.Opacity = 1;
             lastTreatmentCB.IsChecked = true;
+
         }
         //for update
         public addBusWindow(int LN, ManagerWindow main)
@@ -47,10 +52,14 @@ namespace PL.WPF
             InitializeComponent();
 
             //transition to update
-            addButton.IsEnabled = false;
-            addButton.Opacity = 0;
-            UpdateButton.IsEnabled = true;
-            UpdateButton.Opacity = 1;
+
+            //to Show
+            UpdateButton.Visibility = Visibility.Visible;
+
+            //to Hide
+            addButton.Visibility = Visibility.Collapsed;
+
+            //Prepare Checkbox
             lastTreatmentCB.IsEnabled = false;
             lastTreatmentCB.Opacity = 0;
             lastTreatmentCB.IsChecked = true;
@@ -73,9 +82,9 @@ namespace PL.WPF
                 kmFromTreatTBO.Text = ThisBus.ckm.ToString();
                 kmFromTreatTBO.IsEnabled = false;
             }
-            catch
+            catch(BO.BadBusIdException ex)
             {
-                MessageBox.Show("Bus Not found");
+                MessageBox.Show(ex.Message + "\n" + ex.ID);
             }
 
             
