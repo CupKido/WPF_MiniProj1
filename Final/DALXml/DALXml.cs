@@ -318,7 +318,8 @@ namespace DALXml
             try
             {
                 LinesRootElem = XMLTools.LoadListFromXMLElement(LinesPath);
-            }catch(XMLFileLoadCreateException ex)
+            }
+            catch (XMLFileLoadCreateException ex)
             {
                 throw ex;
             }
@@ -330,7 +331,7 @@ namespace DALXml
                             where int.Parse(LineEl.Element("ID").Value) == line.ID
                             select LineEl).FirstOrDefault();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -352,11 +353,12 @@ namespace DALXml
             try
             {
                 XMLTools.SaveListToXMLElement(LinesRootElem, LinesPath);
-            }catch(XMLFileLoadCreateException ex)
+            }
+            catch (XMLFileLoadCreateException ex)
             {
                 throw ex;
             }
-            
+
         }
 
         public Line GetLine(int ID)
@@ -379,23 +381,23 @@ namespace DALXml
             try
             {
                 Line = (from line in LinesRootElem.Elements()
-                                where int.Parse(line.Element("ID").Value) == ID
-                                select new Line()
-                                {
-                                    ID = Int32.Parse(line.Element("ID").Value),
-                                    Code = Int32.Parse(line.Element("Code").Value),
-                                    Area = (Areas)Enum.Parse(typeof(Areas), line.Element("Area").Value),
-                                    FirstStation = Int32.Parse(line.Element("FirstStation").Value),
-                                    LastStation = Int32.Parse(line.Element("LastStation").Value)
-                                }
+                        where int.Parse(line.Element("ID").Value) == ID
+                        select new Line()
+                        {
+                            ID = Int32.Parse(line.Element("ID").Value),
+                            Code = Int32.Parse(line.Element("Code").Value),
+                            Area = (Areas)Enum.Parse(typeof(Areas), line.Element("Area").Value),
+                            FirstStation = Int32.Parse(line.Element("FirstStation").Value),
+                            LastStation = Int32.Parse(line.Element("LastStation").Value)
+                        }
                          ).FirstOrDefault();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
 
-            
+
             if (Line == null)
             {
                 throw new BadLineIdException(ID, "Line Doesn't exist in Data");
@@ -1032,27 +1034,189 @@ namespace DALXml
 
         public void AddAdjacentStations(AdjacentStations adjacentstation)
         {
-            throw new NotImplementedException();
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+
+            XElement AdStElem;
+            try
+            {
+                AdStElem = (from AdjElem in AdStRootElem.Elements()
+                            where int.Parse(AdjElem.Element("Station1").Value) == adjacentstation.Station1
+                            where int.Parse(AdjElem.Element("Station2").Value) == adjacentstation.Station2
+                            select AdjElem).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (AdStElem != null)
+                throw new Exception("Stations already exists");
+
+            XElement newAdSt =
+                new XElement("AdjacentStations",
+               new XElement("Station1", adjacentstation.Station1.ToString()),
+               new XElement("Station2", adjacentstation.Station2.ToString()),
+               new XElement("Distance", adjacentstation.Distance.ToString()),
+               new XElement("Time", adjacentstation.Time.ToString())
+               );
+
+            AdStRootElem.Add(newAdSt);
+            try
+            {
+                XMLTools.SaveListToXMLElement(AdStRootElem, AdjacentStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
         }
 
         public AdjacentStations GetAdjacentStations(int station1, int station2)
         {
-            throw new NotImplementedException();
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            DO.AdjacentStations AdSt = (from AdjElem in AdStRootElem.Elements()
+                                        where int.Parse(AdjElem.Element("Station1").Value) == station1
+                                        where int.Parse(AdjElem.Element("Station2").Value) == station2
+                                        select new DO.AdjacentStations()
+                                        {
+                                            Station1 = int.Parse(AdjElem.Element("Station1").Value),
+                                            Station2 = int.Parse(AdjElem.Element("Station2").Value),
+                                            Distance = Convert.ToDouble(AdjElem.Element("Station1").Value),
+                                            Time = TimeSpan.Parse(AdjElem.Element("Station1").Value),
+
+                                        }
+                                        ).FirstOrDefault();
+
+            if (AdSt == null)
+            {
+                //put different ex
+                throw new Exception("Adjacent Stations Do not exist in Data");
+            }
+            return AdSt;
         }
 
         public IEnumerable<AdjacentStations> GetAllAdjacentStations()
         {
-            throw new NotImplementedException();
-        }
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
-        public AdjacentStations RemoveAdjacentStations(int station1, int station2)
-        {
-            throw new NotImplementedException();
+            if (AdStRootElem.Elements().Count() == 0)
+            {
+                throw new Exception("No Adjacent Stations in Data");
+            }
+
+            return from AdjElem in AdStRootElem.Elements()
+                   select new DO.AdjacentStations()
+                   {
+                       Station1 = int.Parse(AdjElem.Element("Station1").Value),
+                       Station2 = int.Parse(AdjElem.Element("Station2").Value),
+                       Distance = Convert.ToDouble(AdjElem.Element("Station1").Value),
+                       Time = TimeSpan.Parse(AdjElem.Element("Station1").Value)
+                   };
+
+
         }
 
         public void UpdateAdjacentStations(AdjacentStations adjacentstations)
         {
-            throw new NotImplementedException();
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            XElement AdStElem = (from AdjElem in AdStRootElem.Elements()
+                                        where int.Parse(AdjElem.Element("Station1").Value) == adjacentstations.Station1
+                                        where int.Parse(AdjElem.Element("Station2").Value) == adjacentstations.Station2
+                                        select AdjElem
+                                        ).FirstOrDefault();
+
+            if (AdStElem == null)
+            {
+                //put different ex
+                throw new Exception("Adjacent Stations Do not exist in Data");
+            }
+
+            AdStElem.Element("Station1").Value = adjacentstations.Station1.ToString();
+            AdStElem.Element("Station2").Value = adjacentstations.Station2.ToString();
+            AdStElem.Element("Distance").Value = adjacentstations.Distance.ToString();
+            AdStElem.Element("Time").Value = adjacentstations.Time.ToString();
+
+            try
+            {
+                XMLTools.SaveListToXMLElement(AdStRootElem, AdjacentStationsPath);
+            }catch(XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public AdjacentStations RemoveAdjacentStations(int station1, int station2)
+        {
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            XElement AdStElem = (from AdjElem in AdStRootElem.Elements()
+                                 where int.Parse(AdjElem.Element("Station1").Value) == station1
+                                 where int.Parse(AdjElem.Element("Station2").Value) == station2
+                                 select AdjElem
+                                        ).FirstOrDefault();
+
+            if (AdStElem == null)
+            {
+                //put different ex
+                throw new Exception("Adjacent Stations Do not exist in Data");
+            }
+
+            DO.AdjacentStations AdSt = new AdjacentStations()
+            {
+                Station1 = int.Parse(AdStElem.Element("Station1").Value),
+                Station2 = int.Parse(AdStElem.Element("Station2").Value),
+                Distance = Convert.ToDouble(AdStElem.Element("Station1").Value),
+                Time = TimeSpan.Parse(AdStElem.Element("Station1").Value)
+            };
+
+            AdStElem.Remove();
+
+            XMLTools.SaveListToXMLElement(AdStRootElem, AdjacentStationsPath);
+
+            return AdSt;
         }
     }
 }
