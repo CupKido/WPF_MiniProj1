@@ -63,8 +63,20 @@ namespace PL.WPF
                     {
                         list.ItemsSource = null;
                     }
-                    
-
+                }
+                catch (BO.BadBusIdException ex)
+                {
+                    if (ex.ID == 0)
+                    {
+                        list.ItemsSource = null;
+                    }
+                }
+                catch (BO.BadLineIdException ex)
+                {
+                    if (ex.ID == 0)
+                    {
+                        list.ItemsSource = null;
+                    }
                 }
 
 
