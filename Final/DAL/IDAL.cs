@@ -45,10 +45,10 @@ namespace DLAPI
         #region BUS
         void AddBus(BUS bus);
         BUS GetBUS(int LicenseNum);        
+        IEnumerable<BUS> GetAllBuses();
         IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate);
         void UpdateBus(int LicenseNum, BUS Bus);
         BUS RemoveBus(int LicenseNum);
-        IEnumerable<BUS> GetAllBuses();
         #endregion
 
         #region Line

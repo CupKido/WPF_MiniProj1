@@ -71,4 +71,12 @@ namespace DO
             base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $", bad Trip id: {ID}";
     }
+
+    public class XMLFileLoadCreateException : Exception
+    {
+        string Path;
+        public XMLFileLoadCreateException(string path, string message, Exception innerException) :
+            base(message, innerException) => Path = path;
+        public override string ToString() => base.ToString() + $", Path: {Path}";
+    }
 }
