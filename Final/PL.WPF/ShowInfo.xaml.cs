@@ -72,6 +72,7 @@ namespace PL.WPF
             number6data.Text = line.FirstStation.ToString();
             number7pre.Text = "Last Station:";
             number7data.Text = line.LastStation.ToString();
+            //AddStationB.Visibility =  new Visibility() 
             AddStationB.Opacity = 100;
             AddStationB.IsEnabled = true;
             RemoveStationB.Opacity = 100;

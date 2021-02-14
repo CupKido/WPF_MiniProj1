@@ -155,8 +155,7 @@ namespace PL.WPF
         {
             try
             {
-
-                bl.GetStation(StationId); 
+                StationId = int.Parse(StationIDBO.Text);
                 bl.AddLineStation(NewLineStation());
                 SI.Refresh();
                 this.Close();
@@ -171,7 +170,7 @@ namespace PL.WPF
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
+            { 
                 bl.UpdateLineStation(NewLineStation());
                 SI.Refresh();
                 this.Close();

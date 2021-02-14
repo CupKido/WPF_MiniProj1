@@ -412,7 +412,11 @@ namespace BL
             DO.Station foundStation;
             try
             {
-                foundStation = myDal.GetStation(ID); 
+                foundStation = myDal.GetStation(ID);
+                if (foundStation == null)
+                {
+                    throw new BadStationIdException(ID, "station is not exist");
+                }
             }
             catch
             {
@@ -490,6 +494,7 @@ namespace BL
         {
             try
             {
+                GetStation(station.Station);
                 List<DO.LineStation> stations = myDal.GetAllLineStationsBy(p => p.LineStationIndex >= station.LineStationIndex && p.Station != station.Station && p.LineID == station.LineID).ToList();
                 foreach (var item in stations)
                 {
