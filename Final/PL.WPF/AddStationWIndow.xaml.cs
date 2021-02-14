@@ -33,10 +33,16 @@ namespace PL.WPF
             //For Refresh
             Main = main;
 
+            //Add
             UpdateButton.IsEnabled = false;
             UpdateButton.Opacity = 0;
-            AddButton.IsEnabled = true;
-            AddButton.Opacity = 1;
+
+            //for Show
+            AddButton.Visibility = Visibility.Visible;
+
+            //for Hide
+            UpdateButton.Visibility = Visibility.Collapsed;
+            
         }
         //for update
         public AddStationWindow(int Code, ManagerWindow main)
@@ -45,10 +51,12 @@ namespace PL.WPF
             //For refresh
             Main = main;
 
-            AddButton.IsEnabled = false;
-            AddButton.Opacity = 0;
-            UpdateButton.IsEnabled = true;
-            UpdateButton.Opacity = 1;
+            //For Show
+            UpdateButton.Visibility = Visibility.Visible;
+            
+            //For Hide
+            AddButton.Visibility = Visibility.Collapsed;
+
             try
             {
                 ThisStation = bl.GetStation(Code);

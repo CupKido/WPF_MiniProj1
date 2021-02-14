@@ -14,8 +14,8 @@
         <TextBlock x:Name="firstStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"><Run Text="First"/><Run FlowDirection="RightToLeft" Text=" "/><Run Text=" station code"/><Run Text=":"/></TextBlock>
         <TextBlock x:Name="lastStationTBL" HorizontalAlignment="Left" Height="17" Margin="31,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="Last station code:"/>
         <TextBox x:Name="lastStationTBO" HorizontalAlignment="Left" Height="17" Margin="162,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="lastStationTBO_TextChanged" />
-        <Button x:Name="addButton" Content="Add Line" HorizontalAlignment="Left" Height="36" Margin="198,174,0,0" VerticalAlignment="Top" Width="89" Click="addButton_Click"/>
-        <Button x:Name="UpdateButton" Content="Update Line" HorizontalAlignment="Left" Height="36" Margin="104,174,0,0" VerticalAlignment="Top" Width="89" Click="UpdateButton_Click"/>
+        <Button x:Name="addButton" Content="Add Line" HorizontalAlignment="Left" Height="36" Margin="133,174,0,0" VerticalAlignment="Top" Width="89" Click="addButton_Click"/>
+        <Button x:Name="UpdateButton" Content="Update Line" HorizontalAlignment="Left" Height="36" Margin="133,174,0,0" VerticalAlignment="Top" Width="89" Click="UpdateButton_Click"/>
         <ComboBox x:Name="areaCB" HorizontalAlignment="Left" Height="24" Margin="162,52,0,0" VerticalAlignment="Top" Width="169"/>
 
     </Grid>

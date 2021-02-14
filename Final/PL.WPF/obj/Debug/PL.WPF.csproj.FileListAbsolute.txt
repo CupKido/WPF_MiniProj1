@@ -1,6 +1,5 @@
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\PL.WPF.csprojAssemblyReference.cache
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\MainWindow.g.cs
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\Buses.g.cs
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\App.g.cs
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\PL.WPF_MarkupCompile.cache
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\PL.WPF_MarkupCompile.lref
@@ -12,7 +11,6 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\bin\Debug\BL.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\bin\Debug\DAL.pdb
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\MainWindow.baml
-D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\Buses.baml
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\PL.WPF.g.resources
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\PL.WPF.Properties.Resources.resources
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\PL.WPF.csproj.GenerateResource.cache

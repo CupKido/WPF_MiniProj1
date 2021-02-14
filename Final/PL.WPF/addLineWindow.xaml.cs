@@ -28,18 +28,20 @@ namespace PL.WPF
         IBL bl = BLFactory.GetBL(1);
         ManagerWindow Main;
         BO.Line ThisLine;
+
+        //for Add
         public addLineWindow(ManagerWindow main)
         {
-            InitializeComponent();            
+            InitializeComponent();
             Main = main;
 
 
             //for add
-            UpdateButton.IsEnabled = false;
-            UpdateButton.Opacity = 0;
-            addButton.IsEnabled = true;
-            addButton.Opacity = 1;
+            //To Show
+            addButton.Visibility = Visibility.Visible;
 
+            //To Hide
+            UpdateButton.Visibility = Visibility.Collapsed;
 
             //combo box preps
             List<string> CBSource = new List<string>();
@@ -48,6 +50,8 @@ namespace PL.WPF
             CBSource.Add("south");
             areaCB.ItemsSource = CBSource;
         }
+
+        //For Update
         public addLineWindow(int ID, ManagerWindow main)
         {
             InitializeComponent();
@@ -61,12 +65,28 @@ namespace PL.WPF
             areaCB.ItemsSource = CBSource;
 
             //for update
-            addButton.IsEnabled = false;
-            addButton.Opacity = 0;
-            UpdateButton.IsEnabled = true;
-            UpdateButton.Opacity = 1;
 
-            ThisLine = bl.GetLine(ID);
+            //To Show
+            UpdateButton.Visibility = Visibility.Visible;
+
+            //To Hide
+            addButton.Visibility = Visibility.Collapsed;
+
+            try
+            {
+                ThisLine = bl.GetLine(ID);
+            }
+            catch(BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + ex.ID);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            
             IDTBO.Text = ThisLine.ID.ToString();
             IDTBO.IsEnabled = false;
             firstStationTBO.Text = ThisLine.FirstStation.ToString();
@@ -74,7 +94,7 @@ namespace PL.WPF
             areaCB.SelectedItem = ThisLine.Area.ToString();
 
         }
-            private void lastStationTBO_TextChanged(object sender, TextChangedEventArgs e)
+        private void lastStationTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!int.TryParse(lastStationTBO.Text, out lastStation))
             {
@@ -137,13 +157,13 @@ namespace PL.WPF
                     Main.RefreshList(Main.LinesList);
                     this.Close();
                 }
-                catch(BO.BadLineIdException ex)
+                catch (BO.BadLineIdException ex)
                 {
 
-                    MessageBox.Show("Not added\n ERROR: " +ex.Message );
+                    MessageBox.Show("Not added\n ERROR: " + ex.Message);
                 }
-                
-               
+
+
             }
             else { MessageBox.Show("please fill the empty filds"); }
         }
@@ -151,9 +171,9 @@ namespace PL.WPF
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             int temp;
-            if(int.TryParse(firstStationTBO.Text, out temp))
-            { 
-            ThisLine.FirstStation = temp;            
+            if (int.TryParse(firstStationTBO.Text, out temp))
+            {
+                ThisLine.FirstStation = temp;
             }
             if (int.TryParse(lastStationTBO.Text, out temp))
             {

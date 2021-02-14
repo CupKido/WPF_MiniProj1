@@ -28,13 +28,38 @@ namespace PL.WPF
         IBL bl = BLFactory.GetBL(1);
         ShowInfo SI;
         
+        //Add
+        public addLineStationWindow(ShowInfo Si, int ID)
+        {
+            SI = Si;
+            InitializeComponent();
+
+            //to Show
+            AddButton.Visibility = Visibility.Visible;
+
+            //to Hide
+            UpdateButton.Visibility = Visibility.Collapsed;
+
+            LineIDTBO.Text = ID.ToString();
+            LineId = ID;
+            LineIDTBO.IsEnabled = false;
+        }
+
+        //Update
         public addLineStationWindow(BO.LineStation station, ShowInfo Si)
         {
             InitializeComponent();
 
             SI = Si;
-            AddButton.Opacity = 0;
-            AddButton.IsEnabled = false;
+
+            //to Show
+            UpdateButton.Visibility = Visibility.Visible;
+
+            //to Hide
+            AddButton.Visibility = Visibility.Collapsed;
+
+
+            //preps
             StationIDBO.Text = station.Station.ToString();
             StationId = station.Station;
             StationIDBO.IsEnabled = false;
@@ -43,24 +68,11 @@ namespace PL.WPF
             LineIDTBO.IsEnabled = false;
             NextStationTBO.IsEnabled = false;
             PrevStationTBO.IsEnabled = false;
-            
-        }
-        public addLineStationWindow(ShowInfo Si, int ID)
-        {
-            SI = Si;
-            InitializeComponent();
-            UpdateButton.Opacity = 0;
-            UpdateButton.IsEnabled = false;
-            LineIDTBO.Text = ID.ToString();
-            LineId = ID;
-            LineIDTBO.IsEnabled = false;
 
         }
-
 
         private void StationIDBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             if (StationIndexTBO.Text != "")
             {
                 if (!int.TryParse(StationIDBO.Text, out StationId))
@@ -69,6 +81,7 @@ namespace PL.WPF
                 }
             }
         }
+
         private void LineIDTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
 
