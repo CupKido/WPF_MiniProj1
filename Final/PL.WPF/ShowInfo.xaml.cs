@@ -72,13 +72,9 @@ namespace PL.WPF
             number6data.Text = line.FirstStation.ToString();
             number7pre.Text = "Last Station:";
             number7data.Text = line.LastStation.ToString();
-            //AddStationB.Visibility =  new Visibility() 
-            AddStationB.Opacity = 100;
-            AddStationB.IsEnabled = true;
-            RemoveStationB.Opacity = 100;
-            RemoveStationB.IsEnabled = true;
-            UpdateStationB.Opacity = 100;
-            UpdateStationB.IsEnabled = true;
+            AddStationB.Visibility = Visibility.Visible;
+            RemoveStationB.Visibility = Visibility.Visible;
+            UpdateStationB.Visibility = Visibility.Visible;
         }
 
         public ShowInfo(BO.Station Station, ManagerWindow main)
@@ -134,12 +130,9 @@ namespace PL.WPF
             number8pre.Text = "";
             number8data.Text = "";
             Height = defulth;
-            AddStationB.Opacity = 0;
-            AddStationB.IsEnabled = false;
-            RemoveStationB.Opacity = 0;
-            RemoveStationB.IsEnabled = false;
-            UpdateStationB.Opacity = 0;
-            UpdateStationB.IsEnabled = false;
+            AddStationB.Visibility = Visibility.Hidden;
+            RemoveStationB.Visibility = Visibility.Hidden;
+            UpdateStationB.Visibility = Visibility.Hidden;
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
