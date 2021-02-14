@@ -7,4 +7,11 @@
     <FirstStation>12</FirstStation>
     <LastStation>123</LastStation>
   </Line>
+  <Line>
+    <ID>1324</ID>
+    <Code>0</Code>
+    <Area>south</Area>
+    <FirstStation>432</FirstStation>
+    <LastStation>234</LastStation>
+  </Line>
 </LinesXml.xml>

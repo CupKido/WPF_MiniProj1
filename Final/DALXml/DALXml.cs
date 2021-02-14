@@ -411,7 +411,7 @@ namespace DALXml
             }
 
             return from stat in StationsRootElem.Elements()
-                   select new Station()
+                   select new DO.Station()
                    {
                        Code = int.Parse(stat.Element("Code").Value),
                        Name = stat.Element("Name").Value,

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StationsXml.xml>
   <Station>
-    <Code>1234</Code>
-    <Name>nfg</Name>
-    <Longitude>423</Longitude>
-    <Langitude>234</Langitude>
+    <Code>124</Code>
+    <Name>R</Name>
+    <Longitude>243</Longitude>
+    <Latitude>6543</Latitude>
   </Station>
 </StationsXml.xml>
