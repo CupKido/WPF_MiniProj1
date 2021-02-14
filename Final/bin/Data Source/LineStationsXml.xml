@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LineStationsXml.xml>
+  <LineStation>
+    <LineID>6</LineID>
+    <Station>12</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>21</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>6</LineID>
+    <Station>21</Station>
+    <LineStationIndex>0</LineStationIndex>
+    <PrevStation>12</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>123</LineID>
+    <Station>321</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>432</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>123</LineID>
+    <Station>432</Station>
+    <LineStationIndex>0</LineStationIndex>
+    <PrevStation>321</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
+</LineStationsXml.xml>

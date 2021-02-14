@@ -104,7 +104,7 @@ namespace DALXml
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
-            
+
             return (from bus in BusesRootElem.Elements()
                     select new BUS()
                     {
@@ -529,7 +529,7 @@ namespace DALXml
                                    Password = UserElem.Element("Password").Value,
                                    Admin = bool.Parse(UserElem.Element("Admin").Value)
                                }).FirstOrDefault();
-            if(newUser == null)
+            if (newUser == null)
             {
                 throw new BadUserNameException(UserName, "User Doesn't exist in Data");
             }
@@ -572,7 +572,7 @@ namespace DALXml
                                  select userElem
                                  ).FirstOrDefault();
 
-            if(UserElem == null)
+            if (UserElem == null)
             {
                 throw new BadUserNameException(UserName, "User Doesn't exist in Data");
             }
@@ -641,27 +641,186 @@ namespace DALXml
         #region LineStation
         public void AddLineStation(LineStation station)
         {
-            throw new NotImplementedException();
+            XElement LineStationsRootElem = XMLTools.LoadListFromXMLElement(LineStationsPath);
+
+            XElement LSElem = (from lsElem in LineStationsRootElem.Elements()
+                               where int.Parse(lsElem.Element("LineID").Value) == station.LineID
+                               where int.Parse(lsElem.Element("Station").Value) == station.Station
+                               select lsElem).FirstOrDefault();
+            if (LSElem != null)
+            {
+                throw new BadLSIdException(station.LineID, "Station-for-Line Allready exists in Data");
+            }
+
+            XElement newLS =
+                new XElement("LineStation",
+                new XElement("LineID", station.LineID),
+                new XElement("Station", station.Station),
+                new XElement("LineStationIndex", station.LineStationIndex),
+                new XElement("PrevStation", station.PrevStation),
+                new XElement("NextStation", station.NextStation)
+                );
+            LineStationsRootElem.Add(newLS);
+            XMLTools.SaveListToXMLElement(LineStationsRootElem, LineStationsPath);
+
+
         }
-        public LineStation DeleteLineStation(int Code, int line)
+        public LineStation GetLineStation(int Code, int line)
         {
-            throw new NotImplementedException();
+            XElement LineStationsRootElem;
+            try
+            {
+                LineStationsRootElem = XMLTools.LoadListFromXMLElement(LineStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+
+            if (LineStationsRootElem.Elements().Count() == 0)
+            {
+                throw new BadLSIdException(0, "No Stations-for-Lines in Data");
+            }
+
+            DO.LineStation LS = (from lsElem in LineStationsRootElem.Elements()
+                                 where int.Parse(lsElem.Element("LineID").Value) == line
+                                 where int.Parse(lsElem.Element("Station").Value) == Code
+                                 select new LineStation()
+                                 {
+                                     LineID = int.Parse(lsElem.Element("LineID").Value),
+                                     Station = int.Parse(lsElem.Element("Station").Value),
+                                     LineStationIndex = int.Parse(lsElem.Element("LineStationIndex").Value),
+                                     PrevStation = int.Parse(lsElem.Element("PrevStation").Value),
+                                     NextStation = int.Parse(lsElem.Element("NextStation").Value)
+                                 }
+                                 ).FirstOrDefault();
+            if (LS == null)
+            {
+                throw new BadLSIdException(line, "Station-for-Line Doesn't Exist in Data");
+            }
+
+            return LS;
+
         }
+
         public IEnumerable<LineStation> GetAllLineStations()
         {
-            throw new NotImplementedException();
+            XElement LineStationsRootElem;
+            try
+            {
+                LineStationsRootElem = XMLTools.LoadListFromXMLElement(LineStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            if (LineStationsRootElem.Elements().Count() == 0)
+            {
+                throw new BadLSIdException(0, "No Stations-for-Lines in Data");
+            }
+
+            return from lsElem in LineStationsRootElem.Elements()
+                   select new LineStation()
+                   {
+                       LineID = int.Parse(lsElem.Element("LineID").Value),
+                       Station = int.Parse(lsElem.Element("Station").Value),
+                       LineStationIndex = int.Parse(lsElem.Element("LineStationIndex").Value),
+                       PrevStation = int.Parse(lsElem.Element("PrevStation").Value),
+                       NextStation = int.Parse(lsElem.Element("NextStation").Value)
+                   };
         }
         public IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> perdicate)
         {
             throw new NotImplementedException();
         }
-        public LineStation GetLineStation(int Code, int line)
-        {
-            throw new NotImplementedException();
-        }
+
         public void UpdateLineStation(LineStation station)
         {
-            throw new NotImplementedException();
+            XElement LineStationsRootElem;
+            try
+            {
+                LineStationsRootElem = XMLTools.LoadListFromXMLElement(LineStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            if (LineStationsRootElem.Elements().Count() == 0)
+            {
+                throw new BadLSIdException(0, "No Stations-for-Lines in Data");
+            }
+
+            XElement LSElem = (from lsElem in LineStationsRootElem.Elements()
+                               where int.Parse(lsElem.Element("LineID").Value) == station.LineID
+                               where int.Parse(lsElem.Element("Station").Value) == station.Station
+                               select lsElem
+                               ).FirstOrDefault();
+            if (LSElem == null)
+            {
+                throw new BadLSIdException(station.LineID, "Station-for-Line Doesn't Exist in Data");
+            }
+
+            LSElem.Element("LineID").Value = station.LineID.ToString();
+            LSElem.Element("Station").Value = station.Station.ToString();
+            LSElem.Element("LineStationIndex").Value = station.LineStationIndex.ToString();
+            LSElem.Element("PrevStation").Value = station.PrevStation.ToString();
+            LSElem.Element("NextStation").Value = station.NextStation.ToString();
+
+            try
+            {
+                XMLTools.SaveListToXMLElement(LineStationsRootElem, LineStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public LineStation DeleteLineStation(int Code, int line)
+        {
+            XElement LineStationsRootElem;
+            try
+            {
+                LineStationsRootElem = XMLTools.LoadListFromXMLElement(LineStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            if (LineStationsRootElem.Elements().Count() == 0)
+            {
+                throw new BadLSIdException(0, "No Stations-for-Lines in Data");
+            }
+
+            XElement LSElem = (from lsElem in LineStationsRootElem.Elements()
+                               where int.Parse(lsElem.Element("LineID").Value) == line
+                               where int.Parse(lsElem.Element("Station").Value) == Code
+                               select lsElem
+                               ).FirstOrDefault();
+            if (LSElem == null)
+            {
+                throw new BadLSIdException(line, "Station-for-Line Doesn't Exist in Data");
+            }
+
+            DO.LineStation LineStation = new LineStation()
+            {
+                LineID = int.Parse(LSElem.Element("LineID").Value),
+                Station = int.Parse(LSElem.Element("Station").Value),
+                LineStationIndex = int.Parse(LSElem.Element("LineStationIndex").Value),
+                PrevStation = int.Parse(LSElem.Element("PrevStation").Value),
+                NextStation = int.Parse(LSElem.Element("NextStation").Value)
+            };
+
+            LSElem.Remove();
+
+            XMLTools.SaveListToXMLElement(LineStationsRootElem, LineStationsPath);
+
+            return LineStation;
         }
 
         #endregion

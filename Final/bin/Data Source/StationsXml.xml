@@ -6,4 +6,16 @@
     <Longitude>243</Longitude>
     <Latitude>6543</Latitude>
   </Station>
+  <Station>
+    <Code>21</Code>
+    <Name>yatmal</Name>
+    <Longitude>21</Longitude>
+    <Latitude>21</Latitude>
+  </Station>
+  <Station>
+    <Code>12</Code>
+    <Name>yatmal2</Name>
+    <Longitude>12</Longitude>
+    <Latitude>12</Latitude>
+  </Station>
 </StationsXml.xml>

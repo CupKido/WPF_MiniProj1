@@ -47,7 +47,7 @@ namespace PL.WPF
             number5data.Text = bus.ckm.ToString();
             number6pre.Text = "Gaz Amount:";
             number6data.Text = bus.FuelRemain.ToString();
-            
+
         }
         public ShowInfo(BO.Line line, ManagerWindow main)
         {
@@ -67,7 +67,7 @@ namespace PL.WPF
             number2data.Text = line.Code.ToString();
             number3pre.Text = "Area:";
             number3data.Text = line.Area.ToString();
-            
+
             number6pre.Text = "First Station:";
             number6data.Text = line.FirstStation.ToString();
             number7pre.Text = "Last Station:";
@@ -96,11 +96,25 @@ namespace PL.WPF
             number3data.Text = Station.Longitude.ToString();
             number4pre.Text = "Lattitude:";
             number4data.Text = Station.Latitude.ToString();
-           
+
         }
 
+        public ShowInfo(BO.User user, ManagerWindow main)
+        {
+            InitializeComponent();
+            Main = main;
+            ThisObj = user;
+            ThisType = typeof(BO.User);
 
-            private void ClearNums()
+            ClearNums();
+            number1pre.Text = "UserName:";
+            number1data.Text = user.UserName;
+            number2pre.Text = "Password:";
+            number2data.Text = user.Password;
+            number3pre.Text = "is Admim:";
+            number3data.Text = user.Admin.ToString();
+        }
+        private void ClearNums()
         {
             number1pre.Text = "";
             number1data.Text = "";
@@ -129,7 +143,7 @@ namespace PL.WPF
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            if(ThisType == typeof(BO.BUS))
+            if (ThisType == typeof(BO.BUS))
             {
                 SendToBusWin();
                 return;
@@ -143,6 +157,10 @@ namespace PL.WPF
             {
                 SendToStationWin();
                 return;
+            }
+            if (ThisType == typeof(BO.User))
+            {
+                SendToUserWin();
             }
 
 
@@ -168,6 +186,13 @@ namespace PL.WPF
             win.Show();
             this.Close();
         }
+        private void SendToUserWin()
+        {
+            BO.User newUser = ThisObj as BO.User;
+            MainWindow win = new MainWindow(newUser);
+            win.Show();
+            this.Close();
+        }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
@@ -178,25 +203,41 @@ namespace PL.WPF
                     bl.RemoveBus((ThisObj as BO.BUS).LicenseNum);
                     this.Close();
                     Main.RefreshList(Main.BusesList);
-                } else
+                }
+                else
                 if (ThisType == typeof(BO.Line))
                 {
                     bl.RemoveLine((ThisObj as BO.Line).ID);
                     this.Close();
                     Main.RefreshList(Main.LinesList);
-                } else
+                }
+                else
                 if (ThisType == typeof(BO.Station))
                 {
                     bl.RemoveStation((ThisObj as BO.Station).Code);
                     this.Close();
                     Main.RefreshList(Main.StationsList);
                 }
-                else throw new Exception("No Matching Function");
-            } catch(Exception ex)
+                else
+                if (ThisType == typeof(BO.User))
+                {
+                    bl.RemoveUser(ThisObj as BO.User);
+                    Main.RefreshList(Main.StationsList);
+                    MainWindow win = new MainWindow();
+                    win.Show();
+                    Main.Close();
+                    this.Close();
+                }
+                else
+                {
+                    throw new Exception("No Matching Function");
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void RemoveStationB_Click(object sender, RoutedEventArgs e)
@@ -214,7 +255,7 @@ namespace PL.WPF
 
         private void UpdateStationB_Click(object sender, RoutedEventArgs e)
         {
-            if(LineStationView.SelectedItem == null)
+            if (LineStationView.SelectedItem == null)
             {
                 MessageBox.Show("ERROR: please select station to update!");
                 return;
@@ -225,25 +266,38 @@ namespace PL.WPF
                 BO.LineStation temp = lineStations.Find(p => p.Station == (LineStationView.SelectedItem as BO.Station).Code);
                 new addLineStationWindow(temp, this).Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("ERROR: please select station to update!");
             }
         }
 
-            private void AddStationB_Click(object sender, RoutedEventArgs e)
+        private void AddStationB_Click(object sender, RoutedEventArgs e)
         {
             new addLineStationWindow(this, (ThisObj as BO.Line).ID).Show();
         }
 
         public void Refresh()
         {
-            lineStations = bl.GetAllLineStationsBy(p => p.LineID == (ThisObj as BO.Line).ID).ToList();
-            lineStations.Sort();
-            stations = (from station in lineStations
-                        select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
-            LineStationView.ItemsSource = stations;
-            LineStationView.Items.Refresh();
+            try
+            {
+                lineStations = bl.GetAllLineStationsBy(p => p.LineID == (ThisObj as BO.Line).ID).ToList();
+                lineStations.Sort();
+                stations = (from station in lineStations
+                            select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
+                LineStationView.ItemsSource = stations;
+                LineStationView.Items.Refresh();
+            }
+            catch(BO.BadLSIdException ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (ex.ID == 0)
+                {
+                    LineStationView.ItemsSource = stations;
+                    LineStationView.Items.Refresh();
+                }
+            }
+            
 
         }
     }

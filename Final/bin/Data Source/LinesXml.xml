@@ -14,4 +14,18 @@
     <FirstStation>432</FirstStation>
     <LastStation>234</LastStation>
   </Line>
+  <Line>
+    <ID>6</ID>
+    <Code>0</Code>
+    <Area>center</Area>
+    <FirstStation>12</FirstStation>
+    <LastStation>21</LastStation>
+  </Line>
+  <Line>
+    <ID>123</ID>
+    <Code>0</Code>
+    <Area>north</Area>
+    <FirstStation>321</FirstStation>
+    <LastStation>432</LastStation>
+  </Line>
 </LinesXml.xml>

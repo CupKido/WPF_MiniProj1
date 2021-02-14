@@ -9,8 +9,8 @@
 
     <Grid>
 
-        
-        
+
+
         <TabControl>
             <TabItem Header="Buses" Height="50" Margin="32,50,-32,-50.4" FontSize="24">
                 <Grid>
@@ -71,6 +71,7 @@
 
         <TextBlock Text=" Moovit V2" FontSize="24" HorizontalAlignment="Center" Width="118" Height="40"  Margin="367,0,408.6,570.4"/>
         <TextBlock x:Name="UserName" Text="" FontSize="15" HorizontalAlignment="Center" Width="188"  Margin="10,0,695.6,586.4"/>
-        <TextBlock Text=" Log Off" MouseLeftButtonDown="LogOff_Click" FontSize="10" HorizontalAlignment="Center" Width="84"  Margin="10,29,799.6,547.4"/>
+        <TextBlock Text=" Log Off" MouseLeftButtonDown="LogOff_Click" FontSize="10" HorizontalAlignment="Center" Width="62"  Margin="10,29,821.6,547.4"/>
+        <TextBlock Text=" User Details" MouseLeftButtonDown="UserDetails_Click" FontSize="10" HorizontalAlignment="Center" Width="62"  Margin="62,29,769.6,547.4"/>
     </Grid>
 </Window>
