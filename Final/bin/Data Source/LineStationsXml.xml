@@ -35,4 +35,32 @@
     <PrevStation>0</PrevStation>
     <NextStation>12</NextStation>
   </LineStation>
+  <LineStation>
+    <LineID>4321</LineID>
+    <Station>2345</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>5432</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>4321</LineID>
+    <Station>5432</Station>
+    <LineStationIndex>0</LineStationIndex>
+    <PrevStation>2345</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>123444</LineID>
+    <Station>12</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>21</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>123444</LineID>
+    <Station>21</Station>
+    <LineStationIndex>0</LineStationIndex>
+    <PrevStation>12</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
 </LineStationsXml.xml>

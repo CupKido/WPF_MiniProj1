@@ -1,31 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinesXml.xml>
   <Line>
-    <ID>1234</ID>
+    <ID>4321</ID>
     <Code>0</Code>
     <Area>north</Area>
-    <FirstStation>12</FirstStation>
-    <LastStation>123</LastStation>
+    <FirstStation>2345</FirstStation>
+    <LastStation>5432</LastStation>
   </Line>
   <Line>
-    <ID>1324</ID>
+    <ID>123444</ID>
     <Code>0</Code>
-    <Area>south</Area>
-    <FirstStation>432</FirstStation>
-    <LastStation>234</LastStation>
-  </Line>
-  <Line>
-    <ID>6</ID>
-    <Code>0</Code>
-    <Area>center</Area>
+    <Area>north</Area>
     <FirstStation>12</FirstStation>
     <LastStation>21</LastStation>
-  </Line>
-  <Line>
-    <ID>123</ID>
-    <Code>0</Code>
-    <Area>north</Area>
-    <FirstStation>321</FirstStation>
-    <LastStation>432</LastStation>
   </Line>
 </LinesXml.xml>

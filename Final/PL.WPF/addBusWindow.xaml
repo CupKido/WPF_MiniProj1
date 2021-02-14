@@ -18,7 +18,7 @@
         <CheckBox Name="lastTreatmentCB"  Content="CheckBox" Checked="LastTreat_Checked" Unchecked="LastTreat_unChecked" HorizontalAlignment="Left" Height="14" Margin="131,108,0,0" VerticalAlignment="Top" Width="15"/>
         <TextBlock x:Name="kmFromTreatTBL" HorizontalAlignment="Left" Height="33" Margin="31,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"><Run Text="km from last treatment"/><LineBreak/><Run Text="or Licensing date:"/></TextBlock>
         <TextBox x:Name="kmFromTreatTBO" HorizontalAlignment="Left" Height="17" Margin="162,134,0,0" TextWrapping="Wrap" Text="please enter total trip km" VerticalAlignment="Top" Width="169" TextChanged="licenseTBO_Copy_TextChanged"/>
-        <Button x:Name="addButton" Content="Add bus" HorizontalAlignment="Left" Height="36" Margin="227,174,0,0" VerticalAlignment="Top" Width="89" Click="AddBus"/>
-        <Button x:Name="UpdateButton" Content="Update Bus" HorizontalAlignment="Left" Height="36" Margin="122,174,0,0" VerticalAlignment="Top" Width="89" Click="UpdateBus"/>
+        <Button x:Name="addButton" Content="Add bus" HorizontalAlignment="Left" Height="36" Margin="175,174,0,0" VerticalAlignment="Top" Width="89" Click="AddBus"/>
+        <Button x:Name="UpdateButton" Content="Update Bus" HorizontalAlignment="Left" Height="36" Margin="175,174,0,0" VerticalAlignment="Top" Width="89" Click="UpdateBus"/>
     </Grid>
 </Window>

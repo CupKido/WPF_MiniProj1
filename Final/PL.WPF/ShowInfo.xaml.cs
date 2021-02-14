@@ -134,7 +134,6 @@ namespace PL.WPF
             RemoveStationB.Visibility = Visibility.Hidden;
             UpdateStationB.Visibility = Visibility.Hidden;
         }
-
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             if (ThisType == typeof(BO.BUS))

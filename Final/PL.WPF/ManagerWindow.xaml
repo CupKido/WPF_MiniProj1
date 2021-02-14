@@ -23,6 +23,7 @@
                                 <GridViewColumn Header="Last Repair" Width="100" DisplayMemberBinding="{Binding pLR}"/>
                                 <GridViewColumn Header="KM since Repair" Width="120" DisplayMemberBinding="{Binding ckm}" />
                                 <GridViewColumn Header="fuel" Width="50" DisplayMemberBinding="{Binding FuelRemain}"/>
+                                <GridViewColumn Header="Status" Width="80" DisplayMemberBinding="{Binding status}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
