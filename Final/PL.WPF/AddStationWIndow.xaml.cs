@@ -23,8 +23,8 @@ namespace PL.WPF
         IBL bl = BLFactory.GetBL(1);
         ManagerWindow Main;
         int ID;
-        int Lattitude;
-        int Longitude;
+        Double Lattitude;
+        Double Longitude;
         BO.Station ThisStation;
         //for add
         public AddStationWindow(ManagerWindow main)
@@ -60,8 +60,8 @@ namespace PL.WPF
             }
 
 
-            CodeTBO.Text = ThisStation.Code.ToString();
-            CodeTBO.IsEnabled = false;
+            IDTBO.Text = ThisStation.Code.ToString();
+            IDTBO.IsEnabled = false;
             LongitudeTBO.Text = ThisStation.Longitude.ToString();
             LongitudeTBO.IsEnabled = false;
             LattitudeTBO.Text = ThisStation.Latitude.ToString();
@@ -71,7 +71,7 @@ namespace PL.WPF
         }
         private void LattitudeTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(LattitudeTBO.Text, out Lattitude))
+            if (!Double.TryParse(LattitudeTBO.Text.Replace(',', '.'), out Lattitude) && LongitudeTBO.Text != "")
             {
                 MessageBox.Show("numbers only!");
             }
@@ -83,7 +83,7 @@ namespace PL.WPF
 
         private void LongitudeTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(LongitudeTBO.Text, out Longitude))
+            if (!Double.TryParse(LongitudeTBO.Text.Replace(',', '.'), out Longitude) && LongitudeTBO.Text != "")
             {
                 MessageBox.Show("numbers only!");
             }
@@ -95,7 +95,7 @@ namespace PL.WPF
 
         private void IDTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(CodeTBO.Text, out ID))
+            if (!int.TryParse(IDTBO.Text, out ID) && LattitudeTBO.Text != "")
             {
                 MessageBox.Show("numbers only!");
             }
@@ -107,35 +107,13 @@ namespace PL.WPF
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!((CodeTBO.Text == null) || (LongitudeTBO.Text == null) || (LattitudeTBO.Text == null)))
+            if (!((IDTBO.Text == null) || (LongitudeTBO.Text == null) || (LattitudeTBO.Text == null)))
             {
-                bool flag = true; //if all Checks are ok
-                int Code = 0;
-                Double longi, lati = 0;
                 ThisStation = new BO.Station();
-                if(!int.TryParse(CodeTBO.Text, out Code))
-                {
-                    MessageBox.Show("Numbers only!");
-                        flag = false;
-                }
-                if (!Double.TryParse(LongitudeTBO.Text, out longi))
-                {
-                    MessageBox.Show("Numbers only!");
-                    flag = false;
-                }
-                if (!Double.TryParse(LattitudeTBO.Text, out lati))
-                {
-                    MessageBox.Show("Numbers only!");
-                    flag = false;
-                }
-                if(!flag)
-                {
-                    return;
-                }
-                ThisStation.Code = Code;
+                ThisStation.Code = ID;
                 ThisStation.Name = NameBO.Text;
-                ThisStation.Latitude = lati;
-                ThisStation.Longitude = longi;
+                ThisStation.Latitude = Lattitude;
+                ThisStation.Longitude = Longitude;
                 try
                 {
                     bl.AddStation(ThisStation);
@@ -143,7 +121,7 @@ namespace PL.WPF
                     this.Close();
                     Main.RefreshList(Main.StationsList);
                 }
-                catch (BO.BadLineIdException ex)
+                catch (BO.BadStationIdException ex)
                 {
 
                     MessageBox.Show("Not added\n ERROR: " + ex.Message);

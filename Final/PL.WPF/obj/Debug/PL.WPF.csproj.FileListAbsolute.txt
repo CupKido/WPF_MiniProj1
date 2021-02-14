@@ -28,12 +28,10 @@ C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Fin
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\bin\PL.WPF.pdb
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\PL.WPF.csprojAssemblyReference.cache
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\MainWindow.g.cs
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\Buses.g.cs
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\App.g.cs
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\PL.WPF_MarkupCompile.cache
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\PL.WPF_MarkupCompile.lref
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\MainWindow.baml
-C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\Buses.baml
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\PL.WPF.g.resources
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\PL.WPF.Properties.Resources.resources
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\PL.WPF.csproj.GenerateResource.cache

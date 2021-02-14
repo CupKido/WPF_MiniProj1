@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using DSXml;
 
 namespace DALXml
 {
@@ -415,8 +414,8 @@ namespace DALXml
                    {
                        Code = int.Parse(stat.Element("Code").Value),
                        Name = stat.Element("Name").Value,
-                       Longitude = Double.Parse(stat.Element("Longitude").Value),
-                       Latitude = int.Parse(stat.Element("Latitude").Value)
+                       Longitude = Double.Parse((stat.Element("Longitude").Value)),
+                       Latitude = Double.Parse(stat.Element("Latitude").Value)
                    };
         }
         public IEnumerable<Station> GetAllStationsBy(Predicate<Station> perdicate)

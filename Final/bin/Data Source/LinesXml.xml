@@ -1,17 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LinesXml.xml>
-  <Line>
-    <ID>4321</ID>
-    <Code>0</Code>
-    <Area>north</Area>
-    <FirstStation>2345</FirstStation>
-    <LastStation>5432</LastStation>
-  </Line>
-  <Line>
-    <ID>123444</ID>
-    <Code>0</Code>
-    <Area>north</Area>
-    <FirstStation>12</FirstStation>
-    <LastStation>21</LastStation>
-  </Line>
-</LinesXml.xml>
+<LinesXml.xml />

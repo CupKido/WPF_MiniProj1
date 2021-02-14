@@ -58,7 +58,7 @@
                                 <GridViewColumn Header="Code" Width="50" DisplayMemberBinding="{Binding Code}" />
                                 <!--<GridViewColumn Header="in service from" Width="auto" DisplayMemberBinding="{Binding FromDate,StringFormat= :{0:D}}"/>-->
                                 <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Longitude" Width="100" DisplayMemberBinding="{Binding Longitude}"/>
+                                <GridViewColumn Header="Longitude" Width="100" DisplayMemberBinding="{Binding Longitude, StringFormat={}{0:00.00}}"/>
                                 <GridViewColumn Header="Latitude" Width="100" DisplayMemberBinding="{Binding Latitude}" />
                             </GridView>
                         </ListView.View>

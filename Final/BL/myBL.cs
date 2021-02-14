@@ -27,7 +27,7 @@ namespace BL
             //if (user.Admin)
             //{
 
-            if ((bus.LicenseNum.ToString().Length == 7 && bus.FromDate.Year < 2018) || (bus.LicenseNum.ToString().Length == 8 && bus.FromDate.Year >= 2018) != true)
+            if (((bus.LicenseNum.ToString().Length == 7 && bus.FromDate.Year < 2018) || (bus.LicenseNum.ToString().Length == 8 && bus.FromDate.Year >= 2018)) != true)
             {
                 throw new BO.BadBusIdException(bus.LicenseNum, "invaild ID");
             }
@@ -102,11 +102,18 @@ namespace BL
 
         public IEnumerable<BO.BUS> GetAllBuses()
         {
-            List<DO.BUS> list = myDal.GetAllBuses().ToList();
-            return from item in list
-                   let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
-                   orderby bus.LicenseNum
-                   select bus;
+            try
+            {
+                List<DO.BUS> list = myDal.GetAllBuses().ToList();
+                return from item in list
+                       let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
+                       orderby bus.LicenseNum
+                       select bus;
+            }
+            catch (DO.BadBusIdException ex)
+            {
+                throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
+            }
         }
 
         public IEnumerable<BUS> GetBusesBy(Predicate<BUS> predicate)
@@ -212,18 +219,22 @@ namespace BL
             //{
             try
             {
-                myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
                 if (myDal.GetAllStations().FirstOrDefault(p => p.Code == line.FirstStation) != null && myDal.GetAllStations().FirstOrDefault(p => p.Code == line.LastStation) != null)
                 {
+                    myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
                     myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation });
                     myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 0, PrevStation = line.FirstStation });
                 }
                 else
-                    throw new BO.BadLineIdException(line.ID,"line first station or last station is not exist");
+                    throw new BO.BadLineIdException(line.ID, "line first station or last station is not exist");
             }
             catch (DO.BadLineIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.BadStationIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message + "\n" + " please insert stations that they in data" + "\n" + " or add the stations into data base first", ex);
             }
             //}
             //else throw " ";
@@ -232,12 +243,19 @@ namespace BL
 
         public IEnumerable<BO.Line> GetAllLines()
         {
-            List<DO.Line> list = myDal.GetAllLines().ToList();
-            //List<BO.Line> list1 = list.CopyPropertiesToNew(typeof(List<BO.Line>)) as List<BO.Line>;
-            return from item in list
-                   let line = item.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
-                   orderby line.ID
-                   select line;
+            try
+            {
+                List<DO.Line> list = myDal.GetAllLines().ToList();
+                //List<BO.Line> list1 = list.CopyPropertiesToNew(typeof(List<BO.Line>)) as List<BO.Line>;
+                return from item in list
+                       let line = item.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
+                       orderby line.ID
+                       select line;
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
         }
 
         public Line GetLine(int ID)

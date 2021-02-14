@@ -8,7 +8,7 @@
         Title="add station" Height="250" Width="450">
     <Grid>
         <TextBlock x:Name="IDTBL" HorizontalAlignment="Left" Height="17" Margin="31,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="station code:"/>
-        <TextBox Name="CodeTBO" HorizontalAlignment="Left" Height="17" Margin="162,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="IDTBO_TextChanged" />
+        <TextBox Name="IDTBO" HorizontalAlignment="Left" Height="17" Margin="162,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="IDTBO_TextChanged" />
         <TextBox Name="LongitudeTBO" HorizontalAlignment="Left" Height="17" Margin="162,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" TextChanged="LongitudeTBO_TextChanged" />
         <TextBlock x:Name="NameBL" HorizontalAlignment="Left" Height="17" Margin="31,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="station name:"/>
         <TextBlock x:Name="LongitudeTBL" HorizontalAlignment="Left" Height="17" Margin="31,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Text="station longitude:"/>

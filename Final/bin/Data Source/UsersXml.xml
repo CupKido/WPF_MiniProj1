@@ -1,18 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <UsersXml.xml>
   <User>
     <UserName>Admin</UserName>
     <Password>Admin</Password>
     <Admin>True</Admin>
-  </User>
-  <User>
-    <UserName>Admil</UserName>
-    <Password>Admil</Password>
-    <Admin>False</Admin>
-  </User>
-  <User>
-    <UserName>Admik</UserName>
-    <Password>Admin</Password>
-    <Admin>False</Admin>
   </User>
 </UsersXml.xml>
