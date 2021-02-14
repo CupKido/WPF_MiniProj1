@@ -57,10 +57,13 @@ namespace PL.WPF
                         list.ItemsSource = bl.GetAllStations();
                     }
                 }
-                catch (Exception ex)
+                catch (BO.BadStationIdException ex)
                 {
+                    if(ex.ID == 0)
+                    {
+                        list.ItemsSource = null;
+                    }
                     
-                    list.ItemsSource = null;
 
                 }
 
