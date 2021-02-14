@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
+
 namespace DALXml
 {
     public class DALXML : IDAL
@@ -40,11 +41,28 @@ namespace DALXml
         #region bus
         public void AddBus(BUS bus)
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            XElement BusesRootElem;
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
-            XElement Bus = (from BS in BusesRootElem.Elements()
-                            where int.Parse(BS.Element("LicenseNum").Value) == bus.LicenseNum
-                            select BS).FirstOrDefault();
+
+            XElement Bus;
+            try
+            {
+                Bus = (from BS in BusesRootElem.Elements()
+                       where int.Parse(BS.Element("LicenseNum").Value) == bus.LicenseNum
+                       select BS).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             if (Bus != null)
                 throw new DO.BadBusIdException(bus.LicenseNum, "Bus already exists");
@@ -62,31 +80,60 @@ namespace DALXml
 
                );
             BusesRootElem.Add(newBus);
-            XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            try
+            {
+                XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
         }
 
         public BUS GetBUS(int LicenseNum)
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+
+            XElement BusesRootElem;
+
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
 
             if (BusesRootElem.Elements().Count() == 0)
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
 
-            DO.BUS Bus = (from bus in BusesRootElem.Elements()
-                          where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
-                          select new BUS()
-                          {
-                              LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
-                              FromDate = DateTime.Parse(bus.Element("FromDate").Value),
-                              lastime = DateTime.Parse(bus.Element("lastime").Value),
-                              TotalTrip = Double.Parse(bus.Element("TotalTrip").Value),
-                              ckm = Double.Parse(bus.Element("ckm").Value),
-                              FuelRemain = Double.Parse(bus.Element("FuelRemain").Value),
-                              status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
-                          }
-                         ).FirstOrDefault();
+            DO.BUS Bus;
+            try
+            {
+                Bus = (from bus in BusesRootElem.Elements()
+                       where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
+                       select new BUS()
+                       {
+                           LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
+                           FromDate = DateTime.Parse(bus.Element("FromDate").Value),
+                           lastime = DateTime.Parse(bus.Element("lastime").Value),
+                           TotalTrip = Convert.ToDouble(bus.Element("TotalTrip").Value),
+                           ckm = Convert.ToDouble(bus.Element("ckm").Value),
+                           FuelRemain = Convert.ToDouble(bus.Element("FuelRemain").Value),
+                           status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
+                       }).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
             if (Bus == null)
             {
                 throw new BadBusIdException(LicenseNum, "Bus Doesn't exist");
@@ -97,25 +144,42 @@ namespace DALXml
 
         public IEnumerable<BUS> GetAllBuses()
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            XElement BusesRootElem;
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
 
             if (BusesRootElem.Elements().Count() == 0)
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
 
-            return (from bus in BusesRootElem.Elements()
-                    select new BUS()
-                    {
-                        LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
-                        FromDate = (DateTime)bus.Element("FromDate"),
-                        lastime = (DateTime)bus.Element("lastime"),
-                        TotalTrip = Double.Parse(bus.Element("TotalTrip").Value),
-                        ckm = Double.Parse(bus.Element("ckm").Value),
-                        FuelRemain = Double.Parse(bus.Element("FuelRemain").Value),
-                        status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
-                    }
-                   );
+            try
+            {
+                return (from bus in BusesRootElem.Elements()
+                        select new BUS()
+                        {
+                            LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
+                            FromDate = (DateTime)bus.Element("FromDate"),
+                            lastime = (DateTime)bus.Element("lastime"),
+                            TotalTrip = Convert.ToDouble(bus.Element("TotalTrip").Value),
+                            ckm = Convert.ToDouble(bus.Element("ckm").Value),
+                            FuelRemain = Convert.ToDouble(bus.Element("FuelRemain").Value),
+                            status = (BusStatus)Enum.Parse(typeof(BusStatus), bus.Element("status").Value)
+                        }
+                       );
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public IEnumerable<BUS> GetAllBusesBy(Predicate<BUS> perdicate)
@@ -125,16 +189,34 @@ namespace DALXml
 
         public void UpdateBus(int LicenseNum, BUS Bus)
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            XElement BusesRootElem;
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
             if (BusesRootElem.Elements().Count() == 0)
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
 
-            XElement BusElem = (from bus in BusesRootElem.Elements()
-                                where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
-                                select bus).FirstOrDefault();
+            XElement BusElem;
+
+            try
+            {
+                BusElem = (from bus in BusesRootElem.Elements()
+                           where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
+                           select bus).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             if (Bus == null)
             {
                 throw new BadBusIdException(LicenseNum, "Bus Doesn't exist in Data");
@@ -146,43 +228,84 @@ namespace DALXml
             BusElem.Element("FromDate").Value = Bus.FromDate.ToString();
             BusElem.Element("lastime").Value = Bus.lastime.ToString();
 
-            XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            try
+            {
+                XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
         }
 
         public BUS RemoveBus(int LicenseNum)
         {
-            XElement BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            XElement BusesRootElem;
+            try
+            {
+                BusesRootElem = XMLTools.LoadListFromXMLElement(BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
 
             if (BusesRootElem.Elements().Count() == 0)
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
-            XElement BusElem = (from bus in BusesRootElem.Elements()
-                                where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
-                                select bus
-                         ).FirstOrDefault();
 
+            XElement BusElem;
+            try
+            {
+                BusElem = (from bus in BusesRootElem.Elements()
+                           where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
+                           select bus
+                    ).FirstOrDefault();
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             if (BusElem == null)
             {
                 throw new BadBusIdException(LicenseNum, "Bus Doesn't exist");
             }
-
-            DO.BUS Bus = new BUS()
+            DO.BUS Bus;
+            try
             {
-                LicenseNum = Int32.Parse(BusElem.Element("LicenseNum").Value),
-                FromDate = DateTime.Parse(BusElem.Element("FromDate").Value),
-                lastime = DateTime.Parse(BusElem.Element("lastime").Value),
-                TotalTrip = Double.Parse(BusElem.Element("TotalTrip").Value),
-                ckm = Double.Parse(BusElem.Element("ckm").Value),
-                FuelRemain = Double.Parse(BusElem.Element("FuelRemain").Value),
-                status = (BusStatus)Enum.Parse(typeof(BusStatus), BusElem.Element("status").Value)
-            };
+                Bus = new BUS()
+                {
+                    LicenseNum = Int32.Parse(BusElem.Element("LicenseNum").Value),
+                    FromDate = DateTime.Parse(BusElem.Element("FromDate").Value),
+                    lastime = DateTime.Parse(BusElem.Element("lastime").Value),
+                    TotalTrip = Convert.ToDouble(BusElem.Element("TotalTrip").Value),
+                    ckm = Convert.ToDouble(BusElem.Element("ckm").Value),
+                    FuelRemain = Convert.ToDouble(BusElem.Element("FuelRemain").Value),
+                    status = (BusStatus)Enum.Parse(typeof(BusStatus), BusElem.Element("status").Value)
+                };
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
 
             BusElem.Remove();
 
-            XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            try
+            {
+                XMLTools.SaveListToXMLElement(BusesRootElem, BusesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
             return Bus;
         }
@@ -191,11 +314,28 @@ namespace DALXml
         #region Line
         public void AddLine(Line line)
         {
-            XElement LinesRootElem = XMLTools.LoadListFromXMLElement(LinesPath);
+            XElement LinesRootElem;
+            try
+            {
+                LinesRootElem = XMLTools.LoadListFromXMLElement(LinesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
-            XElement LineElem = (from LineEl in LinesRootElem.Elements()
-                                 where int.Parse(LineEl.Element("ID").Value) == line.ID
-                                 select LineEl).FirstOrDefault();
+            XElement LineElem;
+            try
+            {
+                LineElem = (from LineEl in LinesRootElem.Elements()
+                            where int.Parse(LineEl.Element("ID").Value) == line.ID
+                            select LineEl).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
 
             if (LineElem != null)
                 throw new DO.BadLineIdException(line.ID, "Line already exists in Data");
@@ -209,29 +349,55 @@ namespace DALXml
                new XElement("LastStation", line.LastStation)
                );
             LinesRootElem.Add(newLine);
-            XMLTools.SaveListToXMLElement(LinesRootElem, LinesPath);
+
+            try
+            {
+                XMLTools.SaveListToXMLElement(LinesRootElem, LinesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
         }
 
         public Line GetLine(int ID)
         {
-            XElement LinesRootElem = XMLTools.LoadListFromXMLElement(LinesPath);
+            XElement LinesRootElem;
+            try
+            {
+                LinesRootElem = XMLTools.LoadListFromXMLElement(LinesPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
             if (LinesRootElem.Elements().Count() == 0)
             {
                 throw new BadLineIdException(0, "No Lines in Data");
             }
-
-            DO.Line Line = (from line in LinesRootElem.Elements()
-                            where int.Parse(line.Element("ID").Value) == ID
-                            select new Line()
-                            {
-                                ID = Int32.Parse(line.Element("ID").Value),
-                                Code = Int32.Parse(line.Element("Code").Value),
-                                Area = (Areas)Enum.Parse(typeof(Areas), line.Element("Area").Value),
-                                FirstStation = Int32.Parse(line.Element("FirstStation").Value),
-                                LastStation = Int32.Parse(line.Element("LastStation").Value)
-                            }
+            DO.Line Line;
+            try
+            {
+                Line = (from line in LinesRootElem.Elements()
+                        where int.Parse(line.Element("ID").Value) == ID
+                        select new Line()
+                        {
+                            ID = Int32.Parse(line.Element("ID").Value),
+                            Code = Int32.Parse(line.Element("Code").Value),
+                            Area = (Areas)Enum.Parse(typeof(Areas), line.Element("Area").Value),
+                            FirstStation = Int32.Parse(line.Element("FirstStation").Value),
+                            LastStation = Int32.Parse(line.Element("LastStation").Value)
+                        }
                          ).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
             if (Line == null)
             {
                 throw new BadLineIdException(ID, "Line Doesn't exist in Data");
@@ -384,14 +550,14 @@ namespace DALXml
         {
             XElement StationsRootElem = XMLTools.LoadListFromXMLElement(StationsPath);
             List<Station> list = (from stat in StationsRootElem.Elements()
-                                     //where int.Parse(stat.Element("Code").Value) == Code
-                                 select new Station()
-                                 {
-                                     Code = int.Parse(stat.Element("Code").Value),
-                                     Name = stat.Element("Name").Value,
-                                     Longitude = Double.Parse(stat.Element("Longitude").Value),
-                                     Latitude = int.Parse(stat.Element("Latitude").Value)
-                                 }).ToList();
+                                      //where int.Parse(stat.Element("Code").Value) == Code
+                                  select new Station()
+                                  {
+                                      Code = int.Parse(stat.Element("Code").Value),
+                                      Name = stat.Element("Name").Value,
+                                      Longitude = Convert.ToDouble(stat.Element("Longitude").Value),
+                                      Latitude = Convert.ToDouble(stat.Element("Latitude").Value)
+                                  }).ToList();
 
             if (StationsRootElem.Elements().Count() == 0)
             {
@@ -414,8 +580,8 @@ namespace DALXml
                    {
                        Code = int.Parse(stat.Element("Code").Value),
                        Name = stat.Element("Name").Value,
-                       Longitude = Double.Parse((stat.Element("Longitude").Value)),
-                       Latitude = Double.Parse(stat.Element("Latitude").Value)
+                       Longitude = Convert.ToDouble(stat.Element("Longitude").Value),
+                       Latitude = Convert.ToDouble(stat.Element("Latitude").Value)
                    };
         }
         public IEnumerable<Station> GetAllStationsBy(Predicate<Station> perdicate)
@@ -432,8 +598,8 @@ namespace DALXml
                    {
                        Code = int.Parse(stat.Element("Code").Value),
                        Name = stat.Element("Name").Value,
-                       Longitude = Double.Parse(stat.Element("Longitude").Value),
-                       Latitude = int.Parse(stat.Element("Latitude").Value)
+                       Longitude = Convert.ToDouble(stat.Element("Longitude").Value),
+                       Latitude = Convert.ToDouble(stat.Element("Latitude").Value)
                    }
                    where perdicate(statemp)
                    select statemp;
@@ -490,8 +656,8 @@ namespace DALXml
             {
                 Code = int.Parse(StationElem.Element("Code").Value),
                 Name = StationElem.Element("Name").Value,
-                Longitude = Double.Parse(StationElem.Element("Longitude").Value),
-                Latitude = int.Parse(StationElem.Element("Latitude").Value)
+                Longitude = Convert.ToDouble(StationElem.Element("Longitude").Value),
+                Latitude = Convert.ToDouble(StationElem.Element("Latitude").Value)
             };
 
             StationElem.Remove();
@@ -868,27 +1034,189 @@ namespace DALXml
 
         public void AddAdjacentStations(AdjacentStations adjacentstation)
         {
-            throw new NotImplementedException();
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+
+            XElement AdStElem;
+            try
+            {
+                AdStElem = (from AdjElem in AdStRootElem.Elements()
+                            where int.Parse(AdjElem.Element("Station1").Value) == adjacentstation.Station1
+                            where int.Parse(AdjElem.Element("Station2").Value) == adjacentstation.Station2
+                            select AdjElem).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (AdStElem != null)
+                throw new Exception("Stations already exists");
+
+            XElement newAdSt =
+                new XElement("AdjacentStations",
+               new XElement("Station1", adjacentstation.Station1.ToString()),
+               new XElement("Station2", adjacentstation.Station2.ToString()),
+               new XElement("Distance", adjacentstation.Distance.ToString()),
+               new XElement("Time", adjacentstation.Time.ToString())
+               );
+
+            AdStRootElem.Add(newAdSt);
+            try
+            {
+                XMLTools.SaveListToXMLElement(AdStRootElem, AdjacentStationsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
         }
 
         public AdjacentStations GetAdjacentStations(int station1, int station2)
         {
-            throw new NotImplementedException();
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            DO.AdjacentStations AdSt = (from AdjElem in AdStRootElem.Elements()
+                                        where int.Parse(AdjElem.Element("Station1").Value) == station1
+                                        where int.Parse(AdjElem.Element("Station2").Value) == station2
+                                        select new DO.AdjacentStations()
+                                        {
+                                            Station1 = int.Parse(AdjElem.Element("Station1").Value),
+                                            Station2 = int.Parse(AdjElem.Element("Station2").Value),
+                                            Distance = Convert.ToDouble(AdjElem.Element("Station1").Value),
+                                            Time = TimeSpan.Parse(AdjElem.Element("Station1").Value),
+
+                                        }
+                                        ).FirstOrDefault();
+
+            if (AdSt == null)
+            {
+                //put different ex
+                throw new Exception("Adjacent Stations Do not exist in Data");
+            }
+            return AdSt;
         }
 
         public IEnumerable<AdjacentStations> GetAllAdjacentStations()
         {
-            throw new NotImplementedException();
-        }
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
 
-        public AdjacentStations RemoveAdjacentStations(int station1, int station2)
-        {
-            throw new NotImplementedException();
+            if (AdStRootElem.Elements().Count() == 0)
+            {
+                throw new Exception("No Adjacent Stations in Data");
+            }
+
+            return from AdjElem in AdStRootElem.Elements()
+                   select new DO.AdjacentStations()
+                   {
+                       Station1 = int.Parse(AdjElem.Element("Station1").Value),
+                       Station2 = int.Parse(AdjElem.Element("Station2").Value),
+                       Distance = Convert.ToDouble(AdjElem.Element("Station1").Value),
+                       Time = TimeSpan.Parse(AdjElem.Element("Station1").Value)
+                   };
+
+
         }
 
         public void UpdateAdjacentStations(AdjacentStations adjacentstations)
         {
-            throw new NotImplementedException();
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            XElement AdStElem = (from AdjElem in AdStRootElem.Elements()
+                                        where int.Parse(AdjElem.Element("Station1").Value) == adjacentstations.Station1
+                                        where int.Parse(AdjElem.Element("Station2").Value) == adjacentstations.Station2
+                                        select AdjElem
+                                        ).FirstOrDefault();
+
+            if (AdStElem == null)
+            {
+                //put different ex
+                throw new Exception("Adjacent Stations Do not exist in Data");
+            }
+
+            AdStElem.Element("Station1").Value = adjacentstations.Station1.ToString();
+            AdStElem.Element("Station2").Value = adjacentstations.Station2.ToString();
+            AdStElem.Element("Distance").Value = adjacentstations.Distance.ToString();
+            AdStElem.Element("Time").Value = adjacentstations.Time.ToString();
+
+            try
+            {
+                XMLTools.SaveListToXMLElement(AdStRootElem, AdjacentStationsPath);
+            }catch(XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public AdjacentStations RemoveAdjacentStations(int station1, int station2)
+        {
+            XElement AdStRootElem;
+            try
+            {
+                AdStRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            XElement AdStElem = (from AdjElem in AdStRootElem.Elements()
+                                 where int.Parse(AdjElem.Element("Station1").Value) == station1
+                                 where int.Parse(AdjElem.Element("Station2").Value) == station2
+                                 select AdjElem
+                                        ).FirstOrDefault();
+
+            if (AdStElem == null)
+            {
+                //put different ex
+                throw new Exception("Adjacent Stations Do not exist in Data");
+            }
+
+            DO.AdjacentStations AdSt = new AdjacentStations()
+            {
+                Station1 = int.Parse(AdStElem.Element("Station1").Value),
+                Station2 = int.Parse(AdStElem.Element("Station2").Value),
+                Distance = Convert.ToDouble(AdStElem.Element("Station1").Value),
+                Time = TimeSpan.Parse(AdStElem.Element("Station1").Value)
+            };
+
+            AdStElem.Remove();
+
+            XMLTools.SaveListToXMLElement(AdStRootElem, AdjacentStationsPath);
+
+            return AdSt;
         }
     }
 }
