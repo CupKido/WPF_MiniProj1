@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StationsXml.xml>
   <Station>
     <Code>123</Code>
     <Name>a</Name>
     <Longitude>12123</Longitude>
     <Latitude>12123</Latitude>
+  </Station>
+  <Station>
+    <Code>12</Code>
+    <Name>yatmal</Name>
+    <Longitude>123</Longitude>
+    <Latitude>312</Latitude>
+  </Station>
+  <Station>
+    <Code>21</Code>
+    <Name>yatmall</Name>
+    <Longitude>123.123</Longitude>
+    <Latitude>321.321</Latitude>
   </Station>
 </StationsXml.xml>
