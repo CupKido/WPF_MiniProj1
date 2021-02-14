@@ -219,15 +219,13 @@ namespace PL.WPF
 
             private void AddStationB_Click(object sender, RoutedEventArgs e)
         {
-            new addLineStationWindow(this).Show();
+            new addLineStationWindow(this, (ThisObj as BO.Line).ID).Show();
         }
 
         public void Refresh()
         {
-            lineStations = (from station in bl.GetAllLineStations()
-                            where station.LineID == (ThisObj as BO.Line).ID
-                            orderby station.LineStationIndex
-                            select station).ToList();
+            lineStations = bl.GetAllLineStationsBy(p => p.LineID == (ThisObj as BO.Line).ID).ToList();
+            lineStations.Sort();
             stations = (from station in lineStations
                         select bl.GetAllStations().ToList().Find(p => p.Code == station.Station)).ToList();
             LineStationView.ItemsSource = stations;
