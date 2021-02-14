@@ -11,7 +11,10 @@
         <TextBox x:Name="UserNameTBO" HorizontalAlignment="Left" Height="18" Margin="99,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="PasswordTBL" HorizontalAlignment="Left" Margin="34,50,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Height="18" Width="60"/>
         <PasswordBox x:Name="PasswordTBO" HorizontalAlignment="Left" PasswordChar="*" Height="18" Margin="99,50,0,0" Password="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="ConfirmPasswordTBL" IsEnabled="False" Opacity="0" HorizontalAlignment="Left" Margin="34,68,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Height="18" Width="60"/>
+        <PasswordBox x:Name="ConfirmPasswordTBO" IsEnabled="False" Opacity="0" HorizontalAlignment="Left" PasswordChar="*" Height="18" Margin="99,70,0,0" Password="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="LoginButton" Content="Login" Click ="LoginButton_Click" HorizontalAlignment="Left" Margin="332,137,0,0" VerticalAlignment="Top" Width="91" Height="23"/>
+        <Button x:Name="SignUpButton" Content="Sign up   " Click ="SignUpButton_Click" HorizontalAlignment="Left" Margin="236,137,0,0" VerticalAlignment="Top" Width="91" Height="23"/>
         <TextBlock x:Name="SignUpTBL" MouseLeftButtonDown="SignUp_Click" FontSize="8" HorizontalAlignment="Left" Margin="34,73,0,0" TextWrapping="Wrap" Text="Sign Up" VerticalAlignment="Top" Height="15" Width="33"/>
         <TextBlock x:Name="ForgotPasswordTBL" MouseLeftButtonDown="ForgotPassword_Click" FontSize="8" HorizontalAlignment="Left" Margin="87,73,0,0" TextWrapping="Wrap" Text="Forgot Password?" VerticalAlignment="Top" Height="15" Width="64"/>
     </Grid>

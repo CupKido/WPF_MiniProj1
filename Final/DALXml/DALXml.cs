@@ -53,8 +53,8 @@ namespace DALXml
             XElement newBus =
                 new XElement("Bus",
                new XElement("LicenseNum", bus.LicenseNum),
-               new XElement("FromDate", bus.FromDate.ToUniversalTime().Ticks.ToString()),
-               new XElement("lastime", bus.lastime.ToUniversalTime().Ticks.ToString()),
+               new XElement("FromDate", new DateTime(bus.FromDate.Year, bus.FromDate.Month, bus.FromDate.Day)),
+               new XElement("lastime", new DateTime(bus.lastime.Year, bus.lastime.Month, bus.lastime.Day)),
                new XElement("TotalTrip", bus.TotalTrip.ToString()),
                new XElement("ckm", bus.ckm),
                new XElement("FuelRemain", bus.FuelRemain),
@@ -104,13 +104,13 @@ namespace DALXml
             {
                 throw new BadBusIdException(0, "No Buses in List");
             }
-
+            
             return (from bus in BusesRootElem.Elements()
                     select new BUS()
                     {
                         LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
-                        FromDate = DateTime.Parse(bus.Element("FromDate").Value),
-                        lastime = DateTime.Parse(bus.Element("lastime").Value),
+                        FromDate = (DateTime)bus.Element("FromDate"),
+                        lastime = (DateTime)bus.Element("lastime"),
                         TotalTrip = Double.Parse(bus.Element("TotalTrip").Value),
                         ckm = Double.Parse(bus.Element("ckm").Value),
                         FuelRemain = Double.Parse(bus.Element("FuelRemain").Value),
@@ -375,7 +375,7 @@ namespace DALXml
                new XElement("Code", station.Code),
                new XElement("Name", station.Name),
                new XElement("Longitude", station.Longitude),
-               new XElement("Langitude", station.Latitude)
+               new XElement("Latitude", station.Latitude)
                );
             StationsRootElem.Add(newStation);
             XMLTools.SaveListToXMLElement(StationsRootElem, StationsPath);

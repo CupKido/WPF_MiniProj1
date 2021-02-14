@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BusesXml.xml>
+  <Bus>
+    <LicenseNum>12345678</LicenseNum>
+    <FromDate>2021-02-01T00:00:00</FromDate>
+    <lastime>2021-02-05T00:00:00</lastime>
+    <TotalTrip>1234</TotalTrip>
+    <ckm>123</ckm>
+    <FuelRemain>1200</FuelRemain>
+    <status>READY</status>
+  </Bus>
+</BusesXml.xml>

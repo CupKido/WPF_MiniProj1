@@ -11,7 +11,7 @@ namespace DALXml
 {
     class XMLTools
     {
-        static string dir = @"..\Data Source\";
+        static string dir = @"Data Source\";
         static XMLTools()
         {
             if (!Directory.Exists(dir))
@@ -40,7 +40,7 @@ namespace DALXml
                 }
                 else
                 {
-                    XElement rootElem = new XElement(dir + filePath);
+                    XElement rootElem = new XElement(filePath);
                     rootElem.Save(dir + filePath);
                     return rootElem;
                 }

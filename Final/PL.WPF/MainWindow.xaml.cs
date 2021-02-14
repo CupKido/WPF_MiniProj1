@@ -30,11 +30,47 @@ namespace PL.WPF
             UserNameTBO.Text = "Admin";
             PasswordTBO.Password = "Admin";
             //----------------------
+
+            SignUpButton.IsEnabled = false;
+            SignUpButton.Opacity = 0;
+
+
+            this.Show();
+        }
+
+        public MainWindow(string UserName, string Password)
+        {
+            InitializeComponent();
+
+
+            this.Height = 250;
+            SignUpTBL.IsEnabled = false;
+            SignUpTBL.Opacity = 0;
+            ForgotPasswordTBL.IsEnabled = false;
+            ForgotPasswordTBL.Opacity = 0;
+
+            ConfirmPasswordTBL.IsEnabled = true;
+            ConfirmPasswordTBL.Opacity = 1;
+            ConfirmPasswordTBO.IsEnabled = true;
+            ConfirmPasswordTBO.Opacity = 1;
+
+            LoginButton.IsEnabled = false;
+            LoginButton.Opacity = 0;
+
+            //------To Remove-------
+            UserNameTBO.Text = UserName;
+            PasswordTBO.Password = Password;
+            //----------------------
+
+            this.Show();
         }
 
         private void SignUp_Click(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("No Such Function");
+            MainWindow win = new MainWindow(UserNameTBO.Text, PasswordTBO.Password);
+            this.Close();
+            win.Show();
+
         }
         private void ForgotPassword_Click(object sender, MouseButtonEventArgs e)
         {
@@ -54,17 +90,39 @@ namespace PL.WPF
                 MessageBox.Show(ex.Message);
                 return;
             }
-            if(ThisUser.Admin)
-            {
+            //if(ThisUser.Admin)
+            //{
                 ManagerWindow win = new ManagerWindow(ThisUser);
                 win.Show();
                 this.Close();
                 return;
-            }
+            //}
             //UserWindow win = new UserWindow(ThisUser);
             //win.Show();
             this.Close();
         }
 
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(PasswordTBO.Password != ConfirmPasswordTBO.Password)
+            {
+                MessageBox.Show("Passwords Dont Match!");
+                return;
+            }
+            try
+            {
+                ThisUser.UserName = UserNameTBO.Text;
+                ThisUser.Password = PasswordTBO.Password;
+                bl.AddUser(ThisUser);
+            }catch(BO.BadUserNameException ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + ex.ID);
+                return;
+            }
+           
+            MainWindow win = new MainWindow();
+            win.Show();
+            this.Close();
+        }
     }
 }
