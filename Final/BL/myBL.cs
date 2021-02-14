@@ -426,7 +426,7 @@ namespace BL
             List<DO.Station> list;
             try
             {
-                list = (List<DO.Station>)myDal.GetAllStations();
+                list = (List<DO.Station>)myDal.GetAllStations().ToList();
             }
             catch (DO.BadStationIdException ex)
             {

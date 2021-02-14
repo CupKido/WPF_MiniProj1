@@ -214,11 +214,18 @@ namespace PL.WPF
 
         private void UpdateStationB_Click(object sender, RoutedEventArgs e)
         {
+            if(LineStationView.SelectedItem == null)
+            {
+                MessageBox.Show("ERROR: please select station to update!");
+                return;
+            }
+
             try
             {
-                new addLineStationWindow(lineStations.Find(p => p.Station == (LineStationView.SelectedItem as BO.Station).Code), this).Show();
+                BO.LineStation temp = lineStations.Find(p => p.Station == (LineStationView.SelectedItem as BO.Station).Code);
+                new addLineStationWindow(temp, this).Show();
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 MessageBox.Show("ERROR: please select station to update!");
             }
