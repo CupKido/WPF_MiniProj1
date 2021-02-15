@@ -581,7 +581,6 @@ namespace BL
             return from item in list
                    let station = item.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
                    orderby station.Station
-                   where perdicate(station)
                    select station;
         }
 
@@ -641,6 +640,71 @@ namespace BL
 
         #endregion
 
+        #region Adjacent
+
+        public void AddAdjacentStations(AdjacentStations adjacentstation)
+        {
+            try
+            {
+                myDal.AddAdjacentStations(adjacentstation.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations);
+            }
+            catch (Exception ex)
+            {
+                throw new BO.BadAdjacentIdException(adjacentstation.Station1, adjacentstation.Station1, "not added", ex) ;
+            }
+        }
+
+        public AdjacentStations GetAdjacentStations(int station1, int station2)
+        {
+            DO.AdjacentStations foundStation;
+            try
+            {
+                foundStation = myDal.GetAdjacentStations(station1, station2);
+            }
+            catch (Exception ex)
+            {
+                throw new BO.BadAdjacentIdException(station1, station1, "cant find Adjacent Stations", ex);
+            }
+            return foundStation.CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations;
+        }
+
+        public IEnumerable<AdjacentStations> GetAllAdjacentStations()
+        {
+            List<DO.AdjacentStations> list = myDal.GetAllAdjacentStations().ToList();
+            return from item in list
+                   let Adjacent = item.CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations
+                   select Adjacent;
+        }
+
+        public void UpdateAdjacentStations(AdjacentStations adjacentstations)
+        {
+            try
+            {
+                myDal.UpdateAdjacentStations(adjacentstations.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new BO.BadAdjacentIdException(adjacentstations.Station1, adjacentstations.Station1, ex.Message, ex);
+            }
+        }
+
+        public AdjacentStations RemoveAdjacentStations(int station1, int station2)
+        {
+            try
+            {
+                return myDal.RemoveAdjacentStations(station1, station2).CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations;
+            }
+            catch (Exception ex)
+            {
+
+                throw new BO.BadAdjacentIdException(station1,station2, ex.Message, ex);
+            }
+        }
+
+        #endregion
+
         #region simulation
 
         public void StartSimulator(TimeSpan time, int second, Action<TimeSpan> updateTime)
@@ -672,13 +736,12 @@ namespace BL
             }
             
         }
+        public void SetStationPanel(int station, Action<LineTiming> updateBus)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
-
-
-
-
-
 
     }
 }
