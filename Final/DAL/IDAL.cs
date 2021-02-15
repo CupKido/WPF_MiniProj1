@@ -90,7 +90,19 @@ namespace DLAPI
 
 
         LineStation DeleteLineStation(int Code, int line);
-        
+
+        #endregion
+
+        #region LineTrip
+
+        void AddLineTrip(LineTrip linetrip);
+        LineTrip GetLineTrip(int ID);
+        IEnumerable<LineTrip> GetAllLineTrips();
+        IEnumerable<LineTrip> GetAllLineTripsBy(Predicate<LineTrip> perdicate);
+        void UpdateLineTrip(int ID, LineTrip linetrip);
+        LineTrip DeleteLineTrip(int ID);
+
+
         #endregion
     }
 }
