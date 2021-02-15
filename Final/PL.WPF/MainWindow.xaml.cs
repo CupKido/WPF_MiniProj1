@@ -217,7 +217,7 @@ namespace PL.WPF
 
         private void StartSimulator()
         {
-            AskForSimData win = new AskForSimData(ThisUser);
+            UserWindow win = new UserWindow(ThisUser);
             win.Show();
             this.Close();
         }

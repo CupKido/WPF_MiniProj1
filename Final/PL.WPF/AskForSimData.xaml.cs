@@ -19,11 +19,13 @@ namespace PL.WPF
     /// </summary>
     public partial class AskForSimData : Window
     {
-        BO.User ThisUser;
-        public AskForSimData(BO.User User)
+        UserWindow UserMain;
+        public event Action<TimeSpan, int> dataEntered;
+        public AskForSimData(UserWindow usermain)
         {
             InitializeComponent();
-            ThisUser = User;
+            UserMain = usermain;
+            dataEntered += UserMain.updateFromAsk;
             this.Show();
         }
 
@@ -31,8 +33,7 @@ namespace PL.WPF
         {
             try
             {
-                UserWindow win = new UserWindow(TimeSpan.Parse(AskDataTBO.Text), int.Parse(AskSecondTBO.Text), ThisUser);
-                win.Show();
+                dataEntered.Invoke(TimeSpan.Parse(AskDataTBO.Text), int.Parse(AskSecondTBO.Text));
                 this.Close();
             }
             catch (Exception ex)

@@ -26,8 +26,19 @@ namespace PL.WPF
         IBL bl = BLFactory.GetBL(1);
         BO.User ThisUser;
         TimeSpan Time;
-        int Second;
+        int Second = 1000;
         BackgroundWorker simulatorWorker;
+
+        public UserWindow(BO.User User)
+        {
+            InitializeComponent();
+            Time = new TimeSpan(0,0,0);
+            Second = 1000;
+            ThisUser = User;
+            ClockTBO.Text = Time.ToString("g");
+            RefreshList(StationsList);
+        }
+
         public UserWindow(TimeSpan time, int second, BO.User User)
         {
             InitializeComponent();
@@ -58,11 +69,24 @@ namespace PL.WPF
 
         }
 
+        public void updateFromAsk(TimeSpan time, int second)
+        {
+            Time = time;
+            ClockTBO.Text = Time.ToString("g");
+            Second = second;
+        }
+
         private void LogOff_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = new MainWindow();
             ThisUser = null;
             this.Close();
+            win.Show();
+        }
+        
+        private void AskDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            AskForSimData win = new AskForSimData(this);
             win.Show();
         }
 
