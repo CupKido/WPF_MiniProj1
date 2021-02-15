@@ -9,6 +9,12 @@ namespace BL
 {
     public interface IBL
     {
+        #region Simulation
+
+        void StartSimulator(TimeSpan Time, int Second, Action<TimeSpan> updateTime);
+
+        #endregion
+
         #region Buses
         void AddBus(BO.BUS bus);
         BO.BUS GetBUS(int id);
@@ -21,7 +27,7 @@ namespace BL
 
         #region Lines
         void AddLine(BO.Line line);
-        BO.Line GetLine(int ID);
+        BO.Line GetLine(int ID, int code);
         IEnumerable<BO.Line> GetAllLines();
         IEnumerable<BO.Line> GetLinesBy(Predicate<BO.Line> predicate);
         void UpdateLine(BO.Line line);

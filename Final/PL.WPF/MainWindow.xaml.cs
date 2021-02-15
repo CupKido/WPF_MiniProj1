@@ -163,9 +163,7 @@ namespace PL.WPF
             this.Close();
             return;
             }
-            //UserWindow win = new UserWindow(ThisUser);
-            //win.Show();
-            this.Close();
+            StartSimulator();
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
@@ -214,6 +212,13 @@ namespace PL.WPF
                 MessageBox.Show(ex.Message + "\n" + ex.ID);
                 return;
             }
+            this.Close();
+        }
+
+        private void StartSimulator()
+        {
+            AskForSimData win = new AskForSimData(ThisUser);
+            win.Show();
             this.Close();
         }
     }

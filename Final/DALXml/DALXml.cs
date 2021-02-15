@@ -830,7 +830,7 @@ namespace DALXml
 
         }
 
-        public Line GetLine(int ID)
+        public Line GetLine(int ID, int code)
         {
             XElement LinesRootElem;
             try
@@ -851,6 +851,7 @@ namespace DALXml
             {
                 Line = (from line in LinesRootElem.Elements()
                         where int.Parse(line.Element("ID").Value) == ID
+                        where int.Parse(line.Element("Code").Value) == code
                         select new Line()
                         {
                             ID = Int32.Parse(line.Element("ID").Value),
@@ -910,6 +911,7 @@ namespace DALXml
 
             XElement LineElem = (from Line in LinesRootElem.Elements()
                                  where int.Parse(Line.Element("ID").Value) == ID
+                                 where int.Parse(Line.Element("Code").Value) == line.Code
                                  select Line).FirstOrDefault();
             if (LineElem == null)
             {
@@ -925,6 +927,8 @@ namespace DALXml
             XMLTools.SaveListToXMLElement(LinesRootElem, LinesPath);
         }
 
+
+        //need to Add line code option
         public Line DeleteLine(int ID)
         {
             XElement LinesRootElem = XMLTools.LoadListFromXMLElement(LinesPath);

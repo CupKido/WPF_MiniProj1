@@ -52,7 +52,7 @@ namespace PL.WPF
         }
 
         //For Update
-        public addLineWindow(int ID, ManagerWindow main)
+        public addLineWindow(int ID, int Code, ManagerWindow main)
         {
             InitializeComponent();
             Main = main;
@@ -74,7 +74,7 @@ namespace PL.WPF
 
             try
             {
-                ThisLine = bl.GetLine(ID);
+                ThisLine = bl.GetLine(ID, Code);
             }
             catch(BO.BadLineIdException ex)
             {

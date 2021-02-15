@@ -13,6 +13,8 @@ using System.Runtime.Remoting.Messaging;
 using DLAPI;
 using BO;
 
+
+
 //BO.Convertors.BTDBus
 namespace BL
 {
@@ -219,6 +221,15 @@ namespace BL
             //{
             try
             {
+                line.Code = myDal.GetAllStations().Count();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+
+
+            try
+            {
                 if (myDal.GetAllStations().FirstOrDefault(p => p.Code == line.FirstStation) != null && myDal.GetAllStations().FirstOrDefault(p => p.Code == line.LastStation) != null)
                 {
                     myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
@@ -258,12 +269,12 @@ namespace BL
             }
         }
 
-        public Line GetLine(int ID)
+        public Line GetLine(int ID, int code)
         {
             DO.Line foundLine;
             try
             {
-                foundLine = myDal.GetLine(ID);
+                foundLine = myDal.GetLine(ID, code);
             }
             catch
             {
@@ -302,11 +313,15 @@ namespace BL
                    where predicate(line)
                    select line;
         }
-
+        //keep on this
         public Line RemoveLine(int ID)
         {
             try
             {
+                foreach(DO.LineStation LS in myDal.GetAllLineStations())
+                {
+
+                }
                 return myDal.DeleteLine(ID).CopyPropertiesToNew(typeof(BO.Line)) as BO.Line;
             }
             catch (DO.BadLineIdException ex)
@@ -622,6 +637,40 @@ namespace BL
 
                 throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
+        }
+
+        #endregion
+
+        #region simulation
+
+        public void StartSimulator(TimeSpan time, int second, Action<TimeSpan> updateTime)
+        {
+
+            TimeSpan Time = time;
+            TimeSpan RealSecond = new TimeSpan(0, 0, 1);
+            Time.Add(RealSecond);
+            int Second = second;
+            Thread Timer = new Thread(d =>
+                {
+                    Thread.CurrentThread.Name = "Timer";
+                    bool flag = true;
+                    while (flag)
+                    {
+                        Thread.Sleep(second);
+                        Time.Add(RealSecond);
+                        updateTime(Time);
+                    }
+                    Thread.CurrentThread.Abort();
+                });
+            try
+            {
+                Timer.Start();
+            }
+            catch
+            {
+
+            }
+            
         }
 
         #endregion

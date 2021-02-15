@@ -1,19 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BusesXml.xml>
   <Bus>
-    <LicenseNum>1234567</LicenseNum>
-    <FromDate>2003-03-01T00:00:00</FromDate>
-    <lastime>2020-05-02T00:00:00</lastime>
-    <TotalTrip>12553</TotalTrip>
-    <ckm>20</ckm>
-    <FuelRemain>1200</FuelRemain>
-    <status>READY</status>
-  </Bus>
-  <Bus>
     <LicenseNum>12345678</LicenseNum>
-    <FromDate>2019-03-01T00:00:00</FromDate>
-    <lastime>2019-03-01T00:00:00</lastime>
-    <TotalTrip>15686</TotalTrip>
+    <FromDate>3/1/2019 12:00:00 AM</FromDate>
+    <lastime>3/1/2019 12:00:00 AM</lastime>
+    <TotalTrip>1568698.686</TotalTrip>
     <ckm>30</ckm>
     <FuelRemain>1200</FuelRemain>
     <status>READY</status>

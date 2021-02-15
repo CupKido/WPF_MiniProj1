@@ -65,3 +65,7 @@ D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Fin
 D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\ManagerWindow.baml
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\ManagerWindow.g.cs
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\PL.WPF\obj\Debug\ManagerWindow.baml
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\AskForSimData.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\UserWindow.g.cs
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\AskForSimData.baml
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\PL.WPF\obj\Debug\UserWindow.baml
