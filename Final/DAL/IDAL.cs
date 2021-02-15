@@ -72,6 +72,8 @@ namespace DLAPI
         #region BusOnTrip
         void AddBusOnTrip(BusOnTrip busontrip);
         BusOnTrip GetBusOnTrip(int ID);
+        IEnumerable<BusOnTrip> GetAllBusOnTrip();
+        IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<Line> perdicate);
         void UpdateBusOnTrip(int ID, BusOnTrip busontrip);
         BusOnTrip DeleteBusOnTrip(int ID);
         #endregion

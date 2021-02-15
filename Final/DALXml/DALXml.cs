@@ -27,11 +27,12 @@ namespace DALXml
 
         string BusesPath = @"BusesXml.xml";
         string LinesPath = @"LinesXml.xml";
+        string LineTripsPath = @"LineTripsXml.xml";
         string StationsPath = @"StationsXml.xml";
         string UsersPath = @"UsersXml.xml";
         string LineStationsPath = @"LineStationsXml.xml";
         string TripsPath = @"TripsXml.xml";
-        string BusOnStationsPath = @"BusOnStationsXml.xml";
+        string BusOnTripPath = @"BusOnTripXml.xml";
         string AdjacentStationsPath = @"AdjacentStationsXml.xml";
 
 
@@ -439,9 +440,9 @@ namespace DALXml
             }
 
             XElement AdStElem = (from AdjElem in AdStRootElem.Elements()
-                                        where int.Parse(AdjElem.Element("Station1").Value) == adjacentstations.Station1
-                                        where int.Parse(AdjElem.Element("Station2").Value) == adjacentstations.Station2
-                                        select AdjElem
+                                 where int.Parse(AdjElem.Element("Station1").Value) == adjacentstations.Station1
+                                 where int.Parse(AdjElem.Element("Station2").Value) == adjacentstations.Station2
+                                 select AdjElem
                                         ).FirstOrDefault();
 
             if (AdStElem == null)
@@ -458,7 +459,8 @@ namespace DALXml
             try
             {
                 XMLTools.SaveListToXMLElement(AdStRootElem, AdjacentStationsPath);
-            }catch(XMLFileLoadCreateException ex)
+            }
+            catch (XMLFileLoadCreateException ex)
             {
                 throw ex;
             }
@@ -1004,7 +1006,7 @@ namespace DALXml
 
             try
             {
-                XMLTools.SaveListToXMLElement(TripsRootElem, LinesPath);
+                XMLTools.SaveListToXMLElement(TripsRootElem, TripsPath);
             }
             catch (XMLFileLoadCreateException ex)
             {
@@ -1046,7 +1048,7 @@ namespace DALXml
 
             TripElem.Remove();
 
-            XMLTools.SaveListToXMLElement(TripsRootElem, LinesPath);
+            XMLTools.SaveListToXMLElement(TripsRootElem, TripsPath);
 
             return Trip;
         }
@@ -1056,7 +1058,7 @@ namespace DALXml
 
             if (TripsRootElem.Elements().Count() == 0)
             {
-                throw new BadLineIdException(0, "No Trips in Data");
+                throw new BadTripIdException(0, "No Trips in Data");
             }
 
             return (from trip in TripsRootElem.Elements()
@@ -1130,9 +1132,9 @@ namespace DALXml
                 throw new BadTripIdException(0, "No Trips in List");
             }
 
-            XElement TripElem = (from Line in TripsRootElem.Elements()
-                                 where int.Parse(Line.Element("ID").Value) == ID
-                                 select Line).FirstOrDefault();
+            XElement TripElem = (from Trip in TripsRootElem.Elements()
+                                 where int.Parse(Trip.Element("ID").Value) == ID
+                                 select Trip).FirstOrDefault();
             if (TripElem == null)
             {
                 throw new BadTripIdException(ID, "Trip Doesn't exist in Data");
@@ -1155,19 +1157,194 @@ namespace DALXml
         #region BusOnTrip
         public void AddBusOnTrip(BusOnTrip busontrip)
         {
-            throw new NotImplementedException();
+            XElement BusOnTripsRootElem;
+            try
+            {
+                BusOnTripsRootElem = XMLTools.LoadListFromXMLElement(BusOnTripPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            XElement BusOnTripElem;
+            try
+            {
+                BusOnTripElem = (from BusOnTripEl in BusOnTripsRootElem.Elements()
+                                 where int.Parse(BusOnTripEl.Element("ID").Value) == busontrip.ID
+                                 select BusOnTripEl).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            if (BusOnTripElem != null)
+                throw new DO.BadTripIdException(busontrip.ID, "The Bus Trip already exists in Data");
+
+            XElement newBusOnTrip =
+                new XElement("Trip",
+               new XElement("ID", busontrip.ID),
+               new XElement("LicenseNum", busontrip.LicenseNum),
+               new XElement("LineID", busontrip.LineID),
+               new XElement("PlannedTakeOff", busontrip.PlannedTakeOff.ToString()),
+               new XElement("ActualTakeOff", busontrip.ActualTakeOff.ToString()),
+               new XElement("PrevStation", busontrip.PrevStation),
+               new XElement("PrevStationAt", busontrip.PrevStationAt.ToString()),
+                new XElement("NextStationAt", busontrip.NextStationAt.ToString())
+               );
+            BusOnTripsRootElem.Add(newBusOnTrip);
+
+            try
+            {
+                XMLTools.SaveListToXMLElement(BusOnTripsRootElem, BusOnTripPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
         }
         public BusOnTrip DeleteBusOnTrip(int ID)
+        {
+            XElement BusOnTripsRootElem = XMLTools.LoadListFromXMLElement(BusOnTripPath);
+
+            if (BusOnTripsRootElem.Elements().Count() == 0)
+            {
+                throw new BadBOTIdException(0, "No Buses Trips in Data");
+            }
+            XElement BusOnTripElem = (from bot in BusOnTripsRootElem.Elements()
+                                      where int.Parse(bot.Element("ID").Value) == ID
+                                      select bot
+                         ).FirstOrDefault();
+
+
+
+            if (BusOnTripElem == null)
+            {
+                throw new BadBOTIdException(ID, "buse's Trip Doesn't exist in Data");
+            }
+
+            DO.BusOnTrip busontrip = new BusOnTrip()
+            {
+                ID = Int32.Parse(BusOnTripElem.Element("ID").Value),
+                LicenseNum = Int32.Parse(BusOnTripElem.Element("LicenseNum").Value),
+                LineID = Int32.Parse(BusOnTripElem.Element("LineID").Value),
+                PlannedTakeOff = TimeSpan.Parse(BusOnTripElem.Element("PlannedTakeOff").Value),
+                ActualTakeOff = TimeSpan.Parse(BusOnTripElem.Element("ActualTakeOff").Value),
+                PrevStation = Int32.Parse(BusOnTripElem.Element("PrevStation").Value),
+                PrevStationAt = TimeSpan.Parse(BusOnTripElem.Element("PrevStationAt").Value),
+                NextStationAt = TimeSpan.Parse(BusOnTripElem.Element("NextStationAt").Value)
+
+            };
+
+            BusOnTripElem.Remove();
+
+            XMLTools.SaveListToXMLElement(BusOnTripsRootElem, BusOnTripPath);
+
+            return busontrip;
+        }
+        public IEnumerable<BusOnTrip> GetAllBusOnTrip()
+        {
+            XElement BusOnTripsRootElem = XMLTools.LoadListFromXMLElement(BusOnTripPath);
+
+            if (BusOnTripsRootElem.Elements().Count() == 0)
+            {
+                throw new BadBOTIdException(0, "No LIne Trips in Data");
+            }
+
+            return (from bot in BusOnTripsRootElem.Elements()
+                    select new BusOnTrip()
+                    {
+                        ID = Int32.Parse(bot.Element("ID").Value),
+                        LicenseNum = Int32.Parse(bot.Element("LicenseNum").Value),
+                        LineID = Int32.Parse(bot.Element("LineID").Value),
+                        PlannedTakeOff = TimeSpan.Parse(bot.Element("PlannedTakeOff").Value),
+                        ActualTakeOff = TimeSpan.Parse(bot.Element("ActualTakeOff").Value),
+                        PrevStation = Int32.Parse(bot.Element("PrevStation").Value),
+                        PrevStationAt = TimeSpan.Parse(bot.Element("PrevStationAt").Value),
+                        NextStationAt = TimeSpan.Parse(bot.Element("NextStationAt").Value)
+                    }
+                   );
+        }
+        public IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<Line> perdicate)
         {
             throw new NotImplementedException();
         }
         public BusOnTrip GetBusOnTrip(int ID)
         {
-            throw new NotImplementedException();
+            XElement BusOnTripRootElem;
+            try
+            {
+                BusOnTripRootElem = XMLTools.LoadListFromXMLElement(BusOnTripPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            if (BusOnTripRootElem.Elements().Count() == 0)
+            {
+                throw new BadBOTIdException(0, "No buses trips in Data");
+            }
+            DO.BusOnTrip busOnTrip;
+            try
+            {
+                busOnTrip = (from bot in BusOnTripRootElem.Elements()
+                             where int.Parse(bot.Element("ID").Value) == ID
+                             select new BusOnTrip()
+                             {
+                                 ID = Int32.Parse(bot.Element("ID").Value),
+                                 LicenseNum = Int32.Parse(bot.Element("LicenseNum").Value),
+                                 LineID = Int32.Parse(bot.Element("LineID").Value),
+                                 PlannedTakeOff = TimeSpan.Parse(bot.Element("PlannedTakeOff").Value),
+                                 ActualTakeOff = TimeSpan.Parse(bot.Element("ActualTakeOff").Value),
+                                 PrevStation = Int32.Parse(bot.Element("PrevStation").Value),
+                                 PrevStationAt = TimeSpan.Parse(bot.Element("PrevStationAt").Value),
+                                 NextStationAt = TimeSpan.Parse(bot.Element("NextStationAt").Value)
+                             }
+                         ).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            if (busOnTrip == null)
+            {
+                throw new BadBOTIdException(ID, "buse's trip Doesn't exist in Data");
+            }
+            return busOnTrip;
         }
         public void UpdateBusOnTrip(int ID, BusOnTrip busontrip)
         {
-            throw new NotImplementedException();
+            XElement BusOnTripsRootElem = XMLTools.LoadListFromXMLElement(BusOnTripPath);
+
+            if (BusOnTripsRootElem.Elements().Count() == 0)
+            {
+                throw new BadBOTIdException(0, "No Buses Trips in List");
+            }
+
+            XElement BusOnTripElem = (from bot in BusOnTripsRootElem.Elements()
+                                      where int.Parse(bot.Element("ID").Value) == ID
+                                      select bot).FirstOrDefault();
+            if (BusOnTripElem == null)
+            {
+                throw new BadBOTIdException(ID, "buse's Trip Doesn't exist in Data");
+            }
+
+            BusOnTripElem.Element("ID").Value = busontrip.ID.ToString();
+            BusOnTripElem.Element("LicenseNum").Value = busontrip.LicenseNum.ToString();
+            BusOnTripElem.Element("LineID").Value = busontrip.LineID.ToString();
+            BusOnTripElem.Element("PlannedTakeOff").Value = busontrip.PlannedTakeOff.ToString();
+            BusOnTripElem.Element("ActualTakeOff").Value = busontrip.ActualTakeOff.ToString();
+            BusOnTripElem.Element("PrevStation").Value = busontrip.PrevStation.ToString();
+            BusOnTripElem.Element("PrevStationAt").Value = busontrip.PrevStationAt.ToString();
+            BusOnTripElem.Element("NextStationAt").Value = busontrip.NextStationAt.ToString();
+
+
+            XMLTools.SaveListToXMLElement(BusOnTripsRootElem, BusOnTripPath);
         }
 
         #endregion
@@ -1176,17 +1353,115 @@ namespace DALXml
 
         public void AddLineTrip(LineTrip linetrip)
         {
-            throw new NotImplementedException();
+            XElement LineTripsRootElem;
+            try
+            {
+                LineTripsRootElem = XMLTools.LoadListFromXMLElement(LineTripsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            XElement TripElem;
+            try
+            {
+                TripElem = (from LineTripEl in LineTripsRootElem.Elements()
+                            where int.Parse(LineTripEl.Element("ID").Value) == linetrip.ID
+                            select LineTripEl).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            if (TripElem != null)
+                throw new DO.BadTripIdException(linetrip.ID, "The Trip of this line is already exists in Data");
+
+            XElement newlinetrip =
+                new XElement("Trip",
+               new XElement("ID", linetrip.ID),
+               new XElement("LineID", linetrip.LineID),
+               new XElement("StartAt", linetrip.StartAt.ToString()),
+               new XElement("Frequency", linetrip.Frequency.ToString()),
+               new XElement("FinishAt", linetrip.FinishAt.ToString())
+               );
+            LineTripsRootElem.Add(newlinetrip);
+
+            try
+            {
+                XMLTools.SaveListToXMLElement(LineTripsRootElem, LineTripsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
         }
 
         public LineTrip GetLineTrip(int ID)
         {
-            throw new NotImplementedException();
+            XElement LineTripsRootElem;
+            try
+            {
+                LineTripsRootElem = XMLTools.LoadListFromXMLElement(LineTripsPath);
+            }
+            catch (XMLFileLoadCreateException ex)
+            {
+                throw ex;
+            }
+
+            if (LineTripsRootElem.Elements().Count() == 0)
+            {
+                throw new BadTripIdException(0, "No lines trips in Data");
+            }
+            DO.LineTrip linetrip;
+            try
+            {
+                linetrip = (from lt in LineTripsRootElem.Elements()
+                            where int.Parse(lt.Element("ID").Value) == ID
+                            select new LineTrip()
+                            {
+                                ID = Int32.Parse(lt.Element("ID").Value),
+                                LineID = Int32.Parse(lt.Element("LineID").Value),
+                                StartAt = TimeSpan.Parse(lt.Element("StartAt").Value),
+                                Frequency = TimeSpan.Parse(lt.Element("Frequency").Value),
+                                FinishAt = TimeSpan.Parse(lt.Element("FinishAt").Value)
+                            }
+                         ).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            if (linetrip == null)
+            {
+                throw new BadTripIdException(ID, "lines trip Doesn't exist in Data");
+            }
+            return linetrip;
         }
 
         public IEnumerable<LineTrip> GetAllLineTrips()
         {
-            throw new NotImplementedException();
+            XElement LineTripsRootElem = XMLTools.LoadListFromXMLElement(LineTripsPath);
+
+            if (LineTripsRootElem.Elements().Count() == 0)
+            {
+                throw new BadTripIdException(0, "No LIne Trips in Data");
+            }
+
+            return (from lt in LineTripsRootElem.Elements()
+                    select new LineTrip()
+                    {
+                        ID = Int32.Parse(lt.Element("ID").Value),
+                        LineID = Int32.Parse(lt.Element("LineID").Value),
+                        StartAt = TimeSpan.Parse(lt.Element("StartAt").Value),
+                        Frequency = TimeSpan.Parse(lt.Element("Frequency").Value),
+                        FinishAt = TimeSpan.Parse(lt.Element("FinishAt").Value)
+                    }
+                   );
         }
 
         public IEnumerable<LineTrip> GetAllLineTripsBy(Predicate<LineTrip> perdicate)
@@ -1196,12 +1471,66 @@ namespace DALXml
 
         public void UpdateLineTrip(int ID, LineTrip linetrip)
         {
-            throw new NotImplementedException();
+            XElement LineTripsRootElem = XMLTools.LoadListFromXMLElement(LineTripsPath);
+
+            if (LineTripsRootElem.Elements().Count() == 0)
+            {
+                throw new BadTripIdException(0, "No lines Trips in List");
+            }
+
+            XElement LineTripElem = (from lt in LineTripsRootElem.Elements()
+                                     where int.Parse(lt.Element("ID").Value) == ID
+                                     select lt).FirstOrDefault();
+            if (LineTripElem == null)
+            {
+                throw new BadTripIdException(ID, "Line's Trip Doesn't exist in Data");
+            }
+
+            LineTripElem.Element("ID").Value = linetrip.ID.ToString();
+            LineTripElem.Element("StartAt").Value = linetrip.StartAt.ToString();
+            LineTripElem.Element("LineID").Value = linetrip.LineID.ToString();
+            LineTripElem.Element("Frequency").Value = linetrip.Frequency.ToString();
+            LineTripElem.Element("FinishAt").Value = linetrip.FinishAt.ToString();
+
+
+            XMLTools.SaveListToXMLElement(LineTripsRootElem, LineTripsPath);
         }
 
         public LineTrip DeleteLineTrip(int ID)
         {
-            throw new NotImplementedException();
+            XElement LineTripsRootElem = XMLTools.LoadListFromXMLElement(LineTripsPath);
+
+            if (LineTripsRootElem.Elements().Count() == 0)
+            {
+                throw new BadTripIdException(0, "No Lines Trips in Data");
+            }
+            XElement LineTripElem = (from lt in LineTripsRootElem.Elements()
+                                     where int.Parse(lt.Element("ID").Value) == ID
+                                     select lt
+                         ).FirstOrDefault();
+
+
+
+            if (LineTripElem == null)
+            {
+                throw new BadTripIdException(ID, "line's Trip Doesn't exist in Data");
+            }
+
+            DO.LineTrip lineTrip = new LineTrip()
+            {
+                ID = Int32.Parse(LineTripElem.Element("ID").Value),
+                LineID = Int32.Parse(LineTripElem.Element("LineID").Value),
+                StartAt = TimeSpan.Parse(LineTripElem.Element("StartAt").Value),
+                Frequency = TimeSpan.Parse(LineTripElem.Element("Frequency").Value),
+                FinishAt = TimeSpan.Parse(LineTripElem.Element("FinishAt").Value)
+
+            };
+
+            LineTripElem.Remove();
+
+            XMLTools.SaveListToXMLElement(LineTripsRootElem, LineTripsPath);
+
+            return lineTrip;
         }
 
         #endregion
