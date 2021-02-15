@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <UsersXml.xml>
   <User>
     <UserName>Admin</UserName>
     <Password>Admin</Password>
     <Admin>True</Admin>
+  </User>
+  <User>
+    <UserName>saar</UserName>
+    <Password>saar</Password>
+    <Admin>False</Admin>
   </User>
 </UsersXml.xml>

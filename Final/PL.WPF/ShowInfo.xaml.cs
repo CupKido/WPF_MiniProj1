@@ -22,6 +22,7 @@ namespace PL.WPF
     {
         readonly int defulth = 270;
         ManagerWindow Main;
+        UserWindow UserMain;
         object ThisObj;
         Type ThisType;
         IBL bl = BLFactory.GetBL(1);
@@ -100,6 +101,23 @@ namespace PL.WPF
         {
             InitializeComponent();
             Main = main;
+            UserMain = null;
+            ThisObj = user;
+            ThisType = typeof(BO.User);
+
+            ClearNums();
+            number1pre.Text = "UserName:";
+            number1data.Text = user.UserName;
+            number2pre.Text = "Password:";
+            number2data.Text = user.Password;
+            number3pre.Text = "is Admim:";
+            number3data.Text = user.Admin.ToString();
+        }
+        public ShowInfo(BO.User user, UserWindow main)
+        {
+            InitializeComponent();
+            UserMain = main;
+            Main = null;
             ThisObj = user;
             ThisType = typeof(BO.User);
 
@@ -215,10 +233,16 @@ namespace PL.WPF
                 if (ThisType == typeof(BO.User))
                 {
                     bl.RemoveUser(ThisObj as BO.User);
-                    Main.RefreshList(Main.StationsList);
                     MainWindow win = new MainWindow();
                     win.Show();
-                    Main.Close();
+                    if(Main != null)
+                    {
+                        Main.Close();
+                    }
+                    else
+                    {
+                        UserMain.Close();
+                    }
                     this.Close();
                 }
                 else

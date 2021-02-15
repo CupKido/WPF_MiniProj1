@@ -13,3 +13,4 @@ C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Fin
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.dll
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DAL.pdb
 C:\Users\prhsv\Desktop\לימודים\זיבי פרוייקט\windows-system\Final\DAL\obj\Debug\DALAPI.csprojAssemblyReference.cache
+D:\school\courses\מיני פרויקט במערכת חלונות\Local Path\Final\DAL\obj\Debug\DALAPI.csprojAssemblyReference.cache

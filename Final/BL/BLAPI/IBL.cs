@@ -9,6 +9,12 @@ namespace BL
 {
     public interface IBL
     {
+        #region Simulation
+
+        void StartSimulator(TimeSpan Time, int Second, Action<TimeSpan> updateTime);
+
+        #endregion
+
         #region Buses
         void AddBus(BO.BUS bus);
         BO.BUS GetBUS(int id);
