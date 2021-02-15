@@ -710,31 +710,19 @@ namespace BL
         public void StartSimulator(TimeSpan time, int second, Action<TimeSpan> updateTime)
         {
 
-            TimeSpan Time = time;
-            TimeSpan RealSecond = new TimeSpan(0, 0, 1);
-            Time.Add(RealSecond);
-            int Second = second;
-            Thread Timer = new Thread(d =>
-                {
-                    Thread.CurrentThread.Name = "Timer";
-                    bool flag = true;
-                    while (flag)
-                    {
-                        Thread.Sleep(second);
-                        Time.Add(RealSecond);
-                        updateTime(Time);
-                    }
-                    Thread.CurrentThread.Abort();
-                });
-            try
-            {
-                Timer.Start();
-            }
-            catch
-            {
+            Clock.instance.Rate = second;
+            Clock.instance.Start = time;
+            Clock.instance.TimeChangeEvent += updateTime;
+            Clock.instance.Cancel = false;
+            Clock.instance.StartClock();
 
-            }
-            
+            //LineDispatcher.Instance.StartDispatch();
+        }
+
+        public void StopSimulator()
+        {
+            Clock.instance.StopClock();
+            //LineDispatcher.Instance.StopDispatch();
         }
         public void SetStationPanel(int station, Action<LineTiming> updateBus)
         {

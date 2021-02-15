@@ -21,5 +21,6 @@
         <TextBlock x:Name="UserName" Text="" FontSize="15" HorizontalAlignment="Center" Width="188" Height="30" Margin="0,0,605.6,390"/>
         <TextBlock Text=" Log Off" MouseLeftButtonDown="LogOff_Click" FontSize="10" HorizontalAlignment="Center" Width="62" Height="20" Margin="0,29,731.6,371"/>
         <TextBlock Text=" User Details" MouseLeftButtonDown="UserDetails_Click" FontSize="10" HorizontalAlignment="Center" Width="62" Height="20"  Margin="61,28,670.6,372"/>
+        <Button x:Name="SimClockButton" Content ="Start Simulator" Click="SimClockButton_Click" Margin="165,6,542.6,380"/>
     </Grid>
 </Window>

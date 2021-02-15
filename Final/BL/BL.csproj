@@ -55,6 +55,7 @@
     <Compile Include="BO\Station.cs" />
     <Compile Include="BO\Trip.cs" />
     <Compile Include="BO\User.cs" />
+    <Compile Include="Clock.cs" />
     <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="myBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
