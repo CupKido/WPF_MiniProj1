@@ -668,6 +668,21 @@ namespace DAL
             throw new BadStationIdException(Code, "station isn't exist");
         }
 
+        public Line GetLine(int ID, int code)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<BusOnTrip> GetAllBusOnTrip()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<Line> perdicate)
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
 

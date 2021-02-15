@@ -186,7 +186,7 @@ namespace PL.WPF
         private void SendToLineWin()
         {
             BO.Line newline = (BO.Line)ThisObj;
-            addLineWindow win = new addLineWindow(newline.ID, Main);
+            addLineWindow win = new addLineWindow(newline.ID, newline.Code, Main);
             win.Show();
             this.Close();
         }

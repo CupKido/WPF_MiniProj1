@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -71,6 +72,10 @@ namespace PL.WPF
 
         private void UpdateTime(TimeSpan time)
         {
+            if(Thread.CurrentThread.Name != "Timer")
+            {
+                Thread.CurrentThread.Abort();
+            }
             ClockTBO.Text = time.ToString("g");
             Time = time;
         }

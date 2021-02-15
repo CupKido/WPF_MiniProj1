@@ -53,7 +53,7 @@ namespace DLAPI
 
         #region Line
         void AddLine(Line line);
-        Line GetLine(int ID);
+        Line GetLine(int ID, int code);
         IEnumerable<Line> GetAllLines();
         IEnumerable<Line> GetAllLinesBy(Predicate<Line> perdicate);
         void UpdateLine(int ID, Line line);

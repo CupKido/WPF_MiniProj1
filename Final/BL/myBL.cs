@@ -221,6 +221,15 @@ namespace BL
             //{
             try
             {
+                line.Code = myDal.GetAllStations().Count();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+
+
+            try
+            {
                 if (myDal.GetAllStations().FirstOrDefault(p => p.Code == line.FirstStation) != null && myDal.GetAllStations().FirstOrDefault(p => p.Code == line.LastStation) != null)
                 {
                     myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
@@ -260,12 +269,12 @@ namespace BL
             }
         }
 
-        public Line GetLine(int ID)
+        public Line GetLine(int ID, int code)
         {
             DO.Line foundLine;
             try
             {
-                foundLine = myDal.GetLine(ID);
+                foundLine = myDal.GetLine(ID, code);
             }
             catch
             {
@@ -304,11 +313,15 @@ namespace BL
                    where predicate(line)
                    select line;
         }
-
+        //keep on this
         public Line RemoveLine(int ID)
         {
             try
             {
+                foreach(DO.LineStation LS in myDal.GetAllLineStations())
+                {
+
+                }
                 return myDal.DeleteLine(ID).CopyPropertiesToNew(typeof(BO.Line)) as BO.Line;
             }
             catch (DO.BadLineIdException ex)
