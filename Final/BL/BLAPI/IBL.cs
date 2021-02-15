@@ -13,6 +13,8 @@ namespace BL
 
         void StartSimulator(TimeSpan Time, int Second, Action<TimeSpan> updateTime);
 
+        void StopSimulator();
+
         #endregion
 
         #region Buses

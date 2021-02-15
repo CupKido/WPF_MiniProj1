@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
+
 using BL;
 
 namespace PL.WPF
@@ -25,6 +27,7 @@ namespace PL.WPF
         BO.User ThisUser;
         TimeSpan Time;
         int Second;
+        BackgroundWorker simulatorWorker;
         public UserWindow(TimeSpan time, int second, BO.User User)
         {
             InitializeComponent();
@@ -33,7 +36,6 @@ namespace PL.WPF
             ThisUser = User;
             ClockTBO.Text = time.ToString("g");
             RefreshList(StationsList);
-            bl.StartSimulator(Time, Second, UpdateTime);
         }
         public void RefreshList(ListView list)
         {
@@ -70,14 +72,76 @@ namespace PL.WPF
             win.Show();
         }
 
-        private void UpdateTime(TimeSpan time)
+        private void UpdateTime_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if(Thread.CurrentThread.Name != "Timer")
+            ClockTBO.Text = ((TimeSpan)e.UserState).ToString("g");
+        }
+
+        private void SimClockButton_Click(object sender, RoutedEventArgs e)
+        {
+            TimeSpan startTime = TimeSpan.Parse(ClockTBO.Text);
+            if (SimClockButton.Content.ToString() == "Start Simulator")
             {
-                Thread.CurrentThread.Abort();
+                
+                if (Second != 0)
+                {
+                    
+
+
+                    // Activate Clock
+                    simulatorWorker = new BackgroundWorker
+                    {
+                        WorkerSupportsCancellation = true,
+                        WorkerReportsProgress = true
+                    };
+                    simulatorWorker.ProgressChanged += UpdateTime_ProgressChanged;
+                    simulatorWorker.DoWork += SimulatorWorker_DoWork;
+                    simulatorWorker.RunWorkerAsync(new object[] { startTime, Second });
+                    SimClockButton.Content = "Stop Simulator";
+                    //// Activate station view worker
+                    //if (simulatorWorker == null)
+                    //    InitStationSimWorker();
+                    //if (stationSimWorker.IsBusy && stationSimWorker.CancellationPending)
+                    //    while (stationSimWorker.IsBusy) // wait for station sim worker to be stopped
+                    //        Thread.Sleep(50);
+                    //stationSimWorker.RunWorkerAsync();
+                }
+                else if (Second <= 1000)
+                    MessageBox.Show("Invalid time or rate value!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("rate can't be more than 1000", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            ClockTBO.Text = time.ToString("g");
-            Time = time;
+            else // Stop Clock
+            {
+                
+                
+                // Stop the Clock
+                bl.StopSimulator();
+                if (simulatorWorker.WorkerSupportsCancellation == true)
+                    simulatorWorker.CancelAsync();
+                SimClockButton.Content = "Start Simulator";
+                //// stop station simulation
+                //if (stationSimWorker.WorkerSupportsCancellation == true)
+                //    stationSimWorker.CancelAsync();
+            }
+        }
+
+        void SimulatorWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            object[] Data= e.Argument as object[];
+            bl.StartSimulator((TimeSpan)Data[0], (int)Data[1], (TimeSpan x) =>
+            {
+                if (!simulatorWorker.CancellationPending)
+                {
+                    simulatorWorker.ReportProgress(0, x);
+                }
+                    
+            });
+            while (!simulatorWorker.CancellationPending)
+            {
+                Thread.Sleep(1000);
+            }
+
         }
     }
 }
