@@ -77,5 +77,21 @@ namespace BL
         LineStation DeleteLineStation(int Code, int line);
 
         #endregion
+
+        #region adjacent
+
+        void AddAdjacentStations(AdjacentStations adjacentstation);
+
+        AdjacentStations GetAdjacentStations(int station1, int station2);
+
+        IEnumerable<AdjacentStations> GetAllAdjacentStations();
+
+        void UpdateAdjacentStations(AdjacentStations adjacentstations);
+
+        AdjacentStations RemoveAdjacentStations(int station1, int station2);
+
+        #endregion
+        void SetStationPanel(int station, Action<LineTiming> updateBus);
+
     }
 }

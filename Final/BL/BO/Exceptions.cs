@@ -93,4 +93,19 @@ namespace BO
             base(message, innerException) => Path = path;
         public override string ToString() => base.ToString() + $", Path: {Path}";
     }
+
+    public class BadAdjacentIdException : Exception
+    {
+        public int ID1;
+        public int ID2;
+
+
+        public BadAdjacentIdException(int StationID1,int StationID2) : base() => ID1 = StationID1;
+        public BadAdjacentIdException(int StationID1, int StationID2, string message) :
+            base(message) => ID1 = StationID1;
+
+        public BadAdjacentIdException(int StationID1, int StationID2, string message, Exception innerException) :
+            base(message, innerException) => ID1 = StationID1;
+        public override string ToString() => base.ToString() + $", bad Line ID: {ID1}";
+    }
 }
