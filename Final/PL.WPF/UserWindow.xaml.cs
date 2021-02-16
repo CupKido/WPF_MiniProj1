@@ -28,6 +28,7 @@ namespace PL.WPF
         TimeSpan Time;
         int Second;
         BackgroundWorker simulatorWorker;
+        BackgroundWorker stationSimWorker;
         public UserWindow(TimeSpan time, int second, BO.User User)
         {
             InitializeComponent();
