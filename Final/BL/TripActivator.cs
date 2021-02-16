@@ -19,22 +19,78 @@ namespace BL
         #endregion
 
         private IBL bl = BLFactory.GetBL(1);
-        int StationCode;
-        Action<LineTiming> Update;
-        LineTiming trip; 
+        public int StationCode
+        {
+            get
+            {
+                return stationCode;
+            }
 
+
+            set
+            {
+                stationCode = value;
+                stationChanged.Invoke(stationCode);
+            }
+        }
+        private int stationCode;
+        public LineTiming trip;
+
+        public event Action<int> stationChanged;
+        bool cancel;
+        //private IEnumerable<LineTrip> GetAllTripTimes()
+        //{
+        //    List<LineTrip> list = new List<LineTrip>();
+
+        //    foreach (BO.LineTrip item in myDal.GetAllLineTrips())
+        //    {
+        //        BO.LineTrip ThisTS = new LineTrip();
+        //        ThisTS.StartAt = item.StartAt;
+        //        while (ThisTS.StartAt <= item.FinishAt)
+        //        {
+        //            list.Add(ThisTS);
+        //            ThisTS.StartAt.Add(item.Frequency);
+        //        }
+        //    }
+        //    return list;
+        //}
+
+        //public TimeSpan getClosestLT()
+        //{
+        //    List<TimeSpan> list = GetAllTripTimes().ToList();
+        //    list.Sort();
+        //    return (from item in list
+        //            where Clock.instance.Time < item
+        //            select item).FirstOrDefault();
+        //}
+
+        //void StartTripActivator()
+        //{
+        //    cancel = false;
+        //    new Thread(() =>
+        //    {
+        //        TimeSpan temp = new TimeSpan();
+        //        while (!cancel)
+        //        {
+        //            temp = getClosestLT();
+        //            Thread.Sleep(Convert.ToInt32(Math.Floor((temp.TotalMilliseconds - Clock.instance.Time.TotalMilliseconds - 60) * (1000f / Clock.instance.Rate))));
+        //            StartTrip
+        //        }
+        //    }).Start();
+
+        //}
         void StartTrip(LineTrip Line)
         {
             trip.LineID = Line.LineID;
             if (bl.GetAllLines().ToList().FirstOrDefault(p => p.ID == Line.LineID) != null)
             {
                 List<LineStation> stations = bl.GetAllLineStationsBy(p => p.LineID == trip.LineID).ToList();
-                TimeSpan timeFromFirst = bl.TimeBetweenTwo(bl.GetAllLines().ToList().Find(p => p.ID == Line.LineID).FirstStation, StationCode, Line.LineID);
+                TimeSpan timeFromFirst = bl.TimeBetweenTwo(bl.GetAllLines().ToList().Find(p => p.ID == Line.LineID).FirstStation, stationCode, Line.LineID);
                 TimeSpan frequncy = Line.StartAt;
 
                 while (frequncy < Clock.instance.Time)
                 {
-                    frequncy.Add(Line.Frequency); 
+                    frequncy.Add(Line.Frequency);
                 }
                 trip.TripStartAt = frequncy.Subtract(Line.Frequency);
                 trip.AtStation = trip.TripStartAt.Add(timeFromFirst);

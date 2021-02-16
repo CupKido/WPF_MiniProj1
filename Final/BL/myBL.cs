@@ -10,7 +10,7 @@ using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
-using System.
+using System;
 using DLAPI;
 using BO;
 
@@ -235,7 +235,7 @@ namespace BL
                     }
                 }
 
-            }catch(DO.BadLineIdException ex)
+            } catch (DO.BadLineIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
@@ -243,7 +243,7 @@ namespace BL
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
             }
-            catch(DO.BadLSIdException ex)
+            catch (DO.BadLSIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
@@ -439,7 +439,7 @@ namespace BL
             {
                 throw new BO.BadUserNameException(ThatUser.UserName, ex.Message, ex);
             }
-            
+
             if (ThatUser.Password != FoundUser.Password)
             {
                 throw new Exception("Incorrect UserName or Password");
@@ -508,7 +508,7 @@ namespace BL
             }
             catch (Exception ex)
             {
-                throw new BO.BadUserNameException(UserName, ex.Message, ex);
+                throw new BO.BadUserNameException(user.UserName, ex.Message, ex);
             }
             //}
             //else throw "";
@@ -549,9 +549,9 @@ namespace BL
             try
             {
                 foundStation = myDal.GetStation(ID);
-                
+
             }
-            catch(DO.BadStationIdException ex)
+            catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationIdException(ID, ex.Message);
             }
@@ -559,7 +559,7 @@ namespace BL
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new BadStationIdException(ID, ex.Message, ex);
             }
@@ -700,15 +700,15 @@ namespace BL
                        orderby station.Station
                        select station;
             }
-            catch(DO.BadLSIdException ex)
+            catch (DO.BadLSIdException ex)
             {
                 throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
-            catch(DO.XMLFileLoadCreateException ex)
+            catch (DO.XMLFileLoadCreateException ex)
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -844,7 +844,7 @@ namespace BL
             {
                 throw new BO.BadAdjacentIdException(adjacentstation.Station1, adjacentstation.Station1, "not added", ex);
             }
-            
+
         }
 
         public AdjacentStations GetAdjacentStations(int station1, int station2)
@@ -875,7 +875,7 @@ namespace BL
             catch (DO.XMLFileLoadCreateException ex)
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
                 throw ex;
             }
@@ -924,6 +924,8 @@ namespace BL
 
         #region simulation
 
+
+
         public void StartSimulator(TimeSpan time, int second, Action<TimeSpan> updateTime)
         {
 
@@ -946,9 +948,9 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public TimeSpan TimeBetweenTwo(int station1, int station2,int lineID)
+        public TimeSpan TimeBetweenTwo(int station1, int station2, int lineID)
         {
-            TimeSpan totalTime = new TimeSpan(0,0,0);
+            TimeSpan totalTime = new TimeSpan(0, 0, 0);
             List<AdjacentStations> adlist = buildAdjecntStations(lineID);
             List<LineStation> lineStations = GetAllLineStationsBy(p => p.LineID == lineID).ToList();
             lineStations = (from item in lineStations
@@ -956,7 +958,7 @@ namespace BL
                             select item).ToList();
             LineStation ls1 = lineStations.Find(p => p.Station == station1);
             LineStation ls2 = lineStations.Find(p => p.Station == station2);
-            if(ls1.LineStationIndex > ls2.LineStationIndex)
+            if (ls1.LineStationIndex > ls2.LineStationIndex)
             {
                 for (int i = ls2.LineStationIndex; i < ls1.LineStationIndex; i++)
                 {
@@ -1005,7 +1007,7 @@ namespace BL
             return adStations;
         }
 
-        #endregion
 
+        #endregion
     }
 }
