@@ -22,6 +22,7 @@ namespace BL
     {
 
         IDAL myDal = DLFactory.GetDL();
+
         #region Bus
 
         public void AddBus(BO.BUS bus)
@@ -62,6 +63,14 @@ namespace BL
 
                 throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
             }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public BO.BUS GetBUS(int ID)
@@ -72,6 +81,14 @@ namespace BL
                 bus = myDal.GetBUS(ID);
             }
             catch (DO.BadBusIdException ex)
+            {
+                throw ex;
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -95,8 +112,15 @@ namespace BL
             }
             catch (DO.BadBusIdException ex)
             {
-
                 throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             //}
             //else throw "";
@@ -116,6 +140,14 @@ namespace BL
             {
                 throw new BO.BadBusIdException(ex.ID, ex.Message, ex);
             }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IEnumerable<BUS> GetBusesBy(Predicate<BUS> predicate)
@@ -128,6 +160,14 @@ namespace BL
             catch (DO.BadLineIdException ex)
             {
                 throw new BadLineIdException(0, "no lines exist!", ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return from item in list
                    let bus = (BO.BUS)item.CopyPropertiesToNew(typeof(BO.BUS))
@@ -146,6 +186,14 @@ namespace BL
             {
 
                 throw new BadBusIdException(bus.LicenseNum, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -167,21 +215,37 @@ namespace BL
             {
                 throw new BO.BadBOTIdException(ex.ID, ex.Message, ex);
             }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             //}
             //else throw " ";
         }
-        public void RemoveUser(BO.BusOnTrip user)
+        public void RemoveBusOnTrip(BO.BusOnTrip BOT)
         {
             //if (Auser.Admin)
             //{
             try
             {
-                myDal.DeleteBusOnTrip(user.ID);
+                myDal.DeleteBusOnTrip(BOT.ID);
             }
             catch (DO.BadBOTIdException ex)
             {
 
                 throw new BO.BadBOTIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             //}
             //else throw "";
@@ -189,10 +253,28 @@ namespace BL
 
         public IEnumerable<BO.BusOnTrip> GetAllBusesOnTrip()
         {
-            List<DO.BusOnTrip> list = (List<DO.BusOnTrip>)(from bus in myDal.GetAllBusesBy(p => p.LicenseNum != 0)
-                                                           let bus1 = myDal.GetBusOnTrip(bus.LicenseNum)
-                                                           where (bus1 != null)
-                                                           select bus1);
+            List<DO.BusOnTrip> list;
+            try
+            {
+                list = (List<DO.BusOnTrip>)(from bus in myDal.GetAllBusesBy(p => p.LicenseNum != 0)
+                                            let bus1 = myDal.GetBusOnTrip(bus.LicenseNum)
+                                            where (bus1 != null)
+                                            select bus1);
+            }
+            catch (DO.BadBOTIdException ex)
+            {
+
+                throw new BO.BadBOTIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             return from item in list
                    let BOT = (BO.BusOnTrip)item.CopyPropertiesToNew(typeof(BO.BusOnTrip))
                    orderby BOT.ID
@@ -205,9 +287,18 @@ namespace BL
             {
                 myDal.UpdateBusOnTrip(bot.LicenseNum, bot.CopyPropertiesToNew(typeof(DO.BusOnTrip)) as DO.BusOnTrip);
             }
-            catch (DO.BadBusIdException ex)
+            catch (DO.BadBOTIdException ex)
             {
-                throw new BadBusIdException(bot.LicenseNum, ex.Message, ex);
+
+                throw new BO.BadBOTIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -234,7 +325,8 @@ namespace BL
                     }
                 }
 
-            }catch(DO.BadLineIdException ex)
+            }
+            catch (DO.BadLineIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
@@ -242,7 +334,7 @@ namespace BL
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
             }
-            catch(DO.BadLSIdException ex)
+            catch (DO.BadLSIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
@@ -254,7 +346,7 @@ namespace BL
 
             try
             {
-                if (myDal.GetAllStations().FirstOrDefault(p => p.Code == line.FirstStation) != null && myDal.GetAllStations().FirstOrDefault(p => p.Code == line.LastStation) != null)
+                if (myDal.GetAllStations().FirstOrDefault(p => p.Code == line.FirstStation) != null && myDal.GetAllStations().FirstOrDefault(p => p.Code == line.LastStation) != null && line.FirstStation != line.LastStation)
                 {
                     myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
                     myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation });
@@ -267,9 +359,21 @@ namespace BL
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (DO.BadLSIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message + "\n" + " please insert stations that they in data" + "\n" + " or add the stations into data base first", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new BO.BadLineIdException(line.ID, ex.Message, ex);
             }
             //}
             //else throw " ";
@@ -291,6 +395,18 @@ namespace BL
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
             }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (DO.BadLSIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Line GetLine(int ID, int code)
@@ -300,9 +416,21 @@ namespace BL
             {
                 foundLine = myDal.GetLine(ID, code);
             }
-            catch
+            catch (DO.BadLineIdException ex)
             {
-                throw new NotImplementedException();
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (DO.BadLSIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return (BO.Line)foundLine.CopyPropertiesToNew(typeof(BO.Line));
         }
@@ -318,6 +446,18 @@ namespace BL
 
                 throw new BadLineIdException(line.ID, ex.Message, ex);
             }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (DO.BadLSIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw new BO.BadLineIdException(line.ID, ex.Message, ex);
+            }
         }
 
         public IEnumerable<Line> GetLinesBy(Predicate<Line> predicate)
@@ -329,7 +469,19 @@ namespace BL
             }
             catch (DO.BadLineIdException ex)
             {
-                throw new BadLineIdException(0, "no lines exist!", ex);
+                throw new BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
+            }
+            catch (DO.BadLSIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return from item in list
                    let line = (BO.Line)item.CopyPropertiesToNew(typeof(BO.Line))
@@ -355,6 +507,10 @@ namespace BL
             {
 
                 throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+            }
+            catch (DO.XMLFileLoadCreateException ex)
+            {
+                throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
             }
             catch (DO.BadLSIdException ex)
             {
@@ -438,7 +594,7 @@ namespace BL
             {
                 throw new BO.BadUserNameException(ThatUser.UserName, ex.Message, ex);
             }
-            
+
             if (ThatUser.Password != FoundUser.Password)
             {
                 throw new Exception("Incorrect UserName or Password");
@@ -507,7 +663,7 @@ namespace BL
             }
             catch (Exception ex)
             {
-                throw new BO.BadUserNameException(UserName, ex.Message, ex);
+                throw new BO.BadUserNameException(user.UserName, ex.Message, ex);
             }
             //}
             //else throw "";
@@ -548,9 +704,9 @@ namespace BL
             try
             {
                 foundStation = myDal.GetStation(ID);
-                
+
             }
-            catch(DO.BadStationIdException ex)
+            catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationIdException(ID, ex.Message);
             }
@@ -558,7 +714,7 @@ namespace BL
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new BadStationIdException(ID, ex.Message, ex);
             }
@@ -698,15 +854,15 @@ namespace BL
                        orderby station.Station
                        select station;
             }
-            catch(DO.BadLSIdException ex)
+            catch (DO.BadLSIdException ex)
             {
                 throw new BO.BadLSIdException(ex.ID, ex.Message, ex);
             }
-            catch(DO.XMLFileLoadCreateException ex)
+            catch (DO.XMLFileLoadCreateException ex)
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -842,7 +998,7 @@ namespace BL
             {
                 throw new BO.BadAdjacentIdException(adjacentstation.Station1, adjacentstation.Station1, "not added", ex);
             }
-            
+
         }
 
         public AdjacentStations GetAdjacentStations(int station1, int station2)
@@ -873,7 +1029,8 @@ namespace BL
             catch (DO.XMLFileLoadCreateException ex)
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
