@@ -1,8 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinesXml.xml>
   <Line>
-    <ID>6</ID>
+    <ID>1234</ID>
+    <Code>1</Code>
+    <Area>center</Area>
+    <FirstStation>12</FirstStation>
+    <LastStation>21</LastStation>
+  </Line>
+  <Line>
+    <ID>134</ID>
     <Code>3</Code>
+    <Area>north</Area>
+    <FirstStation>21</FirstStation>
+    <LastStation>12</LastStation>
+  </Line>
+  <Line>
+    <ID>123</ID>
+    <Code>2</Code>
     <Area>center</Area>
     <FirstStation>12</FirstStation>
     <LastStation>21</LastStation>

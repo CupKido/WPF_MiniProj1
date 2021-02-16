@@ -929,7 +929,7 @@ namespace DALXml
 
 
         //need to Add line code option
-        public Line DeleteLine(int ID)
+        public Line DeleteLine(int ID, int Code)
         {
             XElement LinesRootElem = XMLTools.LoadListFromXMLElement(LinesPath);
 
@@ -939,6 +939,7 @@ namespace DALXml
             }
             XElement LineElem = (from line in LinesRootElem.Elements()
                                  where int.Parse(line.Element("ID").Value) == ID
+                                 where int.Parse(line.Element("Code").Value) == Code
                                  select line
                          ).FirstOrDefault();
 

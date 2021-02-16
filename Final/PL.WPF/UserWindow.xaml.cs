@@ -26,9 +26,22 @@ namespace PL.WPF
         IBL bl = BLFactory.GetBL(1);
         BO.User ThisUser;
         TimeSpan Time;
-        int Second;
+        int Second = 1000;
         BackgroundWorker simulatorWorker;
         BackgroundWorker stationSimWorker;
+
+        public UserWindow(BO.User User)
+        {
+            InitializeComponent();
+            Time = new TimeSpan(0,0,0);
+            Second = 1000;
+            ThisUser = User;
+            UserName.Text = "Hello " + ThisUser.UserName + "!";
+            ClockTBO.Text = Time.ToString("g");
+            RefreshList(StationsList);
+        }
+
+       
         public UserWindow(TimeSpan time, int second, BO.User User)
         {
             InitializeComponent();
@@ -59,11 +72,27 @@ namespace PL.WPF
 
         }
 
+        public void updateFromAsk(TimeSpan time, int second)
+        {
+            Time = time;
+            ClockTBO.Text = Time.ToString("g");
+            Second = second;
+        }
+
         private void LogOff_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = new MainWindow();
+
+            StopSimulator();
+
             ThisUser = null;
             this.Close();
+            win.Show();
+        }
+        
+        private void AskDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            AskForSimData win = new AskForSimData(this);
             win.Show();
         }
 
@@ -73,13 +102,24 @@ namespace PL.WPF
             win.Show();
         }
 
+
+        //when somthing is insered to Time in the Clock instance 
         private void UpdateTime_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             ClockTBO.Text = ((TimeSpan)e.UserState).ToString("g");
         }
 
+
+        //Activates The simulation
         private void SimClockButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             TimeSpan startTime = TimeSpan.Parse(ClockTBO.Text);
             if (SimClockButton.Content.ToString() == "Start Simulator")
             {
@@ -99,6 +139,7 @@ namespace PL.WPF
                     simulatorWorker.DoWork += SimulatorWorker_DoWork;
                     simulatorWorker.RunWorkerAsync(new object[] { startTime, Second });
                     SimClockButton.Content = "Stop Simulator";
+                    AskDataButton.IsEnabled = false;
                     //// Activate station view worker
                     //if (simulatorWorker == null)
                     //    InitStationSimWorker();
@@ -114,13 +155,10 @@ namespace PL.WPF
             }
             else // Stop Clock
             {
-                
-                
+
+
                 // Stop the Clock
-                bl.StopSimulator();
-                if (simulatorWorker.WorkerSupportsCancellation == true)
-                    simulatorWorker.CancelAsync();
-                SimClockButton.Content = "Start Simulator";
+                StopSimulator();
                 //// stop station simulation
                 //if (stationSimWorker.WorkerSupportsCancellation == true)
                 //    stationSimWorker.CancelAsync();
@@ -143,6 +181,15 @@ namespace PL.WPF
                 Thread.Sleep(1000);
             }
 
+        }
+
+        void StopSimulator()
+        {
+            bl.StopSimulator();
+            if (simulatorWorker.WorkerSupportsCancellation == true)
+                simulatorWorker.CancelAsync();
+            SimClockButton.Content = "Start Simulator";
+            AskDataButton.IsEnabled = true;
         }
     }
 }

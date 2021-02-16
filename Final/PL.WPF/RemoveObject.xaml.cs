@@ -35,6 +35,9 @@ namespace PL.WPF
                     break;
                 case "Line":
                     KeyReq.Text = "Enter ID:";
+                    KeyReq2.Text = "Enter Code:";
+                    KeyReq2.Visibility = Visibility.Visible;
+                    KeyData2.Visibility = Visibility.Visible;
                     break;
                 case "Station":
                     KeyReq.Text = "Enter Code:";
@@ -64,12 +67,13 @@ namespace PL.WPF
                     }
                     break;
                 case "Line":
-                    int ID = 0;
-                    if (int.TryParse(KeyData.Text, out ID))
+                    int LineID = 0;
+                    int LineCode = 0;
+                    if (int.TryParse(KeyData.Text, out LineID) && int.TryParse(KeyData2.Text,out LineCode))
                     {
                         try
                         {
-                            bl.RemoveLine(ID);
+                            bl.RemoveLine(LineID, LineCode);
                             this.Close();
                             Main.RefreshList(Main.LinesList);
                         }
@@ -78,6 +82,11 @@ namespace PL.WPF
                             MessageBox.Show(ex.Message + "\nID: " + ex.ID);
                             return;
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("invalid ID or Code");
+                        return;
                     }
                     break;
                 case "Station":

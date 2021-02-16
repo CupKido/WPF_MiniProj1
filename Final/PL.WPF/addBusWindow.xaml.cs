@@ -211,9 +211,10 @@ namespace PL.WPF
             {
                 bl.UpdateBus(bus);
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("not found or somthing, idk");
+                MessageBox.Show(ex.Message);
+                return;
             }
             Main.RefreshList(Main.BusesList);
             this.Close();

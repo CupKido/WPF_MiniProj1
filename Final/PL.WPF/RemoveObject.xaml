@@ -9,7 +9,9 @@
     <Grid>
         <TextBlock x:Name="KeyReq" HorizontalAlignment="Left" Margin="29,25,0,0" TextWrapping="Wrap" Text="Enter Key:" FontSize="16" VerticalAlignment="Top" Height="29" Width="100"/>
         <TextBox x:Name="KeyData" HorizontalAlignment="Left" Height="29" Margin="134,25,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="KeyData2" Visibility="Collapsed" HorizontalAlignment="Left" Height="29" Margin="134,59,0,0" TextWrapping="Wrap" Text="" FontSize="16" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="RemoveButton" Content="Remove" Click="RemoveObj" HorizontalAlignment="Left" Margin="327,111,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <TextBlock x:Name="KeyReq2" Visibility="Collapsed" HorizontalAlignment="Left" Margin="29,59,0,0" TextWrapping="Wrap" Text="Enter Key:" FontSize="16" VerticalAlignment="Top" Height="29" Width="100"/>
 
     </Grid>
 </Window>

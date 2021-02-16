@@ -1,14 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LineStationsXml.xml>
   <LineStation>
-    <LineID>6</LineID>
+    <LineID>1234</LineID>
     <Station>12</Station>
     <LineStationIndex>1</LineStationIndex>
     <PrevStation>0</PrevStation>
     <NextStation>21</NextStation>
   </LineStation>
   <LineStation>
-    <LineID>6</LineID>
+    <LineID>1234</LineID>
+    <Station>21</Station>
+    <LineStationIndex>0</LineStationIndex>
+    <PrevStation>12</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>134</LineID>
+    <Station>21</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>12</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>134</LineID>
+    <Station>12</Station>
+    <LineStationIndex>0</LineStationIndex>
+    <PrevStation>21</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>123</LineID>
+    <Station>12</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>21</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineID>123</LineID>
     <Station>21</Station>
     <LineStationIndex>0</LineStationIndex>
     <PrevStation>12</PrevStation>
