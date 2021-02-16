@@ -92,6 +92,7 @@ namespace BL
 
         #endregion
         void SetStationPanel(int station, Action<LineTiming> updateBus);
-
+        TimeSpan TimeBetweenTwo(int station1, int station2, int lineID);
+        List<AdjacentStations> buildAdjecntStations(int lineID);
     }
 }

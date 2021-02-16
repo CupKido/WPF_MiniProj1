@@ -23,5 +23,12 @@
         <TextBlock Text=" User Details" TextAlignment="Center" MouseLeftButtonDown="UserDetails_Click" FontSize="10" HorizontalAlignment="Center" Width="62" Height="20"  Margin="61,28,670.6,372"/>
         <Button x:Name="SimClockButton" Content ="Start Simulator" Click="SimClockButton_Click" Margin="561,58,146.6,328"/>
         <Button x:Name="AskDataButton" Content ="insert Data" Click="AskDataButton_Click" Margin="469,58,238.6,328"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="228" Margin="402,165,0,0" VerticalAlignment="Top" Width="374">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="line" Width="50" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

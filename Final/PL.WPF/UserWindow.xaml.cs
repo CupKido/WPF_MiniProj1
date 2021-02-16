@@ -28,6 +28,7 @@ namespace PL.WPF
         TimeSpan Time;
         int Second = 1000;
         BackgroundWorker simulatorWorker;
+        BackgroundWorker stationSimWorker;
 
         public UserWindow(BO.User User)
         {
@@ -40,6 +41,7 @@ namespace PL.WPF
             RefreshList(StationsList);
         }
 
+       
         public UserWindow(TimeSpan time, int second, BO.User User)
         {
             InitializeComponent();

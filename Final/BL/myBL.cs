@@ -10,6 +10,7 @@ using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
+using System;
 using DLAPI;
 using BO;
 
@@ -828,6 +829,7 @@ namespace BL
                     myDal.UpdateLineStation(item);
                 }
                 myDal.AddLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
+                buildAdjecntStations(station.LineID);
             }
             catch (DO.BadLSIdException ex)
             {
@@ -1079,6 +1081,8 @@ namespace BL
 
         #region simulation
 
+
+
         public void StartSimulator(TimeSpan time, int second, Action<TimeSpan> updateTime)
         {
 
@@ -1101,8 +1105,66 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        #endregion
+        public TimeSpan TimeBetweenTwo(int station1, int station2, int lineID)
+        {
+            TimeSpan totalTime = new TimeSpan(0, 0, 0);
+            List<AdjacentStations> adlist = buildAdjecntStations(lineID);
+            List<LineStation> lineStations = GetAllLineStationsBy(p => p.LineID == lineID).ToList();
+            lineStations = (from item in lineStations
+                            orderby item.LineStationIndex
+                            select item).ToList();
+            LineStation ls1 = lineStations.Find(p => p.Station == station1);
+            LineStation ls2 = lineStations.Find(p => p.Station == station2);
+            if (ls1.LineStationIndex > ls2.LineStationIndex)
+            {
+                for (int i = ls2.LineStationIndex; i < ls1.LineStationIndex; i++)
+                {
+                    LineStation tempLs = lineStations.Find(p => p.LineStationIndex == i);
+                    totalTime += adlist.Find(p => (p.Station1 == tempLs.Station && p.Station2 == tempLs.NextStation) || (p.Station2 == tempLs.Station && p.Station1 == tempLs.NextStation)).Time;
+                }
+            }
+            else if (ls1.LineStationIndex < ls2.LineStationIndex)
+            {
+                for (int i = ls1.LineStationIndex; i < ls2.LineStationIndex; i++)
+                {
+                    LineStation tempLs = lineStations.Find(p => p.LineStationIndex == i);
+                    totalTime += adlist.Find(p => (p.Station1 == tempLs.Station && p.Station2 == tempLs.NextStation) || (p.Station2 == tempLs.Station && p.Station1 == tempLs.NextStation)).Time;
+                }
+            }
+            return totalTime;
+        }
 
+        Random r = new Random();
+        public List<AdjacentStations> buildAdjecntStations(int lineID)
+        {
+            List<LineStation> lineStations = GetAllLineStationsBy(p => p.LineID == lineID).ToList();
+            List<Station> Stations = (from item in lineStations
+                                      select GetAllStations().ToList().Find(p => p.Code == item.Station)).ToList();
+            List<AdjacentStations> adStations = (from station in lineStations
+                                                 select GetAllAdjacentStations().ToList().Find(p => (p.Station1 == station.Station && p.Station2 == station.NextStation) || (p.Station2 == station.Station && p.Station1 == station.NextStation))).ToList();
+
+
+            foreach (var item in adStations)
+            {
+                double distance = 175 * (Math.Sqrt((Math.Pow((GetStation(item.Station1).Longitude) - (GetStation(item.Station2).Longitude), 2) + Math.Pow((GetStation(item.Station1).Latitude) - (GetStation(item.Station2).Latitude), 2))));
+                double time = distance * (r.Next(30, 99) + r.NextDouble());
+                int hour = Convert.ToInt32(Math.Floor(time));
+                int minute = Convert.ToInt32(Math.Floor((time % 1) * 60));
+                TimeSpan Time = new TimeSpan(hour, minute, 0);
+                AdjacentStations temp = new AdjacentStations()
+                {
+                    Distance = distance,
+                    Station1 = item.Station1,
+                    Station2 = item.Station2,
+                    Time = Time
+                };
+                AddAdjacentStations(temp);
+            }
+
+            return adStations;
+        }
+
+
+        #endregion
     }
 }
-
