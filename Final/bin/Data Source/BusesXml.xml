@@ -2,8 +2,8 @@
 <BusesXml.xml>
   <Bus>
     <LicenseNum>12345678</LicenseNum>
-    <FromDate>3/1/2019 12:00:00 AM</FromDate>
-    <lastime>3/1/2019 12:00:00 AM</lastime>
+    <FromDate>02/01/2019 00:00:00</FromDate>
+    <lastime>03/01/2019 00:00:00</lastime>
     <TotalTrip>1568698.686</TotalTrip>
     <ckm>30</ckm>
     <FuelRemain>1200</FuelRemain>

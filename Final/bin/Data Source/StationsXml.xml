@@ -8,7 +8,7 @@
   </Station>
   <Station>
     <Code>12</Code>
-    <Name>yatmal</Name>
+    <Name>yatmalasas</Name>
     <Longitude>123</Longitude>
     <Latitude>312</Latitude>
   </Station>
@@ -17,5 +17,11 @@
     <Name>yatmall</Name>
     <Longitude>123.123</Longitude>
     <Latitude>321.321</Latitude>
+  </Station>
+  <Station>
+    <Code>142</Code>
+    <Name>asdasd</Name>
+    <Longitude>123.456</Longitude>
+    <Latitude>432.53</Latitude>
   </Station>
 </StationsXml.xml>

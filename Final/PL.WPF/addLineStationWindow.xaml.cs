@@ -70,28 +70,36 @@ namespace PL.WPF
             PrevStationTBO.IsEnabled = false;
 
         }
-
+        
         private void StationIDBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (StationIndexTBO.Text != "")
+            try
             {
-                if (!int.TryParse(StationIDBO.Text, out StationId))
+                if (StationIndexTBO.Text != "")
                 {
-                    MessageBox.Show("numbers only!");
+                    if (!int.TryParse(StationIDBO.Text, out StationId))
+                    {
+                        MessageBox.Show("numbers only!");
+                    }
                 }
             }
+            catch { }
         }
 
         private void LineIDTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-            if (StationIndexTBO.Text != "")
+            try
             {
-                if (!int.TryParse(LineIDTBO.Text, out LineId))
+                if (StationIndexTBO.Text != "")
                 {
-                    MessageBox.Show("numbers only!");
+                    if (!int.TryParse(LineIDTBO.Text, out LineId))
+                    {
+                        MessageBox.Show("numbers only!");
+                    }
                 }
             }
+            catch
+            { }
         }
 
         private void StationIndexTBO_TextChanged(object sender, TextChangedEventArgs e)
@@ -113,7 +121,8 @@ namespace PL.WPF
                         
                     try
                     {
-                        NextStationTBO.Text = (bl.GetAllLineStationsBy(p => p.LineStationIndex == StationIndex).ToList().Find(p => p.LineID == LineId).Station.ToString());
+                        List<BO.LineStation> tempList = bl.GetAllLineStationsBy(p => p.LineStationIndex == StationIndex).ToList();
+                        NextStationTBO.Text = (tempList.Find(p => p.LineID == LineId).Station.ToString());
                     }
                     catch(Exception ex)
                     {
@@ -143,25 +152,33 @@ namespace PL.WPF
 
         private void PrevStationTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (StationIndexTBO.Text != "")
+            try
             {
-                if (!int.TryParse(PrevStationTBO.Text, out PrevStation))
+                if (StationIndexTBO.Text != "")
                 {
-                    MessageBox.Show("numbers only!");
+                    if (!int.TryParse(PrevStationTBO.Text, out PrevStation))
+                    {
+                        MessageBox.Show("numbers only!");
+                    }
                 }
             }
+            catch {; }
 
         }
 
         private void NextStationTBO_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (StationIndexTBO.Text != "")
+            try
             {
-                if (!int.TryParse(NextStationTBO.Text, out NextStation))
+                if (StationIndexTBO.Text != "")
                 {
-                    MessageBox.Show("numbers only!");
+                    if (!int.TryParse(NextStationTBO.Text, out NextStation))
+                    {
+                        MessageBox.Show("numbers only!");
+                    }
                 }
             }
+            catch {; }
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
