@@ -218,7 +218,7 @@ namespace PL.WPF
                 else
                 if (ThisType == typeof(BO.Line))
                 {
-                    bl.RemoveLine((ThisObj as BO.Line).ID);
+                    bl.RemoveLine((ThisObj as BO.Line).ID, (ThisObj as BO.Line).Code);
                     this.Close();
                     Main.RefreshList(Main.LinesList);
                 }

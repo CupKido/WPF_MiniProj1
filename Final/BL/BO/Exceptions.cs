@@ -88,7 +88,7 @@ namespace BO
 
     public class XMLFileLoadCreateException : Exception
     {
-        string Path;
+        public string Path;
         public XMLFileLoadCreateException(string path, string message, Exception innerException) :
             base(message, innerException) => Path = path;
         public override string ToString() => base.ToString() + $", Path: {Path}";

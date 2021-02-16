@@ -57,7 +57,7 @@ namespace DLAPI
         IEnumerable<Line> GetAllLines();
         IEnumerable<Line> GetAllLinesBy(Predicate<Line> perdicate);
         void UpdateLine(int ID, Line line);
-        Line DeleteLine(int ID);
+        Line DeleteLine(int ID, int Code);
         #endregion
 
         #region Trip

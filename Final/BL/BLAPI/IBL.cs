@@ -33,7 +33,7 @@ namespace BL
         IEnumerable<BO.Line> GetAllLines();
         IEnumerable<BO.Line> GetLinesBy(Predicate<BO.Line> predicate);
         void UpdateLine(BO.Line line);
-        BO.Line RemoveLine(int ID);
+        BO.Line RemoveLine(int ID, int Code);
         #endregion
 
         #region Stations

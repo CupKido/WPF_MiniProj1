@@ -683,6 +683,11 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public Line DeleteLine(int ID, int Code)
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
 

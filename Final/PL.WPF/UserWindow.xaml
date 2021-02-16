@@ -18,10 +18,10 @@
         </ListView>
         <TextBlock x:Name="ClockTBO" Text="00:00:00" FontSize="30" Margin="506,10,146.6,367"/>
         <TextBlock Text=" Moovit V2" FontSize="24" HorizontalAlignment="Center" Width="118" Height="40"  Margin="367,0,408.6,570.4"/>
-        <TextBlock x:Name="UserName" Text="" FontSize="15" HorizontalAlignment="Center" Width="188" Height="30" Margin="0,0,605.6,390"/>
-        <TextBlock Text=" Log Off" MouseLeftButtonDown="LogOff_Click" FontSize="10" HorizontalAlignment="Center" Width="62" Height="20" Margin="0,29,731.6,371"/>
-        <TextBlock Text=" User Details" MouseLeftButtonDown="UserDetails_Click" FontSize="10" HorizontalAlignment="Center" Width="62" Height="20"  Margin="61,28,670.6,372"/>
-        <Button x:Name="SimClockButton" Content ="Start Simulator" Click="SimClockButton_Click" Margin="226,6,481.6,380"/>
-        <Button Content ="insert Data" Click="AskDataButton_Click" Margin="226,6,481.6,380"/>
+        <TextBlock x:Name="UserName" TextAlignment="Center" Text="" FontSize="15" HorizontalAlignment="Center" Width="175" Height="30" Margin="0,0,618.6,390"/>
+        <TextBlock Text=" Log Off" TextAlignment="Center" MouseLeftButtonDown="LogOff_Click" FontSize="10" HorizontalAlignment="Center" Width="62" Height="20" Margin="-1,28,732.6,372"/>
+        <TextBlock Text=" User Details" TextAlignment="Center" MouseLeftButtonDown="UserDetails_Click" FontSize="10" HorizontalAlignment="Center" Width="62" Height="20"  Margin="61,28,670.6,372"/>
+        <Button x:Name="SimClockButton" Content ="Start Simulator" Click="SimClockButton_Click" Margin="561,58,146.6,328"/>
+        <Button x:Name="AskDataButton" Content ="insert Data" Click="AskDataButton_Click" Margin="469,58,238.6,328"/>
     </Grid>
 </Window>
