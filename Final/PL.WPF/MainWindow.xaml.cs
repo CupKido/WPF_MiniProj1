@@ -41,10 +41,10 @@ namespace PL.WPF
             ConfirmPasswordTBO.Visibility = Visibility.Collapsed;
 
 
-            //------To Remove-------
-            UserNameTBO.Text = "Admin";
-            PasswordTBO.Password = "Admin";
-            //----------------------
+            ////------To Remove-------
+            //UserNameTBO.Text = "Admin";
+            //PasswordTBO.Password = "Admin";
+            ////----------------------
 
             this.Show();
         }
