@@ -235,9 +235,11 @@ namespace BL
                     }
                 }
 
-            } catch (DO.BadLineIdException ex)
+            }
+            catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+                //throw new BO.BadLineIdException(ex.ID, ex.Message, ex);
+                line.Code = 1;
             }
             catch (DO.XMLFileLoadCreateException ex)
             {
@@ -257,9 +259,20 @@ namespace BL
             {
                 if (myDal.GetAllStations().FirstOrDefault(p => p.Code == line.FirstStation) != null && myDal.GetAllStations().FirstOrDefault(p => p.Code == line.LastStation) != null)
                 {
+                    DO.LineStation stat1 = new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation };
+                    DO.LineStation stat2 = new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 2, PrevStation = line.FirstStation };
                     myDal.AddLine((DO.Line)line.CopyPropertiesToNew(typeof(DO.Line)));
-                    myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.FirstStation, LineStationIndex = 1, NextStation = line.LastStation });
-                    myDal.AddLineStation(new DO.LineStation() { LineID = line.ID, Station = line.LastStation, LineStationIndex = 0, PrevStation = line.FirstStation });
+                    myDal.AddLineStation(stat1);
+                    myDal.AddLineStation(stat2);
+                    AdjacentStations ad = new AdjacentStations()
+                    {
+                        Station1 = stat1.Station,
+                        Station2 = stat2.Station,
+                        Distance = distanceBetweenTwo(stat1.Station, stat2.Station),
+                    };
+                    AddAdjacentStations(ad);
+                    ad.Time = TimeBetweenTwo(stat1.Station, stat2.Station, stat1.LineID);
+                    UpdateAdjacentStations(ad);
                 }
                 else
                     throw new BO.BadLineIdException(line.ID, "line first station or last station is not exist");
@@ -271,6 +284,10 @@ namespace BL
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message + "\n" + " please insert stations that they in data" + "\n" + " or add the stations into data base first", ex);
+            }
+            catch
+            {
+
             }
             //}
             //else throw " ";
@@ -666,10 +683,21 @@ namespace BL
             try
             {
                 GetStation(station.Station);
-                List<DO.LineStation> stations = myDal.GetAllLineStationsBy(p => p.LineStationIndex >= station.LineStationIndex && p.Station != station.Station && p.LineID == station.LineID).ToList();
+                List<DO.LineStation> stations = myDal.GetAllLineStationsBy(p => p.Station != station.Station && p.LineID == station.LineID).ToList();
                 foreach (var item in stations)
                 {
-                    item.LineStationIndex++;
+                    if (item.LineStationIndex >= station.LineStationIndex)
+                    {
+                        item.LineStationIndex++;
+                    }
+                    if (item.LineStationIndex == (station.LineStationIndex) - 1)
+                    {
+                        item.NextStation = station.Station;
+                    }
+                    if (item.LineStationIndex == (station.LineStationIndex) + 1)
+                    {
+                        item.PrevStation = station.Station;
+                    }
                     myDal.UpdateLineStation(item);
                 }
                 myDal.AddLineStation(station.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation);
@@ -842,7 +870,11 @@ namespace BL
             }
             catch (Exception ex)
             {
-                throw new BO.BadAdjacentIdException(adjacentstation.Station1, adjacentstation.Station1, "not added", ex);
+                if (ex.Message == "Stations already exists") { }
+                else
+                {
+                    throw new BO.BadAdjacentIdException(adjacentstation.Station1, adjacentstation.Station1, "not added", ex);
+                }
             }
 
         }
@@ -875,7 +907,8 @@ namespace BL
             catch (DO.XMLFileLoadCreateException ex)
             {
                 throw new BO.XMLFileLoadCreateException(ex.Path, ex.Message, ex);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -950,6 +983,7 @@ namespace BL
 
         public TimeSpan TimeBetweenTwo(int station1, int station2, int lineID)
         {
+
             TimeSpan totalTime = new TimeSpan(0, 0, 0);
             List<AdjacentStations> adlist = buildAdjecntStations(lineID);
             List<LineStation> lineStations = GetAllLineStationsBy(p => p.LineID == lineID).ToList();
@@ -984,12 +1018,14 @@ namespace BL
             List<Station> Stations = (from item in lineStations
                                       select GetAllStations().ToList().Find(p => p.Code == item.Station)).ToList();
             List<AdjacentStations> adStations = (from station in lineStations
-                                                 select GetAllAdjacentStations().ToList().Find(p => (p.Station1 == station.Station && p.Station2 == station.NextStation) || (p.Station2 == station.Station && p.Station1 == station.NextStation))).ToList();
+                                                 let temp = GetAllAdjacentStations().ToList().Find(p => (p.Station1 == station.Station && p.Station2 == station.NextStation) || (p.Station2 == station.Station && p.Station1 == station.NextStation))
+                                                 where temp != null
+                                                 select temp).ToList();
 
 
             foreach (var item in adStations)
             {
-                double distance = 175 * (Math.Sqrt((Math.Pow((GetStation(item.Station1).Longitude) - (GetStation(item.Station2).Longitude), 2) + Math.Pow((GetStation(item.Station1).Latitude) - (GetStation(item.Station2).Latitude), 2))));
+                double distance = distanceBetweenTwo(item.Station1, item.Station2);
                 double time = distance * (r.Next(30, 99) + r.NextDouble());
                 int hour = Convert.ToInt32(Math.Floor(time));
                 int minute = Convert.ToInt32(Math.Floor((time % 1) * 60));
@@ -1007,6 +1043,13 @@ namespace BL
             return adStations;
         }
 
+        public Double distanceBetweenTwo(int station1, int station2)
+        {
+            Station Station1 = GetStation(station1);
+            Station Station2 = GetStation(station2);
+            Double temp = 175 * (Math.Sqrt((Math.Pow((Station1.Longitude) - (Station2.Longitude), 2) + Math.Pow((Station1.Latitude) - (Station2.Latitude), 2))));
+            return temp;
+        }
 
         #endregion
     }

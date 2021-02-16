@@ -261,7 +261,10 @@ namespace PL.WPF
         {
             try
             {
-                bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code, (ThisObj as BO.Line).ID);
+                if (!LineStationView.Items.IsEmpty)
+                {
+                    bl.DeleteLineStation((LineStationView.SelectedItem as BO.Station).Code, (ThisObj as BO.Line).ID);
+                }
                 Refresh();
             }
             catch (BO.BadStationIdException ex)

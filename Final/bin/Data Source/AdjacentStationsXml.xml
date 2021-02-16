@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AdjacentStationsXml.xml>
+    <AdjacentStations>
+    <Station1>21</Station1>
+    <Station2>123</Station2>
+    <Distance>2945394.40127234</Distance>
+    <Time>21.00:00:00</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>12</Station1>
+    <Station2>21</Station2>
+    <Distance>1631.31701586479</Distance>
+    <Time>12.00:00:00</Time>
+  </AdjacentStations>
+</AdjacentStationsXml.xml>
